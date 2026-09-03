@@ -52,11 +52,13 @@ def auto_git_commit_eval():
         result = subprocess.run(
             ["git", "status", "--porcelain"], 
             capture_output=True, 
+            text=True, 
+            encoding='utf-8', 
+            errors='replace', 
             cwd=project_root
         )
-        status_text = result.stdout.decode('utf-8', errors='replace').strip()
         
-        if not status_text:
+        if not result.stdout or not result.stdout.strip():
             print("ℹ️ 変更がないため Git コミットをスキップしました。")
             return
 
@@ -65,7 +67,6 @@ def auto_git_commit_eval():
         print("✅ MAGI 審議結果の Git プッシュが完了しました！")
     except Exception as e:
         print(f"⚠️ Git 自動処理をスキップしました: {e}")
-
 def evaluate_branches(input_json_path):
     if not os.path.exists(input_json_path):
         print(f"Error: Target JSON file not found at {input_json_path}")

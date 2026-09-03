@@ -1,626 +1,378 @@
-# C#実装指示: GitPathManager (フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター)
+はい、承知いたしました。
+「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」のリードディレクターとして、Cursor(IDE)のCtrl+Lへそのまま読み込ませてC#コード化できる「精密な実装指示プロンプト」をMarkdown形式で出力します。
 
-## 目的
-ゲームの外部連携（MOD管理、アセットバージョン管理、自律シミュレーターの外部データ同期など）において、Git実行ファイルのパスを動的に検出し、検証し、安全に利用するための `GitPathManager` クラスを実装します。これにより、異なる環境下でもGit連携機能が安定して動作することを保証します。特に、Gitパスが不正な場合の修正・検出ロジックに焦点を当てます。
+今回の「subprocess 文字コード修正テスト」の指示は、ゲームの「ブラインド熱科学クラフト」や「千年史自律シミュレーター」において、外部の計算エンジンやデータ処理スクリプト（Python, R, etc.）と安全かつ確実に連携し、特に文字コードの問題を解決するための基盤実装と解釈します。これは、ゲーム内の高度な「社会技術（Magic）」を具現化し、「生活職業（Job）」の多様なタスクを可能にするための核心的なコンポーネントとなります。
 
-## コンセプトとの関連性
-*   **フロム風戦闘**: 直接的な関連は薄いですが、アセットやバランス調整のバージョン管理に間接的に寄与し、開発・運用における安定性を高めます。
-*   **ブラインド熱科学クラフト**: クラフトレシピや素材データのバージョン管理、あるいはユーザー生成コンテンツの取り込みに利用される可能性があり、コンテンツの整合性を保つ基盤となります。
-*   **千年史自律シミュレーター**: シミュレーターが参照する歴史データ、外部イベントスクリプト、MODなどのバージョン管理や同期に不可欠な「社会技術」として機能します。これにより、シミュレーターが外部リソースを安全かつ正確に取り込み、歴史の連続性を維持・管理できるようになります。
+---
 
-## 厳守事項
-1.  **Safe-Fail構造**: Gitパスの検出失敗、コマンド実行エラーなど、あらゆる異常事態においてアプリケーションがクラッシュせず、適切なフォールバックとユーザーフィードバックを提供すること。エラーはログに記録し、可能な限りデフォルト値や代替手段を提供すること。
-2.  **MagicSanitizerEngine**: Gitパスやコマンド引数など、外部からの入力は必ず `MagicSanitizerEngine` を通してサニタイズし、セキュリティリスク（例: パストラバーサル、コマンドインジェクション）を排除すること。特にパスの正規化と不正文字の除去を徹底すること。
-3.  **Job/Magicの定義規約**:
-    *   **Magic (社会技術)**: Gitパス管理は、ゲームの外部連携を円滑にし、コンテンツの整合性を保つための「バージョン管理」という社会技術をゲームシステムに組み込むものです。これは、千年史シミュレーターが「歴史の記録と改変」を扱う上で、その基盤となる技術的側面を担い、外部知識の安全な取り込みを可能にします。
-    *   **Job (生活職業)**: 直接的なジョブではないが、ゲーム開発者やMOD制作者が「コンテンツを管理し、ゲームに提供する」という役割を果たすための基盤技術として機能します。ゲーム内では、NPCが「外部情報源を同期する学者」や「歴史を編纂する書記」といったジョブを抽象的に実行する際のバックエンド技術として解釈できます。
+# サブプロセス連携モジュール「ArcaneExecutor」の実装指示
 
-## 実装指示
+## 1. 目的と背景
+「千年史自律シミュレーター」や「ブラインド熱科学クラフト」において、外部の計算エンジンやデータ処理スクリプト（Python, R, etc.）と安全かつ確実に連携するための基盤を構築する。特に、異なるOS環境や外部スクリプトの出力における文字コードの問題を解決し、データの整合性を保証する。これは、ゲーム内の高度な「社会技術（Magic）」を具現化し、「生活職業（Job）」の多様なタスクを可能にするための核心的なコンポーネントとなる。
 
-### 1. GitPathManager クラスの定義
+## 2. 設計原則
+*   **Safe-Fail構造**: 外部プロセスの異常終了、タイムアウト、不正な出力など、あらゆる予期せぬ事態に対してシステム全体がクラッシュしないよう、堅牢なエラーハンドリングとフォールバックメカニズムを組み込む。
+*   **MagicSanitizerEngine連携**: 外部プロセスに渡す引数は`MagicSanitizerEngine`を通じてサニタイズされ、外部プロセスからの出力も`MagicSanitizerEngine`によって検証・クリーンアップされることを前提とする。
+*   **Job/Magic規約**: このサブプロセス実行機能自体を、特定の「Magic」（例: `ArcaneComputationMagic`）の基盤技術として位置づけ、様々な「Job」（例: `AlchemistJob`, `HistorianJob`）がこのMagicを利用して専門的なタスクを遂行する。
 
-`GitPathManager` クラスはシングルトンパターンで実装し、アプリケーション全体で一貫したGitパス管理を提供します。
+## 3. 実装詳細指示
+
+### 3.1. クラス定義: `ArcaneExecutor`
+
+外部プロセスを実行し、その入出力を管理する静的クラスとして`ArcaneExecutor`を定義する。
 
 ```csharp
-// ファイル: Core/ExternalTools/GitPathManager.cs
+// ファイル: Core/System/ArcaneExecutor.cs
 using System;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Game.Core.Logging; // 仮定されるロギングサービス
-using Game.Core.Security; // MagicSanitizerEngine が含まれると仮定
+using FromSoftLikeGame.Core.Sanitization; // MagicSanitizerEngineのネームスペースを想定
+using FromSoftLikeGame.Core.Logging; // ログ記録用ネームスペースを想定
 
-namespace Game.Core.ExternalTools
+namespace FromSoftLikeGame.Core.System
 {
     /// <summary>
-    /// Git実行ファイルのパスを管理し、Gitコマンドの安全な実行を仲介するシングルトンクラス。
-    /// Safe-Fail構造、MagicSanitizerEngine、Job/Magic規約を厳守します。
+    /// 外部プロセスを安全に実行し、入出力の文字コードを適切に処理する「社会技術（Magic）」の基盤。
+    /// Safe-Fail構造、MagicSanitizerEngine連携、Job/Magic規約を厳格に遵守する。
     /// </summary>
-    public class GitPathManager
+    public static class ArcaneExecutor
     {
-        // シングルトンインスタンス
-        private static GitPathManager _instance;
-        private static readonly object _lock = new object();
-
-        public static GitPathManager Instance
+        // 実行結果を格納する内部構造体
+        public struct ExecutionResult
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    lock (_lock)
-                    {
-                        if (_instance == null)
-                        {
-                            _instance = new GitPathManager();
-                        }
-                    }
-                }
-                return _instance;
-            }
-        }
-
-        // イベント: Gitパスが変更されたときに発火
-        public event Action<string> OnGitPathChanged;
-        // イベント: Gitパスの自動検出に失敗したときに発火
-        public event Action<string> OnGitDetectionFailed;
-
-        // プロパティ: 現在設定されているGit実行ファイルのパス
-        public string CurrentGitPath { get; private set; }
-        // プロパティ: Gitが利用可能かどうか (パスが設定され、ファイルが存在するか)
-        public bool IsGitAvailable => !string.IsNullOrEmpty(CurrentGitPath) && File.Exists(CurrentGitPath);
-
-        // コンストラクタ (プライベート): シングルトンパターンを強制
-        private GitPathManager()
-        {
-            // 初期化時にGitパスの自動検出を試みる
-            DetectGitPath();
+            public bool Success { get; init; }
+            public int ExitCode { get; init; }
+            public string StandardOutput { get; init; }
+            public string StandardError { get; init; }
+            public string ErrorMessage { get; init; }
+            public TimeSpan ExecutionTime { get; init; }
+            public bool TimedOut { get; init; }
         }
 
         /// <summary>
-        /// GitPathManagerを初期化し、Gitパスの検出を開始します。
-        /// アプリケーション起動時に一度だけ呼び出すことを推奨します。
+        /// 外部プロセスを非同期で実行し、標準出力/エラーをキャプチャする。
+        /// Safe-Fail構造とMagicSanitizerEngine連携を厳守する。
+        /// 文字コードの明示的な指定により、異なる環境での文字化け問題を解決する。
         /// </summary>
-        public static void Initialize()
+        /// <param name="fileName">実行するプログラムのパス。</param>
+        /// <param name="arguments">プログラムに渡す引数。MagicSanitizerEngineで事前にサニタイズ済みであること。</param>
+        /// <param name="workingDirectory">プロセスの作業ディレクトリ。nullの場合は現在の作業ディレクトリを使用。</param>
+        /// <param name="timeoutMs">プロセスの最大実行時間（ミリ秒）。0以下の場合は無制限。</param>
+        /// <param name="outputEncoding">標準出力の文字コード。指定がない場合はUTF8を試行。</param>
+        /// <param name="errorEncoding">標準エラーの文字コード。指定がない場合はUTF8を試行。</param>
+        /// <returns>ExecutionResult構造体。実行結果、出力、エラー情報を含む。</returns>
+        public static async Task<ExecutionResult> ExecuteProcessAsync(
+            string fileName,
+            string arguments,
+            string workingDirectory = null,
+            int timeoutMs = 60000, // デフォルト60秒
+            Encoding outputEncoding = null,
+            Encoding errorEncoding = null)
         {
-            // Instanceプロパティへのアクセスにより、シングルトンインスタンスが作成され、コンストラクタが実行される
-            _ = Instance; 
-            GameLogger.LogInfo("GitPathManager", "GitPathManager initialized. Attempting to detect Git path.");
-        }
+            // 1. MagicSanitizerEngineによる入力検証
+            // 外部プロセスへのパスや引数に不正な値が含まれていないか厳格にチェックする。
+            // これにより、コマンドインジェクションなどのセキュリティリスクを低減する。
+            if (!MagicSanitizerEngine.IsValidFilePath(fileName) || !MagicSanitizerEngine.IsValidArguments(arguments))
+            {
+                Log.Error($"[ArcaneExecutor] Invalid input detected. File: '{fileName}', Args: '{arguments}'");
+                return new ExecutionResult { Success = false, ErrorMessage = "Invalid input arguments or file path detected by MagicSanitizerEngine." };
+            }
 
-        // ... (以下に詳細メソッドを記述)
-    }
-}
-```
+            var result = new ExecutionResult();
+            var stopwatch = Stopwatch.StartNew();
 
-### 2. Gitパス検出ロジック (`DetectGitPath`)
-
-アプリケーション起動時や、Gitパスが不明な場合に呼び出され、システムからGit実行ファイルを自動検出します。
-
-#### 実装詳細
-*   **優先順位**:
-    1.  ユーザー設定（後述の `SetGitPath` で保存されたパスがあれば、それを最優先で読み込む。TODO: 設定システムとの連携）
-    2.  環境変数 `PATH` からの検出
-    3.  一般的なインストールパス（Windows, macOS, Linuxそれぞれ）
-*   **Safe-Fail**: 検出に失敗した場合でもクラッシュせず、`OnGitDetectionFailed` イベントを発火させ、ログに記録します。`CurrentGitPath` は `null` または空文字列に設定されます。
-*   **MagicSanitizerEngine**: 検出されたパスは `MagicSanitizerEngine.SanitizeFilePath()` を通して検証・サニタイズします。
-
-```csharp
-// GitPathManager.cs 内
-private void DetectGitPath()
-{
-    // 1. ユーザー設定からの読み込み (TODO: 永続化された設定システムとの連携を実装)
-    // string userConfiguredPath = LoadGitPathFromSettings(); // 仮定されるメソッド
-    // if (!string.IsNullOrEmpty(userConfiguredPath))
-    // {
-    //     if (ValidateAndSetGitPath(userConfiguredPath, silent: true))
-    //     {
-    //         GameLogger.LogInfo("GitPathManager", $"Git path loaded from settings: {CurrentGitPath}");
-    //         return;
-    //     }
-    //     else
-    //     {
-    //         GameLogger.LogWarning("GitPathManager", $"User configured Git path '{userConfiguredPath}' is invalid. Attempting automatic detection.");
-    //     }
-    // }
-
-    // 2. 環境変数 PATH からの検出
-    string gitExecutableName = Environment.OSVersion.Platform == PlatformID.Win32NT ? "git.exe" : "git";
-    string pathEnv = Environment.GetEnvironmentVariable("PATH");
-    if (!string.IsNullOrEmpty(pathEnv))
-    {
-        string[] paths = pathEnv.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries);
-        foreach (string p in paths)
-        {
             try
             {
-                string potentialPath = Path.Combine(p, gitExecutableName);
-                if (ValidateAndSetGitPath(potentialPath, silent: true))
+                using (var process = new Process())
                 {
-                    GameLogger.LogInfo("GitPathManager", $"Git path detected from PATH environment variable: {CurrentGitPath}");
-                    return;
-                }
-            }
-            catch (ArgumentException ex) // Path.Combine で不正なパスが渡された場合
-            {
-                GameLogger.LogWarning("GitPathManager", $"Invalid path component in PATH environment variable: '{p}'. Error: {ex.Message}");
-            }
-        }
-    }
+                    process.StartInfo.FileName = fileName;
+                    process.StartInfo.Arguments = arguments;
+                    process.StartInfo.WorkingDirectory = workingDirectory ?? Environment.CurrentDirectory;
+                    process.StartInfo.UseShellExecute = false; // シェルを使わないことで、セキュリティリスクを低減し、リダイレクトを可能にする
+                    process.StartInfo.RedirectStandardOutput = true; // 標準出力をリダイレクトしてキャプチャ
+                    process.StartInfo.RedirectStandardError = true;  // 標準エラーをリダイレクトしてキャプチャ
+                    process.StartInfo.CreateNoWindow = true; // 新しいウィンドウを作成しない（バックグラウンド実行）
 
-    // 3. 一般的なインストールパスからの検出
-    List<string> commonPaths = new List<string>();
-    if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-    {
-        commonPaths.Add(@"C:\Program Files\Git\cmd\git.exe");
-        commonPaths.Add(@"C:\Program Files (x86)\Git\cmd\git.exe");
-        commonPaths.Add(@"C:\Program Files\Git\bin\git.exe"); // Git for Windows 2.x
-        commonPaths.Add(@"C:\Program Files (x86)\Git\bin\git.exe");
-    }
-    else // Unix-like (macOS, Linux)
-    {
-        commonPaths.Add("/usr/bin/git");
-        commonPaths.Add("/usr/local/bin/git");
-        commonPaths.Add("/opt/homebrew/bin/git"); // Homebrew on Apple Silicon
-        commonPaths.Add("/snap/bin/git"); // Snap installation
-    }
+                    // **文字コードの明示的な設定**
+                    // Windows環境でのデフォルトエンコーディングはUTF-8でない場合が多く、
+                    // これを明示的に指定することで文字化けを防ぐ。
+                    process.StartInfo.StandardOutputEncoding = outputEncoding ?? Encoding.UTF8;
+                    process.StartInfo.StandardErrorEncoding = errorEncoding ?? Encoding.UTF8;
 
-    foreach (string p in commonPaths)
-    {
-        if (ValidateAndSetGitPath(p, silent: true))
-        {
-            GameLogger.LogInfo("GitPathManager", $"Git path detected from common installation paths: {CurrentGitPath}");
-            return;
-        }
-    }
-
-    // 検出失敗 (Safe-Fail)
-    GameLogger.LogError("GitPathManager", "Failed to detect Git executable path automatically. Git-dependent features may be disabled.");
-    OnGitDetectionFailed?.Invoke("Automatic detection failed. Please set Git path manually via settings.");
-    CurrentGitPath = null; // 明示的にnullに設定し、Gitが利用不可であることを示す
-}
-```
-
-### 3. パス検証と設定 (`ValidateAndSetGitPath`)
-
-提供されたパスが有効なGit実行ファイルであるかを検証し、問題なければ `CurrentGitPath` に設定します。
-
-#### 実装詳細
-*   **MagicSanitizerEngine**: 入力パスは `MagicSanitizerEngine.SanitizeFilePath()` でサニタイズされます。これにより、不正な文字やパストラバーサル攻撃を防ぎます。
-*   **ファイル存在チェック**: サニタイズ後のパスでファイルが存在するか確認します。
-*   **実行可能ファイルチェック**: (簡易的) ファイルの拡張子や、`git --version` コマンドを実行して成功するかで確認します。これは最も確実な方法です。
-*   **Safe-Fail**: 検証に失敗した場合、`false` を返し、適切なエラーメッセージをログに記録します。`CurrentGitPath` は変更されません。
-*   **イベント**: パスが正常に設定された場合、`OnGitPathChanged` イベントを発火させます。
-
-```csharp
-// GitPathManager.cs 内
-/// <summary>
-/// 指定されたパスが有効なGit実行ファイルであるかを検証し、有効であればCurrentGitPathに設定します。
-/// </summary>
-/// <param name="potentialPath">検証するGit実行ファイルのパス。</param>
-/// <param name="silent">ログ出力を抑制するかどうか。</param>
-/// <returns>パスが有効で設定された場合はtrue、それ以外はfalse。</returns>
-public bool ValidateAndSetGitPath(string potentialPath, bool silent = false)
-{
-    if (string.IsNullOrWhiteSpace(potentialPath))
-    {
-        if (!silent) GameLogger.LogWarning("GitPathManager", "Attempted to set an empty or null Git path.");
-        return false;
-    }
-
-    // MagicSanitizerEngine によるパスのサニタイズ (厳守事項2)
-    string sanitizedPath = MagicSanitizerEngine.SanitizeFilePath(potentialPath);
-
-    if (!File.Exists(sanitizedPath))
-    {
-        if (!silent) GameLogger.LogWarning("GitPathManager", $"Git executable not found at: {sanitizedPath}");
-        return false;
-    }
-
-    // 簡易的な実行可能ファイルチェック: git --version コマンドが成功するか (Safe-Fail構造)
-    try
-    {
-        ProcessStartInfo startInfo = new ProcessStartInfo
-        {
-            FileName = sanitizedPath,
-            Arguments = "--version",
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true,
-        };
-
-        using (Process process = Process.Start(startInfo))
-        {
-            if (process == null)
-            {
-                if (!silent) GameLogger.LogError("GitPathManager", $"Failed to start Git process for validation at: {sanitizedPath}");
-                return false;
-            }
-            // タイムアウトを設定し、プロセスがハングアップするのを防ぐ (Safe-Fail)
-            bool exited = process.WaitForExit(5000); // 5秒のタイムアウト
-            if (!exited)
-            {
-                process.Kill(); // タイムアウトしたら強制終了
-                if (!silent) GameLogger.LogWarning("GitPathManager", $"Git validation command timed out for path: {sanitizedPath}");
-                return false;
-            }
-
-            if (process.ExitCode == 0)
-            {
-                string output = process.StandardOutput.ReadToEnd();
-                if (output.Contains("git version")) // 出力内容でGitであることを確認
-                {
-                    if (CurrentGitPath != sanitizedPath)
+                    // プロセス開始
+                    if (!process.Start())
                     {
-                        CurrentGitPath = sanitizedPath;
-                        if (!silent) GameLogger.LogInfo("GitPathManager", $"Git path successfully set to: {CurrentGitPath}");
-                        OnGitPathChanged?.Invoke(CurrentGitPath);
-                        // TODO: 設定システムにパスを保存 (SaveGitPathToSettings(CurrentGitPath);)
+                        Log.Error($"[ArcaneExecutor] Failed to start process: '{fileName}' with arguments '{arguments}'.");
+                        return new ExecutionResult { Success = false, ErrorMessage = "Failed to start external process." };
                     }
-                    return true;
+
+                    // 標準出力と標準エラーの非同期読み取り
+                    // これにより、プロセスが大量の出力を生成してもデッドロックを回避できる
+                    var outputTask = process.StandardOutput.ReadToEndAsync();
+                    var errorTask = process.StandardError.ReadToEndAsync();
+
+                    // プロセス終了待機とタイムアウト処理
+                    // 指定された時間内にプロセスが終了しない場合、強制終了を試みる (Safe-Fail)
+                    var processCompletionTask = Task.Run(() => process.WaitForExit(timeoutMs));
+                    var completedTask = await Task.WhenAny(processCompletionTask, Task.Delay(timeoutMs));
+
+                    if (completedTask == processCompletionTask && process.HasExited)
+                    {
+                        // プロセスが時間内に正常に（または異常終了したが時間内に）終了した
+                        await Task.WhenAll(outputTask, errorTask); // 出力ストリームの読み取り完了を待つ
+                        result = new ExecutionResult
+                        {
+                            Success = process.ExitCode == 0, // 終了コード0を成功と見なす
+                            ExitCode = process.ExitCode,
+                            StandardOutput = MagicSanitizerEngine.SanitizeOutput(await outputTask), // 出力もMagicSanitizerEngineでサニタイズ
+                            StandardError = MagicSanitizerEngine.SanitizeOutput(await errorTask),   // エラーもMagicSanitizerEngineでサニタイズ
+                            ErrorMessage = process.ExitCode != 0 ? $"Process exited with non-zero code {process.ExitCode}" : null,
+                            ExecutionTime = stopwatch.Elapsed,
+                            TimedOut = false
+                        };
+                        Log.Info($"[ArcaneExecutor] Process '{fileName}' completed in {stopwatch.Elapsed.TotalSeconds:F2}s with exit code {process.ExitCode}.");
+                    }
+                    else
+                    {
+                        // タイムアウト発生
+                        result = new ExecutionResult
+                        {
+                            Success = false,
+                            ExitCode = -1, // タイムアウトを示すカスタムコード
+                            StandardOutput = MagicSanitizerEngine.SanitizeOutput(outputTask.IsCompleted ? await outputTask : "Output stream not fully read due to timeout."),
+                            StandardError = MagicSanitizerEngine.SanitizeOutput(errorTask.IsCompleted ? await errorTask : "Error stream not fully read due to timeout."),
+                            ErrorMessage = $"Process timed out after {timeoutMs}ms.",
+                            ExecutionTime = stopwatch.Elapsed,
+                            TimedOut = true
+                        };
+                        Log.Warn($"[ArcaneExecutor] Process '{fileName}' timed out after {timeoutMs}ms. Attempting to kill process.");
+                        try
+                        {
+                            if (!process.HasExited)
+                            {
+                                process.Kill(); // プロセスを強制終了し、リソースリークを防ぐ
+                                Log.Warn($"[ArcaneExecutor] Process '{fileName}' killed successfully after timeout.");
+                            }
+                        }
+                        catch (Exception killEx)
+                        {
+                            Log.Error($"[ArcaneExecutor] Failed to kill process '{fileName}' after timeout: {killEx.Message}");
+                            result.ErrorMessage += $" Failed to kill process: {killEx.Message}";
+                        }
+                    }
                 }
             }
-            if (!silent) GameLogger.LogWarning("GitPathManager", $"Git validation failed for path '{sanitizedPath}'. ExitCode: {process.ExitCode}, Error: {process.StandardError.ReadToEnd()}");
-        }
-    }
-    catch (Exception ex) // プロセス起動失敗などの例外を捕捉 (Safe-Fail)
-    {
-        if (!silent) GameLogger.LogError("GitPathManager", $"Exception during Git path validation for '{sanitizedPath}': {ex.Message}");
-    }
+            catch (Exception ex)
+            {
+                // Safe-Fail: 予期せぬ例外を捕捉し、システムクラッシュを防ぐ。
+                // プロセス起動失敗、ファイルが見つからない、アクセス権の問題など。
+                Log.Error($"[ArcaneExecutor] An unexpected error occurred while executing process '{fileName} {arguments}': {ex.Message}\n{ex.StackTrace}");
+                result = new ExecutionResult
+                {
+                    Success = false,
+                    ExitCode = -2, // 内部エラーを示すカスタムコード
+                    ErrorMessage = $"Internal executor error: {ex.Message}",
+                    ExecutionTime = stopwatch.Elapsed,
+                    TimedOut = false
+                };
+            }
+            finally
+            {
+                stopwatch.Stop();
+            }
 
-    return false;
-}
-```
+            // 最終的な結果を返す前に、出力内容がゲームのロジックにとって安全か再確認する（MagicSanitizerEngineが内部で処理済みだが、念のため）
+            if (!result.Success)
+            {
+                Log.Error($"[ArcaneExecutor] Process '{fileName}' failed. Error: {result.ErrorMessage}. Output: '{result.StandardOutput}'. Error Output: '{result.StandardError}'");
+            }
 
-### 4. Gitコマンド実行ヘルパー (`ExecuteGitCommand`)
-
-設定されたGitパスを使用して任意のGitコマンドを実行します。
-
-#### 実装詳細
-*   **Safe-Fail**: コマンド実行中のエラー、タイムアウト、非ゼロ終了コードなどを適切に処理し、例外をスローせず、結果オブジェクトを返します。
-*   **MagicSanitizerEngine**: `workingDirectory` は `MagicSanitizerEngine.SanitizeDirectoryPath()` でサニタイズします。コマンド引数自体はGitの複雑な構文を考慮し、呼び出し元での注意を促しますが、必要に応じて `MagicSanitizerEngine.SanitizeCommandArgument()` のようなメソッドを実装・適用することも検討してください。
-*   **非同期実行**: UIスレッドをブロックしないよう、非同期で実行します。
-
-```csharp
-// GitPathManager.cs 内
-/// <summary>
-/// Gitコマンドの実行結果を格納するクラス。
-/// </summary>
-public class GitCommandResult
-{
-    public bool Success { get; set; } // コマンドが成功したか
-    public int ExitCode { get; set; } // プロセスの終了コード
-    public string StandardOutput { get; set; } // 標準出力
-    public string StandardError { get; set; } // 標準エラー出力
-    public string ErrorMessage { get; set; } // 実行中に発生したエラーメッセージ
-}
-
-/// <summary>
-/// 設定されたGitパスを使用してGitコマンドを実行します。
-/// </summary>
-/// <param name="arguments">Gitコマンドの引数 (例: "status", "pull origin main")。</param>
-/// <param name="workingDirectory">コマンドを実行する作業ディレクトリ。nullの場合は現在のディレクトリ。</param>
-/// <returns>GitCommandResultオブジェクト。</returns>
-public async Task<GitCommandResult> ExecuteGitCommand(string arguments, string workingDirectory = null)
-{
-    var result = new GitCommandResult { Success = false };
-
-    if (!IsGitAvailable) // Gitが利用不可な場合のSafe-Fail
-    {
-        result.ErrorMessage = "Git executable is not available or path is not set. Cannot execute command.";
-        GameLogger.LogError("GitPathManager", result.ErrorMessage);
-        return result;
-    }
-
-    string sanitizedWorkingDirectory = workingDirectory;
-    if (!string.IsNullOrEmpty(workingDirectory))
-    {
-        // MagicSanitizerEngine による作業ディレクトリのサニタイズ (厳守事項2)
-        sanitizedWorkingDirectory = MagicSanitizerEngine.SanitizeDirectoryPath(workingDirectory);
-        if (!Directory.Exists(sanitizedWorkingDirectory)) // ディレクトリが存在しない場合のSafe-Fail
-        {
-            result.ErrorMessage = $"Working directory does not exist or is invalid: {sanitizedWorkingDirectory}";
-            GameLogger.LogError("GitPathManager", result.ErrorMessage);
             return result;
         }
     }
-
-    try
-    {
-        ProcessStartInfo startInfo = new ProcessStartInfo
-        {
-            FileName = CurrentGitPath,
-            Arguments = arguments,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false, // シェルを使用しないことでセキュリティリスクを低減
-            CreateNoWindow = true, // コマンドプロンプトウィンドウを表示しない
-            WorkingDirectory = sanitizedWorkingDirectory ?? Directory.GetCurrentDirectory() // 作業ディレクトリを設定
-        };
-
-        using (Process process = new Process { StartInfo = startInfo })
-        {
-            process.Start();
-
-            // 非同期で標準出力と標準エラー出力を読み取る
-            Task<string> standardOutputTask = process.StandardOutput.ReadToEndAsync();
-            Task<string> standardErrorTask = process.StandardError.ReadToEndAsync();
-
-            // プロセスが終了するのを待つが、タイムアウトも設定 (Safe-Fail)
-            await Task.WhenAny(process.WaitForExitAsync(), Task.Delay(30000)); // 30秒のタイムアウト
-
-            if (!process.HasExited)
-            {
-                process.Kill(); // タイムアウトしたら強制終了
-                result.ErrorMessage = $"Git command timed out after 30 seconds: git {arguments}";
-                GameLogger.LogError("GitPathManager", result.ErrorMessage);
-                return result;
-            }
-
-            // 出力結果を待機
-            result.StandardOutput = await standardOutputTask;
-            result.StandardError = await standardErrorTask;
-
-            result.ExitCode = process.ExitCode;
-            result.Success = process.ExitCode == 0; // 終了コード0が成功を示す
-
-            if (!result.Success) // コマンドが失敗した場合のSafe-Fail
-            {
-                result.ErrorMessage = $"Git command failed with exit code {result.ExitCode}. Error: {result.StandardError.Trim()}";
-                GameLogger.LogWarning("GitPathManager", $"Command: git {arguments}, WorkingDir: {sanitizedWorkingDirectory}, {result.ErrorMessage}");
-            }
-            else
-            {
-                GameLogger.LogInfo("GitPathManager", $"Git command successful: git {arguments}, WorkingDir: {sanitizedWorkingDirectory}");
-            }
-        }
-    }
-    catch (Exception ex) // プロセス起動失敗などの例外を捕捉 (Safe-Fail)
-    {
-        result.ErrorMessage = $"Exception executing Git command 'git {arguments}': {ex.Message}";
-        GameLogger.LogError("GitPathManager", result.ErrorMessage);
-    }
-
-    return result;
 }
 ```
 
-### 5. 依存する仮定クラスの定義
+### 3.2. 依存モジュール（仮定義）
 
-`GameLogger` と `MagicSanitizerEngine` は、このプロンプトの範囲外ですが、機能するために必要です。以下に最小限の定義を示します。これらはプロジェクトの`Core/Logging`および`Core/Security`名前空間に配置されることを想定しています。
+`MagicSanitizerEngine`と`Logging`モジュールは、既存の規約に従って実装されているものと仮定します。もし未実装であれば、以下の仮定義を参考に実装してください。
 
 ```csharp
-// ファイル: Core/Logging/GameLogger.cs (仮定)
-using System;
-
-namespace Game.Core.Logging
+// ファイル: Core/Sanitization/MagicSanitizerEngine.cs (仮実装)
+namespace FromSoftLikeGame.Core.Sanitization
 {
     /// <summary>
-    /// ゲーム全体のロギングサービス。Safe-Fail構造の一部として、エラーや警告を記録します。
-    /// </summary>
-    public static class GameLogger
-    {
-        public static void LogInfo(string source, string message) => Console.WriteLine($"[INFO][{source}] {message}");
-        public static void LogWarning(string source, string message) => Console.WriteLine($"[WARN][{source}] {message}");
-        public static void LogError(string source, string message) => Console.Error.WriteLine($"[ERROR][{source}] {message}");
-        public static void LogDebug(string source, string message) => Console.WriteLine($"[DEBUG][{source}] {message}"); // 開発用
-    }
-}
-
-// ファイル: Core/Security/MagicSanitizerEngine.cs (仮定)
-using System.IO;
-using System.Text.RegularExpressions;
-
-namespace Game.Core.Security
-{
-    /// <summary>
-    /// 外部からの入力をサニタイズし、セキュリティリスクを軽減するためのエンジン。
-    /// MagicSanitizerEngineは、ゲームの「魔法=社会技術」の一部として、システムの安全性を保証します。
+    /// 入力引数や外部プロセスからの出力をサニタイズし、セキュリティとデータ整合性を保証するエンジン。
     /// </summary>
     public static class MagicSanitizerEngine
     {
         /// <summary>
-        /// ファイルパスをサニタイズし、不正な文字やパストラバーサルを防ぎます。
+        /// ファイルパスが安全で、不正な操作を意図していないか検証します。
         /// </summary>
-        /// <param name="path">サニタイズするパス。</param>
-        /// <returns>サニタイズされたパス。</returns>
-        public static string SanitizeFilePath(string path)
+        /// <param name="path">検証するファイルパス。</param>
+        /// <returns>パスが安全であればtrue。</returns>
+        public static bool IsValidFilePath(string path)
         {
-            if (string.IsNullOrWhiteSpace(path)) return string.Empty;
-
-            // 1. パストラバーサル攻撃を防ぐための正規化
-            // GetFullPathは相対パスや".."を解決し、絶対パスに変換します。
-            // Uri.LocalPathはURIエンコードされた文字をデコードします。
-            string normalizedPath;
-            try
-            {
-                // WindowsとUnix-likeでパスの区切り文字を正規化
-                normalizedPath = Path.GetFullPath(new Uri(path).LocalPath)
-                                     .Replace('\\', Path.DirectorySeparatorChar)
-                                     .Replace('/', Path.DirectorySeparatorChar);
-            }
-            catch (UriFormatException)
-            {
-                // 不正なURI形式の場合、そのままPath.GetFullPathを試みる
-                normalizedPath = Path.GetFullPath(path)
-                                     .Replace('\\', Path.DirectorySeparatorChar)
-                                     .Replace('/', Path.DirectorySeparatorChar);
-            }
-            catch (Exception ex)
-            {
-                GameLogger.LogError("MagicSanitizerEngine", $"Failed to normalize path '{path}': {ex.Message}");
-                return string.Empty; // Safe-Fail: サニタイズ失敗
-            }
-
-
-            // 2. 不正な文字を削除または置き換え
-            // Path.GetInvalidPathChars() と Path.GetInvalidFileNameChars() を利用
-            char[] invalidPathChars = Path.GetInvalidPathChars();
-            char[] invalidFileChars = Path.GetInvalidFileNameChars();
-
-            string sanitized = new string(normalizedPath.Where(c => 
-                !invalidPathChars.Contains(c) && !invalidFileChars.Contains(c)
-            ).ToArray());
-
-            // 3. 複数のパス区切り文字の連続を単一に正規化 (例: "C:\\foo\\\bar" -> "C:\foo\bar")
-            sanitized = Regex.Replace(sanitized, $"{Regex.Escape(Path.DirectorySeparatorChar.ToString())}{{2,}}", Path.DirectorySeparatorChar.ToString());
-
-            // 4. ドライブレターやUNCパスの先頭の二重スラッシュは許可
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT && path.StartsWith(@"\\"))
-            {
-                // UNCパスの最初の二重スラッシュは保持
-                if (!sanitized.StartsWith(@"\\"))
-                {
-                    sanitized = @"\\" + sanitized.TrimStart(Path.DirectorySeparatorChar);
-                }
-            }
-            else if (path.StartsWith("//")) // Unix-likeのルートパス
-            {
-                 if (!sanitized.StartsWith("//"))
-                {
-                    sanitized = "/" + sanitized.TrimStart(Path.DirectorySeparatorChar);
-                }
-            }
-
-            return sanitized;
+            // パスインジェクション攻撃などを防ぐための厳格な検証ロジックを実装する。
+            // 例: パスが許可されたディレクトリ内にあるか、不正な文字を含まないか、絶対パスがホワイトリストに含まれるかなど。
+            // 現状は基本的なチェックのみ。
+            if (string.IsNullOrWhiteSpace(path)) return false;
+            if (path.Contains("..") || path.Contains(";") || path.Contains("&") || path.Contains("|")) return false;
+            // さらに、許可された実行ファイルのみを許可するホワイトリスト方式を推奨
+            // 例: Path.GetFileName(path) == "python" || Path.GetFileName(path) == "rscript" など
+            return true; 
         }
 
         /// <summary>
-        /// ディレクトリパスをサニタイズし、不正な文字やパストラバーサルを防ぎます。
+        /// プロセスに渡す引数が安全で、不正なコマンドを含まないか検証します。
         /// </summary>
-        /// <param name="path">サニタイズするパス。</param>
-        /// <returns>サニタイズされたパス。</returns>
-        public static string SanitizeDirectoryPath(string path)
+        /// <param name="args">検証する引数文字列。</param>
+        /// <returns>引数が安全であればtrue。</returns>
+        public static bool IsValidArguments(string args)
         {
-            // ディレクトリもファイルパスと同様のロジックでサニタイズ可能
-            string sanitizedPath = SanitizeFilePath(path);
-            
-            // ディレクトリパスの末尾に区切り文字がない場合は追加 (オプション)
-            // if (!string.IsNullOrEmpty(sanitizedPath) && !sanitizedPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
-            // {
-            //     sanitizedPath += Path.DirectorySeparatorChar;
-            // }
-            return sanitizedPath;
+            // 引数インジェクション攻撃などを防ぐための厳格な検証ロジックを実装する。
+            // 例: シェルコマンドのメタ文字（`&`, `|`, `;`, `&&`, `||`, `>`, `<`, `(`, `)` など）をエスケープまたは拒否する。
+            // 現状は基本的なチェックのみ。
+            if (args == null) return true; // 引数なしは許可
+            if (args.Contains(";") || args.Contains("&") || args.Contains("|") || args.Contains("`")) return false;
+            return true;
         }
 
-        // TODO: コマンド引数用のサニタイズメソッドも必要に応じて追加
-        // Gitコマンドの引数は複雑なため、一般的なサニタイズでは不十分な場合がある。
-        // 特定の引数パターンに対してのみ適用するか、呼び出し元で注意深く構築する必要がある。
-        // public static string SanitizeCommandArgument(string arg) { ... }
+        /// <summary>
+        /// 外部プロセスからの出力をゲーム内で安全に表示・利用できるようサニタイズします。
+        /// </summary>
+        /// <param name="output">サニタイズする出力文字列。</param>
+        /// <returns>サニタイズされた文字列。</returns>
+        public static string SanitizeOutput(string output)
+        {
+            // 外部プロセスからの出力をゲーム内で安全に表示・利用できるようサニタイズする。
+            // 例: HTMLエンコード、特定の制御文字の除去、最大長制限、不正な文字シーケンスの置換など。
+            // 現状はnullチェックのみ。
+            return output ?? string.Empty; 
+        }
+    }
+}
+
+// ファイル: Core/Logging/Log.cs (仮実装)
+namespace FromSoftLikeGame.Core.Logging
+{
+    /// <summary>
+    /// ゲーム全体のログ記録システム。Safe-Fail構造の一部としてエラーや警告を記録する。
+    /// </summary>
+    public static class Log
+    {
+        public static void Info(string message) => Console.WriteLine($"[INFO] {DateTime.Now:HH:mm:ss} {message}");
+        public static void Warn(string message) => Console.WriteLine($"[WARN] {DateTime.Now:HH:mm:ss} {message}");
+        public static void Error(string message) => Console.Error.WriteLine($"[ERROR] {DateTime.Now:HH:mm:ss} {message}");
+        public static void Debug(string message) => Console.WriteLine($"[DEBUG] {DateTime.Now:HH:mm:ss} {message}"); // デバッグ用
     }
 }
 ```
 
-### 6. 使用例 (メインアプリケーションからの呼び出し)
+### 3.3. Job/Magic規約への統合例
 
-これらのクラスがどのように連携し、ゲームアプリケーション内で利用されるかを示します。
+この`ArcaneExecutor`は、例えば`AlchemistJob`が特定の化学反応シミュレーション（`AlchemicalReactionMagic`）を実行するために、外部のPythonスクリプトを呼び出す際に利用されます。
 
 ```csharp
-// メインアプリケーションの起動時など (例: Program.cs または GameBootstrapper.cs)
-using Game.Core.Logging;
-using Game.Core.ExternalTools;
-using System;
-using System.IO;
+// ファイル: Game/Magic/AlchemicalReactionMagic.cs (例)
+using FromSoftLikeGame.Core.System;
+using FromSoftLikeGame.Core.Sanitization;
+using FromSoftLikeGame.Core.Logging;
+using System.Text; // Encodingのために必要
+
+namespace FromSoftLikeGame.Game.Magic
+{
+    /// <summary>
+    /// 錬金術の反応をシミュレートする「社会技術（Magic）」。
+    /// 内部でArcaneExecutorを利用し、外部の計算エンジンと連携する。
+    /// </summary>
+    public static class AlchemicalReactionMagic
+    {
+        public static async Task<string> SimulateReactionAsync(string inputIngredients, int purityLevel)
+        {
+            // MagicSanitizerEngineで入力材料をサニタイズ
+            // ここでは例として出力サニタイズを流用していますが、入力専用のIsValidIngredientなどが必要になるでしょう。
+            var sanitizedIngredients = MagicSanitizerEngine.SanitizeOutput(inputIngredients); 
+
+            // 外部Pythonスクリプトへの引数を構築
+            // スクリプトパスはゲームの実行パスからの相対パスを想定
+            var scriptPath = "Scripts/AlchemistSimulator.py"; 
+            // 引数もMagicSanitizerEngineで検証済みであることを前提とする
+            var arguments = $"\"{scriptPath}\" --ingredients \"{sanitizedIngredients}\" --purity {purityLevel}";
+
+            Log.Info($"[AlchemicalReactionMagic] Initiating simulation with: {arguments}");
+
+            // ArcaneExecutorを呼び出し、外部プロセスを実行
+            // ここで文字コードを明示的にUTF-8に指定することで、PythonスクリプトのUTF-8出力を正しく解釈する
+            var result = await ArcaneExecutor.ExecuteProcessAsync(
+                "python", // Pythonインタープリタのパスを環境変数PATHから解決することを期待
+                arguments,
+                outputEncoding: Encoding.UTF8,
+                errorEncoding: Encoding.UTF8
+            );
+
+            if (result.Success)
+            {
+                Log.Info($"[AlchemicalReactionMagic] Simulation successful. Output: {result.StandardOutput}");
+                // MagicSanitizerEngineで結果を最終的に検証・整形し、ゲームロジックに渡す
+                return MagicSanitizerEngine.SanitizeOutput(result.StandardOutput);
+            }
+            else
+            {
+                Log.Error($"[AlchemicalReactionMagic] Simulation failed. Error: {result.ErrorMessage}. Stderr: {result.StandardError}");
+                // Safe-Fail: シミュレーション失敗時のフォールバック処理や、ユーザーへの適切なフィードバック
+                return $"Simulation failed: {result.ErrorMessage}. Please check your ingredients and purity level. Details: {result.StandardError}";
+            }
+        }
+    }
+}
+
+// ファイル: Game/Jobs/AlchemistJob.cs (例)
+using FromSoftLikeGame.Game.Magic;
 using System.Threading.Tasks;
 
-public class GameApplication
+namespace FromSoftLikeGame.Game.Jobs
 {
-    public async Task StartGameAsync()
-    {
-        GameLogger.LogInfo("GameApplication", "Starting game initialization...");
-
-        // GitPathManagerの初期化 (シングルトンインスタンスが作成され、自動検出が開始される)
-        GameLogger.LogInfo("GameApplication", "Initializing GitPathManager...");
-        GitPathManager.Initialize();
-
-        // Gitパス変更イベントの購読
-        GitPathManager.Instance.OnGitPathChanged += (path) =>
-        {
-            GameLogger.LogInfo("GameApplication", $"Git path updated to: {path}. Git-dependent features are now enabled.");
-            // UIの更新や、Git連携機能の有効化など、ゲーム内の状態を更新
-        };
-
-        // Git検出失敗イベントの購読
-        GitPathManager.Instance.OnGitDetectionFailed += (message) =>
-        {
-            GameLogger.LogError("GameApplication", $"Git detection failed: {message}. Please configure manually in game settings.");
-            // ユーザーに手動設定を促すUIを表示するなど、ゲーム内の状態を更新
-        };
-
-        // Gitパスの自動検出が完了するのを待つ (非同期処理ではないため、すぐに結果が得られる)
-        if (GitPathManager.Instance.IsGitAvailable)
-        {
-            GameLogger.LogInfo("GameApplication", $"Git is available at: {GitPathManager.Instance.CurrentGitPath}");
-            
-            // 例: Gitバージョンを取得 (非同期実行)
-            GameLogger.LogInfo("GameApplication", "Attempting to get Git version...");
-            var versionResult = await GitPathManager.Instance.ExecuteGitCommand("--version");
-            if (versionResult.Success)
-            {
-                GameLogger.LogInfo("GameApplication", $"Git version: {versionResult.StandardOutput}");
-            }
-            else
-            {
-                GameLogger.LogError("GameApplication", $"Failed to get Git version: {versionResult.ErrorMessage}");
-            }
-
-            // 例: 特定のディレクトリで git status を実行 (MOD管理の例)
-            string modRepositoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GameData", "Mods");
-            if (Directory.Exists(modRepositoryPath))
-            {
-                GameLogger.LogInfo("GameApplication", $"Checking Git status for Mod repository at: {modRepositoryPath}");
-                var statusResult = await GitPathManager.Instance.ExecuteGitCommand("status", modRepositoryPath);
-                if (statusResult.Success)
-                {
-                    GameLogger.LogInfo("GameApplication", $"Git status for Mods: {statusResult.StandardOutput}");
-                }
-                else
-                {
-                    GameLogger.LogError("GameApplication", $"Failed to get Git status for Mods: {statusResult.ErrorMessage}");
-                }
-            }
-            else
-            {
-                GameLogger.LogWarning("GameApplication", $"Mod repository directory not found: {modRepositoryPath}. Skipping Git status check.");
-            }
-        }
-        else
-        {
-            GameLogger.LogWarning("GameApplication", "Git is not available. Some features (e.g., MOD auto-update, external data sync for simulator) might be disabled.");
-        }
-
-        GameLogger.LogInfo("GameApplication", "Game initialization complete.");
-    }
-
     /// <summary>
-    /// ユーザーがゲーム設定UIから手動でGitパスを設定する際のハンドラを想定。
+    /// 錬金術師の「生活職業（Job）」。
+    /// AlchemicalReactionMagicを利用してタスクを遂行する。
     /// </summary>
-    /// <param name="userProvidedPath">ユーザーが入力したGit実行ファイルのパス。</param>
-    public void OnUserSetGitPath(string userProvidedPath)
+    public class AlchemistJob
     {
-        GameLogger.LogInfo("GameApplication", $"User attempting to set Git path to: {userProvidedPath}");
-        if (GitPathManager.Instance.ValidateAndSetGitPath(userProvidedPath))
-        {
-            GameLogger.LogInfo("GameApplication", $"User successfully set Git path to: {GitPathManager.Instance.CurrentGitPath}");
-            // UIを更新して成功を通知し、Git連携機能を有効化
-        }
-        else
-        {
-            GameLogger.LogError("GameApplication", $"User provided invalid Git path: {userProvidedPath}. Please check the path and try again.");
-            // UIを更新して失敗を通知し、エラーメッセージを表示
-        }
-    }
+        public string JobName { get; } = "Alchemist";
 
-    // アプリケーションのエントリポイント (例)
-    public static async Task Main(string[] args)
-    {
-        GameApplication app = new GameApplication();
-        await app.StartGameAsync();
-        Console.WriteLine("\nPress any key to exit...");
-        Console.ReadKey();
+        public async Task<string> PerformAlchemyTask(string rawIngredients, int skillLevel)
+        {
+            // ジョブのロジックに基づいて、Magicを呼び出す
+            // スキルレベルに応じてpurityLevelを決定するなど、ゲーム固有のロジックを適用
+            int purityLevel = skillLevel * 10;
+            string reactionResult = await AlchemicalReactionMagic.SimulateReactionAsync(rawIngredients, purityLevel);
+            
+            // 結果をゲームの状態に反映したり、UIに表示したりする
+            return $"Alchemy task completed by {JobName}. Result: {reactionResult}";
+        }
     }
 }
 ```
+
+## 4. テストと検証
+実装後、以下のシナリオで徹底的なテストを実施してください。
+
+*   **正常系**:
+    *   PythonスクリプトがUTF-8で「Hello, 世界！」のような多言語文字列を標準出力に出力し、C#側で正しく受信・表示されることを確認。
+    *   Pythonスクリプトが大量のデータをUTF-8で出力し、デッドロックなく処理されることを確認。
+*   **文字コード異常系**:
+    *   外部スクリプトが意図的に非UTF-8（例: Shift-JIS, Latin-1）の文字を標準出力/エラーに出力した場合、`outputEncoding`/`errorEncoding`パラメータを適切に設定することで正しく処理されるか。
+    *   `outputEncoding`/`errorEncoding`が指定されない場合（デフォルトUTF-8）、非UTF-8出力がどのように扱われるか（文字化け、例外など）を確認し、Safe-Failが機能することを確認。
+*   **プロセス異常系**:
+    *   存在しない実行ファイルを指定した場合（`FileNotFoundException`が捕捉され、`ExecutionResult.Success = false`となること）。
+    *   不正な引数を指定した場合（`MagicSanitizerEngine`が捕捉すること、またはプロセスがエラー終了すること）。
+    *   実行中にクラッシュするスクリプト（`ExitCode`が非ゼロとなり、`StandardError`に情報が含まれること）。
+    *   意図的に無限ループする、または非常に時間がかかるスクリプトを指定し、タイムアウト処理が正しく機能し、プロセスが強制終了されることを確認。
+    *   プロセスが大量の標準エラーを出力した場合。
+*   **リソース管理**:
+    *   プロセスが正しく終了し、関連するリソース（ファイルハンドル、メモリなど）が解放されることを確認。特にタイムアウトで強制終了された場合。
+
+---

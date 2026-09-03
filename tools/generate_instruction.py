@@ -32,25 +32,28 @@ Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約(魔法=社会�
 
 def auto_git_commit(commit_message):
     try:
+        # プロジェクトルートの絶対パスを取得
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         print(f"📦 Git への自動コミットおよびプッシュを実行中... (対象: {project_root})")
         
         # 1. 変更の追加
         subprocess.run(["git", "add", "."], check=True, cwd=project_root)
         
-        # 2. 変更があるか確認（utf-8・errors='replace' でデコードエラーを防止）
+        # 2. 変更があるか確認（UTF-8指定・デコードエラー自動置換で保護）
         result = subprocess.run(
             ["git", "status", "--porcelain"], 
             capture_output=True, 
+            text=True, 
+            encoding='utf-8', 
+            errors='replace', 
             cwd=project_root
         )
-        status_text = result.stdout.decode('utf-8', errors='replace').strip()
         
-        if not status_text:
+        if not result.stdout or not result.stdout.strip():
             print("ℹ️ 変更がないため Git コミットをスキップしました。")
             return
             
-        # 3. コミットとプッシュ
+        # 3. コミット＆プッシュ実行
         subprocess.run(["git", "commit", "-m", commit_message], check=True, cwd=project_root)
         subprocess.run(["git", "push", "origin", "main"], check=True, cwd=project_root)
         print("✅ Git への自動コミットおよびプッシュが完了しました！")

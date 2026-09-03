@@ -19,3 +19,8 @@ FSTimeGet-*
 # OS固有の一時ファイル
 .DS_Store
 Thumbs.db
+# --- 巨大なデータログ・生成用キャッシュを除外 (GitHub 100MB制限対策) ---
+macro_chronicle/
+macro_chronicle_データ保存用/
+*.json
+!Assets/Resources/**/*.json  # ※Unityで使うマスターJSON等は除外しない設定
