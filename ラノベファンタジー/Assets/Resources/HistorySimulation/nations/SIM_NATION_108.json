@@ -1,0 +1,468 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_108_MonsterAttack_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_108",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 6.9 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、魔物活性期が到来すると地域ごとに異なる祭りや儀式が行われることが多い。この年も例外ではなく、「セイア・リーフ」では「ヴェール祭」という伝統的な祭典が開催された。\n\nヴェール祭は結界を維持する魔法の力に感謝し、人々同士の絆を深める重要な行事である。参拝者は街中で共に祈り、祝いの歌を披露した。「我々は常に互いに支え合い、この地を守り続ける」という言葉が何度も繰り返された。\n\nまた、農地帯では「収穫祭」が開催され、作物の成長を見届けた農民たちが感謝の意を表す儀式を行った。魔物活性期だからこそ、人々の心は一つとなり、共に困難を乗り越える力が生まれる。\n\nこれらの風習を通じて、この土地の住民たちは日々の生活を支える魔法と結界への信頼を再確認し、未来へ向けて新たな一歩を踏み出す準備をしている。",
+      "conditionFlag": "HIST_NATION_108_GEO_TURN_001_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_108_GEO_TURN_001_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_108_MONSTERATTACK_T001",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N108_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「我々は常に互いに支え合い、この地を守り続ける」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「我々は常に互いに支え合い、この地を守り続ける」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「我々は常に互いに支え合い、この地を守り続ける」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_108_BarrierDrop_2",
+      "macroTurn": 2,
+      "timestamp": {
+        "year": 2,
+        "month": 2,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_108",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【南方の山岳・海洋前線】で防衛障壁の循環効率が急落した（低下幅 0.25）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、神官たちが祈りと監視を通じて市民の安心感を支えている。特に魔物周期となるこの時期には、「魔力の灯籠祭り」という特別な行事も行われる。「我々は結界の中、安全であることを忘れてはならない」神官たちの言葉とともに、市民たちは心を落ち着かせながら、新たな一日を始める。\n\nまた、セーラン市では「魔物退散の祈り」という伝統的な儀式も継続されている。この時期に特に重要な行事であり、「我々は力を合わせて、魔物から守られている」市民たちが互いにそう信じ合いながら、日々を過ごしている。\n\nこれらの日常の中には、魔物周期という厳しい状況にもかかわらず、人々が互いに支え合いながら生き抜こうとする姿勢が詰まっている。",
+      "conditionFlag": "HIST_NATION_108_GEO_TURN_002_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_108_GEO_TURN_002_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_108_BARRIERDROP_T002",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N108_T002"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事2年・年初（ターン002）",
+          "npcDialogue": "「我々は結界の中、安全であることを忘れてはならない」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事2年・年央（ターン002）",
+          "npcDialogue": "「我々は結界の中、安全であることを忘れてはならない」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事2年・年末（ターン002）",
+          "npcDialogue": "「我々は結界の中、安全であることを忘れてはならない」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_108_MonsterAttack_2",
+      "macroTurn": 2,
+      "timestamp": {
+        "year": 2,
+        "month": 2,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_108",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 12.4 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、神官たちが祈りと監視を通じて市民の安心感を支えている。特に魔物周期となるこの時期には、「魔力の灯籠祭り」という特別な行事も行われる。「我々は結界の中、安全であることを忘れてはならない」神官たちの言葉とともに、市民たちは心を落ち着かせながら、新たな一日を始める。\n\nまた、セーラン市では「魔物退散の祈り」という伝統的な儀式も継続されている。この時期に特に重要な行事であり、「我々は力を合わせて、魔物から守られている」市民たちが互いにそう信じ合いながら、日々を過ごしている。\n\nこれらの日常の中には、魔物周期という厳しい状況にもかかわらず、人々が互いに支え合いながら生き抜こうとする姿勢が詰まっている。",
+      "conditionFlag": "HIST_NATION_108_GEO_TURN_002_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_108_GEO_TURN_002_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_108_MONSTERATTACK_T002",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N108_T002"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事2年・年初（ターン002）",
+          "npcDialogue": "「我々は結界の中、安全であることを忘れてはならない」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事2年・年央（ターン002）",
+          "npcDialogue": "「我々は結界の中、安全であることを忘れてはならない」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事2年・年末（ターン002）",
+          "npcDialogue": "「我々は結界の中、安全であることを忘れてはならない」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_108_MonsterAttack_6",
+      "macroTurn": 6,
+      "timestamp": {
+        "year": 6,
+        "month": 6,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_108",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 10.4 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は魔物活性期の影響で特に厳しい生活を強いられているが、それでも人々は笑顔を見せて互いに支え合いながら日々を送っている。「みんなで力を合わせて乗り越えていかなくちゃ」という言葉が街中でよく聞かれるようになった。\n\nまた、この時期になると魔物に対する抗争の祭典も開催される。これは過去の英雄たちを称えるとともに、新たな勇者を輩出するためのものだ。「我々は弱くない。絶望しないで、希望を持って頑張ろう」というメッセージが広がっていく。\n\nこのようにして、この土地の住民たちは魔物活性期という困難な状況下でも、互いに支え合いながら日々を過ごしているのである。",
+      "conditionFlag": "HIST_NATION_108_GEO_TURN_006_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_108_GEO_TURN_006_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_108_MONSTERATTACK_T006",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N108_T006"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事6年・年初（ターン006）",
+          "npcDialogue": "「みんなで力を合わせて乗り越えていかなくちゃ」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事6年・年央（ターン006）",
+          "npcDialogue": "「みんなで力を合わせて乗り越えていかなくちゃ」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事6年・年末（ターン006）",
+          "npcDialogue": "「みんなで力を合わせて乗り越えていかなくちゃ」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_108_MonsterAttack_26",
+      "macroTurn": 26,
+      "timestamp": {
+        "year": 26,
+        "month": 2,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_108",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 4.2 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物活性期に突入した叙事年26は、多くの市民にとって厳しい一年となった。結晶配給制限と夜間外出禁止令により、人々の生活は制約が多くなり、日々の不安やストレスが増えている。それでも、互いを支え合いながら生き抜くことを決めた市民たちがいる。\n\nこの年には、魔物に対する信仰も強まりつつあった。人々は日々の祈りと監視を通じて、魔物への恐れを和らげようとしていた。特にリサのような若い世代でも、結界維持のためだけでなく、自分の命を守るために神々に願いを捧げる風習が広まっている。\n\nこの土地の市民たちは、この狭く厳しい生存圏の中で互いの力となり、共によりよい未来を見つけることを心から望んでいる。",
+      "conditionFlag": "HIST_NATION_108_GEO_TURN_026_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_108_GEO_TURN_026_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_108_MONSTERATTACK_T026",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N108_T026"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事26年・年初（ターン026）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事26年・年央（ターン026）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事26年・年末（ターン026）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_108_Innovation_37",
+      "macroTurn": 37,
+      "timestamp": {
+        "year": 37,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_108",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【南方の山岳・海洋前線】で障壁イノベーションが発生した。循環係数 1.10、生存圏 +1.5。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、この土地では休眠期の束の間の安堵を利用して、祭りや新築祝いなどが開催されている。特に、春節にあたる時期には、人々が集まり祝賀会を開き、結婚式も増える。\n\nしかし、同時にスラム化による人口過密と不動産不足を背景にした奪い合いが発生し、それが市民の心理状態に大きな影響を与えている。特に、魔物の周期的な脅威が人々の心を占めると、日常生活におけるストレスも増幅する。\n\n「この国はいつまで続くのか…」とエリカさんは思いつつ、夜遅くになると結界の外で聞こえる奇妙な音や影を見ると、不安になる。しかし、同時に束の間の安堵を利用して祭りを楽しむ人々の笑顔も見せられ、この国の未来に対する希望が消えないようにしている。",
+      "conditionFlag": "HIST_NATION_108_GEO_TURN_037_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_108_GEO_TURN_037_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_108_INNOVATION_T037",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N108_T037"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事37年・年初（ターン037）",
+          "npcDialogue": "「この国はいつまで続くのか…」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事37年・年央（ターン037）",
+          "npcDialogue": "「この国はいつまで続くのか…」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事37年・年末（ターン037）",
+          "npcDialogue": "「この国はいつまで続くのか…」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_108_MonsterAttack_49",
+      "macroTurn": 49,
+      "timestamp": {
+        "year": 49,
+        "month": 1,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_108",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 7.1 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地で一年を通じて繰り広げられる風習や儀式は、防衛結界の維持と魔物への警戒が中心となる。魔物活性期では特に、深夜に祈りを捧げる人々が多くなる。\n\n「神よ、今日一日だけでも守ってください」\nそんな声と共に、小さな火柱が夜空に浮かび上がる。それは誰もが防衛結界の維持と魔物からの侵攻に対する不安から逃れたいと願っている証である。しかしこの一年はこれまで以上に厳しいものとなった。\n\nそして、叙事年49（ターン049）の最後には、この土地が絶望的な状況を迎えてしまった。「世界平均脅威度指数2.700」、「魔物活性期突入」、「生存圏損壊」により、防衛結界もその限界を超え、ついに崩落を遂げた。人々は恐怖と混乱の中、それぞれの道へと散り散りとなった。",
+      "conditionFlag": "HIST_NATION_108_GEO_TURN_049_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_108_GEO_TURN_049_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_108_MONSTERATTACK_T049",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N108_T049"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事49年・年初（ターン049）",
+          "npcDialogue": "「神よ、今日一日だけでも守ってください」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事49年・年央（ターン049）",
+          "npcDialogue": "「神よ、今日一日だけでも守ってください」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事49年・年末（ターン049）",
+          "npcDialogue": "「神よ、今日一日だけでも守ってください」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_108_NationCollapse_49",
+      "macroTurn": 49,
+      "timestamp": {
+        "year": 49,
+        "month": 1,
+        "day": 13,
+        "hour": 4
+      },
+      "targetNationId": "NATION_108",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【南方の山岳・海洋前線】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地で一年を通じて繰り広げられる風習や儀式は、防衛結界の維持と魔物への警戒が中心となる。魔物活性期では特に、深夜に祈りを捧げる人々が多くなる。\n\n「神よ、今日一日だけでも守ってください」\nそんな声と共に、小さな火柱が夜空に浮かび上がる。それは誰もが防衛結界の維持と魔物からの侵攻に対する不安から逃れたいと願っている証である。しかしこの一年はこれまで以上に厳しいものとなった。\n\nそして、叙事年49（ターン049）の最後には、この土地が絶望的な状況を迎えてしまった。「世界平均脅威度指数2.700」、「魔物活性期突入」、「生存圏損壊」により、防衛結界もその限界を超え、ついに崩落を遂げた。人々は恐怖と混乱の中、それぞれの道へと散り散りとなった。",
+      "conditionFlag": "HIST_NATION_108_GEO_TURN_049_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_108_GEO_TURN_049_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_108_NATIONCOLLAPSE_T049",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N108_T049"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事40年〜42年（滅亡10〜7年前）",
+          "npcDialogue": "「神よ、今日一日だけでも守ってください」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事43年〜46年（6〜3年前）",
+          "npcDialogue": "「神よ、今日一日だけでも守ってください」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事47年〜49年（2年前〜崩壊）",
+          "npcDialogue": "「神よ、今日一日だけでも守ってください」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

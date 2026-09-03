@@ -1,0 +1,18 @@
+﻿{
+  "initial_nations": 173,
+  "macro_turns": 1000,
+  "seed": 42,
+  "target_initial_power": 200000,
+  "initial_global_threat": 2.5,
+  "years_per_turn": 1,
+  "birth_chance": 0.1,
+  "placement_min_dist_deg": 1.2,
+  "effective_initial_power": 200000,
+  "environment_biorhythm": {
+    "mid_cycle_turns": 400,
+    "mid_cycle_dormant_span": 340,
+    "mid_cycle_ramp_span": 40,
+    "mid_cycle_peak_span": 20,
+    "note": "400年平穏→大活性期・魔獣群災害"
+  }
+}

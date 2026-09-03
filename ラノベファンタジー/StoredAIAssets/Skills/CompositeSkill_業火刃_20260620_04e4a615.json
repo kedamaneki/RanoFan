@@ -1,0 +1,16 @@
+﻿{
+  "generationType": "skill",
+  "phase": "Fusion",
+  "compositeSkill": {
+    "skillName": "業火刃",
+    "meritEffect": "自身が作成した武器のダメージ+50%",
+    "demeritEffect": "他人が作成した武器を使用時、攻撃倍率-70%",
+    "flavorText": "火の粉と片手剣術が交わった呪われた剣技。",
+    "probability": 1.0,
+    "effectParameters": [
+      { "key": "selfCraftedWeaponDamageBonus", "value": 0.5 },
+      { "key": "foreignWeaponDamagePenalty", "value": -0.7 }
+    ],
+    "fusedFromSkillIds": ["skill_fire_spark", "skill_one_hand_sword"]
+  }
+}

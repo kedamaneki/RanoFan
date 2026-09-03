@@ -1,0 +1,77 @@
+{
+  "nationId": "NATION_009",
+  "deepEventPlan": [
+    {
+      "chapter": "第1章・初期高脅威",
+      "macroTurnRange": [
+        1,
+        20
+      ],
+      "suggestedMacroTurn": 10,
+      "narrativeYear": 100,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第2章・瓦解と同盟",
+      "macroTurnRange": [
+        21,
+        40
+      ],
+      "suggestedMacroTurn": 30,
+      "narrativeYear": 300,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第3章・常夜の底",
+      "macroTurnRange": [
+        41,
+        60
+      ],
+      "suggestedMacroTurn": 50,
+      "narrativeYear": 500,
+      "evolutionSystemType": "Inspiration",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第4章・大開拓",
+      "macroTurnRange": [
+        61,
+        80
+      ],
+      "suggestedMacroTurn": 70,
+      "narrativeYear": 700,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第5章・完全駆逐",
+      "macroTurnRange": [
+        81,
+        100
+      ],
+      "suggestedMacroTurn": 90,
+      "narrativeYear": 900,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "固有技術",
+      "suggestedMacroTurn": 10,
+      "eventTypeHint": "ShieldFortification or MagicPioneering",
+      "technologies": [
+        "国家009",
+        "砂下都市網",
+        "地下情報・密輸ルート"
+      ],
+      "recommendedRoute": "prosperity"
+    }
+  ],
+  "bodyText": "領域・中央の広大な砂漠・乾燥地帯に位置する「国家009」は、極限の環境への適応によって生存能力を証明した国家である。初期の活性期において地表の緑地が脅威個体群に蹂躙されると、即座に地中深くに固有エネルギー結晶を埋設し、熱エネルギーを内部循環させる「砂下都市網」への移行を選択した。第3章の人類総国力最底期において、物流が途絶した荒野の地下を這うように接続し、領域・東と領域・西を繋ぐ唯一の「地下情報・密輸ルート」を隠密裏に維持。第4章の大開拓時代には、蓄積した地下資源の探査技術を用いて乾燥地帯の再興を主導し、東西の超大国が無視できない中立的な地下交易都市の連合体として、生存国68カ国の中にその名を刻み続けた。（319文字）",
+  "quotedTechnologies": [
+    "国家009",
+    "砂下都市網",
+    "地下情報・密輸ルート"
+  ]
+}

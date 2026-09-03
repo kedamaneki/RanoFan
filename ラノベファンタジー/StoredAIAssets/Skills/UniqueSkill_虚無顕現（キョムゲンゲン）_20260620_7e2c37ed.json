@@ -1,0 +1,15 @@
+﻿{
+  "generationType": "skill",
+  "phase": "Crisis",
+  "skill": {
+    "skillName": "虚無顕現（キョムゲンゲン）",
+    "flavorText": "死線を乗り越えた者が辿り着く、回避の極致。あらゆる攻撃を存在の狭間に透過させ、無効化する。真の危機において、その身は虚ろと化し、触れることすら叶わぬ絶対不可侵の領域を顕現させる。",
+    "probability": 0.00001,
+    "effectParameters": [
+      { "key": "damageNullification", "value": 1.0 },
+      { "key": "invincibilityDuration", "value": 5.0 },
+      { "key": "haltFleshDegradation", "value": 1.0 },
+      { "key": "ignoreEnemyDefense", "value": 1.0 }
+    ]
+  }
+}

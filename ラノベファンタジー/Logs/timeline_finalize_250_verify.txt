@@ -1,0 +1,10 @@
+﻿2026-08-31T17:17:53.9886094Z success=True
+finalize: success=True gen5=ALT_NATION_001_TURN_208_HERETIC_ORTHODOXY score=377 turn=T250 midCycle=400 export=True geo=True masters=True lineage=5 lineageValidate=True turnPass=True
+checks: commit=True score=True biorhythm=True lineageCount=True lineageValidate=True export=True awaiting=True turn=True
+lineage:
+  Gen1: IF_Line: 魔導革新の年代 (ALT_NATION_001_TURN_006_INNOVATION) T50 score=306 ➔
+  Gen2: IF_Line: 魔導復興 (ALT_NATION_001_TURN_058_ARCANE_REVIVAL) T100 score=385 ➔
+  Gen3: IF_Line: 魔王軍前線 (ALT_NATION_001_TURN_111_DEMON_FRONT) T150 score=385 ➔
+  Gen4: IF_Line: 異端魔導の覚醒 (ALT_NATION_001_TURN_158_HERETIC_ARCANA) T200 score=391 ➔
+  Gen5: IF_Line: 異端魔法の正統化 (ALT_NATION_001_TURN_208_HERETIC_ORTHODOXY) T250 score=377
+main=ALT_NATION_001_TURN_208_HERETIC_ORTHODOXY midCycle=400

@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_093_MonsterAttack_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_093",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 11.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では魔物周期の活性期に合わせて生活パターンが大きく変わるため、その年に受け取る魔法結晶は日々の生活を支える大切な資源となる。また避難民への対応や防衛隊の活動により、市民同士での連携と助け合いがより強くなる。\n\n「我々はこの街を守るために最善を尽くさなければならない」とリチャードが語る。「それはただ魔法結晶だけではなく、心からの思いやりでもある。」カミラも頷きながら、「そうね、それが私たちの使命なんだよ」と同意した。",
+      "conditionFlag": "HIST_NATION_093_GEO_TURN_001_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_093_GEO_TURN_001_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_093_MONSTERATTACK_T001",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N093_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「我々はこの街を守るために最善を尽くさなければならない」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「我々はこの街を守るために最善を尽くさなければならない」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「我々はこの街を守るために最善を尽くさなければならない」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_093_BarrierDrop_4",
+      "macroTurn": 4,
+      "timestamp": {
+        "year": 4,
+        "month": 4,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_093",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【中央海平原の結節帯】で防衛障壁の循環効率が急落した（低下幅 0.29）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、魔物活性期における生活の中で、多くの市民がストレスと不安を感じていた。「これ以上は無理…」という声も聞かれるようになった。しかし、それでもルーカスやマーリンのような人は、「明日もまた頑張ろう」という前向きな言葉を口にする。\n\n食事の風俗としては、配給所で貰った食料を使って簡易的な料理を作る家庭が多かった。魔力結晶交換による生活の中で、人々は節約や工夫をすることが求められていた。\n\n信仰としては、多くの人々が日々の安全と魔物からの防護を祈るための祭儀に参加していた。それは、この厳しい時期において唯一の希望と安堵感となるものだった。\n\nこの土地では、日々の生活の中で、人々は様々な困難を乗り越えながら生き抜いていく。その中で生まれる友情や支え合いが、市民たちを結びつけていたのである。",
+      "conditionFlag": "HIST_NATION_093_GEO_TURN_004_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_093_GEO_TURN_004_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_093_BARRIERDROP_T004",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N093_T004"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事4年・年初（ターン004）",
+          "npcDialogue": "「これ以上は無理…」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事4年・年央（ターン004）",
+          "npcDialogue": "「これ以上は無理…」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事4年・年末（ターン004）",
+          "npcDialogue": "「これ以上は無理…」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_093_MonsterAttack_4",
+      "macroTurn": 4,
+      "timestamp": {
+        "year": 4,
+        "month": 4,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_093",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 14.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、魔物活性期における生活の中で、多くの市民がストレスと不安を感じていた。「これ以上は無理…」という声も聞かれるようになった。しかし、それでもルーカスやマーリンのような人は、「明日もまた頑張ろう」という前向きな言葉を口にする。\n\n食事の風俗としては、配給所で貰った食料を使って簡易的な料理を作る家庭が多かった。魔力結晶交換による生活の中で、人々は節約や工夫をすることが求められていた。\n\n信仰としては、多くの人々が日々の安全と魔物からの防護を祈るための祭儀に参加していた。それは、この厳しい時期において唯一の希望と安堵感となるものだった。\n\nこの土地では、日々の生活の中で、人々は様々な困難を乗り越えながら生き抜いていく。その中で生まれる友情や支え合いが、市民たちを結びつけていたのである。",
+      "conditionFlag": "HIST_NATION_093_GEO_TURN_004_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_093_GEO_TURN_004_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_093_MONSTERATTACK_T004",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N093_T004"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事4年・年初（ターン004）",
+          "npcDialogue": "「これ以上は無理…」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事4年・年央（ターン004）",
+          "npcDialogue": "「これ以上は無理…」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事4年・年末（ターン004）",
+          "npcDialogue": "「これ以上は無理…」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_093_NationCollapse_8",
+      "macroTurn": 8,
+      "timestamp": {
+        "year": 8,
+        "month": 8,
+        "day": 25,
+        "hour": 4
+      },
+      "targetNationId": "NATION_093",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【中央海平原の結節帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "このターンは、魔物活性期の影響を受けながらも経済的には安定している。しかし、その背景には人々のストレスや緊張感があり、生活の質が低下している。特に夜間外出禁止令と結晶配給制限による閉塞感は市民たちを追い詰めている。\n\n「この街ももう長くないんだよね……」と、市民たちは自らの未来を見据えながら嘆息する。「次のターンでどうなるか、誰にもわからないよ。」\n\nしかし、それでも彼らは一日一日を生きていくために努力している。食事や信仰、日々の生活の中で、わずかな安堵感を見つけようとしている。\n\nこの国の滅亡が近いことを知りながらも、市民たちは希望と絶望の狭間で生き抜くしかない。魔物への恐怖、生存圏の逼迫、そして結界の崩落——それでも彼らは最後まで頑張ろうとする。",
+      "conditionFlag": "HIST_NATION_093_GEO_TURN_008_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_093_GEO_TURN_008_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_093_NATIONCOLLAPSE_T008",
+          "alternativeLogMessage": "【中央海平原の結節帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N093_T008"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事1年〜1年（滅亡10〜7年前）",
+          "npcDialogue": "「この街ももう長くないんだよね……」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事2年〜5年（6〜3年前）",
+          "npcDialogue": "「この街ももう長くないんだよね……」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事6年〜8年（2年前〜崩壊）",
+          "npcDialogue": "「この街ももう長くないんだよね……」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

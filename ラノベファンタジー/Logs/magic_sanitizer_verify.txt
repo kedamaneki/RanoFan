@@ -1,0 +1,6 @@
+﻿PASS
+overpower: success=True registered=True value 999->3 area 1000->15 mp 0->10 pass=True
+  id=MAGIC_TEST_OVERPOWER value=3 area=15 mp=10 effect=Buff_STR clamped(value=True, area=True, mp=True, era=False) fallback=False
+unknown: fallback=True id=MAGIC_TEST_UNKNOWN_EFFECT fallbackId=MAGIC_FIRE_SPARK value=3 area=3.5 mp=10 pass=True
+null: fallback=True id=MAGIC_FIRE_SPARK pass=True
+ancient T200: eraApplied=True mp=20 range=15-25 pass=True

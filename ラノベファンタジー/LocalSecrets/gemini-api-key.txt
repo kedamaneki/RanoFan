@@ -1,0 +1,7 @@
+# Gemini API キー（テンプレート）
+# 使い方:
+#   1. このファイルを gemini-api-key.txt にコピー
+#   2. 下の YOUR_API_KEY を Google AI Studio で発行したキーに差し替え
+#   3. gemini-api-key.txt は .gitignore 済み（Git に載りません）
+
+AQ.Ab8RN6JhLWHW3HdwXQXnSo9lJJplFkaP2eKiLhAx-8c7BhSQFA

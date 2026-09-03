@@ -1,0 +1,257 @@
+[
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_READING",
+      "skillName": "読書",
+      "category": "Hobby",
+      "description": "書物から知識と魔力の記録を吸収する趣味系スキル。極めることで、失われた魔導文献の完全復元へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Craft_RecipeRecord",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_ANCIENT",
+      "skillName": "古文書解読",
+      "category": "Hobby",
+      "description": "古代文字と暗号を解読する趣味系スキル。極めることで、滅亡文明の全記録解読へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Craft_RecipeRecord",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_HISTORY",
+      "skillName": "歴史語り",
+      "category": "Hobby",
+      "description": "土地に刻まれた歴史の痕跡を読み取る趣味系スキル。極めることで、世界の興亡を一望する。",
+      "specialEffects": [
+        {
+          "effectType": "Craft_RecipeRecord",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_NEGOT",
+      "skillName": "交渉",
+      "category": "Hobby",
+      "description": "相手の意図を読み、有利な取引を導く趣味系スキル。極めることで、国家間交渉の主導権へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Psychic_ManaControl",
+          "value": 0.1,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_HAGGLE",
+      "skillName": "値切り",
+      "category": "Hobby",
+      "description": "市場の魔力相場を看破し最適価格を引き出す趣味系スキル。極めることで、伝説級素材の破格入手へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Psychic_ManaControl",
+          "value": 0.15,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_LORE",
+      "skillName": "博識",
+      "category": "Hobby",
+      "description": "多岐にわたる知識を統合し、未知の現象を即座に解釈する趣味系スキル。極めることで、全学問の頂点へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Craft_RecipeRecord",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_LANG",
+      "skillName": "言語理解",
+      "category": "Hobby",
+      "description": "未知の言語と魔力符号を即座に理解する趣味系スキル。極めることで、全言語の完全通訳へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Craft_RecipeRecord",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_TRUTH",
+      "skillName": "真偽看破",
+      "category": "Hobby",
+      "description": "嘘と偽装された魔力波形を見抜く趣味系スキル。極めることで、完全な真実の看破へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_EnemyDetect",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_RUMOR",
+      "skillName": "噂収集",
+      "category": "Hobby",
+      "description": "街角の情報と希少噂を効率よく集める趣味系スキル。極めることで、大陸規模の情報網へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Hobby_GatherLuck",
+          "value": 1.15,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_SPRINT",
+      "skillName": "高速移動",
+      "category": "Hobby",
+      "description": "魔力を足に回し、長距離を効率よく移動する趣味系スキル。極めることで、大陸横断の瞬間移動へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Psychic_ManaControl",
+          "value": 0.12,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_MAPMAKE",
+      "skillName": "地図作成",
+      "category": "Hobby",
+      "description": "踏破した地形を魔力地図として記録・可視化する趣味系スキル。極めることで、未踏領域の完全製図へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MapRadar",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_FISHING",
+      "skillName": "釣り",
+      "category": "Hobby",
+      "description": "水域の魔力反応から魚と希少素材を引き上げる趣味系スキル。極めることで、深海の伝説魚の確実な釣獲へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Hobby_GatherLuck",
+          "value": 1.2,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_DIVING",
+      "skillName": "潜水",
+      "category": "Hobby",
+      "description": "水中での魔力消費を抑え、長時間の潜行を可能にする趣味系スキル。極めることで、深海遺跡の完全探索へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Psychic_ManaControl",
+          "value": 0.18,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_JUMP",
+      "skillName": "跳躍",
+      "category": "Hobby",
+      "description": "魔力を下肢に集中し、跳躍の効率と到達高度を高める趣味系スキル。極めることで、垂直壁の完全踏破へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Psychic_ManaControl",
+          "value": 0.1,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_CLIMB",
+      "skillName": "登攀",
+      "category": "Hobby",
+      "description": "岩壁への魔力着脱を最適化し、登攀の安定性を高める趣味系スキル。極めることで、天候を問わない絶壁踏破へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Psychic_ManaControl",
+          "value": 0.12,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  }
+]

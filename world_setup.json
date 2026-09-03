@@ -1,0 +1,5183 @@
+{
+  "version": 1,
+  "meta": {
+    "startYear": 1000,
+    "crs": "EPSG4326",
+    "nationCount": 131,
+    "exportedAt": "2026-06-20T15:38:06.192Z"
+  },
+  "regions": [
+    {
+      "id": "western_europe",
+      "name": "西ヨーロッパ",
+      "threat_level": 0.9
+    },
+    {
+      "id": "eastern_europe",
+      "name": "東ヨーロッパ",
+      "threat_level": 1.2
+    },
+    {
+      "id": "mediterranean",
+      "name": "地中海",
+      "threat_level": 1
+    },
+    {
+      "id": "middle_east",
+      "name": "中東・中央アジア",
+      "threat_level": 1.3
+    },
+    {
+      "id": "east_asia",
+      "name": "東アジア",
+      "threat_level": 1.1
+    },
+    {
+      "id": "south_asia",
+      "name": "南・東南アジア",
+      "threat_level": 1
+    }
+  ],
+  "threat_zones": [
+    {
+      "id": "tz_siberia",
+      "name": "シベリア魔境",
+      "threat_level": 1.9,
+      "geometry": {
+        "type": "Circle",
+        "center": [
+          68,
+          95
+        ],
+        "radius": 2800000
+      }
+    },
+    {
+      "id": "tz_africa",
+      "name": "アフリカ奥地",
+      "threat_level": 1.7,
+      "geometry": {
+        "type": "Circle",
+        "center": [
+          5,
+          22
+        ],
+        "radius": 2200000
+      }
+    }
+  ],
+  "geojson": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": "state_000",
+        "properties": {
+          "id": "state_000",
+          "name": "フランドル伯領",
+          "government": "幕府",
+          "region_id": "western_europe",
+          "economy": 75,
+          "military": 60,
+          "magic_level": 75,
+          "territory_size": 58,
+          "domestic_threat_factor": 1.2,
+          "color": "hsl(238,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -8.845706421104918,
+                36.20844482061309
+              ],
+              [
+                -7.481647466459914,
+                36.172077027160746
+              ],
+              [
+                -7.40891187955524,
+                36.683769423750945
+              ],
+              [
+                -8.882074214557255,
+                36.75650501065562
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_001",
+        "properties": {
+          "id": "state_001",
+          "name": "ノルマンディー公国",
+          "government": "部族連合",
+          "region_id": "western_europe",
+          "economy": 67,
+          "military": 49,
+          "magic_level": 76,
+          "territory_size": 88,
+          "domestic_threat_factor": 1.1,
+          "color": "hsl(55,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                1.19388238878351,
+                42.69989706182843
+              ],
+              [
+                2.2456041860073848,
+                42.68989435697896
+              ],
+              [
+                2.2656095957063234,
+                44.23130805245722
+              ],
+              [
+                1.1838796839340409,
+                44.25131346215616
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_002",
+        "properties": {
+          "id": "state_002",
+          "name": "ブルゴーニュ公国",
+          "government": "部族連合",
+          "region_id": "western_europe",
+          "economy": 67,
+          "military": 85,
+          "magic_level": 19,
+          "territory_size": 81,
+          "domestic_threat_factor": 1.25,
+          "color": "hsl(296,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                7.26970804485465,
+                48.913671957025
+              ],
+              [
+                8.938488632979324,
+                48.884329545557804
+              ],
+              [
+                8.99717345591371,
+                49.985665788991064
+              ],
+              [
+                7.240365633387458,
+                50.04435061192545
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_003",
+        "properties": {
+          "id": "state_003",
+          "name": "プロヴァンス伯領",
+          "government": "大公国",
+          "region_id": "western_europe",
+          "economy": 72,
+          "military": 32,
+          "magic_level": 69,
+          "territory_size": 67,
+          "domestic_threat_factor": 0.8,
+          "color": "hsl(326,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -5.360520316269732,
+                39.09929898844967
+              ],
+              [
+                -4.193089225863189,
+                39.06698333565796
+              ],
+              [
+                -4.1284579202797795,
+                40.10701783730371
+              ],
+              [
+                -5.392835969061437,
+                40.17164914288712
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_004",
+        "properties": {
+          "id": "state_004",
+          "name": "アキテーヌ公国",
+          "government": "共和制",
+          "region_id": "western_europe",
+          "economy": 53,
+          "military": 45,
+          "magic_level": 64,
+          "territory_size": 53,
+          "domestic_threat_factor": 0.95,
+          "color": "hsl(44,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -0.7707478000323724,
+                44.80285840567468
+              ],
+              [
+                0.07599912225827571,
+                44.79684104570825
+              ],
+              [
+                0.08803384219113242,
+                45.88485862609452
+              ],
+              [
+                -0.7767651599988008,
+                45.896893346027376
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_005",
+        "properties": {
+          "id": "state_005",
+          "name": "ガスコーニュ伯領",
+          "government": "共和制",
+          "region_id": "western_europe",
+          "economy": 39,
+          "military": 72,
+          "magic_level": 53,
+          "territory_size": 75,
+          "domestic_threat_factor": 1.75,
+          "color": "hsl(255,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -1.596098821327181,
+                46.233564469622046
+              ],
+              [
+                -0.21716295016665157,
+                46.20950207012659
+              ],
+              [
+                -0.16903815117574927,
+                47.10079958876669
+              ],
+              [
+                -1.6201612208226321,
+                47.148924387757596
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_006",
+        "properties": {
+          "id": "state_006",
+          "name": "トゥールーヌ伯領",
+          "government": "帝国",
+          "region_id": "western_europe",
+          "economy": 78,
+          "military": 49,
+          "magic_level": 18,
+          "territory_size": 78,
+          "domestic_threat_factor": 1.45,
+          "color": "hsl(93,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -8.695662414613796,
+                38.28430288985773
+              ],
+              [
+                -7.750609790431902,
+                38.272663276542595
+              ],
+              [
+                -7.727330563801647,
+                38.99065737095722
+              ],
+              [
+                -8.707302027928923,
+                39.01393659758748
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_007",
+        "properties": {
+          "id": "state_007",
+          "name": "シャンパーニュ伯領",
+          "government": "共和制",
+          "region_id": "western_europe",
+          "economy": 85,
+          "military": 57,
+          "magic_level": 31,
+          "territory_size": 48,
+          "domestic_threat_factor": 1.3,
+          "color": "hsl(45,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                8.997556562030276,
+                49.90074435794796
+              ],
+              [
+                10.54566215694478,
+                49.86817862544971
+              ],
+              [
+                10.610793621941278,
+                51.25030217458522
+              ],
+              [
+                8.964990829532027,
+                51.31543363958172
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_008",
+        "properties": {
+          "id": "state_008",
+          "name": "バルセロナ伯領",
+          "government": "大公国",
+          "region_id": "western_europe",
+          "economy": 78,
+          "military": 67,
+          "magic_level": 1,
+          "territory_size": 70,
+          "domestic_threat_factor": 0.95,
+          "color": "hsl(278,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                1.6901613831987234,
+                45.94936704608553
+              ],
+              [
+                3.036083544209676,
+                45.92944404465095
+              ],
+              [
+                3.075929547078841,
+                46.67110591382823
+              ],
+              [
+                1.6702383817641413,
+                46.71095191669739
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_009",
+        "properties": {
+          "id": "state_009",
+          "name": "カタルーニャ公国",
+          "government": "共和制",
+          "region_id": "western_europe",
+          "economy": 73,
+          "military": 77,
+          "magic_level": 21,
+          "territory_size": 77,
+          "domestic_threat_factor": 0.65,
+          "color": "hsl(10,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                7.1587138624663575,
+                48.50900095610787
+              ],
+              [
+                8.244768929877102,
+                48.50171042770307
+              ],
+              [
+                8.259349986686695,
+                49.70320439318493
+              ],
+              [
+                7.15142333406156,
+                49.71778544999453
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_010",
+        "properties": {
+          "id": "state_010",
+          "name": "レオン王国",
+          "government": "君主制",
+          "region_id": "western_europe",
+          "economy": 62,
+          "military": 33,
+          "magic_level": 24,
+          "territory_size": 60,
+          "domestic_threat_factor": 0.8,
+          "color": "hsl(297,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                1.4601739678347236,
+                46.439930780380905
+              ],
+              [
+                2.030604930697572,
+                46.40438590521401
+              ],
+              [
+                2.101694681031345,
+                47.51664748228774
+              ],
+              [
+                1.4246290926678373,
+                47.587737232621514
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_011",
+        "properties": {
+          "id": "state_011",
+          "name": "カスティーリャ王国",
+          "government": "共和制",
+          "region_id": "western_europe",
+          "economy": 70,
+          "military": 55,
+          "magic_level": 12,
+          "territory_size": 53,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(196,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                10.94561412875132,
+                36.080145305059986
+              ],
+              [
+                11.52129892340051,
+                36.06675007571163
+              ],
+              [
+                11.548089382097208,
+                36.86402038745956
+              ],
+              [
+                10.93221889940297,
+                36.89081084615626
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_012",
+        "properties": {
+          "id": "state_012",
+          "name": "ナバラ王国",
+          "government": "首長国",
+          "region_id": "western_europe",
+          "economy": 56,
+          "military": 48,
+          "magic_level": 76,
+          "territory_size": 78,
+          "domestic_threat_factor": 1.3,
+          "color": "hsl(123,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -7.1332849562105585,
+                37.83034197564269
+              ],
+              [
+                -6.0866437595585765,
+                37.82319388877898
+              ],
+              [
+                -6.072347585831161,
+                38.98833101657064
+              ],
+              [
+                -7.140433043074266,
+                39.00262719029806
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_013",
+        "properties": {
+          "id": "state_013",
+          "name": "アラゴン王国",
+          "government": "幕府",
+          "region_id": "western_europe",
+          "economy": 60,
+          "military": 80,
+          "magic_level": 50,
+          "territory_size": 87,
+          "domestic_threat_factor": 0.9,
+          "color": "hsl(88,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -2.1231320164940626,
+                46.85744466306404
+              ],
+              [
+                -1.1772583348837302,
+                46.84986498921166
+              ],
+              [
+                -1.1620989871789702,
+                47.62356171308417
+              ],
+              [
+                -2.130711690346443,
+                47.63872106078893
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_014",
+        "properties": {
+          "id": "state_014",
+          "name": "ポルトガル王国",
+          "government": "君主制",
+          "region_id": "western_europe",
+          "economy": 52,
+          "military": 71,
+          "magic_level": 59,
+          "territory_size": 82,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(155,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -4.487134974586904,
+                46.769563355119494
+              ],
+              [
+                -2.9595630462277343,
+                46.738633070754474
+              ],
+              [
+                -2.8977024774977034,
+                47.807252702133034
+              ],
+              [
+                -4.518065258951919,
+                47.86911327086307
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_015",
+        "properties": {
+          "id": "state_015",
+          "name": "ガリシア王国",
+          "government": "部族連合",
+          "region_id": "western_europe",
+          "economy": 72,
+          "military": 22,
+          "magic_level": 11,
+          "territory_size": 57,
+          "domestic_threat_factor": 1.5,
+          "color": "hsl(245,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                5.3139598308447376,
+                48.534077566726204
+              ],
+              [
+                6.452616148938068,
+                48.528484673787354
+              ],
+              [
+                6.463801934815759,
+                49.83553777967163
+              ],
+              [
+                5.308366937905892,
+                49.846723565549325
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_016",
+        "properties": {
+          "id": "state_016",
+          "name": "コルドバ首長国",
+          "government": "共和制",
+          "region_id": "western_europe",
+          "economy": 60,
+          "military": 66,
+          "magic_level": 43,
+          "territory_size": 81,
+          "domestic_threat_factor": 1,
+          "color": "hsl(253,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                5.577437599280325,
+                55.611306968267364
+              ],
+              [
+                6.089399517485313,
+                55.57695136530041
+              ],
+              [
+                6.158110723419218,
+                56.20112551523477
+              ],
+              [
+                5.543081996313372,
+                56.26983672116868
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_017",
+        "properties": {
+          "id": "state_017",
+          "name": "セビリア王国",
+          "government": "共和制",
+          "region_id": "western_europe",
+          "economy": 76,
+          "military": 79,
+          "magic_level": 38,
+          "territory_size": 42,
+          "domestic_threat_factor": 1.6,
+          "color": "hsl(262,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                10.890497947587164,
+                51.32895217877715
+              ],
+              [
+                12.747619519315307,
+                51.328446802579286
+              ],
+              [
+                12.748630271711043,
+                52.46982883089206
+              ],
+              [
+                10.889992571389296,
+                52.4708395832878
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_018",
+        "properties": {
+          "id": "state_018",
+          "name": "バスク諸邑",
+          "government": "帝国",
+          "region_id": "western_europe",
+          "economy": 65,
+          "military": 52,
+          "magic_level": 17,
+          "territory_size": 68,
+          "domestic_threat_factor": 0.7,
+          "color": "hsl(41,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                14.108454123873685,
+                49.58539353522043
+              ],
+              [
+                16.00176097976208,
+                49.56485282900264
+              ],
+              [
+                16.042842392197663,
+                50.01789012117114
+              ],
+              [
+                14.087913417655892,
+                50.05897153360673
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_019",
+        "properties": {
+          "id": "state_019",
+          "name": "アストゥリアス公国",
+          "government": "首長国",
+          "region_id": "western_europe",
+          "economy": 83,
+          "military": 81,
+          "magic_level": 26,
+          "territory_size": 40,
+          "domestic_threat_factor": 1.45,
+          "color": "hsl(206,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -5.2336868670523975,
+                47.104129379116124
+              ],
+              [
+                -3.736246135454854,
+                47.0832058659412
+              ],
+              [
+                -3.69439910910502,
+                47.70092386597854
+              ],
+              [
+                -5.254610380227314,
+                47.74277089232837
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_020",
+        "properties": {
+          "id": "state_020",
+          "name": "ブルターニュ公国",
+          "government": "幕府",
+          "region_id": "western_europe",
+          "economy": 80,
+          "military": 69,
+          "magic_level": 59,
+          "territory_size": 50,
+          "domestic_threat_factor": 0.9,
+          "color": "hsl(157,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                6.19097885801548,
+                50.441579463520625
+              ],
+              [
+                7.673672220868684,
+                50.42353037139729
+              ],
+              [
+                7.7097704051153455,
+                51.532883438163324
+              ],
+              [
+                6.17292976589215,
+                51.568981622409986
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_021",
+        "properties": {
+          "id": "state_021",
+          "name": "アンジュー伯領",
+          "government": "大公国",
+          "region_id": "western_europe",
+          "economy": 32,
+          "military": 64,
+          "magic_level": 30,
+          "territory_size": 65,
+          "domestic_threat_factor": 1.5,
+          "color": "hsl(57,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -1.217683372495401,
+                40.87221156074871
+              ],
+              [
+                0.1492604154807148,
+                40.856734118886976
+              ],
+              [
+                0.18021529920419255,
+                41.712327808451214
+              ],
+              [
+                -1.2331608143571398,
+                41.74328269217469
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_022",
+        "properties": {
+          "id": "state_022",
+          "name": "マーシア王国",
+          "government": "君主制",
+          "region_id": "eastern_europe",
+          "economy": 87,
+          "military": 32,
+          "magic_level": 50,
+          "territory_size": 64,
+          "domestic_threat_factor": 1.75,
+          "color": "hsl(123,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                37.23976359158732,
+                52.98936357247584
+              ],
+              [
+                37.957210127671445,
+                52.960463596899494
+              ],
+              [
+                38.01501007882413,
+                54.17342947046592
+              ],
+              [
+                37.210863616010975,
+                54.23122942161861
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_023",
+        "properties": {
+          "id": "state_023",
+          "name": "キエフ大公国",
+          "government": "大公国",
+          "region_id": "eastern_europe",
+          "economy": 27,
+          "military": 56,
+          "magic_level": 41,
+          "territory_size": 40,
+          "domestic_threat_factor": 1.1,
+          "color": "hsl(322,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                30.562259966062623,
+                59.60874172073672
+              ],
+              [
+                31.712820943401024,
+                59.60293871078914
+              ],
+              [
+                31.72442696329618,
+                61.00818993085827
+              ],
+              [
+                30.556456956115042,
+                61.019795950753426
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_024",
+        "properties": {
+          "id": "state_024",
+          "name": "ノヴゴロド公国",
+          "government": "帝国",
+          "region_id": "eastern_europe",
+          "economy": 31,
+          "military": 76,
+          "magic_level": 24,
+          "territory_size": 63,
+          "domestic_threat_factor": 1.3,
+          "color": "hsl(203,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                26.289877759450935,
+                46.01090384916486
+              ],
+              [
+                27.70183474516667,
+                45.99999737175181
+              ],
+              [
+                27.723647699992778,
+                47.06421208836531
+              ],
+              [
+                26.27897128203788,
+                47.08602504319141
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_025",
+        "properties": {
+          "id": "state_025",
+          "name": "ヴラジミール大公国",
+          "government": "大公国",
+          "region_id": "eastern_europe",
+          "economy": 72,
+          "military": 57,
+          "magic_level": 77,
+          "territory_size": 66,
+          "domestic_threat_factor": 0.75,
+          "color": "hsl(355,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                27.834223422663495,
+                56.67383890069447
+              ],
+              [
+                28.483447437401345,
+                56.65962771836634
+              ],
+              [
+                28.51186980205762,
+                57.32663202065661
+              ],
+              [
+                27.820012240335355,
+                57.35505438531288
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_026",
+        "properties": {
+          "id": "state_026",
+          "name": "ポーランド王国",
+          "government": "幕府",
+          "region_id": "eastern_europe",
+          "economy": 53,
+          "military": 32,
+          "magic_level": 74,
+          "territory_size": 72,
+          "domestic_threat_factor": 1.6,
+          "color": "hsl(122,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                27.652045601990118,
+                48.17393373002664
+              ],
+              [
+                28.240841438324047,
+                48.14823301167063
+              ],
+              [
+                28.29224287503608,
+                49.053297332807716
+              ],
+              [
+                27.6263448836341,
+                49.10469876951975
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_027",
+        "properties": {
+          "id": "state_027",
+          "name": "ボヘミア王国",
+          "government": "大公国",
+          "region_id": "eastern_europe",
+          "economy": 75,
+          "military": 77,
+          "magic_level": 39,
+          "territory_size": 41,
+          "domestic_threat_factor": 0.8,
+          "color": "hsl(185,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                42.218620191643595,
+                50.85951064897656
+              ],
+              [
+                43.00314151270607,
+                50.85355541334819
+              ],
+              [
+                43.01505198396281,
+                52.235294852885694
+              ],
+              [
+                42.212664956015225,
+                52.247205324142435
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_028",
+        "properties": {
+          "id": "state_028",
+          "name": "モラヴィア公国",
+          "government": "大公国",
+          "region_id": "eastern_europe",
+          "economy": 48,
+          "military": 82,
+          "magic_level": 14,
+          "territory_size": 67,
+          "domestic_threat_factor": 1.1,
+          "color": "hsl(309,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                42.87859237052369,
+                45.8513571251662
+              ],
+              [
+                44.795014458238164,
+                45.83803588677015
+              ],
+              [
+                44.821656935030276,
+                47.07913816764871
+              ],
+              [
+                42.86527113212764,
+                47.10578064444082
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_029",
+        "properties": {
+          "id": "state_029",
+          "name": "ハンガリー王国",
+          "government": "首長国",
+          "region_id": "eastern_europe",
+          "economy": 30,
+          "military": 50,
+          "magic_level": 23,
+          "territory_size": 69,
+          "domestic_threat_factor": 1.45,
+          "color": "hsl(188,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                37.33316561778371,
+                51.85823535980493
+              ],
+              [
+                38.00239541856795,
+                51.82406729573763
+              ],
+              [
+                38.07073154670255,
+                52.49619639762323
+              ],
+              [
+                37.29899755371641,
+                52.564532525757826
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_030",
+        "properties": {
+          "id": "state_030",
+          "name": "クロアチア王国",
+          "government": "大公国",
+          "region_id": "eastern_europe",
+          "economy": 45,
+          "military": 47,
+          "magic_level": 31,
+          "territory_size": 44,
+          "domestic_threat_factor": 0.95,
+          "color": "hsl(151,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                21.285731090610597,
+                60.366008702186875
+              ],
+              [
+                21.92891061101939,
+                60.334304777806906
+              ],
+              [
+                21.992318459779323,
+                61.20624444529995
+              ],
+              [
+                21.25402716623063,
+                61.26965229405989
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_031",
+        "properties": {
+          "id": "state_031",
+          "name": "セルビア公国",
+          "government": "部族連合",
+          "region_id": "eastern_europe",
+          "economy": 87,
+          "military": 71,
+          "magic_level": 37,
+          "territory_size": 65,
+          "domestic_threat_factor": 1.55,
+          "color": "hsl(56,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                49.231967057801754,
+                51.0689802789958
+              ],
+              [
+                50.71588399754453,
+                51.05800877913647
+              ],
+              [
+                50.73782699726319,
+                51.62390007358407
+              ],
+              [
+                49.22099555794242,
+                51.64584307330273
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_032",
+        "properties": {
+          "id": "state_032",
+          "name": "ボスニア Banate",
+          "government": "君主制",
+          "region_id": "eastern_europe",
+          "economy": 49,
+          "military": 30,
+          "magic_level": 29,
+          "territory_size": 86,
+          "domestic_threat_factor": 1.4,
+          "color": "hsl(345,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                20.142170231660987,
+                46.82496956320942
+              ],
+              [
+                21.64450997470367,
+                46.796228832245085
+              ],
+              [
+                21.701991436632344,
+                48.21940744309631
+              ],
+              [
+                20.11342950069665,
+                48.27688890502498
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_033",
+        "properties": {
+          "id": "state_033",
+          "name": "ペチェネグ汗国",
+          "government": "共和制",
+          "region_id": "eastern_europe",
+          "economy": 61,
+          "military": 48,
+          "magic_level": 55,
+          "territory_size": 78,
+          "domestic_threat_factor": 0.95,
+          "color": "hsl(353,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                48.70377055654654,
+                54.19194923672075
+              ],
+              [
+                50.20195354478616,
+                54.18579623696002
+              ],
+              [
+                50.21425954430761,
+                55.47325293059764
+              ],
+              [
+                48.69761755678581,
+                55.48555893011909
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_034",
+        "properties": {
+          "id": "state_034",
+          "name": "クマン部族連合",
+          "government": "首長国",
+          "region_id": "eastern_europe",
+          "economy": 20,
+          "military": 56,
+          "magic_level": 76,
+          "territory_size": 73,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(128,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                23.218521444665754,
+                51.07343833188847
+              ],
+              [
+                24.27670040346375,
+                51.05819587757643
+              ],
+              [
+                24.30718531208782,
+                52.451946583382735
+              ],
+              [
+                23.20327899035372,
+                52.48243149200681
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_035",
+        "properties": {
+          "id": "state_035",
+          "name": "リューリク朝",
+          "government": "君主制",
+          "region_id": "eastern_europe",
+          "economy": 20,
+          "military": 48,
+          "magic_level": 35,
+          "territory_size": 82,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(135,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                32.86557525283246,
+                46.25729750672104
+              ],
+              [
+                33.86765827354757,
+                46.21808522770003
+              ],
+              [
+                33.946082831589585,
+                47.138137398583936
+              ],
+              [
+                32.82636297381145,
+                47.21656195662595
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_036",
+        "properties": {
+          "id": "state_036",
+          "name": "チェルニゴフ公国",
+          "government": "部族連合",
+          "region_id": "eastern_europe",
+          "economy": 36,
+          "military": 87,
+          "magic_level": 40,
+          "territory_size": 65,
+          "domestic_threat_factor": 1.65,
+          "color": "hsl(232,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                49.7785821556473,
+                45.90414556028708
+              ],
+              [
+                51.28868148068775,
+                45.89078463518134
+              ],
+              [
+                51.31540333089922,
+                47.09031970163837
+              ],
+              [
+                49.76522123054156,
+                47.117041551849844
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_037",
+        "properties": {
+          "id": "state_037",
+          "name": "ガリシア公国",
+          "government": "部族連合",
+          "region_id": "eastern_europe",
+          "economy": 76,
+          "military": 28,
+          "magic_level": 74,
+          "territory_size": 68,
+          "domestic_threat_factor": 0.75,
+          "color": "hsl(310,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                29.525254558664987,
+                48.63978469744304
+              ],
+              [
+                30.22308654548888,
+                48.62698071804547
+              ],
+              [
+                30.248694504284018,
+                50.00158818293511
+              ],
+              [
+                29.512450579267416,
+                50.02719614173024
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_038",
+        "properties": {
+          "id": "state_038",
+          "name": "テュルキー公国",
+          "government": "首長国",
+          "region_id": "eastern_europe",
+          "economy": 43,
+          "military": 56,
+          "magic_level": 43,
+          "territory_size": 73,
+          "domestic_threat_factor": 1.8,
+          "color": "hsl(44,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                38.107161987970734,
+                58.984602367789115
+              ],
+              [
+                39.267893492940715,
+                58.971842324483994
+              ],
+              [
+                39.29341357955096,
+                59.71390851879857
+              ],
+              [
+                38.09440194466561,
+                59.73942860540881
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_039",
+        "properties": {
+          "id": "state_039",
+          "name": "モルダヴィア公国",
+          "government": "幕府",
+          "region_id": "eastern_europe",
+          "economy": 32,
+          "military": 43,
+          "magic_level": 11,
+          "territory_size": 62,
+          "domestic_threat_factor": 1.35,
+          "color": "hsl(83,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                46.81467886091645,
+                47.87832283988438
+              ],
+              [
+                48.17387786665361,
+                47.86044981284109
+              ],
+              [
+                48.209623920740206,
+                48.56545824877495
+              ],
+              [
+                46.79680583387316,
+                48.60120430286155
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_040",
+        "properties": {
+          "id": "state_040",
+          "name": "エストニア部族",
+          "government": "首長国",
+          "region_id": "eastern_europe",
+          "economy": 23,
+          "military": 51,
+          "magic_level": 35,
+          "territory_size": 77,
+          "domestic_threat_factor": 1.25,
+          "color": "hsl(203,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                36.16275723777969,
+                56.25496845175975
+              ],
+              [
+                37.875622056681316,
+                56.21846344398192
+              ],
+              [
+                37.94863207223698,
+                56.69081842218602
+              ],
+              [
+                36.12625223000185,
+                56.76382843774169
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_041",
+        "properties": {
+          "id": "state_041",
+          "name": "リトアニア部族",
+          "government": "帝国",
+          "region_id": "eastern_europe",
+          "economy": 52,
+          "military": 57,
+          "magic_level": 79,
+          "territory_size": 59,
+          "domestic_threat_factor": 1.8,
+          "color": "hsl(294,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                35.86334511323212,
+                56.47492080762509
+              ],
+              [
+                36.75133549961386,
+                56.45213352966321
+              ],
+              [
+                36.79691005553762,
+                57.133673396775194
+              ],
+              [
+                35.84055783527024,
+                57.17924795269896
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_042",
+        "properties": {
+          "id": "state_042",
+          "name": "ブルガリア帝国",
+          "government": "君主制",
+          "region_id": "eastern_europe",
+          "economy": 76,
+          "military": 81,
+          "magic_level": 65,
+          "territory_size": 81,
+          "domestic_threat_factor": 1.15,
+          "color": "hsl(321,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                46.55786575183074,
+                47.525667216522315
+              ],
+              [
+                48.00882176845224,
+                47.505263569937334
+              ],
+              [
+                48.0496290616222,
+                48.707230635264175
+              ],
+              [
+                46.53746210524576,
+                48.74803792843413
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_043",
+        "properties": {
+          "id": "state_043",
+          "name": "ラトビア部族",
+          "government": "部族連合",
+          "region_id": "eastern_europe",
+          "economy": 32,
+          "military": 74,
+          "magic_level": 65,
+          "territory_size": 70,
+          "domestic_threat_factor": 0.65,
+          "color": "hsl(141,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                35.332404817056286,
+                54.86317117894363
+              ],
+              [
+                36.01512975755626,
+                54.84194215336995
+              ],
+              [
+                36.05758780870362,
+                55.282909786554896
+              ],
+              [
+                35.311175791482604,
+                55.32536783770226
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_044",
+        "properties": {
+          "id": "state_044",
+          "name": "ビザンツ帝国",
+          "government": "首長国",
+          "region_id": "mediterranean",
+          "economy": 41,
+          "military": 86,
+          "magic_level": 26,
+          "territory_size": 85,
+          "domestic_threat_factor": 1.55,
+          "color": "hsl(260,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                20.874345635729235,
+                44.45325217143935
+              ],
+              [
+                22.655050825434785,
+                44.44771754915614
+              ],
+              [
+                22.666120070001224,
+                45.10827469166208
+              ],
+              [
+                20.868811013446013,
+                45.11934393622852
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_045",
+        "properties": {
+          "id": "state_045",
+          "name": "ラテン帝国",
+          "government": "部族連合",
+          "region_id": "mediterranean",
+          "economy": 28,
+          "military": 39,
+          "magic_level": 53,
+          "territory_size": 84,
+          "domestic_threat_factor": 0.85,
+          "color": "hsl(58,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                20.623998968362805,
+                38.97062277310585
+              ],
+              [
+                21.886746095909498,
+                38.948501286905724
+              ],
+              [
+                21.930989068309763,
+                40.331115840227454
+              ],
+              [
+                20.60187748216267,
+                40.37535881262772
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_046",
+        "properties": {
+          "id": "state_046",
+          "name": "エピロス Despotate",
+          "government": "帝国",
+          "region_id": "mediterranean",
+          "economy": 88,
+          "military": 71,
+          "magic_level": 42,
+          "territory_size": 42,
+          "domestic_threat_factor": 1.8,
+          "color": "hsl(359,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                6.834705729218858,
+                38.51063444267086
+              ],
+              [
+                8.015684460341639,
+                38.509397848685644
+              ],
+              [
+                8.018157648312076,
+                39.68900218385179
+              ],
+              [
+                6.8334691352336385,
+                39.69147537182223
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_047",
+        "properties": {
+          "id": "state_047",
+          "name": "トラペゾント帝国",
+          "government": "帝国",
+          "region_id": "mediterranean",
+          "economy": 58,
+          "military": 55,
+          "magic_level": 56,
+          "territory_size": 72,
+          "domestic_threat_factor": 0.7,
+          "color": "hsl(190,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                8.751554944768133,
+                36.04580770854448
+              ],
+              [
+                10.51333336609726,
+                36.037997518924996
+              ],
+              [
+                10.528953745336228,
+                37.385878746962064
+              ],
+              [
+                8.743744755148649,
+                37.40149912620103
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_048",
+        "properties": {
+          "id": "state_048",
+          "name": "シチリア王国",
+          "government": "幕府",
+          "region_id": "mediterranean",
+          "economy": 24,
+          "military": 84,
+          "magic_level": 60,
+          "territory_size": 67,
+          "domestic_threat_factor": 0.9,
+          "color": "hsl(164,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                11.584718409613444,
+                44.803249456810995
+              ],
+              [
+                13.140723918434908,
+                44.79064077123128
+              ],
+              [
+                13.165941289594343,
+                45.61616871988975
+              ],
+              [
+                11.572109724033727,
+                45.641386091049185
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_049",
+        "properties": {
+          "id": "state_049",
+          "name": "ナポリ王国",
+          "government": "君主制",
+          "region_id": "mediterranean",
+          "economy": 62,
+          "military": 44,
+          "magic_level": 23,
+          "territory_size": 83,
+          "domestic_threat_factor": 1.55,
+          "color": "hsl(319,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -4.428017927732336,
+                37.40848965328978
+              ],
+              [
+                -3.0896424168624383,
+                37.39938866384271
+              ],
+              [
+                -3.0714404379683,
+                38.43164473346588
+              ],
+              [
+                -4.437118917179405,
+                38.44984671236002
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_050",
+        "properties": {
+          "id": "state_050",
+          "name": "パプリック・ヴェネツィア",
+          "government": "幕府",
+          "region_id": "mediterranean",
+          "economy": 70,
+          "military": 39,
+          "magic_level": 51,
+          "territory_size": 88,
+          "domestic_threat_factor": 1,
+          "color": "hsl(84,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                21.109687238251496,
+                33.78812000895675
+              ],
+              [
+                22.349574448065436,
+                33.74834182283687
+              ],
+              [
+                22.429130820305208,
+                35.11424721121252
+              ],
+              [
+                21.06990905213161,
+                35.19380358345229
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_051",
+        "properties": {
+          "id": "state_051",
+          "name": "ジェノヴァ共和国",
+          "government": "共和制",
+          "region_id": "mediterranean",
+          "economy": 39,
+          "military": 59,
+          "magic_level": 69,
+          "territory_size": 40,
+          "domestic_threat_factor": 1.05,
+          "color": "hsl(314,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -5.666107366817172,
+                33.423224549799436
+              ],
+              [
+                -4.5823854931838675,
+                33.40709955964899
+              ],
+              [
+                -4.55013551288297,
+                34.101434813450496
+              ],
+              [
+                -5.682232356967621,
+                34.13368479375139
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_052",
+        "properties": {
+          "id": "state_052",
+          "name": "ピサ共和国",
+          "government": "部族連合",
+          "region_id": "mediterranean",
+          "economy": 84,
+          "military": 23,
+          "magic_level": 41,
+          "territory_size": 51,
+          "domestic_threat_factor": 1.3,
+          "color": "hsl(167,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                21.28406418662897,
+                43.2437237667327
+              ],
+              [
+                22.868661599390826,
+                43.23130772219161
+              ],
+              [
+                22.893493688473008,
+                44.14190945047131
+              ],
+              [
+                21.27164814208788,
+                44.16674153955349
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_053",
+        "properties": {
+          "id": "state_053",
+          "name": "フィレンツェ共和国",
+          "government": "幕府",
+          "region_id": "mediterranean",
+          "economy": 87,
+          "military": 85,
+          "magic_level": 3,
+          "territory_size": 87,
+          "domestic_threat_factor": 1.4,
+          "color": "hsl(278,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                9.706417534077929,
+                33.031627555258225
+              ],
+              [
+                11.111032723608457,
+                33.011550575431016
+              ],
+              [
+                11.151186683262871,
+                33.62362256267445
+              ],
+              [
+                9.686340554250721,
+                33.66377652232887
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_054",
+        "properties": {
+          "id": "state_054",
+          "name": "教皇領",
+          "government": "帝国",
+          "region_id": "mediterranean",
+          "economy": 27,
+          "military": 50,
+          "magic_level": 0,
+          "territory_size": 85,
+          "domestic_threat_factor": 1.15,
+          "color": "hsl(274,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -3.5396017678637075,
+                31.558887255041753
+              ],
+              [
+                -2.631427364434513,
+                31.542961298565345
+              ],
+              [
+                -2.599575451481692,
+                32.70964122571017
+              ],
+              [
+                -3.555527724340118,
+                32.741493138662996
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_055",
+        "properties": {
+          "id": "state_055",
+          "name": "サルデーニャ王国",
+          "government": "君主制",
+          "region_id": "mediterranean",
+          "economy": 41,
+          "military": 48,
+          "magic_level": 10,
+          "territory_size": 48,
+          "domestic_threat_factor": 1.4,
+          "color": "hsl(301,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                3.3875195443141464,
+                41.990477071097565
+              ],
+              [
+                4.327374665874406,
+                41.954284983160235
+              ],
+              [
+                4.3997588417490565,
+                42.532718939401875
+              ],
+              [
+                3.3513274563768207,
+                42.60510311527653
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_056",
+        "properties": {
+          "id": "state_056",
+          "name": "コルシカ伯領",
+          "government": "部族連合",
+          "region_id": "mediterranean",
+          "economy": 55,
+          "military": 63,
+          "magic_level": 3,
+          "territory_size": 66,
+          "domestic_threat_factor": 0.7,
+          "color": "hsl(219,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                14.606772836639337,
+                44.75964680176195
+              ],
+              [
+                16.420887585134142,
+                44.7236523764242
+              ],
+              [
+                16.492876435809656,
+                46.018534993853926
+              ],
+              [
+                14.57077841130158,
+                46.090523844529436
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_057",
+        "properties": {
+          "id": "state_057",
+          "name": "マルタ騎士団領",
+          "government": "幕府",
+          "region_id": "mediterranean",
+          "economy": 49,
+          "military": 76,
+          "magic_level": 72,
+          "territory_size": 47,
+          "domestic_threat_factor": 1.6,
+          "color": "hsl(60,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                20.976116205655146,
+                41.95723277523856
+              ],
+              [
+                22.00590938244565,
+                41.92928542847678
+              ],
+              [
+                22.0618040759692,
+                43.349520589857846
+              ],
+              [
+                20.94816885889337,
+                43.405415283381394
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_058",
+        "properties": {
+          "id": "state_058",
+          "name": "エルサレム王国",
+          "government": "部族連合",
+          "region_id": "mediterranean",
+          "economy": 53,
+          "military": 89,
+          "magic_level": 48,
+          "territory_size": 48,
+          "domestic_threat_factor": 1.25,
+          "color": "hsl(192,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                18.92468058705766,
+                32.15007980483591
+              ],
+              [
+                20.034691270249606,
+                32.120111646819964
+              ],
+              [
+                20.09462758628151,
+                33.374134994888806
+              ],
+              [
+                18.894712429041707,
+                33.43407131092071
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_059",
+        "properties": {
+          "id": "state_059",
+          "name": "トリポリ伯領",
+          "government": "幕府",
+          "region_id": "mediterranean",
+          "economy": 22,
+          "military": 45,
+          "magic_level": 32,
+          "territory_size": 42,
+          "domestic_threat_factor": 0.85,
+          "color": "hsl(232,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -3.2748837996226583,
+                31.28715327211391
+              ],
+              [
+                -2.5379355527627614,
+                31.249067298778396
+              ],
+              [
+                -2.461763606091741,
+                32.55496927045749
+              ],
+              [
+                -3.3129697729581684,
+                32.63114121712851
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_060",
+        "properties": {
+          "id": "state_060",
+          "name": "アンティオキア公国",
+          "government": "大公国",
+          "region_id": "mediterranean",
+          "economy": 57,
+          "military": 86,
+          "magic_level": 23,
+          "territory_size": 88,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(158,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                24.798376924729325,
+                40.85574368336773
+              ],
+              [
+                26.175552524789747,
+                40.83309534670142
+              ],
+              [
+                26.220849198122366,
+                42.340647559185186
+              ],
+              [
+                24.775728588063014,
+                42.3859442325178
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_061",
+        "properties": {
+          "id": "state_061",
+          "name": "エジプト Fatimid 残存勢力",
+          "government": "首長国",
+          "region_id": "mediterranean",
+          "economy": 28,
+          "military": 39,
+          "magic_level": 44,
+          "territory_size": 68,
+          "domestic_threat_factor": 1.35,
+          "color": "hsl(269,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                22.657159338013415,
+                42.019794107992006
+              ],
+              [
+                23.800081606581884,
+                41.98961975312756
+              ],
+              [
+                23.860430316310776,
+                42.76400544141792
+              ],
+              [
+                22.62698498314897,
+                42.824354151146814
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_062",
+        "properties": {
+          "id": "state_062",
+          "name": "チュニジア Zirid",
+          "government": "帝国",
+          "region_id": "mediterranean",
+          "economy": 89,
+          "military": 47,
+          "magic_level": 43,
+          "territory_size": 86,
+          "domestic_threat_factor": 0.65,
+          "color": "hsl(89,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                14.836482239250543,
+                31.740836868268286
+              ],
+              [
+                15.940931082853051,
+                31.710769327311564
+              ],
+              [
+                16.0010661647665,
+                32.22223808201238
+              ],
+              [
+                14.80641469829382,
+                32.28237316392583
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_063",
+        "properties": {
+          "id": "state_063",
+          "name": "モロッコ Almoravid",
+          "government": "帝国",
+          "region_id": "mediterranean",
+          "economy": 40,
+          "military": 43,
+          "magic_level": 7,
+          "territory_size": 88,
+          "domestic_threat_factor": 1.75,
+          "color": "hsl(120,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                32.050585140856526,
+                43.40195047926339
+              ],
+              [
+                33.75781354931911,
+                43.36384811535836
+              ],
+              [
+                33.834018277129175,
+                44.13483225407529
+              ],
+              [
+                32.012482776951494,
+                44.21103698188536
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_064",
+        "properties": {
+          "id": "state_064",
+          "name": "アッバース朝",
+          "government": "部族連合",
+          "region_id": "middle_east",
+          "economy": 38,
+          "military": 65,
+          "magic_level": 45,
+          "territory_size": 84,
+          "domestic_threat_factor": 1.8,
+          "color": "hsl(167,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                32.54388989972313,
+                28.052062668364556
+              ],
+              [
+                34.209762464435556,
+                28.017950784636618
+              ],
+              [
+                34.27798623189143,
+                29.364942477946116
+              ],
+              [
+                32.509778015995195,
+                29.433166245401992
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_065",
+        "properties": {
+          "id": "state_065",
+          "name": "セルジューク朝",
+          "government": "帝国",
+          "region_id": "middle_east",
+          "economy": 49,
+          "military": 57,
+          "magic_level": 68,
+          "territory_size": 71,
+          "domestic_threat_factor": 1.05,
+          "color": "hsl(293,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                61.78065115509615,
+                42.447617374218645
+              ],
+              [
+                62.60836608364094,
+                42.41723332844417
+              ],
+              [
+                62.66913417518989,
+                43.43313625197218
+              ],
+              [
+                61.750267109321676,
+                43.49390434352113
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_066",
+        "properties": {
+          "id": "state_066",
+          "name": "ガズナ朝",
+          "government": "部族連合",
+          "region_id": "middle_east",
+          "economy": 32,
+          "military": 71,
+          "magic_level": 40,
+          "territory_size": 71,
+          "domestic_threat_factor": 0.75,
+          "color": "hsl(41,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                64.4336949156911,
+                39.30401190063358
+              ],
+              [
+                66.19133158940014,
+                39.273767672454724
+              ],
+              [
+                66.25182004575787,
+                40.13626308453853
+              ],
+              [
+                64.40345068751223,
+                40.19675154089625
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_067",
+        "properties": {
+          "id": "state_067",
+          "name": "フワリズム Shah",
+          "government": "幕府",
+          "region_id": "middle_east",
+          "economy": 40,
+          "military": 60,
+          "magic_level": 61,
+          "territory_size": 41,
+          "domestic_threat_factor": 0.95,
+          "color": "hsl(342,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                63.37286857188947,
+                42.681051578187436
+              ],
+              [
+                64.51642623217444,
+                42.67964330058512
+              ],
+              [
+                64.51924278737907,
+                44.17818704671989
+              ],
+              [
+                63.371460294287154,
+                44.18100360192452
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_068",
+        "properties": {
+          "id": "state_068",
+          "name": "ゴール朝",
+          "government": "君主制",
+          "region_id": "middle_east",
+          "economy": 29,
+          "military": 61,
+          "magic_level": 66,
+          "territory_size": 50,
+          "domestic_threat_factor": 1.75,
+          "color": "hsl(58,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                36.6596916541268,
+                19.8496622062937
+              ],
+              [
+                37.612672024399664,
+                19.810940034194793
+              ],
+              [
+                37.69011636859748,
+                20.575120934709087
+              ],
+              [
+                36.620969482027895,
+                20.652565278906902
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_069",
+        "properties": {
+          "id": "state_069",
+          "name": "デリー Sultanate",
+          "government": "大公国",
+          "region_id": "middle_east",
+          "economy": 33,
+          "military": 21,
+          "magic_level": 9,
+          "territory_size": 75,
+          "domestic_threat_factor": 1.55,
+          "color": "hsl(156,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                60.13060370483492,
+                40.53401072384232
+              ],
+              [
+                61.48373678882023,
+                40.50459854916166
+              ],
+              [
+                61.54256113818154,
+                40.98224434662819
+              ],
+              [
+                60.10119153015426,
+                41.0410686959895
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_070",
+        "properties": {
+          "id": "state_070",
+          "name": "ペルシア Buyid",
+          "government": "大公国",
+          "region_id": "middle_east",
+          "economy": 42,
+          "military": 57,
+          "magic_level": 68,
+          "territory_size": 63,
+          "domestic_threat_factor": 1,
+          "color": "hsl(261,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                71.9656734983676,
+                23.310323799839544
+              ],
+              [
+                72.54715769923027,
+                23.301379489788207
+              ],
+              [
+                72.56504631933295,
+                23.841108917846444
+              ],
+              [
+                71.95672918831625,
+                23.85899753794912
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_071",
+        "properties": {
+          "id": "state_071",
+          "name": "タブリーズ Emirate",
+          "government": "大公国",
+          "region_id": "middle_east",
+          "economy": 27,
+          "military": 68,
+          "magic_level": 67,
+          "territory_size": 57,
+          "domestic_threat_factor": 1.35,
+          "color": "hsl(42,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                34.58978683649542,
+                43.038740819356164
+              ],
+              [
+                35.244756816369254,
+                43.00821502740329
+              ],
+              [
+                35.305808400275005,
+                43.97911394860513
+              ],
+              [
+                34.559261044542545,
+                44.04016553251088
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_072",
+        "properties": {
+          "id": "state_072",
+          "name": "アラビア諸部族",
+          "government": "共和制",
+          "region_id": "middle_east",
+          "economy": 89,
+          "military": 31,
+          "magic_level": 25,
+          "territory_size": 53,
+          "domestic_threat_factor": 0.95,
+          "color": "hsl(119,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                37.05667101936105,
+                19.08820706394334
+              ],
+              [
+                37.80290257657217,
+                19.075132990623946
+              ],
+              [
+                37.829050723210955,
+                20.305861147507894
+              ],
+              [
+                37.04359694604166,
+                20.33200929414668
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_073",
+        "properties": {
+          "id": "state_073",
+          "name": "オマーン Imamate",
+          "government": "首長国",
+          "region_id": "middle_east",
+          "economy": 81,
+          "military": 85,
+          "magic_level": 28,
+          "territory_size": 84,
+          "domestic_threat_factor": 0.7,
+          "color": "hsl(189,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                38.44648436613985,
+                13.706617304074221
+              ],
+              [
+                39.584243380133294,
+                13.705487956596063
+              ],
+              [
+                39.58650207508961,
+                14.974880664548726
+              ],
+              [
+                38.445355018661694,
+                14.977139359505045
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_074",
+        "properties": {
+          "id": "state_074",
+          "name": "イエメン Ziyarid",
+          "government": "幕府",
+          "region_id": "middle_east",
+          "economy": 21,
+          "military": 55,
+          "magic_level": 57,
+          "territory_size": 43,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(172,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                32.09816308723592,
+                43.247037708281574
+              ],
+              [
+                33.11170494013624,
+                43.210358261438415
+              ],
+              [
+                33.185063833822554,
+                44.06464075145743
+              ],
+              [
+                32.06148364039276,
+                44.13799964514374
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_075",
+        "properties": {
+          "id": "state_075",
+          "name": "アルメニア Bagratid",
+          "government": "帝国",
+          "region_id": "middle_east",
+          "economy": 57,
+          "military": 81,
+          "magic_level": 69,
+          "territory_size": 48,
+          "domestic_threat_factor": 1.35,
+          "color": "hsl(225,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                33.70075521463598,
+                28.165432316069893
+              ],
+              [
+                35.37667621284413,
+                28.148918753926566
+              ],
+              [
+                35.409703337130786,
+                29.41080171621479
+              ],
+              [
+                33.68424165249266,
+                29.443828840501446
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_076",
+        "properties": {
+          "id": "state_076",
+          "name": "ジョージア Bagratid",
+          "government": "幕府",
+          "region_id": "middle_east",
+          "economy": 39,
+          "military": 44,
+          "magic_level": 10,
+          "territory_size": 55,
+          "domestic_threat_factor": 1.15,
+          "color": "hsl(295,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                37.0701699449403,
+                20.699395638238077
+              ],
+              [
+                37.745435546474006,
+                20.68801035963745
+              ],
+              [
+                37.76820610367526,
+                22.024003563983367
+              ],
+              [
+                37.05878466633967,
+                22.046774121184622
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_077",
+        "properties": {
+          "id": "state_077",
+          "name": "アナトリア Beylik",
+          "government": "部族連合",
+          "region_id": "middle_east",
+          "economy": 88,
+          "military": 66,
+          "magic_level": 28,
+          "territory_size": 65,
+          "domestic_threat_factor": 1.15,
+          "color": "hsl(40,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                33.40240253471062,
+                19.396760424223505
+              ],
+              [
+                34.16821773561483,
+                19.393064445343857
+              ],
+              [
+                34.17560969337412,
+                20.045410904609977
+              ],
+              [
+                33.39870655583098,
+                20.05280286236927
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_078",
+        "properties": {
+          "id": "state_078",
+          "name": "モスル Emirate",
+          "government": "幕府",
+          "region_id": "middle_east",
+          "economy": 53,
+          "military": 56,
+          "magic_level": 14,
+          "territory_size": 68,
+          "domestic_threat_factor": 0.8,
+          "color": "hsl(91,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                37.54243607281003,
+                12.37044615768869
+              ],
+              [
+                38.409103819289335,
+                12.364327734992214
+              ],
+              [
+                38.42134066468229,
+                13.562586303458165
+              ],
+              [
+                37.536317650113546,
+                13.574823148851118
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_079",
+        "properties": {
+          "id": "state_079",
+          "name": "ホラサン Samanid 残勢",
+          "government": "部族連合",
+          "region_id": "middle_east",
+          "economy": 27,
+          "military": 65,
+          "magic_level": 70,
+          "territory_size": 61,
+          "domestic_threat_factor": 1.4,
+          "color": "hsl(52,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                34.92193934768619,
+                23.83136771406174
+              ],
+              [
+                36.58509161109579,
+                23.79615869069114
+              ],
+              [
+                36.655509657836994,
+                24.34229850243991
+              ],
+              [
+                34.88673032431559,
+                24.412716549181113
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_080",
+        "properties": {
+          "id": "state_080",
+          "name": "トルクメン部族",
+          "government": "首長国",
+          "region_id": "middle_east",
+          "economy": 67,
+          "military": 21,
+          "magic_level": 35,
+          "territory_size": 84,
+          "domestic_threat_factor": 1.15,
+          "color": "hsl(35,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                69.64133544750636,
+                42.4307330716315
+              ],
+              [
+                70.55881655961164,
+                42.41373881715698
+              ],
+              [
+                70.5928050685607,
+                43.59645646767361
+              ],
+              [
+                69.62434119303184,
+                43.630444976622655
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_081",
+        "properties": {
+          "id": "state_081",
+          "name": "シベリア魔境縁",
+          "government": "首長国",
+          "region_id": "middle_east",
+          "economy": 37,
+          "military": 36,
+          "magic_level": 49,
+          "territory_size": 87,
+          "domestic_threat_factor": 0.65,
+          "color": "hsl(200,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                70.61032437731542,
+                42.73651221232164
+              ],
+              [
+                72.13097326691353,
+                42.708496584062
+              ],
+              [
+                72.18700452343282,
+                43.72957324377221
+              ],
+              [
+                70.58230874905577,
+                43.7856045002915
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_082",
+        "properties": {
+          "id": "state_082",
+          "name": "アフリカ奥地 Sultanate",
+          "government": "帝国",
+          "region_id": "middle_east",
+          "economy": 42,
+          "military": 65,
+          "magic_level": 11,
+          "territory_size": 74,
+          "domestic_threat_factor": 1.15,
+          "color": "hsl(310,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                56.18574705360993,
+                41.80906229258427
+              ],
+              [
+                57.30670787193506,
+                41.805564733022415
+              ],
+              [
+                57.313702991058776,
+                42.63287893913023
+              ],
+              [
+                56.18224949404807,
+                42.639874058253945
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_083",
+        "properties": {
+          "id": "state_083",
+          "name": "カフサ遺跡国",
+          "government": "部族連合",
+          "region_id": "middle_east",
+          "economy": 20,
+          "military": 51,
+          "magic_level": 2,
+          "territory_size": 62,
+          "domestic_threat_factor": 1.25,
+          "color": "hsl(221,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                69.48669069454697,
+                39.89784918771856
+              ],
+              [
+                70.39550651469781,
+                39.879250040444774
+              ],
+              [
+                70.43270480924538,
+                40.69796923394126
+              ],
+              [
+                69.46809154727319,
+                40.73516752848883
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_084",
+        "properties": {
+          "id": "state_084",
+          "name": "フタブ Shah",
+          "government": "共和制",
+          "region_id": "middle_east",
+          "economy": 85,
+          "military": 59,
+          "magic_level": 70,
+          "territory_size": 67,
+          "domestic_threat_factor": 1.15,
+          "color": "hsl(184,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                68.79121208596155,
+                41.81513806188026
+              ],
+              [
+                70.46626636246803,
+                41.795574077941076
+              ],
+              [
+                70.50539433034639,
+                42.574521571970095
+              ],
+              [
+                68.77164810202237,
+                42.61364953984846
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_085",
+        "properties": {
+          "id": "state_085",
+          "name": "マルワール Raj",
+          "government": "君主制",
+          "region_id": "middle_east",
+          "economy": 36,
+          "military": 84,
+          "magic_level": 66,
+          "territory_size": 46,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(236,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                34.05247168806612,
+                42.61311560740054
+              ],
+              [
+                35.57771716693203,
+                42.582145130803944
+              ],
+              [
+                35.63965812012521,
+                43.397618559047224
+              ],
+              [
+                34.02150121146953,
+                43.4595595122404
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_086",
+        "properties": {
+          "id": "state_086",
+          "name": "唐",
+          "government": "幕府",
+          "region_id": "east_asia",
+          "economy": 26,
+          "military": 81,
+          "magic_level": 69,
+          "territory_size": 67,
+          "domestic_threat_factor": 1.3,
+          "color": "hsl(176,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                114.99051121356945,
+                41.40101391129291
+              ],
+              [
+                116.17596276534346,
+                41.38274838120002
+              ],
+              [
+                116.21249382552924,
+                42.10365342697469
+              ],
+              [
+                114.97224568347656,
+                42.14018448716047
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_087",
+        "properties": {
+          "id": "state_087",
+          "name": "五代十国",
+          "government": "首長国",
+          "region_id": "east_asia",
+          "economy": 32,
+          "military": 87,
+          "magic_level": 45,
+          "territory_size": 41,
+          "domestic_threat_factor": 0.9,
+          "color": "hsl(163,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                103.2259169540423,
+                23.301561173406952
+              ],
+              [
+                105.02082783537062,
+                23.27097267733046
+              ],
+              [
+                105.0820048275236,
+                24.398683299700433
+              ],
+              [
+                103.19532845796581,
+                24.459860291853417
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_088",
+        "properties": {
+          "id": "state_088",
+          "name": "遼",
+          "government": "首長国",
+          "region_id": "east_asia",
+          "economy": 37,
+          "military": 88,
+          "magic_level": 40,
+          "territory_size": 71,
+          "domestic_threat_factor": 0.95,
+          "color": "hsl(268,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                121.36298450831602,
+                46.65923057341876
+              ],
+              [
+                123.17133524351878,
+                46.65394357637869
+              ],
+              [
+                123.18190923759892,
+                47.70322603920774
+              ],
+              [
+                121.35769751127596,
+                47.71380003328788
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_089",
+        "properties": {
+          "id": "state_089",
+          "name": "北宋",
+          "government": "共和制",
+          "region_id": "east_asia",
+          "economy": 48,
+          "military": 62,
+          "magic_level": 18,
+          "territory_size": 45,
+          "domestic_threat_factor": 1.2,
+          "color": "hsl(276,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                107.74497530403079,
+                24.58738035022037
+              ],
+              [
+                108.95796081006337,
+                24.57748121497918
+              ],
+              [
+                108.97775908054575,
+                25.72429435484511
+              ],
+              [
+                107.73507616878959,
+                25.744092625327493
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_090",
+        "properties": {
+          "id": "state_090",
+          "name": "西夏",
+          "government": "帝国",
+          "region_id": "east_asia",
+          "economy": 67,
+          "military": 80,
+          "magic_level": 63,
+          "territory_size": 81,
+          "domestic_threat_factor": 1.1,
+          "color": "hsl(128,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                112.72550082501537,
+                20.219720755386838
+              ],
+              [
+                113.60980059604142,
+                20.196781256624295
+              ],
+              [
+                113.65567959356652,
+                20.82288722436213
+              ],
+              [
+                112.70256132625282,
+                20.868766221887217
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_091",
+        "properties": {
+          "id": "state_091",
+          "name": "高麗",
+          "government": "共和制",
+          "region_id": "east_asia",
+          "economy": 37,
+          "military": 38,
+          "magic_level": 73,
+          "territory_size": 63,
+          "domestic_threat_factor": 0.85,
+          "color": "hsl(79,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                113.05082692348475,
+                36.20502110634467
+              ],
+              [
+                114.89454202020032,
+                36.186223309418395
+              ],
+              [
+                114.93213761405286,
+                36.9343599523924
+              ],
+              [
+                113.03202912655848,
+                36.97195554624494
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_092",
+        "properties": {
+          "id": "state_092",
+          "name": "渤海遺臣国",
+          "government": "帝国",
+          "region_id": "east_asia",
+          "economy": 65,
+          "military": 57,
+          "magic_level": 61,
+          "territory_size": 45,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(9,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                100.6968488299631,
+                27.83629903465165
+              ],
+              [
+                101.16898076006115,
+                27.799981581345182
+              ],
+              [
+                101.24161566667408,
+                28.93217360590787
+              ],
+              [
+                100.66053137665664,
+                29.0048085125208
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_093",
+        "properties": {
+          "id": "state_093",
+          "name": "日本（平安朝廷）",
+          "government": "部族連合",
+          "region_id": "east_asia",
+          "economy": 50,
+          "military": 39,
+          "magic_level": 54,
+          "territory_size": 77,
+          "domestic_threat_factor": 1.05,
+          "color": "hsl(296,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                128.1237431676348,
+                45.282934231388325
+              ],
+              [
+                129.18565171620403,
+                45.26695781989671
+              ],
+              [
+                129.21760453918725,
+                46.42177822168151
+              ],
+              [
+                128.1077667561432,
+                46.45373104466473
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_094",
+        "properties": {
+          "id": "state_094",
+          "name": "藤原氏政権",
+          "government": "大公国",
+          "region_id": "east_asia",
+          "economy": 27,
+          "military": 72,
+          "magic_level": 8,
+          "territory_size": 42,
+          "domestic_threat_factor": 1.45,
+          "color": "hsl(66,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                101.18924535329383,
+                31.716842138540784
+              ],
+              [
+                102.46126879679157,
+                31.684331282046003
+              ],
+              [
+                102.52629050978113,
+                32.88550938032149
+              ],
+              [
+                101.15673449679905,
+                32.95053109331106
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_095",
+        "properties": {
+          "id": "state_095",
+          "name": "奥州独立勢力",
+          "government": "部族連合",
+          "region_id": "east_asia",
+          "economy": 24,
+          "military": 27,
+          "magic_level": 60,
+          "territory_size": 63,
+          "domestic_threat_factor": 1.4,
+          "color": "hsl(23,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                90.44972760003967,
+                39.565056551885846
+              ],
+              [
+                92.25863502643875,
+                39.55913788650105
+              ],
+              [
+                92.27047235720835,
+                41.072587248638825
+              ],
+              [
+                90.44380893465487,
+                41.08442457940842
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_096",
+        "properties": {
+          "id": "state_096",
+          "name": "大理国",
+          "government": "幕府",
+          "region_id": "east_asia",
+          "economy": 56,
+          "military": 26,
+          "magic_level": 40,
+          "territory_size": 41,
+          "domestic_threat_factor": 0.65,
+          "color": "hsl(94,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                126.2395237447317,
+                42.881702693367096
+              ],
+              [
+                127.36565771395867,
+                42.845453882129355
+              ],
+              [
+                127.43815533643416,
+                43.78997854447922
+              ],
+              [
+                126.20327493349394,
+                43.86247616695471
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_097",
+        "properties": {
+          "id": "state_097",
+          "name": "吐蕃",
+          "government": "共和制",
+          "region_id": "east_asia",
+          "economy": 73,
+          "military": 46,
+          "magic_level": 19,
+          "territory_size": 54,
+          "domestic_threat_factor": 1.05,
+          "color": "hsl(315,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                92.93151929979354,
+                28.596933570426827
+              ],
+              [
+                94.41668080966612,
+                28.58781520244462
+              ],
+              [
+                94.43491754563053,
+                29.367524068008667
+              ],
+              [
+                92.92240093181134,
+                29.38576080397308
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_098",
+        "properties": {
+          "id": "state_098",
+          "name": "南詔",
+          "government": "帝国",
+          "region_id": "east_asia",
+          "economy": 23,
+          "military": 51,
+          "magic_level": 68,
+          "territory_size": 73,
+          "domestic_threat_factor": 0.75,
+          "color": "hsl(197,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                124.13220397317056,
+                21.451575001339965
+              ],
+              [
+                124.85603839829196,
+                21.41875142138335
+              ],
+              [
+                124.92168555820518,
+                22.01860283604693
+              ],
+              [
+                124.09938039321395,
+                22.084249995960157
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_099",
+        "properties": {
+          "id": "state_099",
+          "name": "黒水部",
+          "government": "部族連合",
+          "region_id": "east_asia",
+          "economy": 38,
+          "military": 64,
+          "magic_level": 42,
+          "territory_size": 81,
+          "domestic_threat_factor": 1.35,
+          "color": "hsl(214,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                113.53300417886395,
+                42.36261101629828
+              ],
+              [
+                115.49887679090617,
+                42.354095560679305
+              ],
+              [
+                115.51590770214413,
+                43.91225240964653
+              ],
+              [
+                113.52448872324496,
+                43.92928332088449
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_100",
+        "properties": {
+          "id": "state_100",
+          "name": "契丹",
+          "government": "大公国",
+          "region_id": "east_asia",
+          "economy": 20,
+          "military": 37,
+          "magic_level": 79,
+          "territory_size": 48,
+          "domestic_threat_factor": 1.55,
+          "color": "hsl(200,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                128.15158428087045,
+                25.422164318619448
+              ],
+              [
+                129.31121150528193,
+                25.411899183366355
+              ],
+              [
+                129.33174177578812,
+                25.953780160121415
+              ],
+              [
+                128.14131914561736,
+                25.974310430627604
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_101",
+        "properties": {
+          "id": "state_101",
+          "name": "女真部",
+          "government": "君主制",
+          "region_id": "east_asia",
+          "economy": 41,
+          "military": 70,
+          "magic_level": 72,
+          "territory_size": 43,
+          "domestic_threat_factor": 0.75,
+          "color": "hsl(220,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                110.00946578183162,
+                22.155143430451997
+              ],
+              [
+                111.79157531759849,
+                22.137500446343328
+              ],
+              [
+                111.82686128581582,
+                23.245206006202107
+              ],
+              [
+                109.99182279772295,
+                23.28049197441944
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_102",
+        "properties": {
+          "id": "state_102",
+          "name": "蒙古高原諸部",
+          "government": "幕府",
+          "region_id": "east_asia",
+          "economy": 77,
+          "military": 39,
+          "magic_level": 22,
+          "territory_size": 59,
+          "domestic_threat_factor": 0.8,
+          "color": "hsl(194,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                86.9724337524664,
+                47.25612177082908
+              ],
+              [
+                88.31713505917894,
+                47.24016467509807
+              ],
+              [
+                88.34904925064096,
+                47.9329214159054
+              ],
+              [
+                86.95647665673539,
+                47.96483560736742
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_103",
+        "properties": {
+          "id": "state_103",
+          "name": "西域回鶻",
+          "government": "幕府",
+          "region_id": "east_asia",
+          "economy": 36,
+          "military": 36,
+          "magic_level": 1,
+          "territory_size": 51,
+          "domestic_threat_factor": 0.7,
+          "color": "hsl(101,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                138.7209531104946,
+                45.41462341190746
+              ],
+              [
+                139.94087872447528,
+                45.395667416486575
+              ],
+              [
+                139.97879071531705,
+                46.49678994946814
+              ],
+              [
+                138.70199711507374,
+                46.53470194030991
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_104",
+        "properties": {
+          "id": "state_104",
+          "name": "于闐王国",
+          "government": "部族連合",
+          "region_id": "east_asia",
+          "economy": 83,
+          "military": 28,
+          "magic_level": 73,
+          "territory_size": 51,
+          "domestic_threat_factor": 0.75,
+          "color": "hsl(300,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                110.47895077310405,
+                37.074645450631756
+              ],
+              [
+                111.0763980965469,
+                37.073131858085404
+              ],
+              [
+                111.0794252816396,
+                37.644773786659144
+              ],
+              [
+                110.4774371805577,
+                37.64780097175185
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_105",
+        "properties": {
+          "id": "state_105",
+          "name": "疏勒王国",
+          "government": "部族連合",
+          "region_id": "east_asia",
+          "economy": 82,
+          "military": 23,
+          "magic_level": 26,
+          "territory_size": 67,
+          "domestic_threat_factor": 0.9,
+          "color": "hsl(125,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                126.41496137851381,
+                32.63965282186834
+              ],
+              [
+                128.07815945738759,
+                32.6214987003631
+              ],
+              [
+                128.11446770039805,
+                33.41311787448183
+              ],
+              [
+                126.39680725700856,
+                33.44942611749231
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_106",
+        "properties": {
+          "id": "state_106",
+          "name": "龟兹王国",
+          "government": "幕府",
+          "region_id": "east_asia",
+          "economy": 72,
+          "military": 30,
+          "magic_level": 53,
+          "territory_size": 72,
+          "domestic_threat_factor": 1.25,
+          "color": "hsl(108,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                125.5649200839595,
+                43.7318283724895
+              ],
+              [
+                127.3894611856802,
+                43.69229541960386
+              ],
+              [
+                127.46852709145148,
+                45.122645593222835
+              ],
+              [
+                125.52538713107387,
+                45.201711498994115
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_107",
+        "properties": {
+          "id": "state_107",
+          "name": "吴越国",
+          "government": "帝国",
+          "region_id": "east_asia",
+          "economy": 68,
+          "military": 22,
+          "magic_level": 41,
+          "territory_size": 87,
+          "domestic_threat_factor": 0.85,
+          "color": "hsl(199,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                132.52443634037343,
+                32.56696856368982
+              ],
+              [
+                133.82594633192377,
+                32.561981116088084
+              ],
+              [
+                133.83592122712724,
+                33.621432223461035
+              ],
+              [
+                132.5194488927717,
+                33.6314071186645
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_108",
+        "properties": {
+          "id": "state_108",
+          "name": "南唐",
+          "government": "首長国",
+          "region_id": "east_asia",
+          "economy": 35,
+          "military": 25,
+          "magic_level": 42,
+          "territory_size": 62,
+          "domestic_threat_factor": 1.45,
+          "color": "hsl(241,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                87.67986007787275,
+                38.176099847607404
+              ],
+              [
+                88.55195050412038,
+                38.151523236978356
+              ],
+              [
+                88.6011037253785,
+                39.603787992199685
+              ],
+              [
+                87.65528346724369,
+                39.65294121345779
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_109",
+        "properties": {
+          "id": "state_109",
+          "name": "朱罗王国",
+          "government": "幕府",
+          "region_id": "south_asia",
+          "economy": 65,
+          "military": 47,
+          "magic_level": 68,
+          "territory_size": 47,
+          "domestic_threat_factor": 0.85,
+          "color": "hsl(104,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                114.33470655099927,
+                4.454512910632894
+              ],
+              [
+                115.86791000750654,
+                4.438784345107884
+              ],
+              [
+                115.89936713855656,
+                5.395012860423898
+              ],
+              [
+                114.31897798547426,
+                5.426469991473919
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_110",
+        "properties": {
+          "id": "state_110",
+          "name": "潘地亚王国",
+          "government": "部族連合",
+          "region_id": "south_asia",
+          "economy": 21,
+          "military": 75,
+          "magic_level": 55,
+          "territory_size": 86,
+          "domestic_threat_factor": 1.1,
+          "color": "hsl(268,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                117.72838240639156,
+                18.832581316784566
+              ],
+              [
+                118.67050042011822,
+                18.804664382938917
+              ],
+              [
+                118.72633428780952,
+                19.353796102873794
+              ],
+              [
+                117.7004654725459,
+                19.409629970565096
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_111",
+        "properties": {
+          "id": "state_111",
+          "name": "遮娄其帝国",
+          "government": "帝国",
+          "region_id": "south_asia",
+          "economy": 23,
+          "military": 41,
+          "magic_level": 37,
+          "territory_size": 78,
+          "domestic_threat_factor": 1.3,
+          "color": "hsl(296,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                76.37457152550535,
+                15.072555973858158
+              ],
+              [
+                77.74761793940107,
+                15.038811254649247
+              ],
+              [
+                77.81510737781889,
+                15.990204778593224
+              ],
+              [
+                76.34082680629643,
+                16.057694217011047
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_112",
+        "properties": {
+          "id": "state_112",
+          "name": "瞿折罗",
+          "government": "部族連合",
+          "region_id": "south_asia",
+          "economy": 20,
+          "military": 30,
+          "magic_level": 9,
+          "territory_size": 66,
+          "domestic_threat_factor": 1.5,
+          "color": "hsl(294,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                82.6508818213743,
+                16.98153947519282
+              ],
+              [
+                83.22399410808829,
+                16.96089592918837
+              ],
+              [
+                83.26528120009719,
+                17.51016560925186
+              ],
+              [
+                82.63023827536985,
+                17.551452701260757
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_113",
+        "properties": {
+          "id": "state_113",
+          "name": "波罗王朝",
+          "government": "帝国",
+          "region_id": "south_asia",
+          "economy": 45,
+          "military": 89,
+          "magic_level": 8,
+          "territory_size": 68,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(199,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                106.22049507154198,
+                27.837126578127158
+              ],
+              [
+                108.02215136498413,
+                27.825039564971853
+              ],
+              [
+                108.04632539129473,
+                28.565162302493274
+              ],
+              [
+                106.20840805838668,
+                28.58933632880388
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_114",
+        "properties": {
+          "id": "state_114",
+          "name": "帕ラ王朝",
+          "government": "幕府",
+          "region_id": "south_asia",
+          "economy": 78,
+          "military": 66,
+          "magic_level": 21,
+          "territory_size": 81,
+          "domestic_threat_factor": 1.35,
+          "color": "hsl(62,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                121.79938299596253,
+                6.7515548580433755
+              ],
+              [
+                122.99525005895202,
+                6.720330440812121
+              ],
+              [
+                123.05769889341454,
+                7.262170148456628
+              ],
+              [
+                121.76815857873127,
+                7.324618982919137
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_115",
+        "properties": {
+          "id": "state_115",
+          "name": "室利佛逝",
+          "government": "大公国",
+          "region_id": "south_asia",
+          "economy": 41,
+          "military": 26,
+          "magic_level": 5,
+          "territory_size": 50,
+          "domestic_threat_factor": 1.4,
+          "color": "hsl(151,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                100.66348851086897,
+                6.766130754692603
+              ],
+              [
+                101.23935144063024,
+                6.758093135764911
+              ],
+              [
+                101.25542667848563,
+                7.45958308075516
+              ],
+              [
+                100.65545089194127,
+                7.475658318610545
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_116",
+        "properties": {
+          "id": "state_116",
+          "name": "三佛齐",
+          "government": "君主制",
+          "region_id": "south_asia",
+          "economy": 82,
+          "military": 21,
+          "magic_level": 22,
+          "territory_size": 62,
+          "domestic_threat_factor": 1,
+          "color": "hsl(46,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                111.873511410126,
+                13.423111362702317
+              ],
+              [
+                113.50392023146517,
+                13.39973513396432
+              ],
+              [
+                113.55067268894116,
+                14.569820827012714
+              ],
+              [
+                111.85013518138801,
+                14.616573284488705
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_117",
+        "properties": {
+          "id": "state_117",
+          "name": "吴哥王朝",
+          "government": "共和制",
+          "region_id": "south_asia",
+          "economy": 30,
+          "military": 78,
+          "magic_level": 6,
+          "territory_size": 88,
+          "domestic_threat_factor": 1.45,
+          "color": "hsl(115,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                112.15615054718792,
+                9.35449970937753
+              ],
+              [
+                113.19005826980812,
+                9.31628869186741
+              ],
+              [
+                113.26648030482836,
+                10.149746376182646
+              ],
+              [
+                112.1179395296778,
+                10.226168411202885
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_118",
+        "properties": {
+          "id": "state_118",
+          "name": "蒲甘王朝",
+          "government": "共和制",
+          "region_id": "south_asia",
+          "economy": 40,
+          "military": 51,
+          "magic_level": 3,
+          "territory_size": 41,
+          "domestic_threat_factor": 1.65,
+          "color": "hsl(192,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                105.35632614466951,
+                4.948945373398201
+              ],
+              [
+                106.05685077737722,
+                4.910708019966919
+              ],
+              [
+                106.13332548423979,
+                5.305432453374781
+              ],
+              [
+                105.31808879123822,
+                5.381907160237345
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_119",
+        "properties": {
+          "id": "state_119",
+          "name": "阿瑜陀耶前身",
+          "government": "帝国",
+          "region_id": "south_asia",
+          "economy": 45,
+          "military": 84,
+          "magic_level": 31,
+          "territory_size": 70,
+          "domestic_threat_factor": 1,
+          "color": "hsl(81,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                113.08566657707622,
+                18.31809607516797
+              ],
+              [
+                114.4048024528332,
+                18.311704288359458
+              ],
+              [
+                114.41758602645022,
+                19.361773000025913
+              ],
+              [
+                113.0792747902677,
+                19.374556573642938
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_120",
+        "properties": {
+          "id": "state_120",
+          "name": "占婆",
+          "government": "首長国",
+          "region_id": "south_asia",
+          "economy": 52,
+          "military": 67,
+          "magic_level": 55,
+          "territory_size": 49,
+          "domestic_threat_factor": 1.2,
+          "color": "hsl(54,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                96.86923249970118,
+                19.658972119445888
+              ],
+              [
+                97.59122009598764,
+                19.635083403955292
+              ],
+              [
+                97.63899752696882,
+                20.51554856712515
+              ],
+              [
+                96.8453437842106,
+                20.563325998106343
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_121",
+        "properties": {
+          "id": "state_121",
+          "name": "蘭納",
+          "government": "首長国",
+          "region_id": "south_asia",
+          "economy": 55,
+          "military": 69,
+          "magic_level": 36,
+          "territory_size": 48,
+          "domestic_threat_factor": 1.25,
+          "color": "hsl(272,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                99.314590335148,
+                8.09055467234045
+              ],
+              [
+                100.16594603360254,
+                8.089044622675559
+              ],
+              [
+                100.16896613293231,
+                9.06446343749246
+              ],
+              [
+                99.31308028548311,
+                9.067483536822241
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_122",
+        "properties": {
+          "id": "state_122",
+          "name": "素可泰前身",
+          "government": "君主制",
+          "region_id": "south_asia",
+          "economy": 27,
+          "military": 45,
+          "magic_level": 1,
+          "territory_size": 55,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(167,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                102.84196418665532,
+                11.92406801190606
+              ],
+              [
+                103.6914216430964,
+                11.922937410197163
+              ],
+              [
+                103.6936828465142,
+                13.008008718749517
+              ],
+              [
+                102.84083358494641,
+                13.010269922167314
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_123",
+        "properties": {
+          "id": "state_123",
+          "name": "锡兰",
+          "government": "幕府",
+          "region_id": "south_asia",
+          "economy": 69,
+          "military": 66,
+          "magic_level": 15,
+          "territory_size": 41,
+          "domestic_threat_factor": 1.15,
+          "color": "hsl(135,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                95.41196032830698,
+                31.06851880903218
+              ],
+              [
+                97.22795902016382,
+                31.060060934182314
+              ],
+              [
+                97.24487476986356,
+                32.03405554933852
+              ],
+              [
+                95.40350245345711,
+                32.050971299038245
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_124",
+        "properties": {
+          "id": "state_124",
+          "name": "马尔代夫 Sultanate",
+          "government": "共和制",
+          "region_id": "south_asia",
+          "economy": 80,
+          "military": 37,
+          "magic_level": 10,
+          "territory_size": 76,
+          "domestic_threat_factor": 1.5,
+          "color": "hsl(243,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                120.39218608937429,
+                3.084021531645229
+              ],
+              [
+                121.87670553449234,
+                3.077763711901162
+              ],
+              [
+                121.88922117398047,
+                4.315164147135955
+              ],
+              [
+                120.38592826963023,
+                4.327679786624089
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_125",
+        "properties": {
+          "id": "state_125",
+          "name": "勃固",
+          "government": "共和制",
+          "region_id": "south_asia",
+          "economy": 36,
+          "military": 83,
+          "magic_level": 50,
+          "territory_size": 65,
+          "domestic_threat_factor": 1.05,
+          "color": "hsl(103,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                119.3090761921453,
+                23.749651051824586
+              ],
+              [
+                120.81006780295638,
+                23.714593322681814
+              ],
+              [
+                120.88018326124192,
+                24.826723526722496
+              ],
+              [
+                119.27401846300253,
+                24.89683898500804
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_126",
+        "properties": {
+          "id": "state_126",
+          "name": "若开",
+          "government": "首長国",
+          "region_id": "south_asia",
+          "economy": 75,
+          "military": 31,
+          "magic_level": 3,
+          "territory_size": 86,
+          "domestic_threat_factor": 1.7,
+          "color": "hsl(19,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                84.112253831357,
+                19.394695891919262
+              ],
+              [
+                85.54843725564744,
+                19.370576338032798
+              ],
+              [
+                85.59667636342037,
+                20.651649746561098
+              ],
+              [
+                84.08813427747053,
+                20.699888854334027
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_127",
+        "properties": {
+          "id": "state_127",
+          "name": "孟邦",
+          "government": "共和制",
+          "region_id": "south_asia",
+          "economy": 85,
+          "military": 42,
+          "magic_level": 59,
+          "territory_size": 85,
+          "domestic_threat_factor": 0.65,
+          "color": "hsl(31,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                96.56009186297665,
+                4.303628499902439
+              ],
+              [
+                97.79799533709698,
+                4.2879816869161855
+              ],
+              [
+                97.82928896306949,
+                5.0977706095182995
+              ],
+              [
+                96.54444504999039,
+                5.129064235490807
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_128",
+        "properties": {
+          "id": "state_128",
+          "name": "禅族諸国",
+          "government": "首長国",
+          "region_id": "south_asia",
+          "economy": 61,
+          "military": 80,
+          "magic_level": 46,
+          "territory_size": 46,
+          "domestic_threat_factor": 0.8,
+          "color": "hsl(87,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                103.74784824213744,
+                0.6224882569746006
+              ],
+              [
+                105.45672029826486,
+                0.5983400964348952
+              ],
+              [
+                105.50501661934426,
+                1.1963809568494381
+              ],
+              [
+                103.72370008159774,
+                1.244677277928849
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_129",
+        "properties": {
+          "id": "state_129",
+          "name": "真腊",
+          "government": "部族連合",
+          "region_id": "south_asia",
+          "economy": 31,
+          "military": 64,
+          "magic_level": 39,
+          "territory_size": 59,
+          "domestic_threat_factor": 1.5,
+          "color": "hsl(323,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                106.335998170726,
+                14.202670792641744
+              ],
+              [
+                107.06887370441936,
+                14.18327649716593
+              ],
+              [
+                107.10766229537099,
+                15.34216181759924
+              ],
+              [
+                106.3166038752502,
+                15.380950408550866
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "state_130",
+        "properties": {
+          "id": "state_130",
+          "name": "文莱前身",
+          "government": "共和制",
+          "region_id": "south_asia",
+          "economy": 61,
+          "military": 62,
+          "magic_level": 15,
+          "territory_size": 86,
+          "domestic_threat_factor": 1.8,
+          "color": "hsl(56,45%,42%)"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                119.0436345221136,
+                -1.7340210586916853
+              ],
+              [
+                119.88563053781691,
+                -1.740997573436236
+              ],
+              [
+                119.89958356730601,
+                -0.6944723629993131
+              ],
+              [
+                119.03665800736906,
+                -0.6805193335102122
+              ]
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}

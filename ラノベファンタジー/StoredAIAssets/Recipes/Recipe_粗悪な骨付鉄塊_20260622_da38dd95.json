@@ -1,0 +1,16 @@
+﻿{
+  "generationType": "craft",
+  "phase": "Crafting",
+  "craft": {
+    "itemName": "粗悪な骨付鉄塊",
+    "quality": 0.10,
+    "materials": ["鉄鉱石", "獣骨"],
+    "qualityBonusOnSuccess": 0.0
+  },
+  "recipeRequest": {
+    "isNewRecipe": false,
+    "recipeName": "",
+    "requiredMaterials": [],
+    "outputItemName": ""
+  }
+}

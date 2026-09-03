@@ -1,0 +1,77 @@
+{
+  "nationId": "NATION_007",
+  "deepEventPlan": [
+    {
+      "chapter": "第1章・初期高脅威",
+      "macroTurnRange": [
+        1,
+        20
+      ],
+      "suggestedMacroTurn": 10,
+      "narrativeYear": 100,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第2章・瓦解と同盟",
+      "macroTurnRange": [
+        21,
+        40
+      ],
+      "suggestedMacroTurn": 30,
+      "narrativeYear": 300,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第3章・常夜の底",
+      "macroTurnRange": [
+        41,
+        60
+      ],
+      "suggestedMacroTurn": 50,
+      "narrativeYear": 500,
+      "evolutionSystemType": "Inspiration",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第4章・大開拓",
+      "macroTurnRange": [
+        61,
+        80
+      ],
+      "suggestedMacroTurn": 70,
+      "narrativeYear": 700,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第5章・完全駆逐",
+      "macroTurnRange": [
+        81,
+        100
+      ],
+      "suggestedMacroTurn": 90,
+      "narrativeYear": 900,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "固有技術",
+      "suggestedMacroTurn": 10,
+      "eventTypeHint": "ShieldFortification or MagicPioneering",
+      "technologies": [
+        "国家007",
+        "広域偏向シールド",
+        "共同再興圏"
+      ],
+      "recommendedRoute": "prosperity"
+    }
+  ],
+  "bodyText": "領域・東の内陸山岳地帯に位置する「国家007」は、地形の険しさを最大の盾として千年間機能させた堅牢な統治体である。初期の活性期より、山脈の天然磁場と固有エネルギー技術を融合させた「広域偏向シールド」を展開し、脅威個体群の登山ルートを完全に遮断した。第3章の暗黒期において地表の生産基盤が破壊される中、山岳内部に広大な地下水耕農耕区を構築し、完全な資源自給を実現。第4章の大開拓時代には、領域・東の超大国002が主導する「共同再興圏」に対して山岳鉱山から産出される希少結晶素材を提供し、経済的なパートナーシップをいち早く締結した。二大国の軍事大征服に巻き込まれることなく、難攻不落の要塞国家としてその独立を維持した。（317文字）",
+  "quotedTechnologies": [
+    "国家007",
+    "広域偏向シールド",
+    "共同再興圏"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "turnIndex": {
+    "12": {
+      "collapse": [
+        "NATION_089"
+      ],
+      "birthCollapse": []
+    },
+    "13": {
+      "collapse": [
+        "NATION_022",
+        "NATION_084",
+        "NATION_109",
+        "NATION_119"
+      ],
+      "birthCollapse": []
+    },
+    "14": {
+      "collapse": [
+        "NATION_074",
+        "NATION_104",
+        "NATION_114",
+        "NATION_124",
+        "NATION_129"
+      ],
+      "birthCollapse": []
+    },
+    "15": {
+      "collapse": [
+        "NATION_094"
+      ],
+      "birthCollapse": []
+    },
+    "16": {
+      "collapse": [
+        "NATION_039",
+        "NATION_099"
+      ],
+      "birthCollapse": []
+    },
+    "17": {
+      "collapse": [
+        "NATION_065"
+      ],
+      "birthCollapse": []
+    },
+    "18": {
+      "collapse": [
+        "NATION_059"
+      ],
+      "birthCollapse": []
+    },
+    "19": {
+      "collapse": [
+        "NATION_029"
+      ],
+      "birthCollapse": []
+    },
+    "22": {
+      "collapse": [
+        "NATION_034"
+      ],
+      "birthCollapse": []
+    },
+    "31": {
+      "collapse": [
+        "NATION_054"
+      ],
+      "birthCollapse": []
+    },
+    "33": {
+      "collapse": [
+        "NATION_077"
+      ],
+      "birthCollapse": []
+    },
+    "34": {
+      "collapse": [
+        "NATION_024"
+      ],
+      "birthCollapse": []
+    },
+    "36": {
+      "collapse": [
+        "NATION_047"
+      ],
+      "birthCollapse": []
+    },
+    "39": {
+      "collapse": [
+        "NATION_067"
+      ],
+      "birthCollapse": []
+    },
+    "42": {
+      "collapse": [
+        "NATION_051"
+      ],
+      "birthCollapse": []
+    },
+    "44": {
+      "collapse": [
+        "NATION_082"
+      ],
+      "birthCollapse": []
+    },
+    "45": {
+      "collapse": [
+        "NATION_027"
+      ],
+      "birthCollapse": []
+    },
+    "46": {
+      "collapse": [
+        "NATION_072",
+        "NATION_107",
+        "NATION_117"
+      ],
+      "birthCollapse": []
+    },
+    "47": {
+      "collapse": [
+        "NATION_049",
+        "NATION_087",
+        "NATION_102",
+        "NATION_112",
+        "NATION_122",
+        "NATION_127"
+      ],
+      "birthCollapse": []
+    },
+    "48": {
+      "collapse": [
+        "NATION_057",
+        "NATION_097"
+      ],
+      "birthCollapse": []
+    },
+    "49": {
+      "collapse": [
+        "NATION_032",
+        "NATION_092"
+      ],
+      "birthCollapse": []
+    },
+    "51": {
+      "collapse": [
+        "NATION_019"
+      ],
+      "birthCollapse": []
+    },
+    "53": {
+      "collapse": [
+        "NATION_079"
+      ],
+      "birthCollapse": []
+    },
+    "55": {
+      "collapse": [
+        "NATION_062"
+      ],
+      "birthCollapse": []
+    },
+    "58": {
+      "collapse": [
+        "NATION_037"
+      ],
+      "birthCollapse": []
+    }
+  },
+  "turnMapping": {
+    "narrativeYearEnd": "macroTurn × 10",
+    "analyticsYear": "1000 + macroTurn - 1"
+  }
+}

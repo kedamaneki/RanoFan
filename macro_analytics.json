@@ -1,0 +1,911 @@
+[
+  {
+    "turn": 0,
+    "narrative_year": 0,
+    "alive_countries": 131,
+    "total_human_power": 19340.01,
+    "average_monster_threat": 1.343,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 1,
+    "narrative_year": 10,
+    "alive_countries": 131,
+    "total_human_power": 18694.49,
+    "average_monster_threat": 1.568,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 2,
+    "narrative_year": 20,
+    "alive_countries": 131,
+    "total_human_power": 18055.74,
+    "average_monster_threat": 1.622,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 3,
+    "narrative_year": 30,
+    "alive_countries": 131,
+    "total_human_power": 17377.39,
+    "average_monster_threat": 1.519,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 4,
+    "narrative_year": 40,
+    "alive_countries": 131,
+    "total_human_power": 16658.93,
+    "average_monster_threat": 1.536,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 5,
+    "narrative_year": 50,
+    "alive_countries": 131,
+    "total_human_power": 16038.13,
+    "average_monster_threat": 1.529,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 6,
+    "narrative_year": 60,
+    "alive_countries": 131,
+    "total_human_power": 15221.33,
+    "average_monster_threat": 1.659,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 7,
+    "narrative_year": 70,
+    "alive_countries": 131,
+    "total_human_power": 14463.28,
+    "average_monster_threat": 1.647,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 8,
+    "narrative_year": 80,
+    "alive_countries": 131,
+    "total_human_power": 13815.14,
+    "average_monster_threat": 1.617,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 9,
+    "narrative_year": 90,
+    "alive_countries": 130,
+    "total_human_power": 13004.16,
+    "average_monster_threat": 1.643,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 10,
+    "narrative_year": 100,
+    "alive_countries": 130,
+    "total_human_power": 12331.93,
+    "average_monster_threat": 1.545,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 11,
+    "narrative_year": 110,
+    "alive_countries": 128,
+    "total_human_power": 11594.59,
+    "average_monster_threat": 1.594,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 12,
+    "narrative_year": 120,
+    "alive_countries": 127,
+    "total_human_power": 10941.11,
+    "average_monster_threat": 1.61,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 13,
+    "narrative_year": 130,
+    "alive_countries": 127,
+    "total_human_power": 12131.34,
+    "average_monster_threat": 0.747,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 14,
+    "narrative_year": 140,
+    "alive_countries": 127,
+    "total_human_power": 13391.26,
+    "average_monster_threat": 0.766,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 15,
+    "narrative_year": 150,
+    "alive_countries": 127,
+    "total_human_power": 14632.59,
+    "average_monster_threat": 0.746,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 16,
+    "narrative_year": 160,
+    "alive_countries": 127,
+    "total_human_power": 15805.74,
+    "average_monster_threat": 0.827,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 17,
+    "narrative_year": 170,
+    "alive_countries": 128,
+    "total_human_power": 17029.36,
+    "average_monster_threat": 0.77,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 18,
+    "narrative_year": 180,
+    "alive_countries": 129,
+    "total_human_power": 18256.65,
+    "average_monster_threat": 0.769,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 19,
+    "narrative_year": 190,
+    "alive_countries": 129,
+    "total_human_power": 19476.07,
+    "average_monster_threat": 0.766,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 20,
+    "narrative_year": 200,
+    "alive_countries": 129,
+    "total_human_power": 20690.57,
+    "average_monster_threat": 0.71,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 21,
+    "narrative_year": 210,
+    "alive_countries": 129,
+    "total_human_power": 21832.7,
+    "average_monster_threat": 0.742,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 22,
+    "narrative_year": 220,
+    "alive_countries": 129,
+    "total_human_power": 23142.47,
+    "average_monster_threat": 0.768,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 23,
+    "narrative_year": 230,
+    "alive_countries": 129,
+    "total_human_power": 24443.84,
+    "average_monster_threat": 0.805,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 24,
+    "narrative_year": 240,
+    "alive_countries": 129,
+    "total_human_power": 25600.53,
+    "average_monster_threat": 0.805,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 25,
+    "narrative_year": 250,
+    "alive_countries": 128,
+    "total_human_power": 24765.36,
+    "average_monster_threat": 1.595,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 26,
+    "narrative_year": 260,
+    "alive_countries": 128,
+    "total_human_power": 24083.25,
+    "average_monster_threat": 1.629,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 27,
+    "narrative_year": 270,
+    "alive_countries": 128,
+    "total_human_power": 23384.24,
+    "average_monster_threat": 1.57,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 28,
+    "narrative_year": 280,
+    "alive_countries": 126,
+    "total_human_power": 22502.59,
+    "average_monster_threat": 1.723,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 29,
+    "narrative_year": 290,
+    "alive_countries": 126,
+    "total_human_power": 21855.14,
+    "average_monster_threat": 1.599,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 30,
+    "narrative_year": 300,
+    "alive_countries": 125,
+    "total_human_power": 20942.05,
+    "average_monster_threat": 1.69,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 31,
+    "narrative_year": 310,
+    "alive_countries": 125,
+    "total_human_power": 20295.53,
+    "average_monster_threat": 1.685,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 32,
+    "narrative_year": 320,
+    "alive_countries": 125,
+    "total_human_power": 19693.15,
+    "average_monster_threat": 1.501,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 33,
+    "narrative_year": 330,
+    "alive_countries": 123,
+    "total_human_power": 19066.09,
+    "average_monster_threat": 1.569,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 34,
+    "narrative_year": 340,
+    "alive_countries": 123,
+    "total_human_power": 18437.25,
+    "average_monster_threat": 1.643,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 35,
+    "narrative_year": 350,
+    "alive_countries": 122,
+    "total_human_power": 17877.11,
+    "average_monster_threat": 1.585,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 36,
+    "narrative_year": 360,
+    "alive_countries": 122,
+    "total_human_power": 17360.91,
+    "average_monster_threat": 1.678,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 37,
+    "narrative_year": 370,
+    "alive_countries": 122,
+    "total_human_power": 18575.72,
+    "average_monster_threat": 0.774,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 38,
+    "narrative_year": 380,
+    "alive_countries": 123,
+    "total_human_power": 19864.44,
+    "average_monster_threat": 0.734,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 39,
+    "narrative_year": 390,
+    "alive_countries": 123,
+    "total_human_power": 21183.44,
+    "average_monster_threat": 0.822,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 40,
+    "narrative_year": 400,
+    "alive_countries": 123,
+    "total_human_power": 22345.2,
+    "average_monster_threat": 0.751,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 41,
+    "narrative_year": 410,
+    "alive_countries": 123,
+    "total_human_power": 23578.92,
+    "average_monster_threat": 0.823,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 42,
+    "narrative_year": 420,
+    "alive_countries": 123,
+    "total_human_power": 24605.56,
+    "average_monster_threat": 0.765,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 43,
+    "narrative_year": 430,
+    "alive_countries": 123,
+    "total_human_power": 25831.74,
+    "average_monster_threat": 0.809,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 44,
+    "narrative_year": 440,
+    "alive_countries": 123,
+    "total_human_power": 27134.02,
+    "average_monster_threat": 0.788,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 45,
+    "narrative_year": 450,
+    "alive_countries": 123,
+    "total_human_power": 28320.61,
+    "average_monster_threat": 0.821,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 46,
+    "narrative_year": 460,
+    "alive_countries": 122,
+    "total_human_power": 29295.09,
+    "average_monster_threat": 0.773,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 47,
+    "narrative_year": 470,
+    "alive_countries": 123,
+    "total_human_power": 30613.19,
+    "average_monster_threat": 0.778,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 48,
+    "narrative_year": 480,
+    "alive_countries": 122,
+    "total_human_power": 31582.92,
+    "average_monster_threat": 0.874,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 49,
+    "narrative_year": 490,
+    "alive_countries": 121,
+    "total_human_power": 30844.81,
+    "average_monster_threat": 1.671,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 50,
+    "narrative_year": 500,
+    "alive_countries": 119,
+    "total_human_power": 29665.35,
+    "average_monster_threat": 1.635,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 51,
+    "narrative_year": 510,
+    "alive_countries": 118,
+    "total_human_power": 28916.75,
+    "average_monster_threat": 1.552,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 52,
+    "narrative_year": 520,
+    "alive_countries": 117,
+    "total_human_power": 28081.09,
+    "average_monster_threat": 1.677,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 53,
+    "narrative_year": 530,
+    "alive_countries": 114,
+    "total_human_power": 27091.71,
+    "average_monster_threat": 1.65,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 54,
+    "narrative_year": 540,
+    "alive_countries": 113,
+    "total_human_power": 26397.46,
+    "average_monster_threat": 1.577,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 55,
+    "narrative_year": 550,
+    "alive_countries": 112,
+    "total_human_power": 25603.79,
+    "average_monster_threat": 1.628,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 56,
+    "narrative_year": 560,
+    "alive_countries": 110,
+    "total_human_power": 24672.06,
+    "average_monster_threat": 1.604,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 57,
+    "narrative_year": 570,
+    "alive_countries": 107,
+    "total_human_power": 23861.3,
+    "average_monster_threat": 1.612,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 58,
+    "narrative_year": 580,
+    "alive_countries": 104,
+    "total_human_power": 22818.2,
+    "average_monster_threat": 1.619,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 59,
+    "narrative_year": 590,
+    "alive_countries": 102,
+    "total_human_power": 25318.36,
+    "average_monster_threat": 1.618,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 60,
+    "narrative_year": 600,
+    "alive_countries": 101,
+    "total_human_power": 27994.61,
+    "average_monster_threat": 1.572,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 61,
+    "narrative_year": 610,
+    "alive_countries": 100,
+    "total_human_power": 32427.85,
+    "average_monster_threat": 0.79,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 62,
+    "narrative_year": 620,
+    "alive_countries": 100,
+    "total_human_power": 36985.5,
+    "average_monster_threat": 0.845,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 63,
+    "narrative_year": 630,
+    "alive_countries": 99,
+    "total_human_power": 41364.1,
+    "average_monster_threat": 0.772,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 64,
+    "narrative_year": 640,
+    "alive_countries": 98,
+    "total_human_power": 45562.01,
+    "average_monster_threat": 0.851,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 65,
+    "narrative_year": 650,
+    "alive_countries": 98,
+    "total_human_power": 50473.24,
+    "average_monster_threat": 0.876,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 66,
+    "narrative_year": 660,
+    "alive_countries": 97,
+    "total_human_power": 54944.98,
+    "average_monster_threat": 0.797,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 67,
+    "narrative_year": 670,
+    "alive_countries": 95,
+    "total_human_power": 58846.7,
+    "average_monster_threat": 0.771,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 68,
+    "narrative_year": 680,
+    "alive_countries": 95,
+    "total_human_power": 63754.9,
+    "average_monster_threat": 0.743,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 69,
+    "narrative_year": 690,
+    "alive_countries": 95,
+    "total_human_power": 68752.11,
+    "average_monster_threat": 0.737,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 70,
+    "narrative_year": 700,
+    "alive_countries": 95,
+    "total_human_power": 73610.95,
+    "average_monster_threat": 0.823,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 71,
+    "narrative_year": 710,
+    "alive_countries": 95,
+    "total_human_power": 78933.1,
+    "average_monster_threat": 0.797,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 72,
+    "narrative_year": 720,
+    "alive_countries": 95,
+    "total_human_power": 84408.67,
+    "average_monster_threat": 0.764,
+    "global_threat_index": 0.764,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 73,
+    "narrative_year": 730,
+    "alive_countries": 94,
+    "total_human_power": 87739.97,
+    "average_monster_threat": 1.711,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 74,
+    "narrative_year": 740,
+    "alive_countries": 91,
+    "total_human_power": 89204.33,
+    "average_monster_threat": 1.674,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 75,
+    "narrative_year": 750,
+    "alive_countries": 90,
+    "total_human_power": 92278.58,
+    "average_monster_threat": 1.628,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 76,
+    "narrative_year": 760,
+    "alive_countries": 89,
+    "total_human_power": 95331.04,
+    "average_monster_threat": 1.688,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 77,
+    "narrative_year": 770,
+    "alive_countries": 90,
+    "total_human_power": 99756.42,
+    "average_monster_threat": 1.594,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 78,
+    "narrative_year": 780,
+    "alive_countries": 87,
+    "total_human_power": 100656.38,
+    "average_monster_threat": 1.46,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 79,
+    "narrative_year": 790,
+    "alive_countries": 87,
+    "total_human_power": 105112.28,
+    "average_monster_threat": 1.523,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 80,
+    "narrative_year": 800,
+    "alive_countries": 86,
+    "total_human_power": 108582.79,
+    "average_monster_threat": 1.574,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 81,
+    "narrative_year": 810,
+    "alive_countries": 86,
+    "total_human_power": 113054.88,
+    "average_monster_threat": 1.502,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 82,
+    "narrative_year": 820,
+    "alive_countries": 85,
+    "total_human_power": 116298.77,
+    "average_monster_threat": 1.566,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 83,
+    "narrative_year": 830,
+    "alive_countries": 85,
+    "total_human_power": 121830.84,
+    "average_monster_threat": 1.53,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 84,
+    "narrative_year": 840,
+    "alive_countries": 86,
+    "total_human_power": 128031.34,
+    "average_monster_threat": 1.583,
+    "global_threat_index": 1.331,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 85,
+    "narrative_year": 850,
+    "alive_countries": 85,
+    "total_human_power": 134033.84,
+    "average_monster_threat": 0.585,
+    "global_threat_index": 0.583,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 86,
+    "narrative_year": 860,
+    "alive_countries": 85,
+    "total_human_power": 141585.43,
+    "average_monster_threat": 0.559,
+    "global_threat_index": 0.546,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 87,
+    "narrative_year": 870,
+    "alive_countries": 83,
+    "total_human_power": 145696.27,
+    "average_monster_threat": 0.462,
+    "global_threat_index": 0.508,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 88,
+    "narrative_year": 880,
+    "alive_countries": 82,
+    "total_human_power": 151508.43,
+    "average_monster_threat": 0.454,
+    "global_threat_index": 0.471,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 89,
+    "narrative_year": 890,
+    "alive_countries": 82,
+    "total_human_power": 159389.14,
+    "average_monster_threat": 0.459,
+    "global_threat_index": 0.45,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 90,
+    "narrative_year": 900,
+    "alive_countries": 82,
+    "total_human_power": 167512.65,
+    "average_monster_threat": 0.47,
+    "global_threat_index": 0.45,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 91,
+    "narrative_year": 910,
+    "alive_countries": 81,
+    "total_human_power": 173608.08,
+    "average_monster_threat": 0.477,
+    "global_threat_index": 0.45,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 92,
+    "narrative_year": 920,
+    "alive_countries": 80,
+    "total_human_power": 180112.82,
+    "average_monster_threat": 0.432,
+    "global_threat_index": 0.45,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 93,
+    "narrative_year": 930,
+    "alive_countries": 80,
+    "total_human_power": 188988.04,
+    "average_monster_threat": 0.413,
+    "global_threat_index": 0.45,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 94,
+    "narrative_year": 940,
+    "alive_countries": 80,
+    "total_human_power": 197943.81,
+    "average_monster_threat": 0.462,
+    "global_threat_index": 0.45,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 95,
+    "narrative_year": 950,
+    "alive_countries": 79,
+    "total_human_power": 204832.92,
+    "average_monster_threat": 0.449,
+    "global_threat_index": 0.45,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 96,
+    "narrative_year": 960,
+    "alive_countries": 79,
+    "total_human_power": 214360.28,
+    "average_monster_threat": 0.38,
+    "global_threat_index": 0.45,
+    "cycle_phase": "dormant"
+  },
+  {
+    "turn": 97,
+    "narrative_year": 970,
+    "alive_countries": 79,
+    "total_human_power": 222649.3,
+    "average_monster_threat": 0.763,
+    "global_threat_index": 0.54,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 98,
+    "narrative_year": 980,
+    "alive_countries": 79,
+    "total_human_power": 231216.6,
+    "average_monster_threat": 0.675,
+    "global_threat_index": 0.54,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 99,
+    "narrative_year": 990,
+    "alive_countries": 79,
+    "total_human_power": 240155.79,
+    "average_monster_threat": 0.77,
+    "global_threat_index": 0.54,
+    "cycle_phase": "active"
+  },
+  {
+    "turn": 100,
+    "narrative_year": 1000,
+    "alive_countries": 78,
+    "total_human_power": 244044.04,
+    "average_monster_threat": 0.75,
+    "global_threat_index": 0.54,
+    "cycle_phase": "active"
+  }
+]

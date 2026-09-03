@@ -1,0 +1,294 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_067_MonsterAttack_3",
+      "macroTurn": 3,
+      "timestamp": {
+        "year": 3,
+        "month": 3,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_067",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 12.9 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0003はこの土地にとって特に忙しい一年となった。経済面での不確実性が高まる中、魔力と魔獣に対する警戒心も増す一方だった。「これ以上は耐えられないわ」というような声が多く聞かれた。\n\nそれでも市民たちは互いを支え合い、毎日の生活に向き合っている。マリアンヌのパン屋では、いつも笑顔でパンを作り続けている。そして夜が訪れる度に、彼女たちはまた、結界の光に守られて眠る。\n\nこの年は魔物周期の活性期と、経済的な困難の中で暮らす人々にとって、一つの節目となった。しかし、この土地の人々はそれを乗り越える力を持っている。それは、互いを信じ支え合う力であり、日々の生活を大切に生きる力だった。",
+      "conditionFlag": "HIST_NATION_067_GEO_TURN_003_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_067_GEO_TURN_003_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_067_MONSTERATTACK_T003",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N067_T003"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事3年・年初（ターン003）",
+          "npcDialogue": "「これ以上は耐えられないわ」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事3年・年央（ターン003）",
+          "npcDialogue": "「これ以上は耐えられないわ」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事3年・年末（ターン003）",
+          "npcDialogue": "「これ以上は耐えられないわ」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_067_MonsterAttack_4",
+      "macroTurn": 4,
+      "timestamp": {
+        "year": 4,
+        "month": 4,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_067",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 9.9 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地は結晶を使って障壁を作り、魔物から守られている。その技術は高度なものであり、多くの人々がそれを支えるために日々努力している。\n「今日はどのくらいの結晶が必要ですか？」という質問が聞こえる度に、その背後にある技術の重要性を思い出す。",
+      "conditionFlag": "HIST_NATION_067_GEO_TURN_004_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_067_GEO_TURN_004_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_067_MONSTERATTACK_T004",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N067_T004"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事4年・年初（ターン004）",
+          "npcDialogue": "「今日はどのくらいの結晶が必要ですか？」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事4年・年央（ターン004）",
+          "npcDialogue": "「今日はどのくらいの結晶が必要ですか？」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事4年・年末（ターン004）",
+          "npcDialogue": "「今日はどのくらいの結晶が必要ですか？」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_067_BarrierDrop_6",
+      "macroTurn": 6,
+      "timestamp": {
+        "year": 6,
+        "month": 6,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_067",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【極寒針葉樹林の前線】で防衛障壁の循環効率が急落した（低下幅 0.27）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物周期位相6は、常に緊張と不安の中で過ごされる。人々は祈りと監視を繰り返し、「またか」という言葉を口にするしかなくなる。\n\nだが、この年、この土地は突然の滅亡を迎える。「あ…これが最後だな」アーロンもその事実を悟る。防衛障壁が崩壊し、魔獣が侵攻する中、人々は散り散りになる。\n\n「アーロン！リナ！」家族や友人たちの声が遠ざかる。「また明日会えるよね…」と希望を胸に、それぞれの道へと歩み出す。",
+      "conditionFlag": "HIST_NATION_067_GEO_TURN_006_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_067_GEO_TURN_006_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_067_BARRIERDROP_T006",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N067_T006"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事6年・年初（ターン006）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事6年・年央（ターン006）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事6年・年末（ターン006）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_067_MonsterAttack_6",
+      "macroTurn": 6,
+      "timestamp": {
+        "year": 6,
+        "month": 6,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_067",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 13.6 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物周期位相6は、常に緊張と不安の中で過ごされる。人々は祈りと監視を繰り返し、「またか」という言葉を口にするしかなくなる。\n\nだが、この年、この土地は突然の滅亡を迎える。「あ…これが最後だな」アーロンもその事実を悟る。防衛障壁が崩壊し、魔獣が侵攻する中、人々は散り散りになる。\n\n「アーロン！リナ！」家族や友人たちの声が遠ざかる。「また明日会えるよね…」と希望を胸に、それぞれの道へと歩み出す。",
+      "conditionFlag": "HIST_NATION_067_GEO_TURN_006_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_067_GEO_TURN_006_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_067_MONSTERATTACK_T006",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N067_T006"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事6年・年初（ターン006）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事6年・年央（ターン006）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事6年・年末（ターン006）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_067_NationCollapse_6",
+      "macroTurn": 6,
+      "timestamp": {
+        "year": 6,
+        "month": 6,
+        "day": 19,
+        "hour": 4
+      },
+      "targetNationId": "NATION_067",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【極寒針葉樹林の前線】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物周期位相6は、常に緊張と不安の中で過ごされる。人々は祈りと監視を繰り返し、「またか」という言葉を口にするしかなくなる。\n\nだが、この年、この土地は突然の滅亡を迎える。「あ…これが最後だな」アーロンもその事実を悟る。防衛障壁が崩壊し、魔獣が侵攻する中、人々は散り散りになる。\n\n「アーロン！リナ！」家族や友人たちの声が遠ざかる。「また明日会えるよね…」と希望を胸に、それぞれの道へと歩み出す。",
+      "conditionFlag": "HIST_NATION_067_GEO_TURN_006_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_067_GEO_TURN_006_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_067_NATIONCOLLAPSE_T006",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N067_T006"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事1年〜1年（滅亡10〜7年前）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事1年〜3年（6〜3年前）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事4年〜6年（2年前〜崩壊）",
+          "npcDialogue": "「あ…これが最後だな」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

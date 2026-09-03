@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_088_Innovation_40",
+      "macroTurn": 40,
+      "timestamp": {
+        "year": 40,
+        "month": 4,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_088",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【東方の結晶生産圏】で障壁イノベーションが発生した。循環係数 1.24、生存圏 +1.3。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、特にこの年は祭りや結婚、新築など、日常に彩りを添える出来事が多いと感じている。春から夏にかけての季節には様々な祭礼が開催され、町全体が活気づく。また、その期間中、多くの若いカップルたちが出会い、恋愛を深め、結婚へと進むことも珍しくない。\n\n「今月はもう3組の新婚さんが増えるんだって」と、ある女性が友人に話す。「皆、この時期に新たな生活を始めるのが良さそうね。」\n\n一方で、建築業界では新しい家や店舗の建設ラッシュがあり、職人たちは忙しく動き回っている。\n\nこの土地の市民たちにとって、魔物休眠期は束の間の平和と豊かさを約束する時期であるが、それは同時に次なる危機への準備期間でもある。市民たちは互いに支え合いながら、日々の生活を紡いでいく。",
+      "conditionFlag": "HIST_NATION_088_GEO_TURN_040_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_088_GEO_TURN_040_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_088_INNOVATION_T040",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N088_T040"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事40年・年初（ターン040）",
+          "npcDialogue": "「今月はもう3組の新婚さんが増えるんだって」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事40年・年央（ターン040）",
+          "npcDialogue": "「今月はもう3組の新婚さんが増えるんだって」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事40年・年末（ターン040）",
+          "npcDialogue": "「今月はもう3組の新婚さんが増えるんだって」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_088_Innovation_51",
+      "macroTurn": 51,
+      "timestamp": {
+        "year": 51,
+        "month": 3,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_088",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【東方の結晶生産圏】で障壁イノベーションが発生した。循環係数 1.30、生存圏 +1.8。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年51年は魔物活性期と休眠期の繰り返しの中で過ごされた。市民たちは各々の生活を送る一方で、常に緊迫した状況に向き合っている。また、季節ごとの祭りや祝日も、魔物周期の影響を受けているため、いつもの祭典とは異なる様相を見せることも多い。\n\nエスメラルドではこの年、「光と闇の収穫祭」という名前の祭りが行われた。この祭りは防衛障壁を感謝し、来る休眠期に向けて祈願を行う重要な行事である。多くの人々が集まり、明かりを灯して祝った。\n\nこの土地は魔物活性期と休眠期の間でバランスを取りながら存続している。市民たちにとって、安定した生活は常に脅威と隣り合わせであり、それが日々の営みの中で生き抜く力となる。",
+      "conditionFlag": "HIST_NATION_088_GEO_TURN_051_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_088_GEO_TURN_051_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_088_INNOVATION_T051",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N088_T051"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事51年・年初（ターン051）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事51年・年央（ターン051）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事51年・年末（ターン051）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_088_Innovation_141",
+      "macroTurn": 141,
+      "timestamp": {
+        "year": 141,
+        "month": 9,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_088",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【東方の結晶生産圏】で障壁イノベーションが発生した。循環係数 1.58、生存圏 +1.9。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Inspiration",
+      "microLore": "叙事年141のこのターンは、魔物周期の休眠期が進む中で経済活動と防衛体制が連携し、市民たちにとって比較的安定した日々となっている。新開地への移住や結婚、新築の話題が増えている一方で、夜間の不安も常に存在する。\n\n生活の中で人々は「魔力玉をセットしましたか？」、「今日はどんな仕事をしましたか？」といった言葉を交わすことが多くなり、また防衛隊による訓練やパトロールが日常化している。この年には、経済と防衛のバランスが取れた市民たちの生活史が描かれている。\n\nこの土地では、魔力結晶の安定供給と障壁効率の向上によって、人々は比較的安心して日々を過ごせている。しかし、その背後には常に未来に対する不安も存在し、それは市民たちの心に深く刻まれている。",
+      "conditionFlag": "HIST_NATION_088_GEO_TURN_141_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_088_GEO_TURN_141_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_088_INNOVATION_T141",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N088_T141"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事141年・年初（ターン141）",
+          "npcDialogue": "「魔力玉をセットしましたか？」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事141年・年央（ターン141）",
+          "npcDialogue": "「魔力玉をセットしましたか？」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事141年・年末（ターン141）",
+          "npcDialogue": "「魔力玉をセットしましたか？」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_088_Innovation_184",
+      "macroTurn": 184,
+      "timestamp": {
+        "year": 184,
+        "month": 4,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_088",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【東方の結晶生産圏】で障壁イノベーションが発生した。循環係数 1.87、生存圏 +2.5。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年0184のエメラルドシティでは、休眠期における束の間の平和が人々の心を潤す一方で、その終わりに向けた不安もまた深刻化している。しかし、この時期は結婚や新築など新たな生活の始まりについて話題が多くなり、祭りなどが開催される機会も多くなっている。\n\n市民たちにとってこの年は、日々の生活と同時に未来への準備を進めることで、精神的な安定感を得ている一年となるだろう。",
+      "conditionFlag": "HIST_NATION_088_GEO_TURN_184_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_088_GEO_TURN_184_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_088_INNOVATION_T184",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N088_T184"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事184年・年初（ターン184）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事184年・年央（ターン184）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事184年・年末（ターン184）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

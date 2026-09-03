@@ -1,0 +1,14 @@
+﻿{
+  "generationType": "skill",
+  "phase": "Training",
+  "skill": {
+    "skillName": "回避術基礎",
+    "flavorText": "敵の攻撃の軌道を瞬時に見極め、最小限の動きで危険を回避するための身体制御の基礎。視線と重心移動、そして敵の予備動作を肌で感じ取ることで、流れるように攻撃を受け流すための土台が確立された。",
+    "awakenedFromHistory": "累計ジャスト回避21回の蓄積",
+    "probability": 1.0,
+    "effectParameters": [
+      { "key": "craftQualityBonus", "value": 0.0 },
+      { "key": "theoryDepth", "value": 1.0 }
+    ]
+  }
+}

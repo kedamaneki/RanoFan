@@ -1,0 +1,652 @@
+[
+  {
+    "skillId": "SKILL_COMBAT_SWORD",
+    "skillName": "剣術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_GREATSWORD",
+    "skillName": "大剣術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_DAGGER",
+    "skillName": "短剣術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_SPEAR",
+    "skillName": "槍術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_AXE",
+    "skillName": "斧術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_HAMMER",
+    "skillName": "槌術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_FIST",
+    "skillName": "拳闘術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_KATANA",
+    "skillName": "刀術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_SCYTHE",
+    "skillName": "大鎌術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_WHIP",
+    "skillName": "鞭術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_STAFF",
+    "skillName": "棍術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_SHIELD",
+    "skillName": "盾術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_DUAL",
+    "skillName": "双剣術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_RAPIER",
+    "skillName": "細剣術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_POLEARM",
+    "skillName": "長柄術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_BOW",
+    "skillName": "弓術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_CROSSBOW",
+    "skillName": "弩術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_THROW",
+    "skillName": "投擲術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_ASSASSIN",
+    "skillName": "暗殺術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_GUN",
+    "skillName": "銃術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_CANNON",
+    "skillName": "砲術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_SHIELDBOW",
+    "skillName": "盾弾術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_MARTIAL",
+    "skillName": "格闘術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_DUALDAGGER",
+    "skillName": "双短剣術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_HIDDEN",
+    "skillName": "暗器術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_MANACIRCLE",
+    "skillName": "魔力循環",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_MINDUNITY",
+    "skillName": "精神統一",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_MANABARRIER",
+    "skillName": "魔力障壁",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_SELFREGEN",
+    "skillName": "自己再生",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_IRONBODY",
+    "skillName": "剛体術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_FLASHSTEP",
+    "skillName": "瞬身術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_MINDEYE",
+    "skillName": "心眼術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_SPIRIT",
+    "skillName": "気合",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_HIDESPIRIT",
+    "skillName": "隠気術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_COUNTER",
+    "skillName": "反撃術",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_PARRY",
+    "skillName": "受け流し",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_IRONWALL",
+    "skillName": "鉄壁",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_SPRINT",
+    "skillName": "疾走",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_VAJRA",
+    "skillName": "金剛",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_COMBAT_FAJIN",
+    "skillName": "発勁",
+    "category": "Combat"
+  },
+  {
+    "skillId": "SKILL_PROD_BLACKSMITH",
+    "skillName": "鍛冶",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_ALCHEMY",
+    "skillName": "錬金術",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_ARTIFACT",
+    "skillName": "魔道具作成",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_BLEND",
+    "skillName": "調合",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_WOODWORK",
+    "skillName": "木工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_FINEWORK",
+    "skillName": "細工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_LEATHER",
+    "skillName": "革細工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_TAILOR",
+    "skillName": "裁縫",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_PHARMA",
+    "skillName": "製薬",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_COOKING",
+    "skillName": "料理",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_FARMING",
+    "skillName": "農業",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_HYDRO",
+    "skillName": "水耕栽培",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_BREW",
+    "skillName": "醸造",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_STONE",
+    "skillName": "石工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_REPAIR",
+    "skillName": "修繕",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_MINING",
+    "skillName": "採掘",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_GATHER",
+    "skillName": "採取",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_LOGGING",
+    "skillName": "伐採",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_DISMANTLE",
+    "skillName": "解体",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_SKINNING",
+    "skillName": "剥ぎ取り",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_DECURSE",
+    "skillName": "解呪",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_TRAP",
+    "skillName": "罠解除",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_CAMP",
+    "skillName": "拠点設営",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_APPRAISE",
+    "skillName": "鑑定",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_LOGISTICS",
+    "skillName": "資材管理",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_HAUL",
+    "skillName": "運搬",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_LIGHT",
+    "skillName": "光源確保",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_CRISIS",
+    "skillName": "危機回避",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_ADAPT",
+    "skillName": "環境適応",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_FIRSTAID",
+    "skillName": "応急処置",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_UTIL_RADAR",
+    "skillName": "敵感知",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_MAPRADAR",
+    "skillName": "マップ機能",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_MINDACCEL",
+    "skillName": "思考加速",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_WAVESEE",
+    "skillName": "魔力波形看破",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_STEALTH",
+    "skillName": "隠密",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_PRESENCE",
+    "skillName": "気配察知",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_DANGER",
+    "skillName": "危険予知",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_DARKVIS",
+    "skillName": "暗視",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_FARSIGHT",
+    "skillName": "千里眼",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_TRACK",
+    "skillName": "足跡追跡",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_TRAPDET",
+    "skillName": "罠感知",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_STRUCT",
+    "skillName": "構造把握",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_MOTION",
+    "skillName": "動体予測",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_HEARING",
+    "skillName": "聴覚鋭敏",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_SCAN",
+    "skillName": "広域走査",
+    "category": "Utility"
+  },
+  {
+    "skillId": "SKILL_UTIL_READING",
+    "skillName": "読書",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_ANCIENT",
+    "skillName": "古文書解読",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_HISTORY",
+    "skillName": "歴史語り",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_NEGOT",
+    "skillName": "交渉",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_HAGGLE",
+    "skillName": "値切り",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_LORE",
+    "skillName": "博識",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_LANG",
+    "skillName": "言語理解",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_TRUTH",
+    "skillName": "真偽看破",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_RUMOR",
+    "skillName": "噂収集",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_SPRINT",
+    "skillName": "高速移動",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_MAPMAKE",
+    "skillName": "地図作成",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_FISHING",
+    "skillName": "釣り",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_DIVING",
+    "skillName": "潜水",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_JUMP",
+    "skillName": "跳躍",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_UTIL_CLIMB",
+    "skillName": "登攀",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_PROD_HUNT",
+    "skillName": "狩猟",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_FISHERY",
+    "skillName": "漁業",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_GLASS",
+    "skillName": "硝子工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_BRICK",
+    "skillName": "煉瓦工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_POTTERY",
+    "skillName": "陶芸",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_PAPER",
+    "skillName": "製紙",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_BOOKBIND",
+    "skillName": "製本",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_ENGRAVE",
+    "skillName": "彫金",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_EMBROID",
+    "skillName": "刺繍",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_FURNITURE",
+    "skillName": "家具工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_INSTRUMENT",
+    "skillName": "楽器工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_PROD_GEM",
+    "skillName": "宝石工",
+    "category": "Production"
+  },
+  {
+    "skillId": "SKILL_HOBBY_RESEARCH",
+    "skillName": "研究",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_EXPERIMENT",
+    "skillName": "実験",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_DRAFTING",
+    "skillName": "製図",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_SURVEY",
+    "skillName": "測量",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_MEASURE",
+    "skillName": "測定",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_RECORD",
+    "skillName": "記録",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_OBSERVE",
+    "skillName": "観察",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_PHYSICS",
+    "skillName": "物理学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_MATH",
+    "skillName": "数学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_SCIENCE",
+    "skillName": "科学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_GEOLOGY",
+    "skillName": "地学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_ARCHAEO",
+    "skillName": "考古学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_MECH",
+    "skillName": "機械学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_BIOLOGY",
+    "skillName": "生物学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_BOTANY",
+    "skillName": "植物学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_ZOOLOGY",
+    "skillName": "動物学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_MONSTER",
+    "skillName": "魔物学",
+    "category": "Hobby"
+  },
+  {
+    "skillId": "SKILL_HOBBY_ASTRON",
+    "skillName": "天文学",
+    "category": "Hobby"
+  }
+]

@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_110_MonsterAttack_26",
+      "macroTurn": 26,
+      "timestamp": {
+        "year": 26,
+        "month": 2,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_110",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 4.6 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0026は、多くの市民にとって不安な一年となった。魔物周期による影響は日々の生活に直結し、防衛障壁の効率低下や配給制限により、人々の精神状態も次第に沈鬱なものとなる。「安全が一番」という口癖と共に、皆が自分たちの役割を全うしようと努力している。\n\nアリスは夜間外出禁止令が出される頃には、屋内での勉強や仕事に集中する。一方で、街中では祈りと監視が日常化しており、「魔物から守って」という願いと共に、市民たちの日々が繋がっている。「ここが安全な場所であるために」と、それぞれが自分らしく生活を続ける。\n\nこの年は、この土地全体にとって苦しい一年となったが、人々の連携と協力が街の存続を支えている。",
+      "conditionFlag": "HIST_NATION_110_GEO_TURN_026_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_110_GEO_TURN_026_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_110_MONSTERATTACK_T026",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N110_T026"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事26年・年初（ターン026）",
+          "npcDialogue": "「ここが安全な場所であるために」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事26年・年央（ターン026）",
+          "npcDialogue": "「ここが安全な場所であるために」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事26年・年末（ターン026）",
+          "npcDialogue": "「ここが安全な場所であるために」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_110_BarrierDrop_34",
+      "macroTurn": 34,
+      "timestamp": {
+        "year": 34,
+        "month": 10,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "NATION_110",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【南方の山岳・海洋前線】で防衛障壁の循環効率が急落した（低下幅 0.25）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、この土地は滅亡への道を歩み始めていた。魔獣の侵攻により都市の生存圏は著しく縮小し、多くの者が居場所を失っていた。人々は日々が限界に達していることを悟りつつも、それでも生き抜こうと必死に戦っていた。\n\nこの時期には特別な風俗もなく、ただ日常の延長線上にある生活が繰り返されるだけだ。「もう少し、たった一歩先でいいから、我々の街を守って」という切実な思いが市民たちの心に刻み込まれていた。しかし、その切なる願いは果たされず、この土地はこのターンで滅亡を迎えることとなった。\n\nサルヴァスの街は一夜にして無人の死んだ町となってしまった。結界が崩壊し、魔獣たちによって荒廃された都市に人々は散り散りとなり、その記憶だけが歴史の中に残されることになるだろう。",
+      "conditionFlag": "HIST_NATION_110_GEO_TURN_034_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_110_GEO_TURN_034_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_110_BARRIERDROP_T034",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N110_T034"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事34年・年初（ターン034）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事34年・年央（ターン034）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事34年・年末（ターン034）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_110_MonsterAttack_34",
+      "macroTurn": 34,
+      "timestamp": {
+        "year": 34,
+        "month": 10,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "NATION_110",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 12.6 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、この土地は滅亡への道を歩み始めていた。魔獣の侵攻により都市の生存圏は著しく縮小し、多くの者が居場所を失っていた。人々は日々が限界に達していることを悟りつつも、それでも生き抜こうと必死に戦っていた。\n\nこの時期には特別な風俗もなく、ただ日常の延長線上にある生活が繰り返されるだけだ。「もう少し、たった一歩先でいいから、我々の街を守って」という切実な思いが市民たちの心に刻み込まれていた。しかし、その切なる願いは果たされず、この土地はこのターンで滅亡を迎えることとなった。\n\nサルヴァスの街は一夜にして無人の死んだ町となってしまった。結界が崩壊し、魔獣たちによって荒廃された都市に人々は散り散りとなり、その記憶だけが歴史の中に残されることになるだろう。",
+      "conditionFlag": "HIST_NATION_110_GEO_TURN_034_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_110_GEO_TURN_034_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_110_MONSTERATTACK_T034",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N110_T034"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事34年・年初（ターン034）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事34年・年央（ターン034）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事34年・年末（ターン034）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_110_NationCollapse_34",
+      "macroTurn": 34,
+      "timestamp": {
+        "year": 34,
+        "month": 10,
+        "day": 22,
+        "hour": 4
+      },
+      "targetNationId": "NATION_110",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【南方の山岳・海洋前線】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、この土地は滅亡への道を歩み始めていた。魔獣の侵攻により都市の生存圏は著しく縮小し、多くの者が居場所を失っていた。人々は日々が限界に達していることを悟りつつも、それでも生き抜こうと必死に戦っていた。\n\nこの時期には特別な風俗もなく、ただ日常の延長線上にある生活が繰り返されるだけだ。「もう少し、たった一歩先でいいから、我々の街を守って」という切実な思いが市民たちの心に刻み込まれていた。しかし、その切なる願いは果たされず、この土地はこのターンで滅亡を迎えることとなった。\n\nサルヴァスの街は一夜にして無人の死んだ町となってしまった。結界が崩壊し、魔獣たちによって荒廃された都市に人々は散り散りとなり、その記憶だけが歴史の中に残されることになるだろう。",
+      "conditionFlag": "HIST_NATION_110_GEO_TURN_034_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_110_GEO_TURN_034_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_110_NATIONCOLLAPSE_T034",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N110_T034"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事25年〜27年（滅亡10〜7年前）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事28年〜31年（6〜3年前）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事32年〜34年（2年前〜崩壊）",
+          "npcDialogue": "「もう少し、たった一歩先でいいから、我々の街を守って」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

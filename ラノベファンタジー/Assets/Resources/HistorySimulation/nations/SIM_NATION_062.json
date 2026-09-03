@@ -1,0 +1,294 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_062_MonsterAttack_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_062",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.3 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年に、この土地では特別な祈りや儀式が行われるようになった。魔物活性期の到来を祝う代わりに、人々は祈りと監視によって都市を守ろうとする。それぞれの家で、小さな魔法使いたちが結界を補強するための呪文を唱える。\n\nまた、夜間外出禁止令により、人々は防衛障壁の光の中で過ごす時間が長くなり、それ自体が新たな風俗となった。「結晶の輝きを見て安心できる」とシルヴィアは言った。「それが私たちの生活だ」\n\n一方で避難民たちは、新しい土地での生活を模索し、それぞれのコミュニティ内で互いに支え合う。\n\nこの年の魔物活性期は、この土地にとって新たな試練となりつつある。しかし、人々が力を合わせて困難を乗り越える姿勢もまた、その希望と強さを示している。",
+      "conditionFlag": "HIST_NATION_062_GEO_TURN_001_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_062_GEO_TURN_001_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_062_MONSTERATTACK_T001",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N062_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「結晶の輝きを見て安心できる」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「結晶の輝きを見て安心できる」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「結晶の輝きを見て安心できる」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_062_MonsterAttack_27",
+      "macroTurn": 27,
+      "timestamp": {
+        "year": 27,
+        "month": 3,
+        "day": 1,
+        "hour": 10
+      },
+      "targetNationId": "NATION_062",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 5.8 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "今季は特に厳しい状況であるため、魔物との戦いが日常となった。人々の間では「結晶を節約しよう」という言葉が多く聞かれ、「結界の光が安心だ」という会話も増えている。\n\nまた、夜間外出禁止令により、夕方以降は街全体に緊張感が広がる。それでも、魔物との戦いの中で人々は互いを支え合い、共存することの大切さを学んでいる。",
+      "conditionFlag": "HIST_NATION_062_GEO_TURN_027_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_062_GEO_TURN_027_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_062_MONSTERATTACK_T027",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N062_T027"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事27年・年初（ターン027）",
+          "npcDialogue": "「結晶を節約しよう」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事27年・年央（ターン027）",
+          "npcDialogue": "「結晶を節約しよう」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事27年・年末（ターン027）",
+          "npcDialogue": "「結晶を節約しよう」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_062_BarrierDrop_35",
+      "macroTurn": 35,
+      "timestamp": {
+        "year": 35,
+        "month": 11,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_062",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【最西端の大陸帯】で防衛障壁の循環効率が急落した（低下幅 0.20）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物周期が活性期である叙事年0035は、人々にとって特に厳しい一年となっていた。「またか」という言葉が多く使われており、この期間のストレスを表現している。食事や生活用品の配給量が減り、日常生活の維持に苦労する住民が多い。\n\nしかし一方で、「それでも頑張るしかないね」といったような前向きな声も聞こえる。魔力結晶は貴重だが、人々はそれを共有し、助け合って生き抜こうとする。\n\nこの一年を通じてアリステルの住民たちは互いに支え合いながら、日々を過ごしている。",
+      "conditionFlag": "HIST_NATION_062_GEO_TURN_035_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_062_GEO_TURN_035_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_062_BARRIERDROP_T035",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N062_T035"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事35年・年初（ターン035）",
+          "npcDialogue": "「それでも頑張るしかないね」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事35年・年央（ターン035）",
+          "npcDialogue": "「それでも頑張るしかないね」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事35年・年末（ターン035）",
+          "npcDialogue": "「それでも頑張るしかないね」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_062_MonsterAttack_35",
+      "macroTurn": 35,
+      "timestamp": {
+        "year": 35,
+        "month": 11,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_062",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.8 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物周期が活性期である叙事年0035は、人々にとって特に厳しい一年となっていた。「またか」という言葉が多く使われており、この期間のストレスを表現している。食事や生活用品の配給量が減り、日常生活の維持に苦労する住民が多い。\n\nしかし一方で、「それでも頑張るしかないね」といったような前向きな声も聞こえる。魔力結晶は貴重だが、人々はそれを共有し、助け合って生き抜こうとする。\n\nこの一年を通じてアリステルの住民たちは互いに支え合いながら、日々を過ごしている。",
+      "conditionFlag": "HIST_NATION_062_GEO_TURN_035_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_062_GEO_TURN_035_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_062_MONSTERATTACK_T035",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N062_T035"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事35年・年初（ターン035）",
+          "npcDialogue": "「それでも頑張るしかないね」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事35年・年央（ターン035）",
+          "npcDialogue": "「それでも頑張るしかないね」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事35年・年末（ターン035）",
+          "npcDialogue": "「それでも頑張るしかないね」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_062_NationCollapse_36",
+      "macroTurn": 36,
+      "timestamp": {
+        "year": 36,
+        "month": 12,
+        "day": 1,
+        "hour": 4
+      },
+      "targetNationId": "NATION_062",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【最西端の大陸帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、この土地の街では絶望感が広がっている。人々は自分たちの未来に対して疑問を抱いている。だが同時に、共同体として互いに支え合い、共に生き抜こうとする精神も強く存在する。\n\n「今日こそが最後になるかもしれない」という言葉と共に、市民たちは一日の生活を過ごす。しかし、彼らはそれ以上に大切なものを忘れずにいた。「明日のために、今日できることは全てやる」と誰もが心の中で語り、その日を終えるのである。",
+      "conditionFlag": "HIST_NATION_062_GEO_TURN_036_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_062_GEO_TURN_036_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_062_NATIONCOLLAPSE_T036",
+          "alternativeLogMessage": "【最西端の大陸帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N062_T036"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事27年〜29年（滅亡10〜7年前）",
+          "npcDialogue": "「今日こそが最後になるかもしれない」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事30年〜33年（6〜3年前）",
+          "npcDialogue": "「今日こそが最後になるかもしれない」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事34年〜36年（2年前〜崩壊）",
+          "npcDialogue": "「今日こそが最後になるかもしれない」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

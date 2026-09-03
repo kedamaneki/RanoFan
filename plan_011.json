@@ -1,0 +1,77 @@
+{
+  "nationId": "NATION_011",
+  "deepEventPlan": [
+    {
+      "chapter": "第1章・初期高脅威",
+      "macroTurnRange": [
+        1,
+        20
+      ],
+      "suggestedMacroTurn": 10,
+      "narrativeYear": 100,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第2章・瓦解と同盟",
+      "macroTurnRange": [
+        21,
+        40
+      ],
+      "suggestedMacroTurn": 30,
+      "narrativeYear": 300,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第3章・常夜の底",
+      "macroTurnRange": [
+        41,
+        60
+      ],
+      "suggestedMacroTurn": 50,
+      "narrativeYear": 500,
+      "evolutionSystemType": "Inspiration",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第4章・大開拓",
+      "macroTurnRange": [
+        61,
+        80
+      ],
+      "suggestedMacroTurn": 70,
+      "narrativeYear": 700,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第5章・完全駆逐",
+      "macroTurnRange": [
+        81,
+        100
+      ],
+      "suggestedMacroTurn": 90,
+      "narrativeYear": 900,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "固有技術",
+      "suggestedMacroTurn": 10,
+      "eventTypeHint": "ShieldFortification or MagicPioneering",
+      "technologies": [
+        "国家011",
+        "限定的土壌保護シールド",
+        "共同再興圏"
+      ],
+      "recommendedRoute": "prosperity"
+    }
+  ],
+  "bodyText": "領域・東の南部平原地帯に位置する「国家011」は、激甚な地表汚染を乗り越え、農業生産基盤を執念深く守り抜いた中堅国である。初期の活性期より、大国002の障壁技術から派生した「限定的土壌保護シールド」を耕作地に展開。第3章の暗黒期において周辺国が軒並み瓦解する中、高密度の食糧自給能力を盾に餓死による内政崩壊を免れた。第4章の低脅威周期へ移行すると、大人しくなった脅威個体群の素材を肥料・触媒として活用する独自の魔導農学を開発。中央海平原の環境浄化に食糧供給の側面から絶大な貢献を果たし、最終的には大国002の主導する「共同再興圏」において、最大の食糧供給拠点としての地位を確立し独立を維持した。（324文字）",
+  "quotedTechnologies": [
+    "国家011",
+    "限定的土壌保護シールド",
+    "共同再興圏"
+  ]
+}

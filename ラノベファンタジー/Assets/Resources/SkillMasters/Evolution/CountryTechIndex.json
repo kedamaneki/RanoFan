@@ -1,0 +1,919 @@
+[
+  {
+    "countryNum": 1,
+    "techRaw": "広域統合システム",
+    "concept": "広域統合システム",
+    "logType": "CombatLog_GridDefense",
+    "survived": true
+  },
+  {
+    "countryNum": 2,
+    "techRaw": "焦土エネルギー戦術",
+    "concept": "焦土エネルギー戦術",
+    "logType": "CombatLog_ScorchedEarth",
+    "survived": true
+  },
+  {
+    "countryNum": 3,
+    "techRaw": "結晶流通防衛拠点の要塞化",
+    "concept": "結晶流通防衛拠点の要塞化",
+    "logType": "CombatLog_CrystalFlow",
+    "survived": true
+  },
+  {
+    "countryNum": 4,
+    "techRaw": "寒冷結晶シールド",
+    "concept": "寒冷結晶",
+    "logType": "CombatLog_IceWall",
+    "survived": true
+  },
+  {
+    "countryNum": 5,
+    "techRaw": "海上浮遊結晶拠点",
+    "concept": "海上浮遊結晶拠点",
+    "logType": "CombatLog_SeaFloat",
+    "survived": true
+  },
+  {
+    "countryNum": 6,
+    "techRaw": "変電結晶網",
+    "concept": "変電結晶",
+    "logType": "CombatLog_GridDefense",
+    "survived": true
+  },
+  {
+    "countryNum": 7,
+    "techRaw": "広域偏向シールド",
+    "concept": "広域偏向",
+    "logType": "CombatLog_WaveModulation",
+    "survived": true
+  },
+  {
+    "countryNum": 8,
+    "techRaw": "河川防衛要塞群",
+    "concept": "河川防衛要塞群",
+    "logType": "CombatLog_WaterReject",
+    "survived": true
+  },
+  {
+    "countryNum": 9,
+    "techRaw": "砂下都市網",
+    "concept": "砂下都市",
+    "logType": "CombatLog_SandFlow",
+    "survived": true
+  },
+  {
+    "countryNum": 10,
+    "techRaw": "氷結結界技術",
+    "concept": "氷結結界技術",
+    "logType": "CombatLog_WaterReject",
+    "survived": true
+  },
+  {
+    "countryNum": 11,
+    "techRaw": "限定的土壌保護シールド",
+    "concept": "限定的土壌保護",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 12,
+    "techRaw": "湿地誘導と水流魔力干渉",
+    "concept": "湿地誘導と水流魔力干渉",
+    "logType": "CombatLog_WaterFlow",
+    "survived": true
+  },
+  {
+    "countryNum": 13,
+    "techRaw": "烈風拒否障壁",
+    "concept": "烈風拒否",
+    "logType": "CombatLog_WindForce",
+    "survived": true
+  },
+  {
+    "countryNum": 14,
+    "techRaw": "森林幻惑結界",
+    "concept": "森林幻惑",
+    "logType": "CombatLog_PhantomVeil",
+    "survived": true
+  },
+  {
+    "countryNum": 15,
+    "techRaw": "分散型拠点網（ゲリラ防衛）",
+    "concept": "分散型拠点網（ゲリラ防衛）",
+    "logType": "CombatLog_PhantomVeil",
+    "survived": true
+  },
+  {
+    "countryNum": 16,
+    "techRaw": "集光型熱線農耕法",
+    "concept": "集光型熱線農耕法",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 17,
+    "techRaw": "空間静匿結界",
+    "concept": "空間静匿",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 18,
+    "techRaw": "地熱魔導炉",
+    "concept": "地熱魔導炉",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 19,
+    "techRaw": "生体障壁樹海",
+    "concept": "生体障壁",
+    "logType": "CombatLog_Biomimic",
+    "survived": false
+  },
+  {
+    "countryNum": 20,
+    "techRaw": "海洋魔導障壁",
+    "concept": "海洋魔導",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 21,
+    "techRaw": "生体擬態シールド",
+    "concept": "生体擬態",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 22,
+    "techRaw": "光波障壁網",
+    "concept": "光波障壁",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 23,
+    "techRaw": "反響迎撃要塞",
+    "concept": "反響迎撃要塞",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 24,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 25,
+    "techRaw": "激流拒否結界",
+    "concept": "激流拒否",
+    "logType": "CombatLog_WaterReject",
+    "survived": true
+  },
+  {
+    "countryNum": 26,
+    "techRaw": "点鎖障壁網",
+    "concept": "点鎖障壁",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 27,
+    "techRaw": "焦土エネルギー戦術",
+    "concept": "焦土エネルギー戦術",
+    "logType": "CombatLog_ScorchedEarth",
+    "survived": false
+  },
+  {
+    "countryNum": 28,
+    "techRaw": "熱帯幻霧結界",
+    "concept": "熱帯幻霧",
+    "logType": "CombatLog_WindForce",
+    "survived": true
+  },
+  {
+    "countryNum": 29,
+    "techRaw": "静的氷壁障壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 30,
+    "techRaw": "独立",
+    "concept": "独立",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 31,
+    "techRaw": "結晶化障壁",
+    "concept": "結晶化",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 32,
+    "techRaw": "エネルギー結晶資源の強硬な供出要求",
+    "concept": "エネルギー結晶資源の強硬な供出要求",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 33,
+    "techRaw": "洋上防魔結界",
+    "concept": "洋上防魔",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 34,
+    "techRaw": "多層防御結界",
+    "concept": "多層防御",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 35,
+    "techRaw": "氷殻共鳴障壁",
+    "concept": "氷殻共鳴",
+    "logType": "CombatLog_IceShell",
+    "survived": true
+  },
+  {
+    "countryNum": 36,
+    "techRaw": "堅牢殻障壁",
+    "concept": "堅牢殻",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 37,
+    "techRaw": "流体防御結界",
+    "concept": "流体防御",
+    "logType": "CombatLog_WaterFlow",
+    "survived": false
+  },
+  {
+    "countryNum": 38,
+    "techRaw": "腐食性防魔障壁",
+    "concept": "腐食性防魔",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 39,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 40,
+    "techRaw": "熱相シールド",
+    "concept": "熱相",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 41,
+    "techRaw": "結晶防壁",
+    "concept": "結晶防壁",
+    "logType": "CombatLog_StonePhase",
+    "survived": true
+  },
+  {
+    "countryNum": 42,
+    "techRaw": "風圧拒否障壁",
+    "concept": "風圧拒否",
+    "logType": "CombatLog_WindForce",
+    "survived": false
+  },
+  {
+    "countryNum": 43,
+    "techRaw": "潜行遮蔽結界",
+    "concept": "潜行遮蔽",
+    "logType": "CombatLog_Evasion",
+    "survived": true
+  },
+  {
+    "countryNum": 44,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 45,
+    "techRaw": "結晶防壁",
+    "concept": "結晶防壁",
+    "logType": "CombatLog_StonePhase",
+    "survived": true
+  },
+  {
+    "countryNum": 46,
+    "techRaw": "地殻障壁",
+    "concept": "地殻",
+    "logType": "CombatLog_CrustResonance",
+    "survived": true
+  },
+  {
+    "countryNum": 47,
+    "techRaw": "音響障壁",
+    "concept": "音響",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 48,
+    "techRaw": "高速追従障壁",
+    "concept": "高速追従",
+    "logType": "CombatLog_Evasion",
+    "survived": true
+  },
+  {
+    "countryNum": 49,
+    "techRaw": "小型結晶防魔陣",
+    "concept": "小型結晶防魔陣",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 50,
+    "techRaw": "生態同調障壁",
+    "concept": "生態同調",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 51,
+    "techRaw": "水流偏向障壁",
+    "concept": "水流偏向",
+    "logType": "CombatLog_WaterFlow",
+    "survived": false
+  },
+  {
+    "countryNum": 52,
+    "techRaw": "重力干渉障壁",
+    "concept": "重力干渉",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 53,
+    "techRaw": "泥濘同調結界",
+    "concept": "泥濘同調",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 54,
+    "techRaw": "光屈折シールド",
+    "concept": "光屈折",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 55,
+    "techRaw": "流体氷壁障壁",
+    "concept": "流体氷壁",
+    "logType": "CombatLog_Evasion",
+    "survived": true
+  },
+  {
+    "countryNum": 56,
+    "techRaw": "硬化障壁技術",
+    "concept": "硬化障壁技術",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 57,
+    "techRaw": "焦土エネルギー戦術",
+    "concept": "焦土エネルギー戦術",
+    "logType": "CombatLog_ScorchedEarth",
+    "survived": false
+  },
+  {
+    "countryNum": 58,
+    "techRaw": "塩相拒否障壁",
+    "concept": "塩相拒否",
+    "logType": "CombatLog_SaltPhase",
+    "survived": true
+  },
+  {
+    "countryNum": 59,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 60,
+    "techRaw": "洋上防魔結界",
+    "concept": "洋上防魔",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 61,
+    "techRaw": "岩相硬化シールド",
+    "concept": "岩相硬化",
+    "logType": "CombatLog_StonePhase",
+    "survived": true
+  },
+  {
+    "countryNum": 62,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 63,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 64,
+    "techRaw": "磁気幻惑障壁",
+    "concept": "磁気幻惑",
+    "logType": "CombatLog_Evasion",
+    "survived": true
+  },
+  {
+    "countryNum": 65,
+    "techRaw": "開放型防御陣",
+    "concept": "開放型防御陣",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 66,
+    "techRaw": "濃霧幻惑シールド",
+    "concept": "濃霧幻惑",
+    "logType": "CombatLog_WindForce",
+    "survived": true
+  },
+  {
+    "countryNum": 67,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 68,
+    "techRaw": "巨木外周障壁",
+    "concept": "巨木外周",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 69,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 70,
+    "techRaw": "熱相共鳴シールド",
+    "concept": "熱相共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": true
+  },
+  {
+    "countryNum": 71,
+    "techRaw": "激流回帰障壁",
+    "concept": "激流回帰",
+    "logType": "CombatLog_WaterReturn",
+    "survived": true
+  },
+  {
+    "countryNum": 72,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 73,
+    "techRaw": "幻影遮蔽結界",
+    "concept": "幻影遮蔽",
+    "logType": "CombatLog_PhantomVeil",
+    "survived": true
+  },
+  {
+    "countryNum": 74,
+    "techRaw": "静的結晶壁",
+    "concept": "静的結晶壁",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 75,
+    "techRaw": "誕生と明滅",
+    "concept": "誕生と明滅",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 76,
+    "techRaw": "大気震動障壁",
+    "concept": "大気震動",
+    "logType": "CombatLog_AirVibration",
+    "survived": true
+  },
+  {
+    "countryNum": 77,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 78,
+    "techRaw": "氷殻共鳴障壁",
+    "concept": "氷殻共鳴",
+    "logType": "CombatLog_IceShell",
+    "survived": true
+  },
+  {
+    "countryNum": 79,
+    "techRaw": "簡易塩相障壁",
+    "concept": "簡易塩相",
+    "logType": "CombatLog_SaltPhase",
+    "survived": false
+  },
+  {
+    "countryNum": 80,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 81,
+    "techRaw": "流砂拒否結界",
+    "concept": "流砂拒否",
+    "logType": "CombatLog_SandReject",
+    "survived": true
+  },
+  {
+    "countryNum": 82,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 83,
+    "techRaw": "生体強靭樹海",
+    "concept": "生体強靭",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 84,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 85,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 86,
+    "techRaw": "波状変調シールド",
+    "concept": "波状変調",
+    "logType": "CombatLog_WaveModulation",
+    "survived": true
+  },
+  {
+    "countryNum": 87,
+    "techRaw": "多層防衛協定",
+    "concept": "多層防衛協定",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 88,
+    "techRaw": "激流拒否障壁",
+    "concept": "激流拒否",
+    "logType": "CombatLog_WaterReject",
+    "survived": true
+  },
+  {
+    "countryNum": 89,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 90,
+    "techRaw": "波状変調障壁",
+    "concept": "波状変調",
+    "logType": "CombatLog_WaveModulation",
+    "survived": false
+  },
+  {
+    "countryNum": 91,
+    "techRaw": "岩相反発シールド",
+    "concept": "岩相反発",
+    "logType": "CombatLog_RockRepulse",
+    "survived": true
+  },
+  {
+    "countryNum": 92,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 93,
+    "techRaw": "泥濘同調障壁",
+    "concept": "泥濘同調",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 94,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 95,
+    "techRaw": "岩相障壁",
+    "concept": "岩相",
+    "logType": "CombatLog_StonePhase",
+    "survived": false
+  },
+  {
+    "countryNum": 96,
+    "techRaw": "地殻共振障壁",
+    "concept": "地殻共振",
+    "logType": "CombatLog_CrustResonance",
+    "survived": true
+  },
+  {
+    "countryNum": 97,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 98,
+    "techRaw": "生体強靭障壁",
+    "concept": "生体強靭",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 99,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 100,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 101,
+    "techRaw": "網状分散障壁",
+    "concept": "網状分散",
+    "logType": "CombatLog_GridDefense",
+    "survived": true
+  },
+  {
+    "countryNum": 102,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 103,
+    "techRaw": "生体強靭障壁",
+    "concept": "生体強靭",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 104,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 105,
+    "techRaw": "網状分散障壁",
+    "concept": "網状分散",
+    "logType": "CombatLog_GridDefense",
+    "survived": false
+  },
+  {
+    "countryNum": 106,
+    "techRaw": "石相硬化障壁",
+    "concept": "石相硬化",
+    "logType": "CombatLog_StoneHarden",
+    "survived": true
+  },
+  {
+    "countryNum": 107,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 108,
+    "techRaw": "生体強靭障壁",
+    "concept": "生体強靭",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 109,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 110,
+    "techRaw": "石相障壁",
+    "concept": "石相",
+    "logType": "CombatLog_StonePhase",
+    "survived": false
+  },
+  {
+    "countryNum": 111,
+    "techRaw": "網状分散障壁",
+    "concept": "網状分散",
+    "logType": "CombatLog_GridDefense",
+    "survived": true
+  },
+  {
+    "countryNum": 112,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 113,
+    "techRaw": "生体強靭障壁",
+    "concept": "生体強靭",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 114,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 115,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 116,
+    "techRaw": "地殻結晶障壁",
+    "concept": "地殻結晶",
+    "logType": "CombatLog_CrustCrystal",
+    "survived": true
+  },
+  {
+    "countryNum": 117,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 118,
+    "techRaw": "生体強靭障壁",
+    "concept": "生体強靭",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 119,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 120,
+    "techRaw": "地殻結晶障壁",
+    "concept": "地殻結晶",
+    "logType": "CombatLog_CrustCrystal",
+    "survived": false
+  },
+  {
+    "countryNum": 121,
+    "techRaw": "石相硬化障壁",
+    "concept": "石相硬化",
+    "logType": "CombatLog_StoneHarden",
+    "survived": true
+  },
+  {
+    "countryNum": 122,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 123,
+    "techRaw": "生体強靭障壁",
+    "concept": "生体強靭",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 124,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 125,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 126,
+    "techRaw": "石相硬化障壁",
+    "concept": "石相硬化",
+    "logType": "CombatLog_StoneHarden",
+    "survived": true
+  },
+  {
+    "countryNum": 127,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 128,
+    "techRaw": "生体強靭障壁",
+    "concept": "生体強靭",
+    "logType": "CombatLog_Biomimic",
+    "survived": true
+  },
+  {
+    "countryNum": 129,
+    "techRaw": "静的氷壁",
+    "concept": "静的氷壁",
+    "logType": "CombatLog_IceWall",
+    "survived": false
+  },
+  {
+    "countryNum": 130,
+    "techRaw": "魔力共鳴障壁",
+    "concept": "魔力共鳴",
+    "logType": "GeneralPrerequisite",
+    "survived": false
+  },
+  {
+    "countryNum": 131,
+    "techRaw": "山殻強固障壁",
+    "concept": "山殻強固",
+    "logType": "CombatLog_MountainShell",
+    "survived": true
+  }
+]

@@ -1,0 +1,16 @@
+﻿{
+  "generationType": "craft",
+  "phase": "Crafting",
+  "craft": {
+    "itemName": "鉄骨の短剣",
+    "quality": 0.68,
+    "materials": ["鉄鉱石", "獣骨"],
+    "qualityBonusOnSuccess": 0.1
+  },
+  "recipeRequest": {
+    "isNewRecipe": false,
+    "recipeName": null,
+    "requiredMaterials": null,
+    "outputItemName": null
+  }
+}

@@ -1,0 +1,14 @@
+﻿{
+  "generationType": "skill",
+  "phase": "Training",
+  "skill": {
+    "skillName": "回避基礎理論",
+    "flavorText": "生物が本能的に持つ危険察知能力と、そこから導かれる最短距離での空間移動、あるいは敵の攻撃軌道を瞬間的に読み解く反射行動の基礎。単なる逃避ではなく、状況判断と身体制御が織りなす生存のための洗練された技術である。",
+    "awakenedFromHistory": "ジャスト回避21回の蓄積が、危機を乗り越える本能的な身体操作の芽生えを示唆しています。",
+    "probability": 1.0,
+    "effectParameters": [
+      { "key": "craftQualityBonus", "value": 0.0 },
+      { "key": "theoryDepth", "value": 1.0 }
+    ]
+  }
+}

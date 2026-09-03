@@ -1,0 +1,78 @@
+{
+  "patternId": "PATTERN_FEINT_DANCER",
+  "comment": "ディレイ攻撃。feintChance約0.3で溜めを動的延長し、コンボ間隔を変則にする。",
+  "attacks": [
+    {
+      "actionId": "ATTACK_CLAW_LEFT",
+      "actionName": "幻惑の左爪",
+      "attackDelaySeconds": 0.5,
+      "parryWindowSeconds": 0.12,
+      "staminaDamageValue": 12,
+      "isGuardBreakable": false,
+      "feintChance": 0.3,
+      "weight": 50,
+      "nextComboActionId": "ATTACK_CLAW_RIGHT",
+      "comboIntervalSeconds": 0.18
+    },
+    {
+      "actionId": "ATTACK_CLAW_RIGHT",
+      "actionName": "幻惑の右爪・追撃",
+      "attackDelaySeconds": 0.0,
+      "parryWindowSeconds": 0.1,
+      "staminaDamageValue": 16,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 0,
+      "nextComboActionId": "ATTACK_DELAY_SPIN",
+      "comboIntervalSeconds": 0.62
+    },
+    {
+      "actionId": "ATTACK_DELAY_SPIN",
+      "actionName": "遅れて来る旋回撃",
+      "attackDelaySeconds": 0.28,
+      "parryWindowSeconds": 0.11,
+      "staminaDamageValue": 18,
+      "isGuardBreakable": false,
+      "feintChance": 0.3,
+      "weight": 0,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    },
+    {
+      "actionId": "ATTACK_FEINT_STAB",
+      "actionName": "幻惑の突き",
+      "attackDelaySeconds": 0.72,
+      "parryWindowSeconds": 0.13,
+      "staminaDamageValue": 15,
+      "isGuardBreakable": false,
+      "feintChance": 0.32,
+      "weight": 35,
+      "nextComboActionId": "ATTACK_LATE_KICK",
+      "comboIntervalSeconds": 0.28
+    },
+    {
+      "actionId": "ATTACK_LATE_KICK",
+      "actionName": "遅れ蹴撃",
+      "attackDelaySeconds": 0.16,
+      "parryWindowSeconds": 0.1,
+      "staminaDamageValue": 14,
+      "isGuardBreakable": false,
+      "feintChance": 0.3,
+      "weight": 0,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    },
+    {
+      "actionId": "ATTACK_WHIP_TURN",
+      "actionName": "鞭打ち旋回",
+      "attackDelaySeconds": 0.4,
+      "parryWindowSeconds": 0.11,
+      "staminaDamageValue": 13,
+      "isGuardBreakable": false,
+      "feintChance": 0.3,
+      "weight": 15,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    }
+  ]
+}

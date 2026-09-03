@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>マクロ・クロニクル — 世界地図ビジュアライザー</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+    :root{--bg:#0f1419;--panel:#1a2332;--text:#e8ecf1;--muted:#8b9bb4;--accent:#5dade2}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column}
+    header{padding:10px 16px;background:var(--panel);border-bottom:1px solid #2a3544;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    header h1{font-size:16px;margin:0}
+    header .hint{font-size:12px;color:var(--muted)}
+    #map{flex:1;min-height:0;background:#e8ecef}
+    .sim-settings summary{cursor:pointer;font-weight:600;font-size:12px;margin-bottom:8px}
+    .sim-settings input[type=number],.sim-settings input[type=text]{width:100%;padding:5px 8px;margin-top:2px;margin-bottom:8px;background:#121a24;border:1px solid #3a4a60;border-radius:4px;color:var(--text);font-size:12px}
+    .sim-settings .field-hint{font-size:10px;color:var(--muted);margin:-6px 0 8px}
+    #sim-status{font-size:11px;color:var(--muted);margin-top:6px;min-height:1.2em}
+    aside{width:360px;max-width:42vw;background:var(--panel);border-left:1px solid #2a3544;display:flex;flex-direction:column;overflow:hidden}
+    .layout{display:flex;flex:1;min-height:0}
+    .controls{padding:12px;border-bottom:1px solid #2a3544;flex-shrink:0;position:relative;z-index:2}
+    .controls label{font-size:11px;color:var(--muted);display:block;margin-bottom:4px}
+    #turn-slider{width:100%;margin:6px 0 4px;cursor:pointer;touch-action:none;position:relative;z-index:3}
+    .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;margin-top:8px}
+    .stat-grid div{background:#121a24;padding:6px 8px;border-radius:4px}
+    .stat-grid span{display:block;color:var(--muted);font-size:10px}
+    .era-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:11px;margin-top:6px}
+    .era-active{background:#5c1a1a;color:#f5c6c6}
+    .era-dormant{background:#1a3a5c;color:#a8d4f0}
+    .btn-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    button{background:#243044;color:var(--text);border:1px solid #3a4a60;padding:6px 10px;border-radius:4px;cursor:pointer;font-size:12px}
+    button.primary{background:#1a5276;border-color:var(--accent)}
+    #log-panel{flex:1;overflow-y:auto;padding:10px;font-size:11px}
+    .log-item{padding:4px 0;border-bottom:1px solid #243044}
+    .legend{padding:8px 12px;font-size:11px;border-top:1px solid #2a3544}
+    .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+    #nation-detail{padding:10px;font-size:12px;border-top:1px solid #2a3544}
+    .error{padding:16px;color:#e74c3c}
+    @media(max-width:900px){.layout{flex-direction:column}aside{width:100%;max-width:none;max-height:42vh}}
+  </style>
+</head>
+<body>
+<header>
+  <h1>マクロ・クロニクル — 千年史地図観測</h1>
+  <span class="hint" id="server-hint">太平洋中心メルカトル（1925447）</span>
+  <button id="btn-reload" class="primary">データ再読込</button>
+  <button id="btn-pacific">太平洋中心</button>
+  <button id="btn-atlantic">大西洋中心</button>
+</header>
+<div class="layout">
+  <div id="map"></div>
+  <aside>
+    <div class="controls sim-settings">
+      <details open>
+        <summary>シミュレーション設定</summary>
+        <label>初期国家数（50〜500）</label>
+        <input type="number" id="cfg-nations" min="50" max="500" step="1" value="250">
+        <label>シミュレーションターン数</label>
+        <input type="number" id="cfg-turns" min="10" max="1000" step="1" value="100">
+        <label>乱数シード</label>
+        <input type="number" id="cfg-seed" step="1" value="42">
+        <label>1ターンあたりの年数</label>
+        <input type="number" id="cfg-years" min="1" max="50" step="1" value="10">
+        <label>初期総国力（0=国数に比例して自動）</label>
+        <input type="number" id="cfg-power" min="0" step="100" value="0">
+        <div class="field-hint" id="cfg-power-hint">自動: —</div>
+        <label>初期全球脅威指数</label>
+        <input type="number" id="cfg-threat" min="0.1" max="3" step="0.01" value="1.232">
+        <label>新生国家確率（0〜1）</label>
+        <input type="number" id="cfg-birth" min="0" max="1" step="0.01" value="0.14">
+        <label>配置最小間隔（度）</label>
+        <input type="number" id="cfg-dist" min="0.5" max="3" step="0.1" value="1.0">
+        <div class="btn-row">
+          <button id="btn-cfg-load">設定読込</button>
+          <button id="btn-cfg-save">設定保存</button>
+          <button id="btn-sim-run" class="primary">▶ 実行</button>
+        </div>
+        <div id="sim-status"></div>
+      </details>
+    </div>
+    <div class="controls">
+      <label>ターン <span id="turn-val">0</span> / <span id="turn-max">100</span>　<span id="year-val">0年目</span></label>
+      <input type="range" id="turn-slider" min="0" max="100" value="0">
+      <div class="btn-row">
+        <button id="btn-play">▶ 再生</button>
+        <button id="btn-stop">■ 停止</button>
+        <label><input type="checkbox" id="chk-refmap" checked> 世界地図</label>
+        <label><input type="checkbox" id="chk-dead" checked> 滅亡表示</label>
+      </div>
+      <div class="stat-grid">
+        <div><span>生存国家</span><b id="s-alive">—</b></div>
+        <div><span>総国力</span><b id="s-power">—</b></div>
+        <div><span>平均脅威</span><b id="s-threat">—</b></div>
+        <div><span>全球指数</span><b id="s-global">—</b></div>
+      </div>
+      <div id="era-badge" class="era-badge era-active">—</div>
+    </div>
+    <div id="nation-detail">地図上の国家をクリック</div>
+    <div id="log-panel"></div>
+    <div class="legend">
+      <div><i style="background:#c0392b"></i>領域・西</div>
+      <div><i style="background:#2980b9"></i>領域・東</div>
+      <div><i style="background:#8e44ad"></i>領域・中央</div>
+      <div><i style="background:#27ae60"></i>領域・南</div>
+      <div><i style="background:#95a5a6"></i>領域・北 / 滅亡</div>
+    </div>
+  </aside>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// 投影定数は macro_chronicle_geo.json の meta.map から同期（フォールバック値）
+const PACIFIC = {
+  imageFile:"1925447.jpg",
+  imgW:3000, imgH:1500, mapX:11, mapY:34, mapW:2850, mapH:1439,
+  lon0:137.76, latMin:-70.65, latMax:76.25,
+  applyMeta(meta){
+    if(!meta)return;
+    const m=meta.map_area_pixels||{};
+    if(meta.image_size){this.imgW=meta.image_size[0];this.imgH=meta.image_size[1];}
+    if(m.x!=null)this.mapX=m.x;
+    if(m.y!=null)this.mapY=m.y;
+    if(m.w!=null)this.mapW=m.w;
+    if(m.h!=null)this.mapH=m.h;
+    if(meta.central_meridian!=null)this.lon0=meta.central_meridian;
+    if(meta.lat_range){this.latMin=meta.lat_range[0];this.latMax=meta.lat_range[1];}
+    if(meta.reference_image)this.imageFile=meta.reference_image;
+  },
+  mercY(lat){
+    const c=Math.max(-85,Math.min(85,lat))*Math.PI/180;
+    return Math.log(Math.tan(Math.PI/4+c/2));
+  },
+  toLatLng(lat,lng,lon0){
+    lon0=lon0??this.lon0;
+    const y0=this.mercY(this.latMin), y1=this.mercY(this.latMax);
+    let dlon=lng-lon0;
+    while(dlon>180)dlon-=360;
+    while(dlon<-180)dlon+=360;
+    const xf=(dlon+180)/360;
+    const yf=(y1-this.mercY(lat))/(y1-y0);
+    const px=this.mapX+xf*this.mapW;
+    const py=this.mapY+yf*this.mapH;
+    // 画像ピクセル(y↓) → Leaflet CRS.Simple(y↑) へ反転
+    return L.latLng(this.imgH-py,px);
+  },
+  mapBounds(){
+    const yN=this.imgH-this.mapY;
+    const yS=this.imgH-(this.mapY+this.mapH);
+    return L.latLngBounds([yS,this.mapX],[yN,this.mapX+this.mapW]);
+  }
+};
+
+const REGION_COLORS={
+  "領域・西":"#c0392b","領域・東":"#2980b9","領域・中央":"#8e44ad",
+  "領域・南":"#27ae60","領域・北":"#7f8c8d"
+};
+
+const WORLD_LAND={type:"FeatureCollection",features:[
+  {type:"Feature",properties:{name:"北米"},geometry:{type:"Polygon",coordinates:[[[-168,72],[-140,70],[-125,50],[-95,49],[-82,42],[-75,45],[-70,47],[-67,45],[-80,25],[-97,26],[-105,22],[-115,32],[-125,48],[-135,58],[-155,62],[-168,72]]]}},
+  {type:"Feature",properties:{name:"南米"},geometry:{type:"Polygon",coordinates:[[[-82,12],[-72,12],[-35,5],[-38,-8],[-48,-28],[-58,-38],[-68,-55],[-75,-52],[-82,12]]]}},
+  {type:"Feature",properties:{name:"ヨーロッパ"},geometry:{type:"Polygon",coordinates:[[[-10,36],[-9,44],[-6,48],[0,51],[3,58],[8,58],[12,55],[18,58],[25,70],[30,72],[35,70],[40,68],[42,55],[40,45],[35,42],[28,38],[20,36],[12,38],[5,36],[-5,36],[-10,36]]]}},
+  {type:"Feature",properties:{name:"アフリカ"},geometry:{type:"Polygon",coordinates:[[[-17,36],[10,38],[32,32],[42,12],[51,12],[40,-5],[30,-35],[18,-35],[12,-5],[-8,5],[-17,20],[-17,36]]]}},
+  {type:"Feature",properties:{name:"アジア"},geometry:{type:"Polygon",coordinates:[[[26,40],[40,45],[55,42],[68,38],[80,42],[90,35],[95,22],[105,5],[118,-5],[130,2],[140,15],[135,30],[145,45],[160,55],[180,65],[170,72],[140,75],[100,78],[60,75],[45,55],[26,40]]]}},
+  {type:"Feature",properties:{name:"オーストラリア"},geometry:{type:"Polygon",coordinates:[[[113,-11],[155,-12],[155,-38],[115,-35],[113,-11]]]}},
+  {type:"Feature",properties:{name:"日本"},geometry:{type:"Polygon",coordinates:[[[130,31],[132,34],[140,38],[142,43],[145,45],[141,40],[135,33],[130,31]]]}},
+  {type:"Feature",properties:{name:"インド"},geometry:{type:"Polygon",coordinates:[[[68,24],[88,22],[92,10],[80,8],[72,18],[68,24]]]}},
+  {type:"Feature",properties:{name:"東南アジア"},geometry:{type:"Polygon",coordinates:[[[95,22],[110,22],[120,12],[110,0],[100,-8],[95,5],[95,22]]]}}
+]};
+
+const App={
+  data:null, config:null, map:null, nationLayer:null, refLayer:null,
+  currentTurn:0, playing:false, timer:null, mode:"pacific", _apiBase:null,
+  _logsByTurn:null, _sliderRaf:null,
+
+  getBasePath(){
+    const p=location.pathname;
+    if(p.endsWith("/index.html"))return p.slice(0,-"/index.html".length);
+    if(p.endsWith("/"))return p.slice(0,-1);
+    return p.replace(/\/[^/]*$/,"")||"";
+  },
+
+  assetUrl(name){
+    const clean=String(name).replace(/^\//,"");
+    return location.origin+this.getBasePath()+"/"+clean;
+  },
+  apiUrl(path){
+    const clean=String(path).replace(/^\//,"").replace(/^api\//,"");
+    const base=this._apiBase||location.origin+this.getBasePath();
+    return base+"/api/"+clean;
+  },
+
+  async discoverApiBase(){
+    if(location.protocol==="file:")return null;
+    const bases=[location.origin, location.origin+this.getBasePath()];
+    const seen=new Set();
+    for(const base of bases){
+      if(seen.has(base))continue;
+      seen.add(base);
+      const url=base+"/api/health";
+      try{
+        const res=await fetch(url,{cache:"no-store"});
+        if(!res.ok)continue;
+        if(res.headers.get("X-Macro-Chronicle-Server")!=="sim_server")continue;
+        const j=await res.json();
+        if(j?.service==="macro_chronicle"){
+          this._apiBase=base;
+          return base;
+        }
+      }catch(_){}
+    }
+    this._apiBase=null;
+    return null;
+  },
+
+  async detectPythonHttpServer(){
+    if(location.protocol==="file:")return false;
+    try{
+      const res=await fetch(location.origin+"/api/config",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:"{}",
+        cache:"no-store",
+      });
+      return res.status===501;
+    }catch(_){return false;}
+  },
+
+  readConfigForm(){
+    return {
+      initial_nations:+document.getElementById("cfg-nations").value,
+      macro_turns:+document.getElementById("cfg-turns").value,
+      seed:+document.getElementById("cfg-seed").value,
+      years_per_turn:+document.getElementById("cfg-years").value,
+      target_initial_power:+document.getElementById("cfg-power").value,
+      initial_global_threat:+document.getElementById("cfg-threat").value,
+      birth_chance:+document.getElementById("cfg-birth").value,
+      placement_min_dist_deg:+document.getElementById("cfg-dist").value,
+    };
+  },
+
+  fillConfigForm(cfg){
+    if(!cfg)return;
+    document.getElementById("cfg-nations").value=cfg.initial_nations??250;
+    document.getElementById("cfg-turns").value=cfg.macro_turns??100;
+    document.getElementById("cfg-seed").value=cfg.seed??42;
+    document.getElementById("cfg-years").value=cfg.years_per_turn??10;
+    document.getElementById("cfg-power").value=cfg.target_initial_power??0;
+    document.getElementById("cfg-threat").value=cfg.initial_global_threat??1.232;
+    document.getElementById("cfg-birth").value=cfg.birth_chance??0.14;
+    document.getElementById("cfg-dist").value=cfg.placement_min_dist_deg??1.0;
+    this.updatePowerHint(cfg);
+  },
+
+  updatePowerHint(cfg){
+    const n=+(cfg?.initial_nations??document.getElementById("cfg-nations").value);
+    const manual=+(cfg?.target_initial_power??document.getElementById("cfg-power").value);
+    const auto=Math.round(19340.01*(n/131));
+    document.getElementById("cfg-power-hint").textContent=
+      manual>0?`指定値: ${manual.toLocaleString()}`:`自動: 約 ${auto.toLocaleString()}（131国比×${n}国）`;
+  },
+
+  async apiFetch(url,opts){
+    const res=await fetch(url,opts);
+    const text=await res.text();
+    const trimmed=text.trim();
+    if(trimmed.startsWith("<!DOCTYPE")||trimmed.startsWith("<html")||trimmed.startsWith("<")){
+      throw new Error(
+        "APIがHTMLを返しました。start_server.bat で起動し、http://127.0.0.1:8765/index.html を開いてください（python -m http.server 不可）"
+      );
+    }
+    if(res.status===501){
+      throw new Error("このサーバーは POST 非対応です。macro_chronicle\\start_server.bat で起動してください");
+    }
+    let j=null;
+    try{j=JSON.parse(text);}catch(_){
+      throw new Error(`APIの応答がJSONではありません (HTTP ${res.status}): ${url}`);
+    }
+    if(!res.ok||!j?.ok)throw new Error(j?.error||`HTTP ${res.status}: ${url}`);
+    return j;
+  },
+
+  async checkApi(){
+    return !!(await this.discoverApiBase());
+  },
+
+  async refreshApiStatus(){
+    const el=document.getElementById("server-hint");
+    const statusEl=document.getElementById("sim-status");
+    if(location.protocol==="file:"){
+      el.innerHTML='<b style="color:#e74c3c">file:// では不可</b> — <a href="http://127.0.0.1:8765/index.html">http://127.0.0.1:8765/index.html</a> を開く';
+      statusEl.textContent="ローカルファイル直開きはAPIに接続できません";
+      return false;
+    }
+    const base=await this.discoverApiBase();
+    if(base){
+      el.textContent="API接続済み — 設定保存・シミュレート実行が利用可能";
+      return true;
+    }
+    if(await this.detectPythonHttpServer()){
+      el.innerHTML='<b style="color:#e74c3c">ポート競合</b> — 8765 に別サーバーが残っています。<code>start_server.bat</code> を再実行（古い黒い窓はすべて閉じる）';
+      statusEl.textContent="python -m http.server 等が sim_server より先に応答しています";
+      return false;
+    }
+    el.innerHTML='<b style="color:#e74c3c">API未接続</b> — <code>start_server.bat</code> 起動後 <button type="button" id="btn-api-retry" style="margin-left:6px">再接続</button>';
+    document.getElementById("btn-api-retry").onclick=()=>this.refreshApiStatus();
+    statusEl.textContent=`sim_server が ${location.origin} で応答しません。http://127.0.0.1:8765/index.html を開いてください`;
+    return false;
+  },
+
+  async loadConfig(){
+    try{
+      const j=await this.apiFetch(this.apiUrl("api/config"));
+      this.config=j.config;
+      this.fillConfigForm(this.config);
+      document.getElementById("sim-status").textContent="設定を読み込みました。";
+    }catch(err){
+      document.getElementById("sim-status").textContent=
+        "API未接続（start_server.bat で起動すると設定保存・実行が使えます）";
+    }
+  },
+
+  async saveConfig(){
+    const status=document.getElementById("sim-status");
+    status.textContent="保存中…";
+    try{
+      const cfg=this.readConfigForm();
+      const j=await this.apiFetch(this.apiUrl("api/config"),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({config:cfg})});
+      this.config=j.config;
+      this.fillConfigForm(this.config);
+      status.textContent="設定を保存しました。";
+    }catch(err){status.textContent=`保存失敗: ${err.message}`;}
+  },
+
+  applyGeoData(data){
+    this.data=data;
+    this._buildLogIndex();
+    PACIFIC.applyMeta(this.data.meta?.map);
+    if(this.mode==="pacific")this.buildMap("pacific");
+    const max=this.data.snapshots.length-1;
+    const slider=document.getElementById("turn-slider");
+    document.getElementById("turn-max").textContent=max;
+    slider.max=String(Math.max(0,max));
+    slider.min="0";
+    slider.disabled=max<0;
+    this.currentTurn=0;
+    this.goTurn(0);
+  },
+
+  _buildLogIndex(){
+    this._logsByTurn={};
+    for(const l of (this.data?.logs||[])){
+      (this._logsByTurn[l.turn]||(this._logsByTurn[l.turn]=[])).push(l);
+    }
+  },
+
+  async runSimulation(){
+    const status=document.getElementById("sim-status");
+    this.stop();
+    status.textContent="シミュレーション実行中…（250国で1〜3分かかることがあります）";
+    try{
+      const cfg=this.readConfigForm();
+      const j=await this.apiFetch(this.apiUrl("api/simulate"),{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({config:cfg,save_config:true}),
+      });
+      this.config=j.config||cfg;
+      this.applyGeoData(j.geo);
+      const s=j.summary;
+      status.textContent=`完了: 初期${s.initial_nations}国 → 生存${s.alive}国 / 総国力 ${s.total_power.toLocaleString()}`;
+    }catch(err){status.textContent=`実行失敗: ${err.message}`;}
+  },
+
+  init(){
+    const slider=document.getElementById("turn-slider");
+    slider.addEventListener("input",e=>{
+      this.stop();
+      const t=+e.target.value;
+      document.getElementById("turn-val").textContent=t;
+      if(this._sliderRaf)cancelAnimationFrame(this._sliderRaf);
+      this._sliderRaf=requestAnimationFrame(()=>{
+        this._sliderRaf=null;
+        this.goTurn(t,{skipSlider:true,skipLogs:true});
+      });
+    });
+    slider.addEventListener("change",e=>{
+      if(this._sliderRaf){cancelAnimationFrame(this._sliderRaf);this._sliderRaf=null;}
+      this.stop();
+      this.goTurn(+e.target.value);
+    });
+    document.getElementById("btn-play").onclick=()=>this.play();
+    document.getElementById("btn-stop").onclick=()=>this.stop();
+    document.getElementById("btn-reload").onclick=()=>this.loadData();
+    document.getElementById("btn-pacific").onclick=()=>this.switchMode("pacific");
+    document.getElementById("btn-atlantic").onclick=()=>this.switchMode("atlantic");
+    document.getElementById("chk-refmap").onchange=e=>this.toggleRef(e.target.checked);
+    document.getElementById("chk-dead").onchange=()=>this.renderTurn(this.currentTurn);
+    document.getElementById("btn-cfg-load").onclick=async()=>{if(await this.refreshApiStatus())await this.loadConfig();};
+    document.getElementById("btn-cfg-save").onclick=()=>this.saveConfig();
+    document.getElementById("btn-sim-run").onclick=()=>this.runSimulation();
+    document.getElementById("cfg-nations").oninput=()=>this.updatePowerHint(this.readConfigForm());
+    this.refreshApiStatus().then(ok=>{if(ok)this.loadConfig();});
+    this.loadData();
+  },
+
+  destroyMap(){
+    this.stop();
+    if(this.map){this.map.remove();this.map=null;}
+  },
+
+  buildMap(mode){
+    this.destroyMap();
+    this.mode=mode;
+    const el=document.getElementById("map");
+    if(mode==="pacific"){
+      this.map=L.map(el,{crs:L.CRS.Simple,minZoom:-2,maxZoom:3,zoomSnap:0.25});
+      this.refLayer=L.imageOverlay(this.assetUrl(PACIFIC.imageFile),[[0,0],[PACIFIC.imgH,PACIFIC.imgW]],{opacity:1}).addTo(this.map);
+      this.map.fitBounds(PACIFIC.mapBounds(),{padding:[8,8]});
+    }else{
+      this.map=L.map(el,{minZoom:2,maxZoom:8,worldCopyJump:true});
+      this.refLayer=null;
+      L.geoJSON(WORLD_LAND,{style:{color:"#2c3e50",weight:1.2,fillColor:"#dfe6e9",fillOpacity:0.6}}).addTo(this.map);
+      this.map.fitBounds([[-40,-20],[70,180]],{padding:[16,16]});
+    }
+    this.nationLayer=L.layerGroup().addTo(this.map);
+    document.getElementById("chk-refmap").disabled=(mode!=="pacific");
+    if(this.data)this.renderTurn(this.currentTurn);
+  },
+
+  switchMode(mode){
+    if(this.mode===mode)return;
+    this.buildMap(mode);
+    this.goTurn(this.currentTurn);
+  },
+
+  nationLatLng(n){
+    if(this.mode==="pacific")return PACIFIC.toLatLng(n.lat,n.lng);
+    return L.latLng(n.lat,n.lng);
+  },
+
+  async loadData(){
+    const geoUrl=this.assetUrl("macro_chronicle_geo.json")+"?_="+Date.now();
+    try{
+      const res=await fetch(geoUrl);
+      if(!res.ok)throw new Error(`HTTP ${res.status}\n${geoUrl}`);
+      this.data=await res.json();
+      this.applyGeoData(this.data);
+    }catch(err){
+      const here=location.href;
+      document.getElementById("log-panel").innerHTML=
+        `<div class="error">${err.message}<br><br>
+        <b>対処法</b><br>
+        1. <code>macro_chronicle</code> フォルダの <code>start_server.bat</code> をダブルクリック<br>
+        （<b>python -m http.server は使わない</b> — POST非対応のため設定保存・実行ができません）<br>
+        手動の場合:<br>
+        <code>cd macro_chronicle</code><br>
+        <code>python sim_server.py 8765 127.0.0.1</code><br><br>
+        2. 次の URL を開く（file:// では不可）<br>
+        <a href="http://127.0.0.1:8765/index.html">http://127.0.0.1:8765/index.html</a><br><br>
+        現在のページ: <code>${here}</code><br>
+        データ未生成の場合: <code>python -m macro_chronicle -o macro_chronicle</code></div>`;
+    }
+  },
+
+  toggleRef(on){
+    if(!this.refLayer)return;
+    on?this.refLayer.addTo(this.map):this.map.removeLayer(this.refLayer);
+  },
+
+  goTurn(t,opts={}){
+    if(!this.data)return;
+    const max=this.data.snapshots.length-1;
+    t=Math.max(0,Math.min(max,t));
+    this.currentTurn=t;
+    if(!opts.skipSlider)document.getElementById("turn-slider").value=String(t);
+    document.getElementById("turn-val").textContent=t;
+    this.renderStats(t);
+    this.renderTurn(t);
+    if(!opts.skipLogs)this.renderLogs(t);
+  },
+
+  renderStats(t){
+    const snap=this.data.snapshots[t];
+    if(!snap)return;
+    const st=snap.stats||{};
+    document.getElementById("year-val").textContent=`${snap.narrative_year??t*10}年目`;
+    document.getElementById("s-alive").textContent=st.alive_countries??"—";
+    document.getElementById("s-power").textContent=(st.total_human_power??0).toLocaleString(undefined,{maximumFractionDigits:0});
+    document.getElementById("s-threat").textContent=st.average_monster_threat??"—";
+    document.getElementById("s-global").textContent=st.global_threat_index??"—";
+    const badge=document.getElementById("era-badge");
+    const phase=st.cycle_phase||"active";
+    badge.className=`era-badge ${phase==="active"?"era-active":"era-dormant"}`;
+    badge.textContent=phase==="active"?"活性期 (Active Era)":"休眠期 (Dormant Era)";
+  },
+
+  nationRadius(territory,alive){
+    const n=this.data?.meta?.initial_nations||131;
+    const scale=n>180?0.72:n>140?0.85:1;
+    const b=Math.sqrt(Math.max(1,territory||10));
+    const r=alive?Math.min(14,5+b*0.85):Math.min(9,4+b*0.5);
+    return Math.max(3,r*scale);
+  },
+
+  renderTurn(t){
+    if(!this.map||!this.data)return;
+    const showDead=document.getElementById("chk-dead").checked;
+    const snap=this.data.snapshots[t];
+    this.nationLayer.clearLayers();
+    if(!snap)return;
+    for(const n of snap.nations){
+      if(!n.alive&&!showDead)continue;
+      const color=n.alive?(REGION_COLORS[n.region]||"#bdc3c7"):"#555";
+      const m=L.circleMarker(this.nationLatLng(n),{
+        radius:this.nationRadius(n.territory,n.alive),
+        color:n.alive?"#fff":"#888",weight:n.alive?1.5:1,
+        fillColor:color,fillOpacity:n.alive?0.88:0.4
+      });
+      const st=n.alive?"生存":`滅亡(T${n.died_turn??"?"})`;
+      m.bindPopup(`<b>${n.name}</b><br>${n.region}<br>${st}<br>国力 ${n.power}<br>領域 ${n.territory}`);
+      m.on("click",()=>{
+        document.getElementById("nation-detail").innerHTML=
+          `<b>${n.name}</b>（${n.region}）<br>${st} / ${t*10}年目<br>経済${n.economy} 軍事${n.military} 魔力${n.magic}`;
+      });
+      if(n.alive||n.id<=(this.data?.meta?.initial_nations||131))m.bindTooltip(n.name,{direction:"top"});
+      m.addTo(this.nationLayer);
+    }
+  },
+
+  renderLogs(t){
+    const el=document.getElementById("log-panel");
+    const initN=this.data?.meta?.initial_nations||131;
+    if(t===0){el.innerHTML=`<div class="log-item">初期状態（${initN}統治体）</div>`;return;}
+    const logs=(this._logsByTurn?.[t]||[]).slice(0,35);
+    el.innerHTML=logs.length?logs.map(l=>{
+      const id=l.nation_id?` [${String(l.nation_id).padStart(3,"0")}]`:"";
+      return `<div class="log-item">T${l.turn}${id}: ${l.event}</div>`;
+    }).join(""):"<div class=\"log-item\">—</div>";
+  },
+
+  play(){
+    if(!this.data||this.playing)return;
+    this.playing=true;
+    const max=this.data.snapshots.length-1;
+    this.timer=setInterval(()=>{
+      if(this.currentTurn>=max){this.stop();return;}
+      this.goTurn(this.currentTurn+1);
+    },500);
+  },
+  stop(){this.playing=false;if(this.timer){clearInterval(this.timer);this.timer=null;}}
+};
+
+App.init();
+</script>
+</body>
+</html>

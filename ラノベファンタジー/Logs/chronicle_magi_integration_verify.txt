@@ -1,0 +1,16 @@
+﻿2026-08-31T19:33:01.7025586Z success=True planA=True planB=True
+=== A案: Chronicle Density Expansion ===
+colossus: deployed=50 expected=50 pass=True
+observation: flag=HIST_NATION_001_GEO_TURN_120_OBSERVED_COLOSSUS unlocked=True pass=True
+routine: T120 routines=50 reactions=0
+civilization: bound=2 tick=2 arcana=True orthodoxy=True pass=True
+lostTech: lost=0 arcanaLost=True ERA_ANCIENT=True pass=True
+peakLostTech: T400 lost=2 arcanaLost=True pass=True
+expand: success=True colossus=50 heretic=2 obs=1 civilized=2 lost=2
+=== B案: MAGI System Decision Engine ===
+disagreed: status=Disagreed awaiting=True pass=True
+safeFail: status=Disagreed fallback=True awaiting=True pass=True
+allAgreed: status=AllAgreed commit=True main=ALT_NATION_001_TURN_015_CIVILWAR pass=True
+staleness: streak=3 status=Disagreed verdandi=ALT_VERIFY_STALENESS_CIVILWAR(400) skuld=ALT_VERIFY_BEAST_GEN4_BEAST_CATASTROPHE beastVerdandi=-266 scaleOk=True pass=True
+units: verdandi=ヴェルダンディ urd=ウルズ skuld=スクルド pass=True
+integrated: SetupIntegratedAPlusBPipeline=OK

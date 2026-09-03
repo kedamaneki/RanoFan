@@ -1,0 +1,75 @@
+{
+  "nationId": "NATION_006",
+  "deepEventPlan": [
+    {
+      "chapter": "第1章・初期高脅威",
+      "macroTurnRange": [
+        1,
+        20
+      ],
+      "suggestedMacroTurn": 10,
+      "narrativeYear": 100,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第2章・瓦解と同盟",
+      "macroTurnRange": [
+        21,
+        40
+      ],
+      "suggestedMacroTurn": 30,
+      "narrativeYear": 300,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第3章・常夜の底",
+      "macroTurnRange": [
+        41,
+        60
+      ],
+      "suggestedMacroTurn": 50,
+      "narrativeYear": 500,
+      "evolutionSystemType": "Inspiration",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第4章・大開拓",
+      "macroTurnRange": [
+        61,
+        80
+      ],
+      "suggestedMacroTurn": 70,
+      "narrativeYear": 700,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第5章・完全駆逐",
+      "macroTurnRange": [
+        81,
+        100
+      ],
+      "suggestedMacroTurn": 90,
+      "narrativeYear": 900,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "固有技術",
+      "suggestedMacroTurn": 10,
+      "eventTypeHint": "ShieldFortification or MagicPioneering",
+      "technologies": [
+        "国家006",
+        "変電結晶網"
+      ],
+      "recommendedRoute": "prosperity"
+    }
+  ],
+  "bodyText": "領域・西の内部、主要国001の南方に隣接する「国家006」は、冷徹な大国に挟まれながら絶妙な外交バランスで生存を遂げた国である。初期の高脅威周期においては、固有エネルギーの供給効率を高める「変電結晶網」を整備し、防衛密度の確保に成功。第3章の暗黒期には、覇権化を進める国家001の完全吸収を避けるべく、領域・西のもう一つの極であった国家015と密かに技術協定を締結し、独自の抵抗軸として二極構造のバランサーを担った。第4章の低脅威周期に伴う一極統合化の荒波においては、自国の誇るエネルギーインフラの管理権を交渉材料として国家001の広域統治体制下へと高度に軟着陸し、最終的な68カ国の一角として主権の形式的独立を死守した。（316文字）",
+  "quotedTechnologies": [
+    "国家006",
+    "変電結晶網"
+  ]
+}

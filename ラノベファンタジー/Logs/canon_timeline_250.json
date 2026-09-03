@@ -1,0 +1,48 @@
+﻿{
+  "finalized_at_utc": "2026-08-31T19:34:55.3960109Z",
+  "final_turn": 250,
+  "mid_cycle_turns": 400,
+  "main_story_branch_id": "ALT_NATION_001_TURN_208_HERETIC_ORTHODOXY",
+  "lineage": [
+    {
+      "generation": 1,
+      "branch_id": "ALT_NATION_001_TURN_006_INNOVATION",
+      "label": "IF_Line: 魔導革新の年代",
+      "committed_at_turn": 50,
+      "score": 306,
+      "parent_branch_id": ""
+    },
+    {
+      "generation": 2,
+      "branch_id": "ALT_NATION_001_TURN_058_ARCANE_REVIVAL",
+      "label": "IF_Line: 魔導復興",
+      "committed_at_turn": 100,
+      "score": 385,
+      "parent_branch_id": "ALT_NATION_001_TURN_006_INNOVATION"
+    },
+    {
+      "generation": 3,
+      "branch_id": "ALT_NATION_001_TURN_111_DEMON_FRONT",
+      "label": "IF_Line: 魔王軍前線",
+      "committed_at_turn": 150,
+      "score": 385,
+      "parent_branch_id": "ALT_NATION_001_TURN_058_ARCANE_REVIVAL"
+    },
+    {
+      "generation": 4,
+      "branch_id": "ALT_NATION_001_TURN_158_HERETIC_ARCANA",
+      "label": "IF_Line: 異端魔導の覚醒",
+      "committed_at_turn": 200,
+      "score": 391,
+      "parent_branch_id": "ALT_NATION_001_TURN_111_DEMON_FRONT"
+    },
+    {
+      "generation": 5,
+      "branch_id": "ALT_NATION_001_TURN_208_HERETIC_ORTHODOXY",
+      "label": "IF_Line: 異端魔法の正統化",
+      "committed_at_turn": 250,
+      "score": 377,
+      "parent_branch_id": "ALT_NATION_001_TURN_158_HERETIC_ARCANA"
+    }
+  ]
+}

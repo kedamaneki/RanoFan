@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_079_BarrierDrop_10",
+      "macroTurn": 10,
+      "timestamp": {
+        "year": 10,
+        "month": 10,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_079",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【東方の結晶生産圏】で防衛障壁の循環効率が急落した（低下幅 0.19）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は特に緊張感の高い一年であり、日常の多くの事象が魔物からの脅威と結晶配給制限に影響を受けていた。市民たちは不安定な生活の中で、それでも日々の仕事や家事を続けるしかなかった。\n\nリリアナとマリアのような若者たちにとって、「節約」はただの言葉ではなく、日々の食事や住まいを守るための具体的な行動だった。「経済停滞」という抽象的な概念が、人々の生活に直接影響を与える現実となった。",
+      "conditionFlag": "HIST_NATION_079_GEO_TURN_010_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_079_GEO_TURN_010_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_079_BARRIERDROP_T010",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N079_T010"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事10年・年初（ターン010）",
+          "npcDialogue": "「障壁の唸りが低い。結晶を足しても、膜が薄くなる。」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事10年・年央（ターン010）",
+          "npcDialogue": "「外周の光帯に穴が開いた。見回りを倍にしろ。」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事10年・年末（ターン010）",
+          "npcDialogue": "「循環を戻せ。戻らなければ、内側の輪だけでも守れ。」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_079_MonsterAttack_10",
+      "macroTurn": 10,
+      "timestamp": {
+        "year": 10,
+        "month": 10,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_079",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【東方の結晶生産圏】が脅威侵攻を受け、生存圏が 9.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は特に緊張感の高い一年であり、日常の多くの事象が魔物からの脅威と結晶配給制限に影響を受けていた。市民たちは不安定な生活の中で、それでも日々の仕事や家事を続けるしかなかった。\n\nリリアナとマリアのような若者たちにとって、「節約」はただの言葉ではなく、日々の食事や住まいを守るための具体的な行動だった。「経済停滞」という抽象的な概念が、人々の生活に直接影響を与える現実となった。",
+      "conditionFlag": "HIST_NATION_079_GEO_TURN_010_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_079_GEO_TURN_010_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_079_MONSTERATTACK_T010",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N079_T010"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事10年・年初（ターン010）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事10年・年央（ターン010）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事10年・年末（ターン010）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_079_MonsterAttack_12",
+      "macroTurn": 12,
+      "timestamp": {
+        "year": 12,
+        "month": 12,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_079",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【東方の結晶生産圏】が脅威侵攻を受け、生存圏が 7.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "今年のリヴァーナシティでは、魔物活性期に向けた準備が常態化した一年だった。緊迫感と閉塞感が空気中を漂う一方で、人々は祈りや団結を通じて互いを支えようとしている。「この街を守るため、我々の力が必要なんだ」という言葉は、多くの市民の口から聞かれる。\n\nまた、魔物周期の特異性に合わせた宗教行事も行われており、その規模は前年と比べてさらに拡大している。人々が互いに力を合わせることで、リヴァーナシティの未来への希望が生まれつつある。",
+      "conditionFlag": "HIST_NATION_079_GEO_TURN_012_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_079_GEO_TURN_012_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_079_MONSTERATTACK_T012",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N079_T012"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事12年・年初（ターン012）",
+          "npcDialogue": "「この街を守るため、我々の力が必要なんだ」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事12年・年央（ターン012）",
+          "npcDialogue": "「この街を守るため、我々の力が必要なんだ」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事12年・年末（ターン012）",
+          "npcDialogue": "「この街を守るため、我々の力が必要なんだ」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_079_NationCollapse_16",
+      "macroTurn": 16,
+      "timestamp": {
+        "year": 16,
+        "month": 4,
+        "day": 22,
+        "hour": 4
+      },
+      "targetNationId": "NATION_079",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【東方の結晶生産圏】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0016は、市民の間で祭りや祝い事が少ない一年だった。「今日は何の日？」と尋ねられても答えられない日が増えた。しかし、それでも人々は小さな幸せを追い求め、束の間の安堵を見つけようとしていた。\n\nこの年の結婚式も少なく、新築祝いの報告も聞こえてこなかった。一方で、魔物周期が休眠期に突入したことで、市場では資源採掘の再開やインフラ修復が進められていた。「これだけは頑張らなきゃ」という思いから、多くの市民が疲弊しながらも日々を過ごしていた。\n\nしかし、この土地の滅亡が近づくにつれ、人々の間に絶望感が広がり始めた。防衛隊や技師たちは結界の維持に追われ、一般市民はただそれを見守るだけだった。「この街はどうなるんだろう」という不安から、「明日をどう生きるか」を考え始める者もいた。\n\n叙事年0016のターンが進むにつれて、この土地の運命は決定づけられていった。魔物周期の休眠期も終わりに近づき、結界の光は薄れ始め、人々の間では避難や混乱が広がっていた。「これ以上続けられるのか」という疑問から、「明日をどう生きるか」を考え始める者もいた。\n\nこの年は、この土地の滅亡と共に歴史上の欠番として固定されることとなった。市民たちはそれぞれの道へ",
+      "conditionFlag": "HIST_NATION_079_GEO_TURN_016_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_079_GEO_TURN_016_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_079_NATIONCOLLAPSE_T016",
+          "alternativeLogMessage": "【東方の結晶生産圏】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N079_T016"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事7年〜9年（滅亡10〜7年前）",
+          "npcDialogue": "「これだけは頑張らなきゃ」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事10年〜13年（6〜3年前）",
+          "npcDialogue": "「これだけは頑張らなきゃ」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事14年〜16年（2年前〜崩壊）",
+          "npcDialogue": "「これだけは頑張らなきゃ」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

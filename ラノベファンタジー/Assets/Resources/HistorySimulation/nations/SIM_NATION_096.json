@@ -1,0 +1,352 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_096_MonsterAttack_8",
+      "macroTurn": 8,
+      "timestamp": {
+        "year": 8,
+        "month": 8,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_096",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 5.1 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地の市民たちは、魔物活性期には特に祭礼や祝宴などは控えめとなる。人々は日々の生活に忙殺され、余裕がないためだ。しかし、それでも彼らは自分たちの生活を守るために頑張り続けている。\n\n「この位相が終わった暁には、また新しい風俗が生まれるだろう」とメルトは考えながら、次の日の労働に向けて寝床についた。「それまで、ただ生きていくだけさ」",
+      "conditionFlag": "HIST_NATION_096_GEO_TURN_008_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_096_GEO_TURN_008_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_096_MONSTERATTACK_T008",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N096_T008"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事8年・年初（ターン008）",
+          "npcDialogue": "「この位相が終わった暁には、また新しい風俗が生まれるだろう」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事8年・年央（ターン008）",
+          "npcDialogue": "「この位相が終わった暁には、また新しい風俗が生まれるだろう」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事8年・年末（ターン008）",
+          "npcDialogue": "「この位相が終わった暁には、また新しい風俗が生まれるだろう」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_096_MonsterAttack_56",
+      "macroTurn": 56,
+      "timestamp": {
+        "year": 56,
+        "month": 8,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_096",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 2.3 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0056は特に魔物周期の影響が強く、市民たちは日々の生活の中でその影響をしっかりと感じていた。しかし、同時に地域ごとの祭りや祝祭も行われており、人々の心に少しの安堵と喜びをもたらしていた。\n\nエイダール市の春には「花の祝福祭」があり、その時期には街は美しい色とりどりの花で飾られた。また、秋には「収穫感謝祭」という大規模な祝祭が行われ、農民たちが一年分の作物を神に捧げて豊作を感謝する。\n\nこれらの祭りを通じて、人々は魔物との戦いと並行して、自然や魔力結晶への畏敬の念を深めている。",
+      "conditionFlag": "HIST_NATION_096_GEO_TURN_056_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_096_GEO_TURN_056_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_096_MONSTERATTACK_T056",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N096_T056"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事56年・年初（ターン056）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事56年・年央（ターン056）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事56年・年末（ターン056）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_096_Innovation_96",
+      "macroTurn": 96,
+      "timestamp": {
+        "year": 96,
+        "month": 12,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_096",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【最西端の大陸帯】で障壁イノベーションが発生した。循環係数 1.53、生存圏 +2.9。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では魔物の休眠期が到来した年には、様々な祭りや祝賀会が開かれることが多い。今年も例外ではなく、「和平祭」が盛大に行われた。「平和な日々を過ごせることに感謝し、次の活性期に向けてみんなで力を合わせよう」とテューロスの市民たちが呼びかけている。\n\nまた、魔物休眠期の安定した状況を利用して、多くのカップルが結婚する季節でもある。街には新婚夫婦の笑顔が溢れ、「この年に生まれた子供達もみんな元気に成長してくれたらいいね」と人々は願いを込める。\n\nさらに、この時期に新築や移転を行う家が増えている。「新しい住まいに引っ越しすることになったんだ。ここから新しい生活が始まるね」とテューロスの一つの住宅街では、家族が新たな生活に向けて準備している。",
+      "conditionFlag": "HIST_NATION_096_GEO_TURN_096_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_096_GEO_TURN_096_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_096_INNOVATION_T096",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 18,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N096_T096"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事96年・年初（ターン096）",
+          "npcDialogue": "「平和な日々を過ごせることに感謝し、次の活性期に向けてみんなで力を合わせよう」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事96年・年央（ターン096）",
+          "npcDialogue": "「平和な日々を過ごせることに感謝し、次の活性期に向けてみんなで力を合わせよう」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事96年・年末（ターン096）",
+          "npcDialogue": "「平和な日々を過ごせることに感謝し、次の活性期に向けてみんなで力を合わせよう」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_096_Innovation_146",
+      "macroTurn": 146,
+      "timestamp": {
+        "year": 146,
+        "month": 2,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_096",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【最西端の大陸帯】で障壁イノベーションが発生した。循環係数 2.08、生存圏 +3.4。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Inspiration",
+      "microLore": "この土地では、魔物周期の影響により日々が刻一刻と変化する中で、人々は生活を維持しながらも心に余裕を持つことを大切にする。結晶配給の行列や夜間パトロールを見かけるたびに、相互扶助の大切さや地域の結束力を感じている。\n\nまた、この年は特に魔物周期の影響が強く、緊張感が高まっているが、その一方で人々の間に新たな技術やアイデアが生まれ、職人ギルドでの活況も見られる。これは、この土地の市民たちが常に進化し続ける力と信頼を示すものだ。\n\nこの年はまた、前線からの避難や障壁増強工事が頻繁に行われ、人々の生活に大きな影響を与えている。しかし、これらの努力により、市民たちは安心して生活を送ることができるようになった。",
+      "conditionFlag": "HIST_NATION_096_GEO_TURN_146_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_096_GEO_TURN_146_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_096_INNOVATION_T146",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N096_T146"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事146年・年初（ターン146）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事146年・年央（ターン146）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事146年・年末（ターン146）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_096_Innovation_192",
+      "macroTurn": 192,
+      "timestamp": {
+        "year": 192,
+        "month": 12,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_096",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【最西端の大陸帯】で障壁イノベーションが発生した。循環係数 2.45、生存圏 +3.9。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年0192年にかけて、この土地では束の間の平和期間を利用して多くの祝祭やイベントが開催された。結婚式や新築完成披露といった喜びの瞬間も見られた。人々は休眠期の安堵感を最大限に活用し、互いの幸せを祝うことが多かった。\n\n「今日から私たちの新たな生活が始まりますね」\n「そうですね、一緒に頑張りましょう」\n\nこれらの風俗が街全体を温かく包み込み、市民たちの心をつなげている。",
+      "conditionFlag": "HIST_NATION_096_GEO_TURN_192_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_096_GEO_TURN_192_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_096_INNOVATION_T192",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N096_T192"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事192年・年初（ターン192）",
+          "npcDialogue": "「今日から私たちの新たな生活が始まりますね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事192年・年央（ターン192）",
+          "npcDialogue": "「今日から私たちの新たな生活が始まりますね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事192年・年末（ターン192）",
+          "npcDialogue": "「今日から私たちの新たな生活が始まりますね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_096_Innovation_249",
+      "macroTurn": 249,
+      "timestamp": {
+        "year": 249,
+        "month": 9,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_096",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【最西端の大陸帯】で障壁イノベーションが発生した。循環係数 2.57、生存圏 +4.3。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年二四九年のこの土地には、魔物周期とその対策が生活に深く根付いている。人々はそれぞれの職業や役割を持ちつつも、町全体で力を合わせて危機を乗り越えようとしている。\n\nまた、この年の風俗としては「結晶工房での新技術の導入」や「魔物周期への対応が進む」といった話題が多い。人々はそれぞれの立場から、未来に対して希望を持って過ごしているのである。",
+      "conditionFlag": "HIST_NATION_096_GEO_TURN_249_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_096_GEO_TURN_249_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_096_INNOVATION_T249",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N096_T249"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事249年・年初（ターン249）",
+          "npcDialogue": "「結晶工房での新技術の導入」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事249年・年央（ターン249）",
+          "npcDialogue": "「結晶工房での新技術の導入」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事249年・年末（ターン249）",
+          "npcDialogue": "「結晶工房での新技術の導入」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

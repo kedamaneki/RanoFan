@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_SEC_CH01_S03_WORLD_MonsterAttack_26",
+      "macroTurn": 26,
+      "timestamp": {
+        "year": 26,
+        "month": 2,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "第1章第3節の観測開始。生存 134、総国力 161678、脅威 2.700。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網の前線は異形の波に押し込まれ、耕作地と配給路が寸断された。人型の敵ではなく、環境と一体化した魔獣が結界を削っている。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_026_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_026_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_MONSTERATTACK_T026",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T026"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事26年・年初（ターン026）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事26年・年央（ターン026）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事26年・年末（ターン026）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SEC_CH01_S03_NATION_018_MonsterAttack_28",
+      "macroTurn": 28,
+      "timestamp": {
+        "year": 28,
+        "month": 4,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_018",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 12.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では魔物周期が市民生活に大きな影響を及ぼしており、特にこのターンはその影響が最も強かった。人々は日々、魔物からの脅威と防衛障壁の脆弱さとの間で揺れ動きながら生きていた。\n\nエマのような若者たちは、そんな中でも友人や家族と共に力強く生きようとしていた。「もう少しでいい」という口癖が常に彼女たちの言葉の端々に現れており、それはただの願いだけでなく、明日への希望を繋ぎ止める手段だった。\n\nしかし、叙事年0028はこの土地にとって最後の一年となり、その結果、人々は絶望の中で避難や散り散りとなることとなった。エマたちもまた、新たな土地で再び立ち上がり、生き抜くための新たな道を探すことになったのであった。\n\nこの年の風俗は、終わりを告げる日々が連綿と続く中での悲壮感と、それでもなお希望を見出そうとする人々の姿が特徴的だった。",
+      "conditionFlag": "HIST_NATION_018_GEO_TURN_028_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_018_GEO_TURN_028_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_018_MONSTERATTACK_T028",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N018_T028"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事28年・年初（ターン028）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事28年・年央（ターン028）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事28年・年末（ターン028）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SEC_CH01_S03_WORLD_NationCollapse_36",
+      "macroTurn": 36,
+      "timestamp": {
+        "year": 36,
+        "month": 12,
+        "day": 1,
+        "hour": 4
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "この節で 52 の統治体が欠番化した。結界崩壊は番号を再利用せず、無主地として記録される。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網では障壁網が脅威個体群の圧力に抗しきれず、生存圏と配給網が同時に潰えた。残民は隣接する結界都市へと散り、番号は再利用されない。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_036_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_036_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_NATIONCOLLAPSE_T036",
+          "alternativeLogMessage": "【全大陸観測網】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T036"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事36年・年初（ターン036）",
+          "npcDialogue": "「欠番の地図が増えている。番号は戻らない。」",
+          "statusBuff": "世界規模の淘汰圧。無主地の拡大。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事36年・年央（ターン036）",
+          "npcDialogue": "「隣の結界都市へ避難する列が、街道を埋めている。」",
+          "visualChange": "放棄都市と明滅する残骸結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事36年・年末（ターン036）",
+          "npcDialogue": "「生き残った輪を太くする以外に、手はない。」",
+          "gameplayReward": "世界観測ログの更新。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SEC_CH01_S03_WORLD_Innovation_38",
+      "macroTurn": 38,
+      "timestamp": {
+        "year": 38,
+        "month": 2,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "第1章第3節の観測終了。生存 86、総国力 103177、脅威 1.550。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網の技術層は結界の循環経路を組み直し、限られた魔力でより広い生存圏を維持し始めた。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_038_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_038_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_INNOVATION_T038",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T038"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事38年・年初（ターン038）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事38年・年央（ターン038）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事38年・年末（ターン038）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

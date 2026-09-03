@@ -1,0 +1,410 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_085_MonsterAttack_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_085",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 8.9 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "晨曦微露，この土地的城市被一层柔和的光芒笼罩。这是魔力结界的独特现象，在每个清晨带来一丝宁静和希望。结界的光随着日出逐渐增强，照亮了城市的每一个角落。街道上已经开始有了零星的人影，早起者们在温暖的光照下开始了新的一天。\n\n莉亚是この土地的一名普通面包师，在市集旁的小店工作。她的店铺里摆满了各式各样的面包和糕点，香气扑鼻。每天早晨都有不少顾客前来选购早餐或是购买原材料自做。她熟练地揉面、烘烤、装饰，每一样都精心制作。\n\n“早上好，莉亚小姐！”一位老主顾向她打着招呼。\n“您好！今天想要尝尝新口味的面包吗？”莉亚微笑着回答，“这是我们刚烘焙出的新款，很受欢迎哦。”\n\n店里的生意还算不错，虽然当前处于魔物活性期，但居民们仍然尽力维持日常生活的运转。结界的保护让人心中稍感安慰。\n\n由于魔物周期开始进入活跃阶段，城市中的结界消耗显著增加。莉亚在面包店后院的小花园里，种植了一些能够帮助补充能量的草药植物和作物，以便更好地应对可能到来的食物短缺问题。“现在就要多储存些结晶，不然等到了晚上就只能吃干粮了。”她一边忙碌地烘焙着，一边跟助手小谈说道。\n\nこの土地为了确保魔力结界的稳定运行，实行了一套严格的结晶配给制度。每个家庭都有一个记录卡，在指",
+      "conditionFlag": "HIST_NATION_085_GEO_TURN_001_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_085_GEO_TURN_001_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_085_MONSTERATTACK_T001",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N085_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_085_MonsterAttack_2",
+      "macroTurn": 2,
+      "timestamp": {
+        "year": 2,
+        "month": 2,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_085",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 8.2 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、この一年を通じて常に緊迫した雰囲気が漂っている。しかし、それでも人々は互いを支え合いながら日々の生活を送る術を見つけている。特に避難民たちとの交流がその象徴であり、彼らを受け入れ、共に暮らすことで新たな連携や友情が生まれていく。\n\n「あなたたちは私たちにとって大切な財産だよ。」と、ジェイムスさんはいつもそう言う。「一緒に頑張れば、必ず乗り越えられるさ。」\n\n魔物周期は常に不安定だが、人々の間では互いを励まし合う口癖や風習が生まれていく。それは決して明るくない現実の中での希望であり、その力で都市全体が支えられている。\n\n---\n\nこの土地の市民たちは、絶えず脅威にさらされながらも、それでも明日への希望を失わない日々を送っている。青白い防衛障壁と人々の温かな声が共存し、その中で新たな人生が始まる瞬間を繰り返すのだ。",
+      "conditionFlag": "HIST_NATION_085_GEO_TURN_002_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_085_GEO_TURN_002_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_085_MONSTERATTACK_T002",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N085_T002"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事2年・年初（ターン002）",
+          "npcDialogue": "「あなたたちは私たちにとって大切な財産だよ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事2年・年央（ターン002）",
+          "npcDialogue": "「あなたたちは私たちにとって大切な財産だよ。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事2年・年末（ターン002）",
+          "npcDialogue": "「あなたたちは私たちにとって大切な財産だよ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_085_BarrierDrop_3",
+      "macroTurn": 3,
+      "timestamp": {
+        "year": 3,
+        "month": 3,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_085",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【極寒針葉樹林の前線】で防衛障壁の循環効率が急落した（低下幅 0.26）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では魔物活性期における「緊迫した日常」という特有の社会風土が存在します。経済活動は配給制や物々交換で行われ、生活必需品から軍事装備まで結晶を用いて供給されます。\n\nまた、魔力結晶の安定供給と効率的な防衛障壁維持は市民たちの最大の懸念事項です。そのため、技術者たちは常に訓練を受け、緊急時に備えています。この一年を通じて、市民たちの心には「今日一日を無事に過ごす」という共通の目的が存在します。",
+      "conditionFlag": "HIST_NATION_085_GEO_TURN_003_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_085_GEO_TURN_003_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_085_BARRIERDROP_T003",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N085_T003"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事3年・年初（ターン003）",
+          "npcDialogue": "「今日一日を無事に過ごす」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事3年・年央（ターン003）",
+          "npcDialogue": "「今日一日を無事に過ごす」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事3年・年末（ターン003）",
+          "npcDialogue": "「今日一日を無事に過ごす」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_085_MonsterAttack_3",
+      "macroTurn": 3,
+      "timestamp": {
+        "year": 3,
+        "month": 3,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_085",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 13.1 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では魔物活性期における「緊迫した日常」という特有の社会風土が存在します。経済活動は配給制や物々交換で行われ、生活必需品から軍事装備まで結晶を用いて供給されます。\n\nまた、魔力結晶の安定供給と効率的な防衛障壁維持は市民たちの最大の懸念事項です。そのため、技術者たちは常に訓練を受け、緊急時に備えています。この一年を通じて、市民たちの心には「今日一日を無事に過ごす」という共通の目的が存在します。",
+      "conditionFlag": "HIST_NATION_085_GEO_TURN_003_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_085_GEO_TURN_003_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_085_MONSTERATTACK_T003",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N085_T003"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事3年・年初（ターン003）",
+          "npcDialogue": "「今日一日を無事に過ごす」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事3年・年央（ターン003）",
+          "npcDialogue": "「今日一日を無事に過ごす」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事3年・年末（ターン003）",
+          "npcDialogue": "「今日一日を無事に過ごす」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_085_MonsterAttack_5",
+      "macroTurn": 5,
+      "timestamp": {
+        "year": 5,
+        "month": 5,
+        "day": 16,
+        "hour": 10
+      },
+      "targetNationId": "NATION_085",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 4.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、この年（叙事年0005）の風習として「魔物観測祭」がある。「魔物観測祭」とは、魔物周期が活性化するタイミングで行う、魔物たちを遠ざけるための祈りと監視の行事だ。市民たちはこの祭りを通じて、自分たちの安全を守るために必要なものを見つめ直す。\n\nまた、日常生活の中では「結界日記」が盛んに作られている。これは個人的な記録として、防衛障壁の微細な変化や魔物周期の影響を受けた生活状況などを詳細に書き留める習慣だ。「今日も一日を無事に過ごせたことへの感謝」といった言葉と共に、人々はその日一日を振り返りつつ、明日へと備える。\n\nこの土地の市民たちにとっては、魔物周期が活性化している今という時期はとても厳しいものである。しかし、それでも彼らは互いを支え合いながら、毎日の生活に必要なものを手に入れ、安全な夜を過ごすための祈りと共に一日一日を生き抜こうとしている。",
+      "conditionFlag": "HIST_NATION_085_GEO_TURN_005_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_085_GEO_TURN_005_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_085_MONSTERATTACK_T005",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N085_T005"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事5年・年初（ターン005）",
+          "npcDialogue": "「今日も一日を無事に過ごせたことへの感謝」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事5年・年央（ターン005）",
+          "npcDialogue": "「今日も一日を無事に過ごせたことへの感謝」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事5年・年末（ターン005）",
+          "npcDialogue": "「今日も一日を無事に過ごせたことへの感謝」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_085_MonsterAttack_9",
+      "macroTurn": 9,
+      "timestamp": {
+        "year": 9,
+        "month": 9,
+        "day": 1,
+        "hour": 10
+      },
+      "targetNationId": "NATION_085",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 6.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "今年は魔物活性期（位相9/24）が特に強烈であるため、市民たちは防衛と生存のために日々を過ごす。経済的には安定しているものの、魔力結晶の不足と不動産不足によるスラム化が進行し、人々の窮屈さは増している。\n\n「君たちも一緒に頑張るんだよね？」カズはリサとミラに呼びかける。「みんなで協力すれば大丈夫だよ」\n\n生活の中で大切なのは、魔物から身を守りつつ、仲間との連携である。この土地の市民たちは、そんな中でも希望を持ち続けている。",
+      "conditionFlag": "HIST_NATION_085_GEO_TURN_009_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_085_GEO_TURN_009_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_085_MONSTERATTACK_T009",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N085_T009"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事9年・年初（ターン009）",
+          "npcDialogue": "「君たちも一緒に頑張るんだよね？」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事9年・年央（ターン009）",
+          "npcDialogue": "「君たちも一緒に頑張るんだよね？」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事9年・年末（ターン009）",
+          "npcDialogue": "「君たちも一緒に頑張るんだよね？」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_085_NationCollapse_14",
+      "macroTurn": 14,
+      "timestamp": {
+        "year": 14,
+        "month": 2,
+        "day": 16,
+        "hour": 4
+      },
+      "targetNationId": "NATION_085",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【極寒針葉樹林の前線】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は魔物休眠期という幸運にも恵まれたが、その一方で国家の滅亡という現実を突きつけられた。結界効率の高さも虚しいものとなり、人々はただ明日への不安と恐怖の中で生きるしかなかった。\n\nアムリダでは「魔物休眠期の祭り」が催されたことがあった。しかし、その祭りの背景には常に消滅の脅威があり、人々は仮面を被ったかのような笑顔で過ごしていた。\n\nこの年、多くの人が家族と最後の思い出作りをしようと、限られた生存圏の中で余分な時間を過ごした。また、避難の準備や結界労働者としての新たな職業訓練を行う人々もいた。しかし、どれだけ準備しても明日が来ると確信できるものではなく、無力感と虚しさが広がっていた。\n\nこの土地は消滅したが、その名前は歴史から抹消されることなく欠番として永遠に残ることとなった。そして、生存圏の外へと散り散りになった人々の新たな生活が始まったのであった。",
+      "conditionFlag": "HIST_NATION_085_GEO_TURN_014_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_085_GEO_TURN_014_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_085_NATIONCOLLAPSE_T014",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N085_T014"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事5年〜7年（滅亡10〜7年前）",
+          "npcDialogue": "「魔物休眠期の祭り」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事8年〜11年（6〜3年前）",
+          "npcDialogue": "「魔物休眠期の祭り」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事12年〜14年（2年前〜崩壊）",
+          "npcDialogue": "「魔物休眠期の祭り」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

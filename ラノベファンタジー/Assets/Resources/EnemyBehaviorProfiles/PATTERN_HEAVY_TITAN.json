@@ -1,0 +1,54 @@
+{
+  "patternId": "PATTERN_HEAVY_TITAN",
+  "comment": "大型魔獣。溜め1.2〜1.5秒、高体勢削り、ガード不能を織り交ぜる。",
+  "attacks": [
+    {
+      "actionId": "ATTACK_TITAN_OVERHEAD",
+      "actionName": "甲殻の大振り",
+      "attackDelaySeconds": 1.35,
+      "parryWindowSeconds": 0.1,
+      "staminaDamageValue": 26,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 45,
+      "nextComboActionId": "ATTACK_TITAN_RAM",
+      "comboIntervalSeconds": 0.45
+    },
+    {
+      "actionId": "ATTACK_TITAN_RAM",
+      "actionName": "甲殻の体当たり",
+      "attackDelaySeconds": 0.0,
+      "parryWindowSeconds": 0.09,
+      "staminaDamageValue": 34,
+      "isGuardBreakable": true,
+      "feintChance": 0.0,
+      "weight": 0,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    },
+    {
+      "actionId": "ATTACK_TITAN_SHOULDER",
+      "actionName": "肩甲の突き崩し",
+      "attackDelaySeconds": 1.2,
+      "parryWindowSeconds": 0.09,
+      "staminaDamageValue": 32,
+      "isGuardBreakable": true,
+      "feintChance": 0.0,
+      "weight": 35,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    },
+    {
+      "actionId": "ATTACK_TITAN_ERUPTION",
+      "actionName": "地鳴りの踏みつけ",
+      "attackDelaySeconds": 1.5,
+      "parryWindowSeconds": 0.08,
+      "staminaDamageValue": 40,
+      "isGuardBreakable": true,
+      "feintChance": 0.0,
+      "weight": 20,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    }
+  ]
+}

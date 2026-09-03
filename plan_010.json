@@ -1,0 +1,75 @@
+{
+  "nationId": "NATION_010",
+  "deepEventPlan": [
+    {
+      "chapter": "第1章・初期高脅威",
+      "macroTurnRange": [
+        1,
+        20
+      ],
+      "suggestedMacroTurn": 10,
+      "narrativeYear": 100,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第2章・瓦解と同盟",
+      "macroTurnRange": [
+        21,
+        40
+      ],
+      "suggestedMacroTurn": 30,
+      "narrativeYear": 300,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第3章・常夜の底",
+      "macroTurnRange": [
+        41,
+        60
+      ],
+      "suggestedMacroTurn": 50,
+      "narrativeYear": 500,
+      "evolutionSystemType": "Inspiration",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第4章・大開拓",
+      "macroTurnRange": [
+        61,
+        80
+      ],
+      "suggestedMacroTurn": 70,
+      "narrativeYear": 700,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第5章・完全駆逐",
+      "macroTurnRange": [
+        81,
+        100
+      ],
+      "suggestedMacroTurn": 90,
+      "narrativeYear": 900,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "固有技術",
+      "suggestedMacroTurn": 10,
+      "eventTypeHint": "ShieldFortification or MagicPioneering",
+      "technologies": [
+        "国家010",
+        "氷結結界技術"
+      ],
+      "recommendedRoute": "prosperity"
+    }
+  ],
+  "bodyText": "領域・北の沿岸部に位置する「国家010」は、極地特有の海洋環境と固有エネルギー干渉技術を組み合わせることで千年の命脈を繋いだ国家である。初期の高脅威周期において、陸上からの侵攻を「氷結結界技術」によって拒否し、脅威個体群の進入を沿岸部で凍結・無力化する戦術を確立した。第3章の暗黒期には、同様に北方で生き残った国家004と密接な資源交換協定を結び、北方の寒冷サバイバル圏の共同維持に寄与。第4章の低脅威周期突入後は、再開された海上交易網を通じて、北方の海産資源や凍土結晶の広域輸出を開始した。大国間の覇権争いに直接干渉せず、北方の絶対的な海洋物流拠点として老獪に立ち回り、千年紀の結末まで確固たる地位を維持した。（318文字）\n\n国家006〜010の記述は以上となります。それぞれの領域で大国の影に隠れがちだった国々の、独自の防衛協定、山岳生存、河川防衛冷戦、地下密輸、氷結結界といった歴史のディテールが明確になりました。",
+  "quotedTechnologies": [
+    "国家010",
+    "氷結結界技術"
+  ]
+}

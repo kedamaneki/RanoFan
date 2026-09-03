@@ -1,0 +1,66 @@
+{
+  "patternId": "PATTERN_AGILE_STALKER",
+  "comment": "多段コンボ連撃。短い予備、狭いパリィ窓、コンボ間隔0.25〜0.35秒。",
+  "attacks": [
+    {
+      "actionId": "ATTACK_STALKER_LUNGESLASH",
+      "actionName": "疾駆の斬り込み",
+      "attackDelaySeconds": 0.28,
+      "parryWindowSeconds": 0.08,
+      "staminaDamageValue": 10,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 60,
+      "nextComboActionId": "ATTACK_STALKER_CLAW2",
+      "comboIntervalSeconds": 0.25
+    },
+    {
+      "actionId": "ATTACK_STALKER_CLAW2",
+      "actionName": "連撃・二の爪",
+      "attackDelaySeconds": 0.0,
+      "parryWindowSeconds": 0.07,
+      "staminaDamageValue": 12,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 0,
+      "nextComboActionId": "ATTACK_STALKER_CLAW3",
+      "comboIntervalSeconds": 0.3
+    },
+    {
+      "actionId": "ATTACK_STALKER_CLAW3",
+      "actionName": "連撃・止め爪",
+      "attackDelaySeconds": 0.0,
+      "parryWindowSeconds": 0.07,
+      "staminaDamageValue": 14,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 0,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    },
+    {
+      "actionId": "ATTACK_STALKER_SIDESWIPE",
+      "actionName": "横薙ぎ",
+      "attackDelaySeconds": 0.32,
+      "parryWindowSeconds": 0.09,
+      "staminaDamageValue": 11,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 40,
+      "nextComboActionId": "ATTACK_STALKER_QUICKSTAB",
+      "comboIntervalSeconds": 0.35
+    },
+    {
+      "actionId": "ATTACK_STALKER_QUICKSTAB",
+      "actionName": "追い突き",
+      "attackDelaySeconds": 0.0,
+      "parryWindowSeconds": 0.07,
+      "staminaDamageValue": 13,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 0,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    }
+  ]
+}

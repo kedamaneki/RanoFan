@@ -1,0 +1,120 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_GP_WORLD_WORLD_MonsterAttack_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "現行マクロラン開始。初期統治体 173、総国力 198907、脅威 2.700。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網の前線は異形の波に押し込まれ、耕作地と配給路が寸断された。人型の敵ではなく、環境と一体化した魔獣が結界を削っている。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_001_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_001_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_MONSTERATTACK_T001",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_GP_WORLD_WORLD_Innovation_250",
+      "macroTurn": 250,
+      "timestamp": {
+        "year": 250,
+        "month": 10,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "叙事250年で正史データを確定。生存 86、総国力 515752、脅威 2.700。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "全大陸観測網の技術層は結界の循環経路を組み直し、限られた魔力でより広い生存圏を維持し始めた。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_250_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_250_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_INNOVATION_T250",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T250"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事250年・年初（ターン250）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事250年・年央（ターン250）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事250年・年末（ターン250）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

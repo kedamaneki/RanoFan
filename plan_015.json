@@ -1,0 +1,75 @@
+{
+  "nationId": "NATION_015",
+  "deepEventPlan": [
+    {
+      "chapter": "第1章・初期高脅威",
+      "macroTurnRange": [
+        1,
+        20
+      ],
+      "suggestedMacroTurn": 10,
+      "narrativeYear": 100,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第2章・瓦解と同盟",
+      "macroTurnRange": [
+        21,
+        40
+      ],
+      "suggestedMacroTurn": 30,
+      "narrativeYear": 300,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第3章・常夜の底",
+      "macroTurnRange": [
+        41,
+        60
+      ],
+      "suggestedMacroTurn": 50,
+      "narrativeYear": 500,
+      "evolutionSystemType": "Inspiration",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第4章・大開拓",
+      "macroTurnRange": [
+        61,
+        80
+      ],
+      "suggestedMacroTurn": 70,
+      "narrativeYear": 700,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第5章・完全駆逐",
+      "macroTurnRange": [
+        81,
+        100
+      ],
+      "suggestedMacroTurn": 90,
+      "narrativeYear": 900,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "固有技術",
+      "suggestedMacroTurn": 10,
+      "eventTypeHint": "ShieldFortification or MagicPioneering",
+      "technologies": [
+        "国家015",
+        "分散型拠点網（ゲリラ防衛）"
+      ],
+      "recommendedRoute": "prosperity"
+    }
+  ],
+  "bodyText": "領域・西の大陸南部に位置する「国家015」は、領域・西の歴史において巨大超大国001と激しく覇権を競い合った最大の抵抗極である。初期の高脅威周期から強固な軍事内政一体型システムを敷き、国家001の強硬な領域再編に真っ向から反発。第3章の暗黒期において国家001が防衛線を内周へ縮小させた際、切り捨てられた外縁領域の生存住民や残存リソースを独自に回収し、「分散型拠点網（ゲリラ防衛）」を形成して対抗軸を確立した。第4章の低脅威周期への移行時、国家001の圧倒的な物量と開拓速度の前に領域内の主導権を譲り、最終的にその広域統治体制下へ組み込まれたものの、形式的な独立と独自の軍事伝統を死守し続けた。（328文字）\n\n国家011〜015の記述は以上となります。大国015の壮絶な抵抗史に加え、魔導農学、水上迷宮、烈風障壁、森林幻惑といった、各気候・地理特性に特化した生存国家群の千年の執念がデータから鮮明に浮かび上がりました。",
+  "quotedTechnologies": [
+    "国家015",
+    "分散型拠点網（ゲリラ防衛）"
+  ]
+}

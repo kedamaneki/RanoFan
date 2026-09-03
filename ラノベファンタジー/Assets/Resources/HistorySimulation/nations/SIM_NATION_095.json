@@ -1,0 +1,352 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_095_MonsterAttack_12",
+      "macroTurn": 12,
+      "timestamp": {
+        "year": 12,
+        "month": 12,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_095",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 7.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0012（ターン012）のラルバでは、夏祭りが開催される予定だった。しかし魔物活性期の影響で、大型イベントは中止または縮小されてしまった。「エル」と「イリス」はそれでも小さなパーティーを企画し、近隣住民たちと親睦を深めようとしている。\n\nこの時期、多くの人々が心に抱える不安から信仰活動も増加している。ラルバでは魔法の結界と共に宗教的な祈りや儀式も行われる。「フレッド」老人は毎日朝夕各1度、「神様に守られている」という言葉を口ずさみながら祈り、家族のために平安を願っている。\n\nこれらの日常の中で、人々は互いに支え合い、共存しながら日々を過ごしている。",
+      "conditionFlag": "HIST_NATION_095_GEO_TURN_012_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_095_GEO_TURN_012_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_095_MONSTERATTACK_T012",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N095_T012"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事12年・年初（ターン012）",
+          "npcDialogue": "「神様に守られている」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事12年・年央（ターン012）",
+          "npcDialogue": "「神様に守られている」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事12年・年末（ターン012）",
+          "npcDialogue": "「神様に守られている」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_095_MonsterAttack_16",
+      "macroTurn": 16,
+      "timestamp": {
+        "year": 16,
+        "month": 4,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "NATION_095",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 7.9 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0016年のこの時期は、魔物休眠期の束の間の安堵を祝う祭りが行われることが多い。市民たちはその機会を利用して、新しい建物の建設や結婚などを計画する。シルバタウンでも、小さな祭りが開かれ、人々は互いに祝福しあっている。\n\nエリックもまた、この年の風俗の一環として友人たちと祝宴を開く計画を立てていた。「これで一時的にでも心が落ち着けるね」と彼は言った。しかし、その言葉の裏には、常に迫りくる脅威への不安が隠されている。\n\nこの土地における市民の生活は、結界の光に支えられながらも、魔物周期という大きな影を背負って日々を過ごしている。",
+      "conditionFlag": "HIST_NATION_095_GEO_TURN_016_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_095_GEO_TURN_016_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_095_MONSTERATTACK_T016",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N095_T016"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事16年・年初（ターン016）",
+          "npcDialogue": "「これで一時的にでも心が落ち着けるね」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事16年・年央（ターン016）",
+          "npcDialogue": "「これで一時的にでも心が落ち着けるね」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事16年・年末（ターン016）",
+          "npcDialogue": "「これで一時的にでも心が落ち着けるね」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_095_MonsterAttack_25",
+      "macroTurn": 25,
+      "timestamp": {
+        "year": 25,
+        "month": 1,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "NATION_095",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 7.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は魔物周期の活性期が連続しているため、市民たちは常に緊張状態にある。また、経済は安定しているものの、水や食料の配分は厳しい状況が続いており、人々は日々の生活に追われる形となっている。「この度持つだけの結晶でどうやって生きていけば良いのか」といった声も聞かれる。\n\n一方で、防衛隊や技術者たちは日夜戦い続けている。彼らは疲弊しているが、それでも街の安全を確保するために日々奮闘しており、「彼らがいなければ我々はもう生きていられない」という感謝の言葉も多い。",
+      "conditionFlag": "HIST_NATION_095_GEO_TURN_025_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_095_GEO_TURN_025_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_095_MONSTERATTACK_T025",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N095_T025"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事25年・年初（ターン025）",
+          "npcDialogue": "「この度持つだけの結晶でどうやって生きていけば良いのか」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事25年・年央（ターン025）",
+          "npcDialogue": "「この度持つだけの結晶でどうやって生きていけば良いのか」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事25年・年末（ターン025）",
+          "npcDialogue": "「この度持つだけの結晶でどうやって生きていけば良いのか」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_095_BarrierDrop_33",
+      "macroTurn": 33,
+      "timestamp": {
+        "year": 33,
+        "month": 9,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_095",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【中央海平原の結節帯】で防衛障壁の循環効率が急落した（低下幅 0.18）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年33年のこの土地は、魔物周期の進行と共に増大する脅威に対して、閉塞感や奪い合いといった特徴的な状況の中にあった。人々の間では、「もう耐えられない」という声が聞こえるほど、生活圏は逼迫している。\n\nまた、この年には「祈りと監視」が日常の中で重要な役割を果たしていた。「夜間に結晶を手に入れるため」とか「魔物から身を守るため」といった目的で、人々の心の中では日々の恐怖や不安が募っている。\n\nしかしこの年の最後は、この土地自体が滅亡するという事態に至った。経済基盤の破綻と防衛力の疲弊により、都市全体が魔物の攻撃から守れなくなったのだ。人々は散り散りになり、国家としての存続を失ってしまった。\n\n「これ以上耐えられない」という声と共に、国民たちはこの国の滅亡を経験したのである。",
+      "conditionFlag": "HIST_NATION_095_GEO_TURN_033_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_095_GEO_TURN_033_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_095_BARRIERDROP_T033",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N095_T033"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事33年・年初（ターン033）",
+          "npcDialogue": "「もう耐えられない」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事33年・年央（ターン033）",
+          "npcDialogue": "「もう耐えられない」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事33年・年末（ターン033）",
+          "npcDialogue": "「もう耐えられない」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_095_MonsterAttack_33",
+      "macroTurn": 33,
+      "timestamp": {
+        "year": 33,
+        "month": 9,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_095",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 8.8 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年33年のこの土地は、魔物周期の進行と共に増大する脅威に対して、閉塞感や奪い合いといった特徴的な状況の中にあった。人々の間では、「もう耐えられない」という声が聞こえるほど、生活圏は逼迫している。\n\nまた、この年には「祈りと監視」が日常の中で重要な役割を果たしていた。「夜間に結晶を手に入れるため」とか「魔物から身を守るため」といった目的で、人々の心の中では日々の恐怖や不安が募っている。\n\nしかしこの年の最後は、この土地自体が滅亡するという事態に至った。経済基盤の破綻と防衛力の疲弊により、都市全体が魔物の攻撃から守れなくなったのだ。人々は散り散りになり、国家としての存続を失ってしまった。\n\n「これ以上耐えられない」という声と共に、国民たちはこの国の滅亡を経験したのである。",
+      "conditionFlag": "HIST_NATION_095_GEO_TURN_033_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_095_GEO_TURN_033_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_095_MONSTERATTACK_T033",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N095_T033"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事33年・年初（ターン033）",
+          "npcDialogue": "「もう耐えられない」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事33年・年央（ターン033）",
+          "npcDialogue": "「もう耐えられない」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事33年・年末（ターン033）",
+          "npcDialogue": "「もう耐えられない」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_095_NationCollapse_33",
+      "macroTurn": 33,
+      "timestamp": {
+        "year": 33,
+        "month": 9,
+        "day": 19,
+        "hour": 4
+      },
+      "targetNationId": "NATION_095",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【中央海平原の結節帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年33年のこの土地は、魔物周期の進行と共に増大する脅威に対して、閉塞感や奪い合いといった特徴的な状況の中にあった。人々の間では、「もう耐えられない」という声が聞こえるほど、生活圏は逼迫している。\n\nまた、この年には「祈りと監視」が日常の中で重要な役割を果たしていた。「夜間に結晶を手に入れるため」とか「魔物から身を守るため」といった目的で、人々の心の中では日々の恐怖や不安が募っている。\n\nしかしこの年の最後は、この土地自体が滅亡するという事態に至った。経済基盤の破綻と防衛力の疲弊により、都市全体が魔物の攻撃から守れなくなったのだ。人々は散り散りになり、国家としての存続を失ってしまった。\n\n「これ以上耐えられない」という声と共に、国民たちはこの国の滅亡を経験したのである。",
+      "conditionFlag": "HIST_NATION_095_GEO_TURN_033_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_095_GEO_TURN_033_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_095_NATIONCOLLAPSE_T033",
+          "alternativeLogMessage": "【中央海平原の結節帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N095_T033"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事24年〜26年（滅亡10〜7年前）",
+          "npcDialogue": "「もう耐えられない」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事27年〜30年（6〜3年前）",
+          "npcDialogue": "「もう耐えられない」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事31年〜33年（2年前〜崩壊）",
+          "npcDialogue": "「もう耐えられない」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

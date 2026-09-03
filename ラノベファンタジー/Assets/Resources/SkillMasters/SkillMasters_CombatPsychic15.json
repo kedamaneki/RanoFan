@@ -1,0 +1,1383 @@
+[
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_MANACIRCLE",
+      "skillName": "魔力循環",
+      "category": "Combat",
+      "description": "体内の魔力を脈動させ、戦闘効率を高める基礎技術。極めることで、あらゆる上位魔導戦闘スキルへと派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_MANAC_ROOT",
+          "artName": "魔力脈動",
+          "description": "魔力の巡りを僅かに活性化させる構え。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 5,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_MANAC_B2",
+              "artName": "魔力奔流",
+              "description": "一時的に魔力の再生力を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Regen_Mana",
+                  "value": 1.5,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_MANAC_L1",
+                  "artName": "魔力解放",
+                  "description": "全消費魔力を15%カットする。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_ManaControl",
+                      "value": 0.15,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_MANAC_B4",
+              "artName": "魔力纏い",
+              "description": "魔力を皮膚に薄く展開する。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_MANAC_L2",
+                  "artName": "魔力殻",
+                  "description": "筋力と体勢上限を底上げする。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 25,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 5.0,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.2,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_MINDUNITY",
+      "skillName": "精神統一",
+      "category": "Combat",
+      "description": "精神を一点に集中し魔力操作を安定させる基礎。上位の精神魔導・予知戦闘へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_MIND_ROOT",
+          "artName": "静念",
+          "description": "呼吸を整え魔力を安定させる。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 4,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_MIND_B2",
+              "artName": "集中",
+              "description": "魔力消費を軽減する。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_ManaControl",
+                  "value": 0.1,
+                  "duration": 6.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_MIND_L1",
+                  "artName": "無想",
+                  "description": "魔力再生を高める。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 2.0,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_MIND_B4",
+              "artName": "精神盾",
+              "description": "防御を高める構え。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_MIND_L2",
+                  "artName": "天人合一",
+                  "description": "筋力と防御を同時強化。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 4.0,
+                      "duration": 5.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_DEF",
+                      "value": 4.0,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_MANABARRIER",
+      "skillName": "魔力障壁",
+      "category": "Combat",
+      "description": "魔力で障壁を張る防御の基礎。上位の絶対障壁・反射流派へ進化する。",
+      "baseArts": [
+        {
+          "artId": "ART_MBAR_ROOT",
+          "artName": "薄障",
+          "description": "薄い魔力障壁を展開。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 6,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_MBAR_B2",
+              "artName": "強障",
+              "description": "防御力を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_DEF",
+                  "value": 6.0,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_MBAR_L1",
+                  "artName": "再生障",
+                  "description": "障壁維持と魔力再生。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 1.8,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_MBAR_B4",
+              "artName": "体勢障",
+              "description": "体勢耐性を高める。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_MBAR_L2",
+                  "artName": "絶対障",
+                  "description": "体勢上限と防御を大幅強化。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 24,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.3,
+                      "duration": 8.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_DEF",
+                      "value": 8.0,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_SELFREGEN",
+      "skillName": "自己再生",
+      "category": "Combat",
+      "description": "生命力と魔力の自己修復の基礎。不死身・超再生の上位流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_REGEN_ROOT",
+          "artName": "自愈",
+          "description": "わずかに魔力を回復する構え。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 5,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_REGEN_B2",
+              "artName": "魔力回復",
+              "description": "戦闘中の魔力再生。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Regen_Mana",
+                  "value": 2.5,
+                  "duration": 6.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_REGEN_L1",
+                  "artName": "深癒",
+                  "description": "持続的な魔力循環。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 3.5,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_REGEN_B4",
+              "artName": "剛身",
+              "description": "防御を補強する。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_DEF",
+                  "value": 3.0,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_REGEN_L2",
+                  "artName": "超再生",
+                  "description": "筋力と体勢を底上げする。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 5.0,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.15,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_IRONBODY",
+      "skillName": "剛体術",
+      "category": "Combat",
+      "description": "肉体を硬化させる基礎。金剛不壊・破砕拳の流派へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_IRON_ROOT",
+          "artName": "硬気",
+          "description": "身体をわずかに硬化。（技1個目）",
+          "poiseDamage": 5,
+          "manaCost": 4,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_IRON_B2",
+              "artName": "鉄皮",
+              "description": "防御力を強化。（技2個目）",
+              "poiseDamage": 8,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_DEF",
+                  "value": 7.0,
+                  "duration": 6.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_IRON_L1",
+                  "artName": "金身",
+                  "description": "体勢耐性を高める。（技3個目）",
+                  "poiseDamage": 12,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.25,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_IRON_B4",
+              "artName": "剛打",
+              "description": "硬化した打撃。（技4個目）",
+              "poiseDamage": 18,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_IRON_L2",
+                  "artName": "不壊",
+                  "description": "筋力と防御の極致。（技5個目）",
+                  "poiseDamage": 25,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 6.0,
+                      "duration": 5.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_DEF",
+                      "value": 10.0,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_FLASHSTEP",
+      "skillName": "瞬身術",
+      "category": "Combat",
+      "description": "短距離の高速移動の基礎。残像・空間跳躍の上位技法へ展開する。",
+      "baseArts": [
+        {
+          "artId": "ART_FLASH_ROOT",
+          "artName": "足運び",
+          "description": "素早い足さばき。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 3,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_FLASH_B2",
+              "artName": "瞬足",
+              "description": "魔力消費を抑える。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_ManaControl",
+                  "value": 0.12,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_FLASH_L1",
+                  "artName": "残像",
+                  "description": "移動後の体勢強化。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.2,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_FLASH_B4",
+              "artName": "疾風",
+              "description": "筋力を一時的に高める。（技4個目）",
+              "poiseDamage": 5,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_STR",
+                  "value": 4.0,
+                  "duration": 4.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_FLASH_L2",
+                  "artName": "空閃",
+                  "description": "魔力再生と機動の融合。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 2.0,
+                      "duration": 5.0
+                    },
+                    {
+                      "effectType": "Psychic_ManaControl",
+                      "value": 0.1,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_MINDEYE",
+      "skillName": "心眼術",
+      "category": "Combat",
+      "description": "感覚を研ぎ澄ます基礎。予知・弱点看破の上位感知流派へ進む。",
+      "baseArts": [
+        {
+          "artId": "ART_MEYE_ROOT",
+          "artName": "見切り",
+          "description": "敵の動きを読む構え。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 4,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_MEYE_B2",
+              "artName": "心眼",
+              "description": "体勢耐性を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Buff_Poise",
+                  "value": 0.18,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_MEYE_L1",
+                  "artName": "識破",
+                  "description": "魔力消費を軽減。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_ManaControl",
+                      "value": 0.15,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_MEYE_B4",
+              "artName": "集中撃",
+              "description": "筋力を集中させる一撃。（技4個目）",
+              "poiseDamage": 15,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_STR",
+                  "value": 5.0,
+                  "duration": 4.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_MEYE_L2",
+                  "artName": "無明",
+                  "description": "魔力循環と防御の極意。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 2.5,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_DEF",
+                      "value": 5.0,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_SPIRIT",
+      "skillName": "気合",
+      "category": "Combat",
+      "description": "気を込めた威圧と強化の基礎。覇気・殺気の上位流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_SPIRIT_ROOT",
+          "artName": "気合い",
+          "description": "気を込めた一喝。（技1個目）",
+          "poiseDamage": 10,
+          "manaCost": 5,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_SPIRIT_B2",
+              "artName": "威圧",
+              "description": "筋力を高める。（技2個目）",
+              "poiseDamage": 15,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_STR",
+                  "value": 6.0,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_SPIRIT_L1",
+                  "artName": "気刃",
+                  "description": "気を刃に乗せる。（技3個目）",
+                  "poiseDamage": 20,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 8.0,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_SPIRIT_B4",
+              "artName": "気盾",
+              "description": "防御を補強。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_DEF",
+                  "value": 5.0,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_SPIRIT_L2",
+                  "artName": "覇気",
+                  "description": "体勢と筋力の頂点。（技5個目）",
+                  "poiseDamage": 30,
+                  "manaCost": 24,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.3,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 10.0,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_HIDESPIRIT",
+      "skillName": "隠気術",
+      "category": "Combat",
+      "description": "気を殺し姿を隠す基礎。完全隠密・暗殺魔導へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_HIDE_ROOT",
+          "artName": "潜気",
+          "description": "気配を抑える。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 4,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_HIDE_B2",
+              "artName": "消気",
+              "description": "魔力消費を抑える。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 9,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_ManaControl",
+                  "value": 0.12,
+                  "duration": 6.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_HIDE_L1",
+                  "artName": "影歩",
+                  "description": "体勢を保ちながら移動。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.15,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_HIDE_B4",
+              "artName": "急所撃",
+              "description": "隠れ身からの一撃。（技4個目）",
+              "poiseDamage": 25,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_STR",
+                  "value": 5.0,
+                  "duration": 3.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_HIDE_L2",
+                  "artName": "無気",
+                  "description": "魔力再生と防御の静寂。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 2.0,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_DEF",
+                      "value": 6.0,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_COUNTER",
+      "skillName": "反撃術",
+      "category": "Combat",
+      "description": "受けた力を返す基礎。完全反撃・因果返しの流派へ進化する。",
+      "baseArts": [
+        {
+          "artId": "ART_CNT_ROOT",
+          "artName": "構え",
+          "description": "反撃の準備姿勢。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 3,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_CNT_B2",
+              "artName": "受勢",
+              "description": "体勢を固める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Buff_Poise",
+                  "value": 0.2,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_CNT_L1",
+                  "artName": "返し",
+                  "description": "反撃時の筋力強化。（技3個目）",
+                  "poiseDamage": 20,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 7.0,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_CNT_B4",
+              "artName": "鉄壁返",
+              "description": "防御を高めて反撃。（技4個目）",
+              "poiseDamage": 15,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_DEF",
+                  "value": 6.0,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_CNT_L2",
+                  "artName": "因果返",
+                  "description": "魔力効率と体勢の極意。（技5個目）",
+                  "poiseDamage": 35,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_ManaControl",
+                      "value": 0.15,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.25,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_PARRY",
+      "skillName": "受け流し",
+      "category": "Combat",
+      "description": "攻撃をそらす基礎。完全無欠の受け流し流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_PARRY_ROOT",
+          "artName": "受け",
+          "description": "基本の受け流し。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 2,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PARRY_B2",
+              "artName": "流し",
+              "description": "体勢を保つ受け。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Buff_Poise",
+                  "value": 0.22,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_PARRY_L1",
+                  "artName": "巧流",
+                  "description": "魔力消費を軽減。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_ManaControl",
+                      "value": 0.1,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_PARRY_B4",
+              "artName": "反打",
+              "description": "流しからの打撃。（技4個目）",
+              "poiseDamage": 18,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_STR",
+                  "value": 5.0,
+                  "duration": 4.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_PARRY_L2",
+                  "artName": "無双受",
+                  "description": "防御と魔力再生の極意。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_DEF",
+                      "value": 8.0,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 2.0,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_IRONWALL",
+      "skillName": "鉄壁",
+      "category": "Combat",
+      "description": "鉄壁の如き防御の基礎。要塞・絶対防御の上位流派へ展開する。",
+      "baseArts": [
+        {
+          "artId": "ART_WALL_ROOT",
+          "artName": "防壁",
+          "description": "基本の防御構え。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 5,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_WALL_B2",
+              "artName": "厚壁",
+              "description": "防御力を大幅強化。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_DEF",
+                  "value": 10.0,
+                  "duration": 6.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_WALL_L1",
+                  "artName": "体勢壁",
+                  "description": "体勢上限を高める。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.28,
+                      "duration": 7.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_WALL_B4",
+              "artName": "魔力壁",
+              "description": "魔力で障壁を補強。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 16,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Regen_Mana",
+                  "value": 1.5,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_WALL_L2",
+                  "artName": "絶壁",
+                  "description": "筋力と防御の鉄壁。（技5個目）",
+                  "poiseDamage": 10,
+                  "manaCost": 24,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_DEF",
+                      "value": 12.0,
+                      "duration": 8.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 4.0,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_SPRINT",
+      "skillName": "疾走",
+      "category": "Combat",
+      "description": "高速移動と突進の基礎。音速・瞬間移動の上位機動へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_SPRINT_ROOT",
+          "artName": "疾走",
+          "description": "素早く前進する。（技1個目）",
+          "poiseDamage": 8,
+          "manaCost": 4,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_SPRINT_B2",
+              "artName": "突進",
+              "description": "筋力を乗せた突進。（技2個目）",
+              "poiseDamage": 15,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_STR",
+                  "value": 5.0,
+                  "duration": 4.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_SPRINT_L1",
+                  "artName": "風走",
+                  "description": "魔力消費を抑える。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_ManaControl",
+                      "value": 0.12,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_SPRINT_B4",
+              "artName": "連走",
+              "description": "体勢を保つ連続移動。（技4個目）",
+              "poiseDamage": 12,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Buff_Poise",
+                  "value": 0.18,
+                  "duration": 5.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_SPRINT_L2",
+                  "artName": "神走",
+                  "description": "魔力再生と機動の融合。（技5個目）",
+                  "poiseDamage": 20,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 2.5,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 7.0,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_VAJRA",
+      "skillName": "金剛",
+      "category": "Combat",
+      "description": "金剛の如き不坏の基礎。羅漢・明王の上位体術へ進化する。",
+      "baseArts": [
+        {
+          "artId": "ART_VAJRA_ROOT",
+          "artName": "金剛印",
+          "description": "身体を金剛の如く固める。（技1個目）",
+          "poiseDamage": 5,
+          "manaCost": 6,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_VAJRA_B2",
+              "artName": "不坏",
+              "description": "防御と体勢を強化。（技2個目）",
+              "poiseDamage": 10,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_DEF",
+                  "value": 8.0,
+                  "duration": 6.0
+                },
+                {
+                  "effectType": "Buff_Poise",
+                  "value": 0.2,
+                  "duration": 6.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_VAJRA_L1",
+                  "artName": "明王",
+                  "description": "筋力を爆発させる。（技3個目）",
+                  "poiseDamage": 25,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 9.0,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_VAJRA_B4",
+              "artName": "真言",
+              "description": "魔力を節約する。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_ManaControl",
+                  "value": 0.15,
+                  "duration": 6.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_VAJRA_L2",
+                  "artName": "大威徳",
+                  "description": "全能力の極致。（技5個目）",
+                  "poiseDamage": 35,
+                  "manaCost": 28,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 10.0,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_DEF",
+                      "value": 10.0,
+                      "duration": 6.0
+                    },
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.25,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_FAJIN",
+      "skillName": "発勁",
+      "category": "Combat",
+      "description": "内勁を発する基礎。透勁・震盪の上位打撃流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_FAJIN_ROOT",
+          "artName": "勁打",
+          "description": "内勁を込めた打撃。（技1個目）",
+          "poiseDamage": 18,
+          "manaCost": 5,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_FAJIN_B2",
+              "artName": "透勁",
+              "description": "防御を無視する勁。（技2個目）",
+              "poiseDamage": 28,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_Boost_STR",
+                  "value": 7.0,
+                  "duration": 4.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_FAJIN_L1",
+                  "artName": "震勁",
+                  "description": "体勢を崩す震盪。（技3個目）",
+                  "poiseDamage": 40,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.2,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_FAJIN_B4",
+              "artName": "蓄勁",
+              "description": "魔力を蓄え消費を抑える。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Psychic_ManaControl",
+                  "value": 0.12,
+                  "duration": 6.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_FAJIN_L2",
+                  "artName": "爆勁",
+                  "description": "魔力再生と筋力の爆発。（技5個目）",
+                  "poiseDamage": 55,
+                  "manaCost": 24,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Psychic_Regen_Mana",
+                      "value": 2.0,
+                      "duration": 5.0
+                    },
+                    {
+                      "effectType": "Psychic_Boost_STR",
+                      "value": 12.0,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

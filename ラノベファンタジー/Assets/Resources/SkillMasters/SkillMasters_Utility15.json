@@ -1,0 +1,267 @@
+[
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_RADAR",
+      "skillName": "敵感知",
+      "category": "Utility",
+      "description": "周囲に潜む脅威の魔力波形を敏感に察知する便利系スキル。熟練することで、敵の行動予兆を先読みする超感覚へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_EnemyDetect",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_MAPRADAR",
+      "skillName": "マップ機能",
+      "category": "Utility",
+      "description": "周囲の地形と魔力の流れを頭内に展開する便利系スキル。極めることで、隠された鉱脈と安全境界を完全可視化する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MapRadar",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_MINDACCEL",
+      "skillName": "思考加速",
+      "category": "Utility",
+      "description": "脳内の魔力処理を加速し、世界の遷移を引き伸ばす便利系超能力。極めることで、予兆を完全に支配する時間操作へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MindAccelerate",
+          "value": 0.3,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_WAVESEE",
+      "skillName": "魔力波形看破",
+      "category": "Utility",
+      "description": "敵や罠が放つ魔力波形の歪みを読み取る便利系スキル。極めることで、隠蔽された脅威の完全解析へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_EnemyDetect",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_STEALTH",
+      "skillName": "隠密",
+      "category": "Utility",
+      "description": "自身の気配と魔力漏れを抑える便利系スキル。極めることで、完全無音の深層潜入へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Psychic_ManaControl",
+          "value": 0.12,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_PRESENCE",
+      "skillName": "気配察知",
+      "category": "Utility",
+      "description": "周囲の生気と魔力の気配を感じ取る便利系スキル。極めることで、視界外の敵群を完全把握する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_EnemyDetect",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_DANGER",
+      "skillName": "危険予知",
+      "category": "Utility",
+      "description": "迫る危険の予兆を先読みする便利系スキル。極めることで、災害級イベントの完全回避へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MindAccelerate",
+          "value": 0.25,
+          "duration": 0.0
+        },
+        {
+          "effectType": "Utility_EnemyDetect",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_DARKVIS",
+      "skillName": "暗視",
+      "category": "Utility",
+      "description": "暗闇の中でも魔力の残光を視認する便利系スキル。極めることで、深層ダンジョンの永久視界へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MapRadar",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_FARSIGHT",
+      "skillName": "千里眼",
+      "category": "Utility",
+      "description": "遠方の地形と脅威を俯瞰する便利系スキル。極めることで、大陸規模の索敵網へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MapRadar",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_TRACK",
+      "skillName": "足跡追跡",
+      "category": "Utility",
+      "description": "残された魔力痕跡から行動を追う便利系スキル。極めることで、時空を遡る追跡術へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_EnemyDetect",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_TRAPDET",
+      "skillName": "罠感知",
+      "category": "Utility",
+      "description": "周囲の罠と機構の魔力反応を察知する便利系スキル。極めることで、古代遺跡の完全安全開拓へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MapRadar",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_STRUCT",
+      "skillName": "構造把握",
+      "category": "Utility",
+      "description": "建物や地形の内部構造を魔力で読み解く便利系スキル。極めることで、迷宮の最短経路自動導出へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MapRadar",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_MOTION",
+      "skillName": "動体予測",
+      "category": "Utility",
+      "description": "敵の動きを先読みし猶予を拡大する便利系スキル。極めることで、完全先制の戦闘支配へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MindAccelerate",
+          "value": 0.35,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_HEARING",
+      "skillName": "聴覚鋭敏",
+      "category": "Utility",
+      "description": "遠方の音と魔力振動を増幅して聴く便利系スキル。極めることで、視界外の脅威を音で完全特定する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_EnemyDetect",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_UTIL_SCAN",
+      "skillName": "広域走査",
+      "category": "Utility",
+      "description": "広範囲を魔力で走査し脅威と資源を同時検出する便利系スキル。極めることで、領域全体の常時監視へ派生する。",
+      "specialEffects": [
+        {
+          "effectType": "Utility_MapRadar",
+          "value": 1.0,
+          "duration": 0.0
+        },
+        {
+          "effectType": "Utility_EnemyDetect",
+          "value": 1.0,
+          "duration": 0.0
+        }
+      ],
+      "baseArts": []
+    }
+  }
+]

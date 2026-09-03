@@ -1,0 +1,120 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_008_NationCollapse_57",
+      "macroTurn": 57,
+      "timestamp": {
+        "year": 57,
+        "month": 9,
+        "day": 10,
+        "hour": 4
+      },
+      "targetNationId": "NATION_008",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【最西端の大陸帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "このターンは魔物周期の活性期であり、この土地にとって最も重要な時期となっている。人々は防衛隊や志願兵たちに敬意を表し、「あなたたちのおかげで命が保たれている」という感謝の言葉をよく耳にする。しかし一方で、経済的な不安定さと不動産不足による問題も深刻化している。\n\nまた、この時期には多くの人々が結界や防衛に関する祈りを行っている。「魔物から守ってください」「家族を助けてください」という願いとともに、小さな祠や教会では日々の祈りが行われている。しかし、今日という日は、この土地にとっては特別な意味を持つ日となった。",
+      "conditionFlag": "HIST_NATION_008_GEO_TURN_057_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_008_GEO_TURN_057_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_008_NATIONCOLLAPSE_T057",
+          "alternativeLogMessage": "【最西端の大陸帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N008_T057"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事48年〜50年（滅亡10〜7年前）",
+          "npcDialogue": "「あなたたちのおかげで命が保たれている」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事51年〜54年（6〜3年前）",
+          "npcDialogue": "「あなたたちのおかげで命が保たれている」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事55年〜57年（2年前〜崩壊）",
+          "npcDialogue": "「あなたたちのおかげで命が保たれている」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SPINE_WORLD_MonsterAttack_57",
+      "macroTurn": 57,
+      "timestamp": {
+        "year": 57,
+        "month": 9,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "全球観測：生存統治体 75、脅威指数 2.700、周期位相 active。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網の前線は異形の波に押し込まれ、耕作地と配給路が寸断された。人型の敵ではなく、環境と一体化した魔獣が結界を削っている。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_057_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_057_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_MONSTERATTACK_T057",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T057"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事57年・年初（ターン057）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事57年・年央（ターン057）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事57年・年末（ターン057）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    }
+  ]
+}

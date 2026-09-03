@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_SEC_CH01_S04_WORLD_Innovation_39",
+      "macroTurn": 39,
+      "timestamp": {
+        "year": 39,
+        "month": 3,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "第1章第4節の観測開始。生存 86、総国力 104039、脅威 1.550。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網の技術層は結界の循環経路を組み直し、限られた魔力でより広い生存圏を維持し始めた。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_039_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_039_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_INNOVATION_T039",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T039"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事39年・年初（ターン039）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事39年・年央（ターン039）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事39年・年末（ターン039）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SEC_CH01_S04_NATION_150_MonsterAttack_50",
+      "macroTurn": 50,
+      "timestamp": {
+        "year": 50,
+        "month": 2,
+        "day": 16,
+        "hour": 10
+      },
+      "targetNationId": "NATION_150",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 11.1 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、この土地では「魔物活性期」を生き抜くために日々の生活に全力で取り組んでいた。「結界効率1.10」という言葉が人々の口ぐちで飛び交い、「頑張ってるね」という励ましの声と共に、緊迫した空気が広がっていた。\n\nまた、この年は特に魔力不足が深刻化しており、技師たちの徹夜続きとなった。「魔物を封じ込めるためにも、結界を守るためにも、我々には責任があるんだよ」とフィルも語る。人々の間では、「絶対的な不足があるからね」という言葉と共に、日々の生活が繰り返される。\n\n「また明日か」と思わず呟く人々の後ろ姿は、この土地の日常を象徴するものだった。",
+      "conditionFlag": "HIST_NATION_150_GEO_TURN_050_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_150_GEO_TURN_050_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_150_MONSTERATTACK_T050",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N150_T050"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事50年・年初（ターン050）",
+          "npcDialogue": "「結界効率1.10」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事50年・年央（ターン050）",
+          "npcDialogue": "「結界効率1.10」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事50年・年末（ターン050）",
+          "npcDialogue": "「結界効率1.10」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SEC_CH01_S04_WORLD_NationCollapse_50",
+      "macroTurn": 50,
+      "timestamp": {
+        "year": 50,
+        "month": 2,
+        "day": 16,
+        "hour": 4
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "この節で 7 の統治体が欠番化した。結界崩壊は番号を再利用せず、無主地として記録される。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網では障壁網が脅威個体群の圧力に抗しきれず、生存圏と配給網が同時に潰えた。残民は隣接する結界都市へと散り、番号は再利用されない。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_050_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_050_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_NATIONCOLLAPSE_T050",
+          "alternativeLogMessage": "【全大陸観測網】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T050"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事50年・年初（ターン050）",
+          "npcDialogue": "「欠番の地図が増えている。番号は戻らない。」",
+          "statusBuff": "世界規模の淘汰圧。無主地の拡大。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事50年・年央（ターン050）",
+          "npcDialogue": "「隣の結界都市へ避難する列が、街道を埋めている。」",
+          "visualChange": "放棄都市と明滅する残骸結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事50年・年末（ターン050）",
+          "npcDialogue": "「生き残った輪を太くする以外に、手はない。」",
+          "gameplayReward": "世界観測ログの更新。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SEC_CH01_S04_WORLD_Innovation_50",
+      "macroTurn": 50,
+      "timestamp": {
+        "year": 50,
+        "month": 2,
+        "day": 16,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "第1章第4節の観測終了。生存 79、総国力 102424、脅威 2.700。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網の技術層は結界の循環経路を組み直し、限られた魔力でより広い生存圏を維持し始めた。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_050_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_050_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_INNOVATION_T050",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T050"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事50年・年初（ターン050）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事50年・年央（ターン050）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事50年・年末（ターン050）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

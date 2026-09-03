@@ -1,0 +1,274 @@
+﻿{
+  "skills": [],
+  "magics": [
+    {
+      "id": "MAGIC_WATER_CREATE",
+      "name": "標準生活水生成",
+      "description": "井戸と結界触媒向けの生活水を凝結する基礎術。村の日常を支える Safe-Fail フォールバック。",
+      "manaCost": 10,
+      "element": "水",
+      "power": 1.0,
+      "value": 1.0,
+      "effectType": "Psychic_Regen_HP",
+      "baseManaCost": 10,
+      "castSpeedModifier": 1.0,
+      "areaRange": 1.5,
+      "customTraitCode": "CREATE"
+    },
+    {
+      "id": "MAGIC_FIRE_SPARK",
+      "name": "火粉の瞬き",
+      "description": "基礎魔法。弾速は極めて遅いが、着弾時の爆発範囲（areaRange）が広く、複数の敵を巻き込む。",
+      "manaCost": 8,
+      "element": "火",
+      "power": 12.0,
+      "castSpeedModifier": 0.8,
+      "areaRange": 3.5,
+      "customTraitCode": "SPLASH",
+      "eraSettings": {
+        "earlyManaCostMultiplier": 1.0,
+        "midManaCostMultiplier": 1.2,
+        "lateManaCostMultiplier": 0.0,
+        "earlyCastSpeedMultiplier": 1.0,
+        "midCastSpeedMultiplier": 1.1,
+        "lateCastSpeedMultiplier": 0.0
+      }
+    },
+    {
+      "id": "MAGIC_CRYSTAL_LANCE",
+      "name": "晶抗の鋭槍",
+      "description": "結晶属性魔法。直線の敵をすべて射抜く特性を持ち、体勢（Stamina）を削る能力が高い。",
+      "manaCost": 18,
+      "element": "結晶",
+      "power": 25.0,
+      "castSpeedModifier": 1.1,
+      "areaRange": 1.2,
+      "customTraitCode": "PIERCING"
+    },
+    {
+      "id": "MAGIC_STALKER_GLINT",
+      "name": "幻霧の追跡光",
+      "description": "南方の隠蔽技術から派生した魔導。低威力だが、敵の不規則なディレイを無視して必中追従する。",
+      "manaCost": 14,
+      "element": "幻霧",
+      "power": 8.0,
+      "castSpeedModifier": 1.5,
+      "areaRange": 0.5,
+      "customTraitCode": "TRACKING"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "JOB_OTHERWORLD_TRAINEE",
+      "name": "異世界転生者",
+      "description": "転移直後の素の状態。ジョブ補正は均等等倍で、以降の転職の起点となる。",
+      "statModifiers": {
+        "hpMultiplier": 1.0,
+        "strMultiplier": 1.0,
+        "defMultiplier": 1.0,
+        "manaMultiplier": 1.0
+      },
+      "unlockConditions": [],
+      "nextJobId": "JOB_HISTORIAN",
+      "defaultSkillIds": []
+    },
+    {
+      "id": "JOB_HISTORIAN",
+      "name": "歴史書を解読せし者",
+      "description": "131カ国のサバイバルログを読み解く基本ジョブ。魔力と最大MPへの適性が高い。",
+      "statModifiers": {
+        "hpMultiplier": 0.9,
+        "strMultiplier": 0.8,
+        "defMultiplier": 0.9,
+        "manaMultiplier": 1.3
+      },
+      "unlockConditions": [
+        "HIST_INITIAL_DECODING_COMPLETE"
+      ],
+      "nextJobId": "JOB_CHRONO_ARCHITECT",
+      "defaultSkillIds": [
+        "SKILL_FIELD_SEARCH",
+        "SKILL_HISTORY_ANALYSIS"
+      ],
+      "eraSettings": {
+        "earlyUnlockFlags": [],
+        "midUnlockFlags": [],
+        "lateUnlockFlags": [
+          "ERA_ANCIENT_ARCHIVIST"
+        ]
+      }
+    },
+    {
+      "id": "JOB_BLACKSMITH",
+      "name": "不純物を叩き落とす職人",
+      "description": "工房フェーズの基盤となるジョブ。STRとDEFが上昇し、鍛冶パラメータの変動値が安定する。",
+      "statModifiers": {
+        "hpMultiplier": 1.1,
+        "strMultiplier": 1.2,
+        "defMultiplier": 1.2,
+        "manaMultiplier": 0.7
+      },
+      "unlockConditions": [
+        "FLAG_FIRST_CRAFT_SUCCESS"
+      ],
+      "nextJobId": "JOB_MITHRIL_FORGER",
+      "defaultSkillIds": [
+        "SKILL_CRAFT_FORGE",
+        "SKILL_HEAT_CONTROL"
+      ]
+    },
+    {
+      "id": "JOB_MIMICRY_HUNTER",
+      "name": "異形を暴く観察者",
+      "description": "ティア2〜3の擬態魔物との戦闘に特化したエリート職。不規則な攻撃への反応速度が上がる。",
+      "statModifiers": {
+        "hpMultiplier": 1.0,
+        "strMultiplier": 1.1,
+        "defMultiplier": 1.0,
+        "manaMultiplier": 1.0
+      },
+      "unlockConditions": [
+        "FLAG_DEFEAT_CRYSTAL_GARGOYLE"
+      ],
+      "nextJobId": "",
+      "defaultSkillIds": [
+        "SKILL_PARRY_WINDOW_EXTEND",
+        "SKILL_TRAIT_COUNTER"
+      ]
+    }
+  ],
+  "enemies": [
+    {
+      "id": "ENEMY_FOREST_SLIME",
+      "name": "原生の粘性異形（スライム）",
+      "hp": 45,
+      "str": 7,
+      "def": 2,
+      "behaviorPattern": "PATTERN_BASIC_SLIME",
+      "dropItems": [
+        {
+          "itemId": "MAT_SLIME_GEL",
+          "dropChance": 0.8
+        }
+      ]
+    },
+    {
+      "id": "ENEMY_SHADOW_STALKER",
+      "name": "霧影の追跡異形（ストーカー）",
+      "hp": 90,
+      "str": 14,
+      "def": 6,
+      "behaviorPattern": "PATTERN_AGILE_STALKER",
+      "dropItems": [
+        {
+          "itemId": "MAT_SLIME_GEL",
+          "dropChance": 0.35
+        }
+      ]
+    },
+    {
+      "id": "ENEMY_WASTELAND_BEETLE",
+      "name": "荒野の骸甲虫（巨甲虫）",
+      "hp": 180,
+      "str": 24,
+      "def": 18,
+      "behaviorPattern": "PATTERN_HEAVY_TITAN",
+      "dropItems": [
+        {
+          "itemId": "MAT_BEETLE_CHITIN",
+          "dropChance": 0.7
+        },
+        {
+          "itemId": "MAT_SLIME_GEL",
+          "dropChance": 0.1
+        }
+      ]
+    },
+    {
+      "id": "ENEMY_CRYSTAL_GARGOYLE",
+      "name": "結晶の幻惑異形（ガーゴイル）",
+      "hp": 520,
+      "str": 52,
+      "def": 38,
+      "behaviorPattern": "PATTERN_FEINT_DANCER",
+      "dropItems": [
+        {
+          "itemId": "MAT_CRYSTAL_SHARD",
+          "dropChance": 0.6
+        },
+        {
+          "itemId": "MAT_BEETLE_CHITIN",
+          "dropChance": 0.2
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "MAT_SLIME_GEL",
+      "name": "原生異形の原液ジェル",
+      "description": "純粋な粘性魔物の分泌液。調合スロットに複数投入するとDensity（密度）がブーストされる。",
+      "itemType": "Material",
+      "weight": 1.0,
+      "craftValue": 1.0,
+      "maxStack": 99
+    },
+    {
+      "id": "MAT_BEETLE_CHITIN",
+      "name": "骸甲虫の重分子殻",
+      "description": "極めて頑強な生物殻。鍛冶のベース素材として連続投入すると、武器の基礎DEFや Sturdiness を爆発的に高める。",
+      "itemType": "Material",
+      "weight": 4.5,
+      "craftValue": 1.2,
+      "maxStack": 30
+    },
+    {
+      "id": "MAT_CRYSTAL_SHARD",
+      "name": "結晶魔導の輝く破片",
+      "description": "固有エネルギーの暴走跡から採取される高濃度結晶。他素材の工程に混ぜると純度（Purity）を1.5倍に引き上げる特異点素材。",
+      "itemType": "Material",
+      "weight": 0.5,
+      "craftValue": 1.5,
+      "maxStack": 99
+    },
+    {
+      "id": "MAT_CRAFT_FAILURE",
+      "name": "歪んだ結晶鉄くず",
+      "description": "安全失敗フォールバック。レシピが成立しなかった、あるいは異素材の混入比率を誤った結果生まれた不純物の塊。",
+      "itemType": "Material",
+      "weight": 2.0,
+      "craftValue": 0.0,
+      "maxStack": 99
+    },
+    {
+      "id": "WEAPON_CHITIN_EDGE",
+      "name": "キチン・鋸大刃",
+      "description": "成果物変化。骸甲虫の重殻ベースの鍛冶セッション中に、異素材『原生異形の原液ジェル』を混入させることで分子結合が有機的に変異した異形の大剣。",
+      "itemType": "Equipment",
+      "weight": 6.5,
+      "craftValue": 0.0,
+      "maxStack": 1
+    },
+    {
+      "id": "POTION_HIGH_REMEDY",
+      "name": "ハイ・結晶レメディ",
+      "description": "成果物変化。通常の調合液の精製 session の途中で、異素材『結晶魔導の輝く破片』を混入させたことにより、効能が爆発的に結晶変異した上級の回復薬。",
+      "itemType": "Consumable",
+      "weight": 0.2,
+      "craftValue": 0.0,
+      "maxStack": 20
+    }
+  ],
+  "canonTimeline250": {
+    "final_turn": 250,
+    "mid_cycle_turns": 400,
+    "main_story_branch_id": "ALT_NATION_001_TURN_208_HERETIC_ORTHODOXY",
+    "lineage": [
+      { "generation": 1, "branch_id": "ALT_NATION_001_TURN_006_INNOVATION", "label": "IF_Line: 魔導革新の年代", "committed_at_turn": 50, "score": 306 },
+      { "generation": 2, "branch_id": "ALT_NATION_001_TURN_058_ARCANE_REVIVAL", "label": "IF_Line: 魔導復興", "committed_at_turn": 100, "score": 385 },
+      { "generation": 3, "branch_id": "ALT_NATION_001_TURN_111_DEMON_FRONT", "label": "IF_Line: 魔王軍前線", "committed_at_turn": 150, "score": 385 },
+      { "generation": 4, "branch_id": "ALT_NATION_001_TURN_158_HERETIC_ARCANA", "label": "IF_Line: 異端魔導の覚醒", "committed_at_turn": 200, "score": 391 },
+      { "generation": 5, "branch_id": "ALT_NATION_001_TURN_208_HERETIC_ORTHODOXY", "label": "IF_Line: 異端魔法の正統化", "committed_at_turn": 250, "score": 377 }
+    ]
+  }
+}

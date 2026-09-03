@@ -1,0 +1,2 @@
+﻿PASS
+breach=True keeper=True beasts=True flag=True housingDmg=True spot=SPOT_BARRIER_ANCHOR_2 結界=0.0%

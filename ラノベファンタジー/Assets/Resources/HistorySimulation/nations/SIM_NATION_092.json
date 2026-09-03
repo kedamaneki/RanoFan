@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_092_BarrierDrop_2",
+      "macroTurn": 2,
+      "timestamp": {
+        "year": 2,
+        "month": 2,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_092",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【最西端の大陸帯】で防衛障壁の循環効率が急落した（低下幅 0.19）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、経済と軍事・魔力のバランスを取ることが日々の課題だ。「配給」と「訓練」という二つの要素は、この国の住民にとって不可欠な存在である。また、「結界効率が良い」という言葉と共に、人々は不安と希望の中で暮らしている。\n\nこの国家では、魔物周期の影響を受けて、日常生活の全てが動いている。「魔力結晶」は、まさに生活そのものと言えるだろう。人々は日々の配給に頼り、防衛隊の訓練を見守る中で、「明日も大丈夫かな」という思いと共に生きている。\n\nそして、この国の住民たちは、魔物への恐怖と向き合うことで、互いを支えている。「夜が怖すぎるけど、それでも明日は必ず来る」そんな言葉が風に舞っている。",
+      "conditionFlag": "HIST_NATION_092_GEO_TURN_002_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_092_GEO_TURN_002_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_092_BARRIERDROP_T002",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N092_T002"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事2年・年初（ターン002）",
+          "npcDialogue": "「明日も大丈夫かな」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事2年・年央（ターン002）",
+          "npcDialogue": "「明日も大丈夫かな」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事2年・年末（ターン002）",
+          "npcDialogue": "「明日も大丈夫かな」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_092_MonsterAttack_2",
+      "macroTurn": 2,
+      "timestamp": {
+        "year": 2,
+        "month": 2,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_092",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.6 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、経済と軍事・魔力のバランスを取ることが日々の課題だ。「配給」と「訓練」という二つの要素は、この国の住民にとって不可欠な存在である。また、「結界効率が良い」という言葉と共に、人々は不安と希望の中で暮らしている。\n\nこの国家では、魔物周期の影響を受けて、日常生活の全てが動いている。「魔力結晶」は、まさに生活そのものと言えるだろう。人々は日々の配給に頼り、防衛隊の訓練を見守る中で、「明日も大丈夫かな」という思いと共に生きている。\n\nそして、この国の住民たちは、魔物への恐怖と向き合うことで、互いを支えている。「夜が怖すぎるけど、それでも明日は必ず来る」そんな言葉が風に舞っている。",
+      "conditionFlag": "HIST_NATION_092_GEO_TURN_002_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_092_GEO_TURN_002_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_092_MONSTERATTACK_T002",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N092_T002"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事2年・年初（ターン002）",
+          "npcDialogue": "「明日も大丈夫かな」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事2年・年央（ターン002）",
+          "npcDialogue": "「明日も大丈夫かな」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事2年・年末（ターン002）",
+          "npcDialogue": "「明日も大丈夫かな」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_092_MonsterAttack_35",
+      "macroTurn": 35,
+      "timestamp": {
+        "year": 35,
+        "month": 11,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_092",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 6.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年のこの土地は魔物周期の最悪な位相である11に遭遇したため、多くの市民たちが絶望と混乱の中を過ごしている。配給所の行列や地下集落での住民が増え、窮屈さと窒息感が日常となっている。\n\n防衛隊や訓練中の兵士たちは前線からの避難者を受け入れており、その状況は逼迫している。「結界維持に必要な魔力結晶が多いからね…」という理由で一般市民の手元にはあまり届かない。それでも、夜間の結界が安定し、市民たちはそれを見ながら不安げに眠る。\n\nこのターンでこの土地は滅亡する予定であり、避難の混乱と結界の崩落が進行している。「明日も朝から並びそうだよ」という言葉とともに、多くの人々がその日を終えなければならない。",
+      "conditionFlag": "HIST_NATION_092_GEO_TURN_035_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_092_GEO_TURN_035_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_092_MONSTERATTACK_T035",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N092_T035"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事35年・年初（ターン035）",
+          "npcDialogue": "「結界維持に必要な魔力結晶が多いからね…」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事35年・年央（ターン035）",
+          "npcDialogue": "「結界維持に必要な魔力結晶が多いからね…」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事35年・年末（ターン035）",
+          "npcDialogue": "「結界維持に必要な魔力結晶が多いからね…」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_092_NationCollapse_35",
+      "macroTurn": 35,
+      "timestamp": {
+        "year": 35,
+        "month": 11,
+        "day": 25,
+        "hour": 4
+      },
+      "targetNationId": "NATION_092",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【最西端の大陸帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年のこの土地は魔物周期の最悪な位相である11に遭遇したため、多くの市民たちが絶望と混乱の中を過ごしている。配給所の行列や地下集落での住民が増え、窮屈さと窒息感が日常となっている。\n\n防衛隊や訓練中の兵士たちは前線からの避難者を受け入れており、その状況は逼迫している。「結界維持に必要な魔力結晶が多いからね…」という理由で一般市民の手元にはあまり届かない。それでも、夜間の結界が安定し、市民たちはそれを見ながら不安げに眠る。\n\nこのターンでこの土地は滅亡する予定であり、避難の混乱と結界の崩落が進行している。「明日も朝から並びそうだよ」という言葉とともに、多くの人々がその日を終えなければならない。",
+      "conditionFlag": "HIST_NATION_092_GEO_TURN_035_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_092_GEO_TURN_035_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_092_NATIONCOLLAPSE_T035",
+          "alternativeLogMessage": "【最西端の大陸帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N092_T035"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事26年〜28年（滅亡10〜7年前）",
+          "npcDialogue": "「結界維持に必要な魔力結晶が多いからね…」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事29年〜32年（6〜3年前）",
+          "npcDialogue": "「結界維持に必要な魔力結晶が多いからね…」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事33年〜35年（2年前〜崩壊）",
+          "npcDialogue": "「結界維持に必要な魔力結晶が多いからね…」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2124 @@
+{
+  "skills": [
+    {
+      "skillId": "SKL_PROD_BLACKSMITH_ADV",
+      "skillName": "上位鍛冶",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位鍛冶。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_BLACKSMITH_ADV_01",
+          "artName": "鍛冶・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_BLACKSMITH_ADV_02",
+              "artName": "鍛冶・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_BLACKSMITH_ADV_03",
+                  "artName": "鍛冶・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_ALCHEMY_ADV",
+      "skillName": "上位錬金術",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位錬金術。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_ALCHEMY_ADV_01",
+          "artName": "錬金術・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_ALCHEMY_ADV_02",
+              "artName": "錬金術・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_ALCHEMY_ADV_03",
+                  "artName": "錬金術・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_ARTIFACT_ADV",
+      "skillName": "上位魔道具作成",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位魔道具作成。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_ARTIFACT_ADV_01",
+          "artName": "魔道具作成・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_ARTIFACT_ADV_02",
+              "artName": "魔道具作成・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_ARTIFACT_ADV_03",
+                  "artName": "魔道具作成・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_BLEND_ADV",
+      "skillName": "上位調合",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位調合。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_BLEND_ADV_01",
+          "artName": "調合・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_BLEND_ADV_02",
+              "artName": "調合・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_BLEND_ADV_03",
+                  "artName": "調合・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_WOODWORK_ADV",
+      "skillName": "上位木工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位木工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_WOODWORK_ADV_01",
+          "artName": "木工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_WOODWORK_ADV_02",
+              "artName": "木工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_WOODWORK_ADV_03",
+                  "artName": "木工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_FINEWORK_ADV",
+      "skillName": "上位細工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位細工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_FINEWORK_ADV_01",
+          "artName": "細工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_FINEWORK_ADV_02",
+              "artName": "細工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_FINEWORK_ADV_03",
+                  "artName": "細工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_LEATHER_ADV",
+      "skillName": "上位革細工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位革細工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_LEATHER_ADV_01",
+          "artName": "革細工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_LEATHER_ADV_02",
+              "artName": "革細工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_LEATHER_ADV_03",
+                  "artName": "革細工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_TAILOR_ADV",
+      "skillName": "上位裁縫",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位裁縫。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_TAILOR_ADV_01",
+          "artName": "裁縫・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_TAILOR_ADV_02",
+              "artName": "裁縫・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_TAILOR_ADV_03",
+                  "artName": "裁縫・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_PHARMA_ADV",
+      "skillName": "上位製薬",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位製薬。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_PHARMA_ADV_01",
+          "artName": "製薬・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_PHARMA_ADV_02",
+              "artName": "製薬・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_PHARMA_ADV_03",
+                  "artName": "製薬・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_COOKING_ADV",
+      "skillName": "上位料理",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位料理。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_COOKING_ADV_01",
+          "artName": "料理・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_COOKING_ADV_02",
+              "artName": "料理・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_COOKING_ADV_03",
+                  "artName": "料理・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_FARMING_ADV",
+      "skillName": "上位農業",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位農業。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_FARMING_ADV_01",
+          "artName": "農業・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_FARMING_ADV_02",
+              "artName": "農業・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_FARMING_ADV_03",
+                  "artName": "農業・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_HYDRO_ADV",
+      "skillName": "上位水耕栽培",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位水耕栽培。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_HYDRO_ADV_01",
+          "artName": "水耕栽培・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_HYDRO_ADV_02",
+              "artName": "水耕栽培・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_HYDRO_ADV_03",
+                  "artName": "水耕栽培・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_BREW_ADV",
+      "skillName": "上位醸造",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位醸造。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_BREW_ADV_01",
+          "artName": "醸造・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_BREW_ADV_02",
+              "artName": "醸造・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_BREW_ADV_03",
+                  "artName": "醸造・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_STONE_ADV",
+      "skillName": "上位石工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位石工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_STONE_ADV_01",
+          "artName": "石工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_STONE_ADV_02",
+              "artName": "石工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_STONE_ADV_03",
+                  "artName": "石工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_REPAIR_ADV",
+      "skillName": "上位修繕",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位修繕。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_REPAIR_ADV_01",
+          "artName": "修繕・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_REPAIR_ADV_02",
+              "artName": "修繕・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_REPAIR_ADV_03",
+                  "artName": "修繕・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_MINING_ADV",
+      "skillName": "上位採掘",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位採掘。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_MINING_ADV_01",
+          "artName": "採掘・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_MINING_ADV_02",
+              "artName": "採掘・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_MINING_ADV_03",
+                  "artName": "採掘・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_GATHER_ADV",
+      "skillName": "上位採取",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位採取。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_GATHER_ADV_01",
+          "artName": "採取・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_GATHER_ADV_02",
+              "artName": "採取・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_GATHER_ADV_03",
+                  "artName": "採取・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_LOGGING_ADV",
+      "skillName": "上位伐採",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位伐採。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_LOGGING_ADV_01",
+          "artName": "伐採・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_LOGGING_ADV_02",
+              "artName": "伐採・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_LOGGING_ADV_03",
+                  "artName": "伐採・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_DISMANTLE_ADV",
+      "skillName": "上位解体",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位解体。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_DISMANTLE_ADV_01",
+          "artName": "解体・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_DISMANTLE_ADV_02",
+              "artName": "解体・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_DISMANTLE_ADV_03",
+                  "artName": "解体・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_SKINNING_ADV",
+      "skillName": "上位剥ぎ取り",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位剥ぎ取り。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_SKINNING_ADV_01",
+          "artName": "剥ぎ取り・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_SKINNING_ADV_02",
+              "artName": "剥ぎ取り・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_SKINNING_ADV_03",
+                  "artName": "剥ぎ取り・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_DECURSE_ADV",
+      "skillName": "上位解呪",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位解呪。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_DECURSE_ADV_01",
+          "artName": "解呪・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_DECURSE_ADV_02",
+              "artName": "解呪・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_DECURSE_ADV_03",
+                  "artName": "解呪・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_TRAP_ADV",
+      "skillName": "上位罠解除",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位罠解除。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_TRAP_ADV_01",
+          "artName": "罠解除・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_TRAP_ADV_02",
+              "artName": "罠解除・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_TRAP_ADV_03",
+                  "artName": "罠解除・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_CAMP_ADV",
+      "skillName": "上位拠点設営",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位拠点設営。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_CAMP_ADV_01",
+          "artName": "拠点設営・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_CAMP_ADV_02",
+              "artName": "拠点設営・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_CAMP_ADV_03",
+                  "artName": "拠点設営・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_APPRAISE_ADV",
+      "skillName": "上位鑑定",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位鑑定。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_APPRAISE_ADV_01",
+          "artName": "鑑定・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_APPRAISE_ADV_02",
+              "artName": "鑑定・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_APPRAISE_ADV_03",
+                  "artName": "鑑定・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_LOGISTICS_ADV",
+      "skillName": "上位資材管理",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位資材管理。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_LOGISTICS_ADV_01",
+          "artName": "資材管理・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_LOGISTICS_ADV_02",
+              "artName": "資材管理・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_LOGISTICS_ADV_03",
+                  "artName": "資材管理・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_HAUL_ADV",
+      "skillName": "上位運搬",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位運搬。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_HAUL_ADV_01",
+          "artName": "運搬・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_HAUL_ADV_02",
+              "artName": "運搬・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_HAUL_ADV_03",
+                  "artName": "運搬・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_LIGHT_ADV",
+      "skillName": "上位光源確保",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位光源確保。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_LIGHT_ADV_01",
+          "artName": "光源確保・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_LIGHT_ADV_02",
+              "artName": "光源確保・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_LIGHT_ADV_03",
+                  "artName": "光源確保・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_CRISIS_ADV",
+      "skillName": "上位危機回避",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位危機回避。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_CRISIS_ADV_01",
+          "artName": "危機回避・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_CRISIS_ADV_02",
+              "artName": "危機回避・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_CRISIS_ADV_03",
+                  "artName": "危機回避・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_ADAPT_ADV",
+      "skillName": "上位環境適応",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位環境適応。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_ADAPT_ADV_01",
+          "artName": "環境適応・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_ADAPT_ADV_02",
+              "artName": "環境適応・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_ADAPT_ADV_03",
+                  "artName": "環境適応・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_FIRSTAID_ADV",
+      "skillName": "上位応急処置",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位応急処置。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_FIRSTAID_ADV_01",
+          "artName": "応急処置・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_FIRSTAID_ADV_02",
+              "artName": "応急処置・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_FIRSTAID_ADV_03",
+                  "artName": "応急処置・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_HUNT_ADV",
+      "skillName": "上位狩猟",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位狩猟。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_HUNT_ADV_01",
+          "artName": "狩猟・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_HUNT_ADV_02",
+              "artName": "狩猟・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_HUNT_ADV_03",
+                  "artName": "狩猟・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_FISHERY_ADV",
+      "skillName": "上位漁業",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位漁業。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_FISHERY_ADV_01",
+          "artName": "漁業・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_FISHERY_ADV_02",
+              "artName": "漁業・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_FISHERY_ADV_03",
+                  "artName": "漁業・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_GLASS_ADV",
+      "skillName": "上位硝子工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位硝子工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_GLASS_ADV_01",
+          "artName": "硝子工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_GLASS_ADV_02",
+              "artName": "硝子工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_GLASS_ADV_03",
+                  "artName": "硝子工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_BRICK_ADV",
+      "skillName": "上位煉瓦工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位煉瓦工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_BRICK_ADV_01",
+          "artName": "煉瓦工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_BRICK_ADV_02",
+              "artName": "煉瓦工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_BRICK_ADV_03",
+                  "artName": "煉瓦工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_POTTERY_ADV",
+      "skillName": "上位陶芸",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位陶芸。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_POTTERY_ADV_01",
+          "artName": "陶芸・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_POTTERY_ADV_02",
+              "artName": "陶芸・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_POTTERY_ADV_03",
+                  "artName": "陶芸・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_PAPER_ADV",
+      "skillName": "上位製紙",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位製紙。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_PAPER_ADV_01",
+          "artName": "製紙・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_PAPER_ADV_02",
+              "artName": "製紙・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_PAPER_ADV_03",
+                  "artName": "製紙・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_BOOKBIND_ADV",
+      "skillName": "上位製本",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位製本。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_BOOKBIND_ADV_01",
+          "artName": "製本・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_BOOKBIND_ADV_02",
+              "artName": "製本・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_BOOKBIND_ADV_03",
+                  "artName": "製本・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_ENGRAVE_ADV",
+      "skillName": "上位彫金",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位彫金。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_ENGRAVE_ADV_01",
+          "artName": "彫金・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_ENGRAVE_ADV_02",
+              "artName": "彫金・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_ENGRAVE_ADV_03",
+                  "artName": "彫金・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_EMBROID_ADV",
+      "skillName": "上位刺繍",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位刺繍。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_EMBROID_ADV_01",
+          "artName": "刺繍・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_EMBROID_ADV_02",
+              "artName": "刺繍・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_EMBROID_ADV_03",
+                  "artName": "刺繍・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_FURNITURE_ADV",
+      "skillName": "上位家具工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位家具工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_FURNITURE_ADV_01",
+          "artName": "家具工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_FURNITURE_ADV_02",
+              "artName": "家具工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_FURNITURE_ADV_03",
+                  "artName": "家具工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_DissolutionRate",
+                      "value": 0.1,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_SuccessCount",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    }
+  ]
+}

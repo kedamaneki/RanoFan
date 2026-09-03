@@ -1,0 +1,468 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_171_BarrierDrop_11",
+      "macroTurn": 11,
+      "timestamp": {
+        "year": 11,
+        "month": 11,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_171",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【最西端の大陸帯】で防衛障壁の循環効率が急落した（低下幅 0.16）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、この年は多くの祝祭や伝統行事がある。春には桜の開花を祝い、夏には花火大会が開かれるなど、季節ごとに様々なイベントが行われる。「今日は何の日？」という言葉と共に、人々はそれぞれの記憶に残る瞬間を楽しむ。\n\nしかし、魔物活性期とあって、これらの行事も危機感と共存している。防衛隊による街の見回りや、近隣地域との連携が強化され、市民全員で互いを守るための取り組みが行われている。また、夜間は防衛結界の光が安定し、安心して眠ることができるため、「これで一晩安心だ」という言葉と共に、人々は一日を締めくくる。\n\nこのように、この土地では市民全員が魔物への備えと日常の営みを共存させながら生きている。",
+      "conditionFlag": "HIST_NATION_171_GEO_TURN_011_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_171_GEO_TURN_011_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_171_BARRIERDROP_T011",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N171_T011"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事11年・年初（ターン011）",
+          "npcDialogue": "「これで一晩安心だ」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事11年・年央（ターン011）",
+          "npcDialogue": "「これで一晩安心だ」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事11年・年末（ターン011）",
+          "npcDialogue": "「これで一晩安心だ」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_171_MonsterAttack_11",
+      "macroTurn": 11,
+      "timestamp": {
+        "year": 11,
+        "month": 11,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_171",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 8.2 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、この年は多くの祝祭や伝統行事がある。春には桜の開花を祝い、夏には花火大会が開かれるなど、季節ごとに様々なイベントが行われる。「今日は何の日？」という言葉と共に、人々はそれぞれの記憶に残る瞬間を楽しむ。\n\nしかし、魔物活性期とあって、これらの行事も危機感と共存している。防衛隊による街の見回りや、近隣地域との連携が強化され、市民全員で互いを守るための取り組みが行われている。また、夜間は防衛結界の光が安定し、安心して眠ることができるため、「これで一晩安心だ」という言葉と共に、人々は一日を締めくくる。\n\nこのように、この土地では市民全員が魔物への備えと日常の営みを共存させながら生きている。",
+      "conditionFlag": "HIST_NATION_171_GEO_TURN_011_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_171_GEO_TURN_011_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_171_MONSTERATTACK_T011",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N171_T011"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事11年・年初（ターン011）",
+          "npcDialogue": "「これで一晩安心だ」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事11年・年央（ターン011）",
+          "npcDialogue": "「これで一晩安心だ」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事11年・年末（ターン011）",
+          "npcDialogue": "「これで一晩安心だ」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_171_BarrierDrop_54",
+      "macroTurn": 54,
+      "timestamp": {
+        "year": 54,
+        "month": 6,
+        "day": 1,
+        "hour": 10
+      },
+      "targetNationId": "NATION_171",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【最西端の大陸帯】で防衛障壁の循環効率が急落した（低下幅 0.20）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では魔物活性期に伴う緊張感の中で、人々が互いを支え合うことが重要だと考えられている。礼拝堂では祈りの声が響き、町の教会では信仰心に基づく団結が見られる。リリスもまた、夜間にはしばしば教会へ足を運んでいた。\n\n「神よ、私たちを守ってください……」\n\n人々は祈りを通して互いの支えとなることを願う。\n\nこのような風俗の中で、この土地の市民たちは日々を過ごし、互いに助け合いながら、魔物と常に共存する生活を送っている。",
+      "conditionFlag": "HIST_NATION_171_GEO_TURN_054_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_171_GEO_TURN_054_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_171_BARRIERDROP_T054",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N171_T054"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事54年・年初（ターン054）",
+          "npcDialogue": "「神よ、私たちを守ってください……」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事54年・年央（ターン054）",
+          "npcDialogue": "「神よ、私たちを守ってください……」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事54年・年末（ターン054）",
+          "npcDialogue": "「神よ、私たちを守ってください……」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_171_MonsterAttack_54",
+      "macroTurn": 54,
+      "timestamp": {
+        "year": 54,
+        "month": 6,
+        "day": 1,
+        "hour": 10
+      },
+      "targetNationId": "NATION_171",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.9 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では魔物活性期に伴う緊張感の中で、人々が互いを支え合うことが重要だと考えられている。礼拝堂では祈りの声が響き、町の教会では信仰心に基づく団結が見られる。リリスもまた、夜間にはしばしば教会へ足を運んでいた。\n\n「神よ、私たちを守ってください……」\n\n人々は祈りを通して互いの支えとなることを願う。\n\nこのような風俗の中で、この土地の市民たちは日々を過ごし、互いに助け合いながら、魔物と常に共存する生活を送っている。",
+      "conditionFlag": "HIST_NATION_171_GEO_TURN_054_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_171_GEO_TURN_054_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_171_MONSTERATTACK_T054",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N171_T054"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事54年・年初（ターン054）",
+          "npcDialogue": "「神よ、私たちを守ってください……」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事54年・年央（ターン054）",
+          "npcDialogue": "「神よ、私たちを守ってください……」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事54年・年末（ターン054）",
+          "npcDialogue": "「神よ、私たちを守ってください……」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_171_Innovation_74",
+      "macroTurn": 74,
+      "timestamp": {
+        "year": 74,
+        "month": 2,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_171",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【最西端の大陸帯】で障壁イノベーションが発生した。循環係数 1.15、生存圏 +1.6。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物周期の進行とともに、町の人々が築き上げた独自の風習や慣行があります。例えば、「魔力石のお祈り」は今や定着した習慣で、人々は結晶に感謝し、次の日にも平穏を願います。\n\nまた、この時期には「防衛障壁強化祭」というイベントも開催されます。「今日は一緒に頑張ろうね」という言葉と共に、多くの市民が参加します。その間、職人ギルドからは新しい魔法結晶の技術情報や販売情報が提供されるため、この祭りは人々にとって非常に重要な機会となっています。\n\n以上のように、この土地のアルティアス城では、魔物周期に合わせた生活リズムと風習が形成されています。市民たち一人ひとりがその中でそれぞれの役割を果たし、互いを支えながら日々を過ごしているのです。",
+      "conditionFlag": "HIST_NATION_171_GEO_TURN_074_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_171_GEO_TURN_074_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_171_INNOVATION_T074",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 12,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N171_T074"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事74年・年初（ターン074）",
+          "npcDialogue": "「今日は一緒に頑張ろうね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事74年・年央（ターン074）",
+          "npcDialogue": "「今日は一緒に頑張ろうね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事74年・年末（ターン074）",
+          "npcDialogue": "「今日は一緒に頑張ろうね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_171_Innovation_140",
+      "macroTurn": 140,
+      "timestamp": {
+        "year": 140,
+        "month": 8,
+        "day": 16,
+        "hour": 10
+      },
+      "targetNationId": "NATION_171",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【最西端の大陸帯】で障壁イノベーションが発生した。循環係数 1.54、生存圏 +2.1。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Inspiration",
+      "microLore": "この年、この土地では魔物休眠期に合わせて多くの祭りや祝い事が催された。避難民たちもようやく落ち着きを取り戻し、「新天地」での生活に適応してきた人々が多い。\n\n「結婚式の季節」という言葉もあるように、この時期には多くのカップルが結ばれる。また、建物を再建する話題も多く聞かれる。安定した生活への希望と安全への感謝の気持ちから、市民たちは祭りや祝い事に力を注いでいる。\n\n一方で、休眠期の終わりに対する不安も根強くある。「次は活性期が始まる」という予知が人々の心を揺るがすこともしばしばだ。しかし、多くの人がこれに対処するための準備と訓練を通じて、日常をより深く楽しもうとしている。\n\nこの土地では、魔物周期と常に向き合う市民たちの生活が細部にわたって描写され、その中で生きていく人々の勇気や力強さを感じさせる一年となった。",
+      "conditionFlag": "HIST_NATION_171_GEO_TURN_140_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_171_GEO_TURN_140_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_171_INNOVATION_T140",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N171_T140"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事140年・年初（ターン140）",
+          "npcDialogue": "「次は活性期が始まる」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事140年・年央（ターン140）",
+          "npcDialogue": "「次は活性期が始まる」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事140年・年末（ターン140）",
+          "npcDialogue": "「次は活性期が始まる」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_171_Innovation_200",
+      "macroTurn": 200,
+      "timestamp": {
+        "year": 200,
+        "month": 8,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_171",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【最西端の大陸帯】で障壁イノベーションが発生した。循環係数 1.90、生存圏 +2.3。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年0200は魔物活性期であるが、市民たちは日常の生活と防衛に注力している。「絶えず警戒しなきゃ」という口癖とともに、日々を過ごす。地域ごとの風土や祭礼も依然として行われているが、活動範囲は制限されている。\n\n「私たちの街は安全だよ。結晶炉のおかげで、夜間も障壁効率が高いからね」。エラーナさんはそんな言葉を口にする。「でも、常に警戒しているべきさ。魔物周期が高まっている時にこそ、守護神に感謝しなきゃならない」と、その言葉は日常の一部となっている。\n\nこのような風習と緊張感の中で、この土地は叙事年0200を過ごし続ける。市民たちは結晶炉や防衛隊、そして日々の生活を通じて、それぞれが役割を果たしながら魔物からの守りを固めている。",
+      "conditionFlag": "HIST_NATION_171_GEO_TURN_200_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_171_GEO_TURN_200_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_171_INNOVATION_T200",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N171_T200"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事200年・年初（ターン200）",
+          "npcDialogue": "「絶えず警戒しなきゃ」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事200年・年央（ターン200）",
+          "npcDialogue": "「絶えず警戒しなきゃ」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事200年・年末（ターン200）",
+          "npcDialogue": "「絶えず警戒しなきゃ」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_171_Innovation_222",
+      "macroTurn": 222,
+      "timestamp": {
+        "year": 222,
+        "month": 6,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_171",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【最西端の大陸帯】で障壁イノベーションが発生した。循環係数 1.97、生存圏 +1.1。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年0222は魔物活性期による緊迫した空気と並行して、地域ごとの祭りも盛んに行われている。この時期に開催される「結晶の灯り祭」では、各地域が自慢の職人技や文化を競い合う。ルネ自身もその中で、鍛冶技術を披露する機会を得た。\n\nまた、魔物周期による日々の生活の中で、人々は祈りと祝祭を通じて心の中の平和を求める。夜間の防衛結界が安定していることで、より多くの人々が夜の安心感を得ているようだ。\n\n「今日も一日、ありがとう」\n\nルネは自宅に戻るとそう呟き、静かに一夜を過ごす。\n\nこのように、この土地の一般市民たちは日々の生活の中で、魔物周期と向き合いながら、それぞれの道で活躍する。",
+      "conditionFlag": "HIST_NATION_171_GEO_TURN_222_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_171_GEO_TURN_222_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_171_INNOVATION_T222",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N171_T222"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事222年・年初（ターン222）",
+          "npcDialogue": "「今日も一日、ありがとう」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事222年・年央（ターン222）",
+          "npcDialogue": "「今日も一日、ありがとう」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事222年・年末（ターン222）",
+          "npcDialogue": "「今日も一日、ありがとう」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+﻿2026-08-31T01:28:54.4152736Z success=True
+story-hero: found=True possess=True HP=250 STR=43 STA=150 MP=160 Job=JOB_BARRIER_REPAIRER
+hero-sync: hp=True sta=True job=True mp=True pass=True
+if-cycle: first=アキ second=カネ pass=True
+safe-fail-null: fallback=True pass=True

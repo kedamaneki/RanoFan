@@ -1,0 +1,120 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_029_NationCollapse_24",
+      "macroTurn": 24,
+      "timestamp": {
+        "year": 24,
+        "month": 12,
+        "day": 19,
+        "hour": 4
+      },
+      "targetNationId": "NATION_029",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【最西端の大陸帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0024（ターン024）は、市民たちにとって最も困難な一年だった。経済は安定しているものの、魔力結晶が不足し、生活に影響が出る日々が続いた。「もう限界だ」という声が聞こえる中で、人々は一日を過ごしていた。\n\nしかし、この年に一つの祭りがあった。「休眠期祭り」。魔物周期が休眠期に入ると、市民たちは一瞬の安堵と喜びの中で集まり、祝いの宴を開く。アリスもまた、その祭りに参加した。「これで少し安心だね」という言葉を繰り返しながら、彼女は友人たちと一緒に過ごす。\n\nしかし、休眠期祭りが終わり、翌日からは再び不安な日々が始まった。魔物周期の終わりと共に、この土地の滅亡が近づいていく。「今日からまた一週間だね」という口癖を言いながら、アリスは一日の大半を配給のための作業に費やす。\n\nこの年の風俗の中で、最も大切なことは人々が互いを支え合うことだった。結界が揺らめき、魔物周期の終わりが近づく中でも、「一緒に乗り越えていく」という思いが市民たちを繋げていた。「また明日も頑張ろうね」という言葉とともに、この土地はその歴史に幕を下ろすことになる。",
+      "conditionFlag": "HIST_NATION_029_GEO_TURN_024_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_029_GEO_TURN_024_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_029_NATIONCOLLAPSE_T024",
+          "alternativeLogMessage": "【最西端の大陸帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N029_T024"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事15年〜17年（滅亡10〜7年前）",
+          "npcDialogue": "「これで少し安心だね」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事18年〜21年（6〜3年前）",
+          "npcDialogue": "「これで少し安心だね」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事22年〜24年（2年前〜崩壊）",
+          "npcDialogue": "「これで少し安心だね」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SPINE_WORLD_Innovation_24",
+      "macroTurn": 24,
+      "timestamp": {
+        "year": 24,
+        "month": 12,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "全球観測：生存統治体 141、脅威指数 1.550、周期位相 dormant。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網の技術層は結界の循環経路を組み直し、限られた魔力でより広い生存圏を維持し始めた。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_024_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_024_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_INNOVATION_T024",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T024"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事24年・年初（ターン024）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事24年・年央（ターン024）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事24年・年末（ターン024）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

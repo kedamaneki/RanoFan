@@ -1,0 +1,13 @@
+﻿{
+  "generationType": "craft",
+  "phase": "Crafting",
+  "craft": {
+    "itemName": "安定型鉄骨剣",
+    "quality": 0.68,
+    "materials": ["鉄鉱石", "獣骨"],
+    "qualityBonusOnSuccess": 0.0
+  },
+  "recipeRequest": {
+    "isNewRecipe": false
+  }
+}

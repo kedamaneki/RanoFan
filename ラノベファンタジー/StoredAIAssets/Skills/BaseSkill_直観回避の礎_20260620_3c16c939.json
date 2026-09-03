@@ -1,0 +1,14 @@
+﻿{
+  "generationType": "skill",
+  "phase": "Training",
+  "skill": {
+    "skillName": "直観回避の礎",
+    "flavorText": "迫り来る脅威に対し、身体が本能的に反応し、無意識下で最適な退避行動を選択する基礎原理。敵の予備動作、気配の揺らぎ、僅かな空気の流れの変化を捉え、重心移動と体幹制御を連動させることで、紙一重で攻撃をかわす技の土台を築く。これは、危険を察知する『直観』と、それに呼応する『身体』の境界線を極めるための初歩的訓練である。",
+    "awakenedFromHistory": "21回に及ぶ極限状態でのジャスト回避の蓄積により、危機を察知し瞬時に反応する身体機能の基礎が確立された。",
+    "probability": 1.0,
+    "effectParameters": [
+      { "key": "craftQualityBonus", "value": 0.0 },
+      { "key": "theoryDepth", "value": 1.0 }
+    ]
+  }
+}

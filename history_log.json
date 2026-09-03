@@ -1,0 +1,700 @@
+[
+  {
+    "turn": 1,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "中央大陸",
+    "result": {
+      "region_threat_change": 0.1,
+      "region_threat": 1.5
+    }
+  },
+  {
+    "turn": 1,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "西方諸島",
+    "result": {
+      "region_threat_change": -0.05,
+      "region_threat": 1.0
+    }
+  },
+  {
+    "turn": 1,
+    "event": "魔物襲撃発生",
+    "category": "monster",
+    "region": "中央大陸",
+    "state": "鉄血帝国",
+    "result": {
+      "region_threat": 1.6,
+      "state_factor": 1.3,
+      "final_threat": 1.95,
+      "attack_probability": 0.51,
+      "repelled": false,
+      "economy_change": -7.2,
+      "military_change": -15.1,
+      "territory_change": -7.9,
+      "region_threat_change": 0.05,
+      "state_factor_change": 0.02
+    }
+  },
+  {
+    "turn": 1,
+    "event": "魔力資源採掘",
+    "category": "domestic",
+    "region": "西方諸島",
+    "state": "蒼穹王国",
+    "result": {
+      "magic_change": 4.7,
+      "economy_change": 2.5
+    }
+  },
+  {
+    "turn": 1,
+    "event": "魔法開拓",
+    "category": "domestic",
+    "region": "西方諸島",
+    "state": "蒼穹王国",
+    "result": {
+      "territory_change": 6.8,
+      "economy_change": -3.3,
+      "magic_change": 0.6,
+      "state_factor_change": 0.02,
+      "final_threat": 0.88
+    }
+  },
+  {
+    "turn": 1,
+    "event": "魔力資源採掘",
+    "category": "domestic",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "magic_change": 7.0,
+      "economy_change": 4.2
+    }
+  },
+  {
+    "turn": 1,
+    "event": "軍備増強",
+    "category": "domestic",
+    "region": "北方辺境",
+    "state": "緑嶺自治領",
+    "result": {
+      "military_change": 7.3,
+      "economy_change": -4.5
+    }
+  },
+  {
+    "turn": 1,
+    "event": "結界強化",
+    "category": "domestic",
+    "region": "北方辺境",
+    "state": "緑嶺自治領",
+    "result": {
+      "state_factor_change": -0.11,
+      "state_factor": 1.1,
+      "region_threat": 1.7,
+      "final_threat": 1.82,
+      "economy_change": -7.3,
+      "magic_change": -2.7
+    }
+  },
+  {
+    "turn": 1,
+    "event": "魔物襲撃発生_撃退",
+    "category": "monster",
+    "region": "中央大陸",
+    "state": "アルカディア連合",
+    "result": {
+      "region_threat": 1.5,
+      "state_factor": 1.1,
+      "final_threat": 1.71,
+      "attack_probability": 0.46,
+      "repelled": true,
+      "economy_change": 0.0,
+      "military_change": -3.4,
+      "territory_change": 0.0,
+      "region_threat_change": -0.03,
+      "state_factor_change": 0.0
+    }
+  },
+  {
+    "turn": 2,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "北方辺境",
+    "result": {
+      "region_threat_change": 0.06,
+      "region_threat": 1.7
+    }
+  },
+  {
+    "turn": 2,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "南方砂海",
+    "result": {
+      "region_threat_change": 0.04,
+      "region_threat": 1.3
+    }
+  },
+  {
+    "turn": 2,
+    "event": "魔導技術共同研究",
+    "category": "diplomacy",
+    "states": [
+      "砂海諸邦",
+      "蒼穹王国"
+    ],
+    "result": {
+      "砂海諸邦_magic_change": 3.1,
+      "蒼穹王国_magic_change": 2.7,
+      "relation_change": 5.8
+    }
+  },
+  {
+    "turn": 2,
+    "event": "軍備増強",
+    "category": "domestic",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "military_change": 5.6,
+      "economy_change": -3.8
+    }
+  },
+  {
+    "turn": 2,
+    "event": "魔力資源採掘",
+    "category": "domestic",
+    "region": "中央大陸",
+    "state": "鉄血帝国",
+    "result": {
+      "magic_change": 4.1,
+      "economy_change": 5.0
+    }
+  },
+  {
+    "turn": 2,
+    "event": "同盟締結",
+    "category": "diplomacy",
+    "states": [
+      "アルカディア連合",
+      "蒼穹王国"
+    ],
+    "result": {
+      "relation_change": 13.1
+    }
+  },
+  {
+    "turn": 2,
+    "event": "魔力資源採掘",
+    "category": "domestic",
+    "region": "西方諸島",
+    "state": "蒼穹王国",
+    "result": {
+      "magic_change": 3.3,
+      "economy_change": 3.1
+    }
+  },
+  {
+    "turn": 2,
+    "event": "魔導技術共同研究",
+    "category": "diplomacy",
+    "states": [
+      "蒼穹王国",
+      "緑嶺自治領"
+    ],
+    "result": {
+      "蒼穹王国_magic_change": 4.1,
+      "緑嶺自治領_magic_change": 4.9,
+      "relation_change": 7.3
+    }
+  },
+  {
+    "turn": 2,
+    "event": "魔法開拓",
+    "category": "domestic",
+    "region": "北方辺境",
+    "state": "緑嶺自治領",
+    "result": {
+      "territory_change": 4.7,
+      "economy_change": -3.1,
+      "magic_change": 1.5,
+      "state_factor_change": 0.02,
+      "final_threat": 1.92
+    }
+  },
+  {
+    "turn": 3,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "中央大陸",
+    "result": {
+      "region_threat_change": 0.05,
+      "region_threat": 1.6
+    }
+  },
+  {
+    "turn": 3,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "北方辺境",
+    "result": {
+      "region_threat_change": -0.06,
+      "region_threat": 1.7
+    }
+  },
+  {
+    "turn": 3,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "南方砂海",
+    "result": {
+      "region_threat_change": -0.06,
+      "region_threat": 1.2
+    }
+  },
+  {
+    "turn": 3,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "西方諸島",
+    "result": {
+      "region_threat_change": 0.06,
+      "region_threat": 1.0
+    }
+  },
+  {
+    "turn": 3,
+    "event": "魔力資源採掘",
+    "category": "domestic",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "magic_change": 3.4,
+      "economy_change": 3.5
+    }
+  },
+  {
+    "turn": 3,
+    "event": "軍備増強",
+    "category": "domestic",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "military_change": 4.4,
+      "economy_change": -4.3
+    }
+  },
+  {
+    "turn": 3,
+    "event": "魔法開拓",
+    "category": "domestic",
+    "region": "北方辺境",
+    "state": "緑嶺自治領",
+    "result": {
+      "territory_change": 4.4,
+      "economy_change": -4.2,
+      "magic_change": 0.9,
+      "state_factor_change": 0.05,
+      "final_threat": 1.95
+    }
+  },
+  {
+    "turn": 3,
+    "event": "魔物襲撃発生_撃退",
+    "category": "monster",
+    "region": "北方辺境",
+    "state": "緑嶺自治領",
+    "result": {
+      "region_threat": 1.6,
+      "state_factor": 1.2,
+      "final_threat": 1.95,
+      "attack_probability": 0.51,
+      "repelled": true,
+      "economy_change": 0.0,
+      "military_change": -5.2,
+      "territory_change": 0.0,
+      "region_threat_change": -0.06,
+      "state_factor_change": 0.0
+    }
+  },
+  {
+    "turn": 3,
+    "event": "関係改善",
+    "category": "diplomacy",
+    "states": [
+      "鉄血帝国",
+      "蒼穹王国"
+    ],
+    "result": {
+      "relation_change": 5.0
+    }
+  },
+  {
+    "turn": 3,
+    "event": "結界強化",
+    "category": "domestic",
+    "region": "中央大陸",
+    "state": "鉄血帝国",
+    "result": {
+      "state_factor_change": -0.07,
+      "state_factor": 1.2,
+      "region_threat": 1.6,
+      "final_threat": 1.99,
+      "economy_change": -4.7,
+      "magic_change": -2.8
+    }
+  },
+  {
+    "turn": 3,
+    "event": "結界強化",
+    "category": "domestic",
+    "region": "西方諸島",
+    "state": "蒼穹王国",
+    "result": {
+      "state_factor_change": -0.06,
+      "state_factor": 0.9,
+      "region_threat": 1.0,
+      "final_threat": 0.86,
+      "economy_change": -6.2,
+      "magic_change": -1.7
+    }
+  },
+  {
+    "turn": 4,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "南方砂海",
+    "result": {
+      "region_threat_change": -0.05,
+      "region_threat": 1.2
+    }
+  },
+  {
+    "turn": 4,
+    "event": "関係改善",
+    "category": "diplomacy",
+    "states": [
+      "蒼穹王国",
+      "アルカディア連合"
+    ],
+    "result": {
+      "relation_change": 10.5
+    }
+  },
+  {
+    "turn": 4,
+    "event": "魔力資源採掘",
+    "category": "domestic",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "magic_change": 6.3,
+      "economy_change": 3.6
+    }
+  },
+  {
+    "turn": 4,
+    "event": "魔物襲撃発生_撃退",
+    "category": "monster",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "region_threat": 1.1,
+      "state_factor": 1.0,
+      "final_threat": 1.18,
+      "attack_probability": 0.34,
+      "repelled": true,
+      "economy_change": 0.0,
+      "military_change": -6.5,
+      "territory_change": 0.0,
+      "region_threat_change": -0.03,
+      "state_factor_change": 0.0
+    }
+  },
+  {
+    "turn": 4,
+    "event": "結界強化",
+    "category": "domestic",
+    "region": "中央大陸",
+    "state": "アルカディア連合",
+    "result": {
+      "state_factor_change": -0.14,
+      "state_factor": 1.0,
+      "region_threat": 1.6,
+      "final_threat": 1.54,
+      "economy_change": -7.5,
+      "magic_change": -1.5
+    }
+  },
+  {
+    "turn": 4,
+    "event": "結界強化",
+    "category": "domestic",
+    "region": "北方辺境",
+    "state": "緑嶺自治領",
+    "result": {
+      "state_factor_change": -0.13,
+      "state_factor": 1.0,
+      "region_threat": 1.6,
+      "final_threat": 1.7,
+      "economy_change": -4.4,
+      "magic_change": -3.1
+    }
+  },
+  {
+    "turn": 4,
+    "event": "魔法開拓",
+    "category": "domestic",
+    "region": "中央大陸",
+    "state": "鉄血帝国",
+    "result": {
+      "territory_change": 4.4,
+      "economy_change": -2.8,
+      "magic_change": 0.8,
+      "state_factor_change": 0.02,
+      "final_threat": 2.03
+    }
+  },
+  {
+    "turn": 5,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "北方辺境",
+    "result": {
+      "region_threat_change": 0.04,
+      "region_threat": 1.7
+    }
+  },
+  {
+    "turn": 5,
+    "event": "関係改善",
+    "category": "diplomacy",
+    "states": [
+      "アルカディア連合",
+      "緑嶺自治領"
+    ],
+    "result": {
+      "relation_change": 11.5
+    }
+  },
+  {
+    "turn": 5,
+    "event": "関係改善",
+    "category": "diplomacy",
+    "states": [
+      "緑嶺自治領",
+      "アルカディア連合"
+    ],
+    "result": {
+      "relation_change": 8.3
+    }
+  },
+  {
+    "turn": 5,
+    "event": "関係改善",
+    "category": "diplomacy",
+    "states": [
+      "砂海諸邦",
+      "鉄血帝国"
+    ],
+    "result": {
+      "relation_change": 4.6
+    }
+  },
+  {
+    "turn": 5,
+    "event": "魔物襲撃発生_撃退",
+    "category": "monster",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "region_threat": 1.1,
+      "state_factor": 1.0,
+      "final_threat": 1.16,
+      "attack_probability": 0.34,
+      "repelled": true,
+      "economy_change": 0.0,
+      "military_change": -4.6,
+      "territory_change": 0.0,
+      "region_threat_change": -0.05,
+      "state_factor_change": 0.0
+    }
+  },
+  {
+    "turn": 5,
+    "event": "軍備増強",
+    "category": "domestic",
+    "region": "中央大陸",
+    "state": "鉄血帝国",
+    "result": {
+      "military_change": 8.8,
+      "economy_change": -3.6
+    }
+  },
+  {
+    "turn": 5,
+    "event": "魔法開拓",
+    "category": "domestic",
+    "region": "西方諸島",
+    "state": "蒼穹王国",
+    "result": {
+      "territory_change": 6.7,
+      "economy_change": -2.4,
+      "magic_change": 1.8,
+      "state_factor_change": 0.03,
+      "final_threat": 0.86
+    }
+  },
+  {
+    "turn": 5,
+    "event": "関係改善",
+    "category": "diplomacy",
+    "states": [
+      "蒼穹王国",
+      "緑嶺自治領"
+    ],
+    "result": {
+      "relation_change": 9.9
+    }
+  },
+  {
+    "turn": 6,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "中央大陸",
+    "result": {
+      "region_threat_change": 0.08,
+      "region_threat": 1.7
+    }
+  },
+  {
+    "turn": 6,
+    "event": "地域脅威度変動",
+    "category": "system",
+    "region": "南方砂海",
+    "result": {
+      "region_threat_change": 0.13,
+      "region_threat": 1.2
+    }
+  },
+  {
+    "turn": 6,
+    "event": "魔物襲撃発生",
+    "category": "monster",
+    "region": "中央大陸",
+    "state": "鉄血帝国",
+    "result": {
+      "region_threat": 1.7,
+      "state_factor": 1.3,
+      "final_threat": 2.15,
+      "attack_probability": 0.55,
+      "repelled": false,
+      "economy_change": -5.4,
+      "military_change": -12.3,
+      "territory_change": -11.7,
+      "region_threat_change": 0.05,
+      "state_factor_change": 0.04
+    }
+  },
+  {
+    "turn": 6,
+    "event": "結界強化",
+    "category": "domestic",
+    "region": "北方辺境",
+    "state": "緑嶺自治領",
+    "result": {
+      "state_factor_change": -0.14,
+      "state_factor": 0.9,
+      "region_threat": 1.7,
+      "final_threat": 1.52,
+      "economy_change": -7.9,
+      "magic_change": -3.2
+    }
+  },
+  {
+    "turn": 6,
+    "event": "関係改善",
+    "category": "diplomacy",
+    "states": [
+      "緑嶺自治領",
+      "砂海諸邦"
+    ],
+    "result": {
+      "relation_change": 5.9
+    }
+  },
+  {
+    "turn": 6,
+    "event": "魔物襲撃発生_撃退",
+    "category": "monster",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "region_threat": 1.2,
+      "state_factor": 1.0,
+      "final_threat": 1.24,
+      "attack_probability": 0.35,
+      "repelled": true,
+      "economy_change": 0.0,
+      "military_change": -3.1,
+      "territory_change": 0.0,
+      "region_threat_change": -0.08,
+      "state_factor_change": 0.0
+    }
+  },
+  {
+    "turn": 6,
+    "event": "魔力資源採掘",
+    "category": "domestic",
+    "region": "南方砂海",
+    "state": "砂海諸邦",
+    "result": {
+      "magic_change": 6.9,
+      "economy_change": 3.2
+    }
+  },
+  {
+    "turn": 6,
+    "event": "魔法開拓",
+    "category": "domestic",
+    "region": "西方諸島",
+    "state": "蒼穹王国",
+    "result": {
+      "territory_change": 2.8,
+      "economy_change": -4.8,
+      "magic_change": 1.1,
+      "state_factor_change": 0.02,
+      "final_threat": 0.91
+    }
+  },
+  {
+    "turn": 6,
+    "event": "結界強化",
+    "category": "domestic",
+    "region": "西方諸島",
+    "state": "蒼穹王国",
+    "result": {
+      "state_factor_change": -0.1,
+      "state_factor": 0.8,
+      "region_threat": 1.0,
+      "final_threat": 0.82,
+      "economy_change": -4.0,
+      "magic_change": -3.8
+    }
+  },
+  {
+    "turn": 6,
+    "event": "魔力資源採掘",
+    "category": "domestic",
+    "region": "中央大陸",
+    "state": "アルカディア連合",
+    "result": {
+      "magic_change": 7.4,
+      "economy_change": 2.7
+    }
+  }
+]

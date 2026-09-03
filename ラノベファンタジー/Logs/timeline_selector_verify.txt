@@ -1,0 +1,5 @@
+﻿2026-08-31T03:50:33.0605453Z success=True
+register: ALT_NATION_001_TURN_005_HERO success=True
+select-canon: power=1000 pass=True
+select-alt: power=1100 pass=True
+branches=2

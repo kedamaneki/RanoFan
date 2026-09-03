@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_070_NationCollapse_29",
+      "macroTurn": 29,
+      "timestamp": {
+        "year": 29,
+        "month": 5,
+        "day": 7,
+        "hour": 4
+      },
+      "targetNationId": "NATION_070",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【中央海平原の結節帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0029（ターン029）は、この土地の市民にとって忘れられない一年となった。魔物周期の進行とともに、人々の生活に不安と緊張感が増大した。結晶配給制限や夜間外出禁止令などの新たな規則によって、都市内の住民たちは逼迫した日々を送ることになった。\n\nまた、この年には多くの人々が自分の身を守るために祈りを捧げた。しかし、魔物の脅威は増大し続け、結界の安定性に深刻な疑問が投げかけられた。\n\nそして、ついにこの土地は滅亡を迎えた。その日、都市内の結界が崩壊し、多くの人々は散り散りとなったのである。\n\nリルもまたこの年を振り返って、「これが最後の日々だったのか……」と感傷的な表情を見せる。しかし彼の心の中には新たな希望が芽生えていた。「次の国で再び防衛士として働きたい」と、彼はそう考えていたのである。",
+      "conditionFlag": "HIST_NATION_070_GEO_TURN_029_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_070_GEO_TURN_029_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_070_NATIONCOLLAPSE_T029",
+          "alternativeLogMessage": "【中央海平原の結節帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N070_T029"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事20年〜22年（滅亡10〜7年前）",
+          "npcDialogue": "「これが最後の日々だったのか……」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事23年〜26年（6〜3年前）",
+          "npcDialogue": "「これが最後の日々だったのか……」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事27年〜29年（2年前〜崩壊）",
+          "npcDialogue": "「これが最後の日々だったのか……」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_115_NationCollapse_29",
+      "macroTurn": 29,
+      "timestamp": {
+        "year": 29,
+        "month": 5,
+        "day": 7,
+        "hour": 4
+      },
+      "targetNationId": "NATION_115",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【極寒針葉樹林の前線】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "このターンでこの土地は滅亡を迎える。市民たちは絶望と混乱の中でそれぞれの道を選び始める。避難の途に就く者もいれば、故郷を守る者もいる。都市は急速にスラム化し、不動産不足や人口過密から発生する争いが日常生活を脅かす。\n\n結界が崩壊の一歩手前の状態にあることを感じ取った人々の間では、避難の準備が進められる一方で、信仰と祈りによって心の支えを見つけようとする者もいる。この年に起こる様々な出来事は、未来への希望を失いかけた人々の記憶に深く刻まれることとなる。\n\n以上のような状況下において、この土地の市民たちはそれぞれが生き抜くための道を選んでいくことになる。それぞれ異なる選択肢が彼らを待ち受けている中で、このターンは国家の歴史における重要な転換点となるに違いない。",
+      "conditionFlag": "HIST_NATION_115_GEO_TURN_029_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_115_GEO_TURN_029_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_115_NATIONCOLLAPSE_T029",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N115_T029"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事20年〜22年（滅亡10〜7年前）",
+          "npcDialogue": "「結界の灯が週ごとに短くなっている。配給も、夜の見回りも、間に合わない。」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事23年〜26年（6〜3年前）",
+          "npcDialogue": "「外縁の集落から煙が途絶えた。道は異形の粘糸 で塞がれている。」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事27年〜29年（2年前〜崩壊）",
+          "npcDialogue": "「最後の結晶炉が落ちる。逃げるなら今だ。」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_117_NationCollapse_29",
+      "macroTurn": 29,
+      "timestamp": {
+        "year": 29,
+        "month": 5,
+        "day": 7,
+        "hour": 4
+      },
+      "targetNationId": "NATION_117",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【南方の山岳・海洋前線】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この一年は特に厳しい年となった。魔物の脅威が高まり、都市全体が不安定な状態にある。それでも人々は祈りを捧げ、互いを支えながら日々を過ごしていた。\n\n「今日はまた一日無事に過ごせたね」というような会話も聞こえる。だが、その言葉にはいつも何らかの緊張感が含まれていた。結晶の配給制限や夜間外出禁止令は人々の心を重くし、それでもなお日々を生き抜こうとする市民たちの姿があった。\n\nそして、この一年はこの土地にとって最後の年となったのである。人々はそれぞれの道へと散り、新たな未来を探そうとしていた。",
+      "conditionFlag": "HIST_NATION_117_GEO_TURN_029_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_117_GEO_TURN_029_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_117_NATIONCOLLAPSE_T029",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N117_T029"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事20年〜22年（滅亡10〜7年前）",
+          "npcDialogue": "「今日はまた一日無事に過ごせたね」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事23年〜26年（6〜3年前）",
+          "npcDialogue": "「今日はまた一日無事に過ごせたね」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事27年〜29年（2年前〜崩壊）",
+          "npcDialogue": "「今日はまた一日無事に過ごせたね」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_SPINE_WORLD_MonsterAttack_29",
+      "macroTurn": 29,
+      "timestamp": {
+        "year": 29,
+        "month": 5,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "WORLD",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "全球観測：生存統治体 122、脅威指数 2.700、周期位相 active。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "全大陸観測網の前線は異形の波に押し込まれ、耕作地と配給路が寸断された。人型の敵ではなく、環境と一体化した魔獣が結界を削っている。",
+      "conditionFlag": "HIST_WORLD_GEO_TURN_029_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_WORLD_GEO_TURN_029_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_WORLD_MONSTERATTACK_T029",
+          "alternativeLogMessage": "【全大陸観測網】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、全大陸観測網の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WORLD_CYCLE",
+        "recommendedLevel": 6,
+        "progressTriggerFlag": "MMO_ZONE_WORLD_T029"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事29年・年初（ターン029）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事29年・年央（ターン029）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事29年・年末（ターン029）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    }
+  ]
+}

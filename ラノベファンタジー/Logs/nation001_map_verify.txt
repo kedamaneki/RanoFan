@@ -1,0 +1,6 @@
+﻿PASS
+国家001 T1 位相1 (Active) 西稜=327m 村台地=141m 東=102m 西勾配=31.6° 局所最大=38.9° 家屋=7 工房=5 スポーン=5 作業スポット=13 オブジェクト=136
+terrainCreated=True
+west>0.3913425 east=0.2828993
+westSlope=31.6 maxLocalSlope=38.9
+houses=7 workshops=5 spawns=5 workSpots=13

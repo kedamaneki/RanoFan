@@ -1,0 +1,1902 @@
+[
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_SWORD",
+      "skillName": "剣術",
+      "category": "Combat",
+      "description": "刃物の扱いに関する最も基礎的な戦闘スキル。熟練により長剣・細剣・大剣など多様な流派へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_SWORD_ROOT",
+          "artName": "スラッシュ",
+          "description": "基本の横薙ぎ。（技1個目）",
+          "poiseDamage": 15,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_SWORD_B2",
+              "artName": "突き",
+              "description": "鋭い踏み込み突き。（技2個目）",
+              "poiseDamage": 25,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SWORD_L1",
+                  "artName": "連続刺突",
+                  "description": "体勢回復を遅延させる高速突き。（技3個目）",
+                  "poiseDamage": 45,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.15,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_SWORD_B4",
+              "artName": "重撃",
+              "description": "大きく振り下ろす一撃。（技4個目）",
+              "poiseDamage": 35,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SWORD_L2",
+                  "artName": "兜割り",
+                  "description": "装甲溶解の予兆を付与する渾身の一撃。（技5個目）",
+                  "poiseDamage": 70,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_ArmorDissolve",
+                      "value": 0.2,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_GREATSWORD",
+      "skillName": "大剣術",
+      "category": "Combat",
+      "description": "巨刃の慣性を活かす重戦闘の基礎。破壊特化や広域薙ぎの上位流派へ展開する。",
+      "baseArts": [
+        {
+          "artId": "ART_GSWORD_ROOT",
+          "artName": "大振り",
+          "description": "重量を伴う基本斬撃。（技1個目）",
+          "poiseDamage": 22,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_GSWORD_B2",
+              "artName": "薙ぎ払い",
+              "description": "広い軌道の一撃。（技2個目）",
+              "poiseDamage": 38,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_GSWORD_L1",
+                  "artName": "地鳴り",
+                  "description": "体勢回復を完全停止する叩き込み。（技3個目）",
+                  "poiseDamage": 65,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.5
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_GSWORD_B4",
+              "artName": "踏み込み",
+              "description": "前進を伴う打撃。（技4個目）",
+              "poiseDamage": 40,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_GSWORD_L2",
+                  "artName": "断層",
+                  "description": "高poiseDamageの破壊斬。（技5個目）",
+                  "poiseDamage": 85,
+                  "manaCost": 28,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.25,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_DAGGER",
+      "skillName": "短剣術",
+      "category": "Combat",
+      "description": "短刃の迅速な攻防の基礎。暗殺・連撃・毒刃などの特化へ枝分かれする。",
+      "baseArts": [
+        {
+          "artId": "ART_DAGGER_ROOT",
+          "artName": "刺突",
+          "description": "最小動作の一刺し。（技1個目）",
+          "poiseDamage": 12,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_DAGGER_B2",
+              "artName": "急所突き",
+              "description": "要害を狙う突き。（技2個目）",
+              "poiseDamage": 28,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_DAGGER_L1",
+                  "artName": "影刺し",
+                  "description": "体勢回復を大幅に低下させる。（技3個目）",
+                  "poiseDamage": 42,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.22,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_DAGGER_B4",
+              "artName": "裏斬り",
+              "description": "体勢を崩す切り返し。（技4個目）",
+              "poiseDamage": 32,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_DAGGER_L2",
+                  "artName": "無音刃",
+                  "description": "体勢回復を一時停止する。（技5個目）",
+                  "poiseDamage": 55,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_SPEAR",
+      "skillName": "槍術",
+      "category": "Combat",
+      "description": "長柄の拒止距離を学ぶ基礎。突き特化・投槍・騎兵槍などへ進化する。",
+      "baseArts": [
+        {
+          "artId": "ART_SPEAR_ROOT",
+          "artName": "突き",
+          "description": "中距離の基本突き。（技1個目）",
+          "poiseDamage": 18,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_SPEAR_B2",
+              "artName": "払い",
+              "description": "槍身を使った払い除け。（技2個目）",
+              "poiseDamage": 30,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SPEAR_L1",
+                  "artName": "拒止突き",
+                  "description": "体勢回復速度を低下させる。（技3個目）",
+                  "poiseDamage": 48,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.18,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_SPEAR_B4",
+              "artName": "叩き伏せ",
+              "description": "柄打ちによる体勢崩し。（技4個目）",
+              "poiseDamage": 36,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SPEAR_L2",
+                  "artName": "穿ち",
+                  "description": "体勢を貫く一突き。（技5個目）",
+                  "poiseDamage": 72,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_AXE",
+      "skillName": "斧術",
+      "category": "Combat",
+      "description": "斧の重さと切断力の基礎。戦斧・投斧・双斧の流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_AXE_ROOT",
+          "artName": "斬り",
+          "description": "基本の斧斬り。（技1個目）",
+          "poiseDamage": 20,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_AXE_B2",
+              "artName": "割り",
+              "description": "盾持ちを想定した打撃。（技2個目）",
+              "poiseDamage": 34,
+              "manaCost": 7,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_AXE_L1",
+                  "artName": "砕き",
+                  "description": "装甲溶解予兆を付与。（技3個目）",
+                  "poiseDamage": 58,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_ArmorDissolve",
+                      "value": 0.12,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_AXE_B4",
+              "artName": "旋回",
+              "description": "回旋を伴う斬撃。（技4個目）",
+              "poiseDamage": 38,
+              "manaCost": 9,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_AXE_L2",
+                  "artName": "崩斧",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 75,
+                  "manaCost": 24,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_HAMMER",
+      "skillName": "槌術",
+      "category": "Combat",
+      "description": "鈍器の衝撃伝達を学ぶ基礎。戦槌・メイス・地響き流派へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_HAMMER_ROOT",
+          "artName": "打撃",
+          "description": "基本の槌打ち。（技1個目）",
+          "poiseDamage": 24,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_HAMMER_B2",
+              "artName": "叩き",
+              "description": "頭部を狙う打撃。（技2個目）",
+              "poiseDamage": 40,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_HAMMER_L1",
+                  "artName": "震脚",
+                  "description": "体勢回復を遅延させる地打ち。（技3個目）",
+                  "poiseDamage": 62,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.2,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_HAMMER_B4",
+              "artName": "振り",
+              "description": "大振りの一撃。（技4個目）",
+              "poiseDamage": 44,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_HAMMER_L2",
+                  "artName": "鉄槌",
+                  "description": "体勢を大きく削る。（技5個目）",
+                  "poiseDamage": 88,
+                  "manaCost": 26,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.5
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_FIST",
+      "skillName": "拳闘術",
+      "category": "Combat",
+      "description": "素手の打撃理論の基礎。体術・蹴り・投げの特化へ広がる。",
+      "baseArts": [
+        {
+          "artId": "ART_FIST_ROOT",
+          "artName": "直拳",
+          "description": "基本のストレート。（技1個目）",
+          "poiseDamage": 14,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_FIST_B2",
+              "artName": "勾拳",
+              "description": "体勢を揺らす打撃。（技2個目）",
+              "poiseDamage": 26,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_FIST_L1",
+                  "artName": "崩拳",
+                  "description": "体勢回復を低下させる。（技3個目）",
+                  "poiseDamage": 44,
+                  "manaCost": 10,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.2,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_FIST_B4",
+              "artName": "蹴り",
+              "description": "距離を取る一撃。（技4個目）",
+              "poiseDamage": 30,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_FIST_L2",
+                  "artName": "鉄山靠",
+                  "description": "体勢回復を停止する近身打。（技5個目）",
+                  "poiseDamage": 60,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_KATANA",
+      "skillName": "刀術",
+      "category": "Combat",
+      "description": "片手刀の抜刀と斬りの基礎。居合・二刀・脇差流派へ進む。",
+      "baseArts": [
+        {
+          "artId": "ART_KATANA_ROOT",
+          "artName": "斬り",
+          "description": "基本の袈裟斬り。（技1個目）",
+          "poiseDamage": 16,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_KATANA_B2",
+              "artName": "居合",
+              "description": "踏み込みの一斬。（技2個目）",
+              "poiseDamage": 32,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_KATANA_L1",
+                  "artName": "流刃",
+                  "description": "体勢回復を遅延させる連斬。（技3個目）",
+                  "poiseDamage": 50,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.18,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_KATANA_B4",
+              "artName": "上段",
+              "description": "大きく振り上げる斬撃。（技4個目）",
+              "poiseDamage": 38,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_KATANA_L2",
+                  "artName": "断水",
+                  "description": "体勢を止める一閃。（技5個目）",
+                  "poiseDamage": 68,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.5
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_SCYTHE",
+      "skillName": "大鎌術",
+      "category": "Combat",
+      "description": "長柄鎌の軌道制御の基礎。収穫斬・回転鎌・死神流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_SCYTHE_ROOT",
+          "artName": "薙ぎ",
+          "description": "基本の横薙ぎ。（技1個目）",
+          "poiseDamage": 20,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_SCYTHE_B2",
+              "artName": "引き",
+              "description": "引き寄せる斬撃。（技2個目）",
+              "poiseDamage": 34,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SCYTHE_L1",
+                  "artName": "断頭",
+                  "description": "体勢回復を大幅低下。（技3個目）",
+                  "poiseDamage": 56,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.24,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_SCYTHE_B4",
+              "artName": "旋刃",
+              "description": "回転を伴う一撃。（技4個目）",
+              "poiseDamage": 42,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SCYTHE_L2",
+                  "artName": "死鎌",
+                  "description": "装甲溶解予兆を付与。（技5個目）",
+                  "poiseDamage": 78,
+                  "manaCost": 24,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_ArmorDissolve",
+                      "value": 0.15,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_WHIP",
+      "skillName": "鞭術",
+      "category": "Combat",
+      "description": "軟武器の軌道と距離の基礎。捕縛・多段・雷鞭流派へ展開する。",
+      "baseArts": [
+        {
+          "artId": "ART_WHIP_ROOT",
+          "artName": "鞭打",
+          "description": "基本の一撃。（技1個目）",
+          "poiseDamage": 10,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_WHIP_B2",
+              "artName": "絡み",
+              "description": "相手を引き寄せる。（技2個目）",
+              "poiseDamage": 24,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_WHIP_L1",
+                  "artName": "連打",
+                  "description": "体勢回復を遅延させる多段。（技3個目）",
+                  "poiseDamage": 40,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.16,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_WHIP_B4",
+              "artName": "振り",
+              "description": "広範囲の払い。（技4個目）",
+              "poiseDamage": 28,
+              "manaCost": 7,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_WHIP_L2",
+                  "artName": "雷鞭",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 52,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_STAFF",
+      "skillName": "棍術",
+      "category": "Combat",
+      "description": "棒術の攻防距離の基礎。長棍・三節棍・破魔棍へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_STAFF_ROOT",
+          "artName": "打",
+          "description": "基本の棒打ち。（技1個目）",
+          "poiseDamage": 16,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_STAFF_B2",
+              "artName": "突き",
+              "description": "棒先の突き。（技2個目）",
+              "poiseDamage": 28,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_STAFF_L1",
+                  "artName": "乱打",
+                  "description": "体勢回復を低下させる連打。（技3個目）",
+                  "poiseDamage": 46,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.17,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_STAFF_B4",
+              "artName": "払い",
+              "description": "武器を弾く一撃。（技4個目）",
+              "poiseDamage": 32,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_STAFF_L2",
+                  "artName": "破魔打",
+                  "description": "体勢を大きく崩す。（技5個目）",
+                  "poiseDamage": 64,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_SHIELD",
+      "skillName": "盾術",
+      "category": "Combat",
+      "description": "盾の防御と体当たりの基礎。要塞・反撃・聖盾流派へ進化する。",
+      "baseArts": [
+        {
+          "artId": "ART_SHIELD_ROOT",
+          "artName": "盾撃",
+          "description": "基本の盾殴り。（技1個目）",
+          "poiseDamage": 20,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_SHIELD_B2",
+              "artName": "体当たり",
+              "description": "前進する衝突。（技2個目）",
+              "poiseDamage": 32,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SHIELD_L1",
+                  "artName": "要塞",
+                  "description": "自身の体勢耐性を高める。（技3個目）",
+                  "poiseDamage": 38,
+                  "manaCost": 10,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Buff_Poise",
+                      "value": 0.25,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_SHIELD_B4",
+              "artName": "反撃",
+              "description": "受け流し後の打撃。（技4個目）",
+              "poiseDamage": 42,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SHIELD_L2",
+                  "artName": "砕盾",
+                  "description": "敵体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 70,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_DUAL",
+      "skillName": "双剣術",
+      "category": "Combat",
+      "description": "二刀の連携の基礎。クロス・旋風・暗双流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_DUAL_ROOT",
+          "artName": "二連斬",
+          "description": "左右交互の斬撃。（技1個目）",
+          "poiseDamage": 14,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_DUAL_B2",
+              "artName": "交差",
+              "description": "刃を交差させる斬り。（技2個目）",
+              "poiseDamage": 28,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_DUAL_L1",
+                  "artName": "旋風",
+                  "description": "体勢回復を遅延させる。（技3個目）",
+                  "poiseDamage": 46,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.19,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_DUAL_B4",
+              "artName": "突進",
+              "description": "双剣での突進斬。（技4個目）",
+              "poiseDamage": 34,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_DUAL_L2",
+                  "artName": "無双",
+                  "description": "体勢回復を停止する乱舞。（技5個目）",
+                  "poiseDamage": 62,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.5
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_RAPIER",
+      "skillName": "細剣術",
+      "category": "Combat",
+      "description": "細身の刃による刺突の基礎。决斗・刺突・無音流派へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_RAPIER_ROOT",
+          "artName": "刺突",
+          "description": "基本の一刺し。（技1個目）",
+          "poiseDamage": 14,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_RAPIER_B2",
+              "artName": "踏み込み",
+              "description": "距離を詰める突き。（技2個目）",
+              "poiseDamage": 30,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_RAPIER_L1",
+                  "artName": "連突",
+                  "description": "体勢回復を遅延させる。（技3個目）",
+                  "poiseDamage": 48,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.2,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_RAPIER_B4",
+              "artName": "掠め",
+              "description": "体勢を削る切り返し。（技4個目）",
+              "poiseDamage": 32,
+              "manaCost": 7,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_RAPIER_L2",
+                  "artName": "決闘刺",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 58,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_POLEARM",
+      "skillName": "長柄術",
+      "category": "Combat",
+      "description": "長柄複合武器の基礎。ハルバード・グレイブ・拒馬流派へ展開する。",
+      "baseArts": [
+        {
+          "artId": "ART_POLE_ROOT",
+          "artName": "斬突",
+          "description": "斬りと突きの中間。（技1個目）",
+          "poiseDamage": 18,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_POLE_B2",
+              "artName": "引寄",
+              "description": "引き寄せる一撃。（技2個目）",
+              "poiseDamage": 30,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_POLE_L1",
+                  "artName": "穿突",
+                  "description": "体勢回復を低下させる突き。（技3個目）",
+                  "poiseDamage": 50,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.18,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_POLE_B4",
+              "artName": "叩伏",
+              "description": "柄での打撃。（技4個目）",
+              "poiseDamage": 36,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_POLE_L2",
+                  "artName": "大車",
+                  "description": "体勢を大きく崩す。（技5個目）",
+                  "poiseDamage": 74,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_BOW",
+      "skillName": "弓術",
+      "category": "Combat",
+      "description": "弓の射撃理論の基礎。長弓・速射・魔力矢流派へ進む。",
+      "baseArts": [
+        {
+          "artId": "ART_BOW_ROOT",
+          "artName": "射撃",
+          "description": "基本の一射。（技1個目）",
+          "poiseDamage": 12,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_BOW_B2",
+              "artName": "狙撃",
+              "description": "精密な一矢。（技2個目）",
+              "poiseDamage": 26,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_BOW_L1",
+                  "artName": "連射",
+                  "description": "体勢回復を遅延させる。（技3個目）",
+                  "poiseDamage": 42,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.14,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_BOW_B4",
+              "artName": "貫通",
+              "description": "高poiseDamageの矢。（技4個目）",
+              "poiseDamage": 38,
+              "manaCost": 10,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_BOW_L2",
+                  "artName": "魔力矢",
+                  "description": "装甲溶解予兆を付与。（技5個目）",
+                  "poiseDamage": 55,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_ArmorDissolve",
+                      "value": 0.1,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_CROSSBOW",
+      "skillName": "弩術",
+      "category": "Combat",
+      "description": "弩の装填と射撃の基礎。重弩・機関・貫通流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_XBOW_ROOT",
+          "artName": "射撃",
+          "description": "基本の一射。（技1個目）",
+          "poiseDamage": 14,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_XBOW_B2",
+              "artName": "装填射",
+              "description": "威力を高めた一射。（技2個目）",
+              "poiseDamage": 30,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_XBOW_L1",
+                  "artName": "貫矢",
+                  "description": "体勢回復を遅延させる。（技3個目）",
+                  "poiseDamage": 48,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.16,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_XBOW_B4",
+              "artName": "急射",
+              "description": "素早い射撃。（技4個目）",
+              "poiseDamage": 34,
+              "manaCost": 9,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_XBOW_L2",
+                  "artName": "重貫",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 65,
+                  "manaCost": 22,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.5
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_THROW",
+      "skillName": "投擲術",
+      "category": "Combat",
+      "description": "投擲武器の軌道の基礎。手裏剣・爆弾・連投流派へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_THROW_ROOT",
+          "artName": "投擲",
+          "description": "基本の一投。（技1個目）",
+          "poiseDamage": 10,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_THROW_B2",
+              "artName": "回転投",
+              "description": "回転を付けた投擲。（技2個目）",
+              "poiseDamage": 22,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_THROW_L1",
+                  "artName": "急所投",
+                  "description": "体勢回復を低下させる。（技3個目）",
+                  "poiseDamage": 38,
+                  "manaCost": 10,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.15,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_THROW_B4",
+              "artName": "強投",
+              "description": "高威力の投擲。（技4個目）",
+              "poiseDamage": 32,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_THROW_L2",
+                  "artName": "炸裂投",
+                  "description": "装甲溶解予兆を付与。（技5個目）",
+                  "poiseDamage": 52,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_ArmorDissolve",
+                      "value": 0.08,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_ASSASSIN",
+      "skillName": "暗殺術",
+      "category": "Combat",
+      "description": "奇襲と急所の基礎。影歩・毒・無音流派へ進化する。",
+      "baseArts": [
+        {
+          "artId": "ART_ASSN_ROOT",
+          "artName": "急所打",
+          "description": "要害を狙う一撃。（技1個目）",
+          "poiseDamage": 16,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_ASSN_B2",
+              "artName": "背刺",
+              "description": "背後からの攻撃。（技2個目）",
+              "poiseDamage": 32,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_ASSN_L1",
+                  "artName": "無音",
+                  "description": "体勢回復を停止する。（技3個目）",
+                  "poiseDamage": 50,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_ASSN_B4",
+              "artName": "煙幕",
+              "description": "体勢を削る奇襲。（技4個目）",
+              "poiseDamage": 28,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_ASSN_L2",
+                  "artName": "断喉",
+                  "description": "体勢回復を大幅低下。（技5個目）",
+                  "poiseDamage": 60,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.28,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_GUN",
+      "skillName": "銃術",
+      "category": "Combat",
+      "description": "銃器の射撃の基礎。速射・狙撃・魔弾流派へ展開する。",
+      "baseArts": [
+        {
+          "artId": "ART_GUN_ROOT",
+          "artName": "射撃",
+          "description": "基本の一発。（技1個目）",
+          "poiseDamage": 16,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_GUN_B2",
+              "artName": "精密",
+              "description": "精密射撃。（技2個目）",
+              "poiseDamage": 30,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_GUN_L1",
+                  "artName": "連射",
+                  "description": "体勢回復を遅延させる。（技3個目）",
+                  "poiseDamage": 44,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.15,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_GUN_B4",
+              "artName": "強装",
+              "description": "高威力射撃。（技4個目）",
+              "poiseDamage": 40,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_GUN_L2",
+                  "artName": "貫弾",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 68,
+                  "manaCost": 24,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_CANNON",
+      "skillName": "砲術",
+      "category": "Combat",
+      "description": "大型火器の基礎。曲射・集中砲撃・魔力砲流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_CANNON_ROOT",
+          "artName": "砲撃",
+          "description": "基本の一砲。（技1個目）",
+          "poiseDamage": 28,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_CANNON_B2",
+              "artName": "曲射",
+              "description": "弾道を曲げる射撃。（技2個目）",
+              "poiseDamage": 42,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_CANNON_L1",
+                  "artName": "集中",
+                  "description": "体勢回復を低下させる。（技3個目）",
+                  "poiseDamage": 58,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.2,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_CANNON_B4",
+              "artName": "榴弾",
+              "description": "範囲を想定した一撃。（技4個目）",
+              "poiseDamage": 48,
+              "manaCost": 14,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_CANNON_L2",
+                  "artName": "轟砲",
+                  "description": "装甲溶解予兆を付与。（技5個目）",
+                  "poiseDamage": 90,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_ArmorDissolve",
+                      "value": 0.18,
+                      "duration": 6.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_SHIELDBOW",
+      "skillName": "盾弾術",
+      "category": "Combat",
+      "description": "盾と射撃の複合基礎。要塞射・移動砲台流派へ分岐する。",
+      "baseArts": [
+        {
+          "artId": "ART_SHBOW_ROOT",
+          "artName": "盾射",
+          "description": "盾を支えた射撃。（技1個目）",
+          "poiseDamage": 14,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_SHBOW_B2",
+              "artName": "伏射",
+              "description": "低姿勢からの一射。（技2個目）",
+              "poiseDamage": 28,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SHBOW_L1",
+                  "artName": "拒射",
+                  "description": "体勢回復を遅延させる。（技3個目）",
+                  "poiseDamage": 44,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.16,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_SHBOW_B4",
+              "artName": "突進射",
+              "description": "前進しながらの射撃。（技4個目）",
+              "poiseDamage": 36,
+              "manaCost": 9,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_SHBOW_L2",
+                  "artName": "要塞弾",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 62,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.5
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_MARTIAL",
+      "skillName": "格闘術",
+      "category": "Combat",
+      "description": "総合格闘の基礎。打撃・投技・関節技の流派へ広がる。",
+      "baseArts": [
+        {
+          "artId": "ART_MART_ROOT",
+          "artName": "打",
+          "description": "基本の打撃。（技1個目）",
+          "poiseDamage": 14,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_MART_B2",
+              "artName": "蹴",
+              "description": "基本の蹴り。（技2個目）",
+              "poiseDamage": 26,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_MART_L1",
+                  "artName": "投げ",
+                  "description": "体勢を大きく崩す。（技3個目）",
+                  "poiseDamage": 48,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.22,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_MART_B4",
+              "artName": "関節",
+              "description": "関節を狙う打撃。（技4個目）",
+              "poiseDamage": 34,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_MART_L2",
+                  "artName": "鉄掌",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 58,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_DUALDAGGER",
+      "skillName": "双短剣術",
+      "category": "Combat",
+      "description": "双短剣の連撃基礎。乱舞・暗双・疾風流派へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_DDAG_ROOT",
+          "artName": "二連刺",
+          "description": "左右の連続刺突。（技1個目）",
+          "poiseDamage": 12,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_DDAG_B2",
+              "artName": "交差刺",
+              "description": "刃を交差させる刺突。（技2個目）",
+              "poiseDamage": 26,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_DDAG_L1",
+                  "artName": "乱刺",
+                  "description": "体勢回復を遅延させる。（技3個目）",
+                  "poiseDamage": 44,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.2,
+                      "duration": 4.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_DDAG_B4",
+              "artName": "旋回",
+              "description": "回転を伴う斬刺。（技4個目）",
+              "poiseDamage": 30,
+              "manaCost": 7,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_DDAG_L2",
+                  "artName": "影双",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 56,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 2.5
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_COMBAT_HIDDEN",
+      "skillName": "暗器術",
+      "category": "Combat",
+      "description": "隠し武器の基礎。手裏剣・毒針・無形流派へ進む。",
+      "baseArts": [
+        {
+          "artId": "ART_HIDDEN_ROOT",
+          "artName": "投針",
+          "description": "基本の一投。（技1個目）",
+          "poiseDamage": 10,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_HIDDEN_B2",
+              "artName": "連針",
+              "description": "連続投擲。（技2個目）",
+              "poiseDamage": 22,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_HIDDEN_L1",
+                  "artName": "毒針",
+                  "description": "体勢回復を低下させる。（技3個目）",
+                  "poiseDamage": 36,
+                  "manaCost": 10,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRegen",
+                      "value": 0.18,
+                      "duration": 5.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_HIDDEN_B4",
+              "artName": "急所針",
+              "description": "急所を狙う一撃。（技4個目）",
+              "poiseDamage": 28,
+              "manaCost": 7,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_HIDDEN_L2",
+                  "artName": "無形",
+                  "description": "体勢回復を停止する。（技5個目）",
+                  "poiseDamage": 50,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Debuff_PoiseRecoveryHalt",
+                      "value": 1.0,
+                      "duration": 3.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

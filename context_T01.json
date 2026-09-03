@@ -1,0 +1,137 @@
+{
+  "generator": "history_sim_context_builder",
+  "dataSources": {
+    "analytics": "world_analytics.json",
+    "historyShelf": "歴史棚"
+  },
+  "turnMapping": {
+    "narrativeScale": 10,
+    "rule": "叙事年 = (analytics.year - 1000) × 10 + 月内進行。1 macroTurn = 10叙事年 = 1 analytics暦年 = 12 turn",
+    "turnsPerMacroTurn": 12,
+    "narrativeYearsPerMacroTurn": 10,
+    "analyticsYearBase": 1000,
+    "formulas": {
+      "analyticsTurnStart": "(macroTurn - 1) × 12 + 1",
+      "analyticsTurnEnd": "macroTurn × 12",
+      "analyticsYear": "1000 + macroTurn - 1",
+      "narrativeYearEnd": "macroTurn × 10",
+      "narrativeYearToAnalyticsYear": "1000 + (叙事年 - 1) // 10"
+    }
+  },
+  "macroTurnRange": [
+    1,
+    1
+  ],
+  "worldAnalytics": {
+    "available": true,
+    "macroTurnRange": [
+      1,
+      1
+    ],
+    "analyticsTurnRange": [
+      1,
+      12
+    ],
+    "narrativeYearRange": [
+      1,
+      10,
+      10
+    ],
+    "analyticsYearRange": [
+      1000,
+      1000
+    ],
+    "sampleCount": 12,
+    "periodStart": {
+      "turn": 1,
+      "year": 1000,
+      "month": 1,
+      "alive_countries": 131,
+      "total_human_power": 19340.01,
+      "average_monster_threat": 1.232,
+      "cycle_phase": "active"
+    },
+    "periodEnd": {
+      "turn": 12,
+      "year": 1000,
+      "month": 12,
+      "alive_countries": 130,
+      "total_human_power": 18191.82,
+      "average_monster_threat": 1.22,
+      "cycle_phase": "active"
+    },
+    "trends": {
+      "monster_threat_min": 1.22,
+      "monster_threat_max": 1.232,
+      "human_power_delta": -1148.19,
+      "alive_countries_min": 130,
+      "alive_countries_max": 131
+    },
+    "keyFrames": [
+      {
+        "turn": 1,
+        "year": 1000,
+        "month": 1,
+        "cycle_phase": "active",
+        "cycle_position": 1,
+        "alive_countries": 131,
+        "total_human_power": 19340.01,
+        "average_monster_threat": 1.232
+      },
+      {
+        "turn": 3,
+        "year": 1000,
+        "month": 3,
+        "cycle_phase": "active",
+        "cycle_position": 3,
+        "alive_countries": 131,
+        "total_human_power": 19145.23,
+        "average_monster_threat": 1.232
+      },
+      {
+        "turn": 5,
+        "year": 1000,
+        "month": 5,
+        "cycle_phase": "active",
+        "cycle_position": 5,
+        "alive_countries": 131,
+        "total_human_power": 18934.77,
+        "average_monster_threat": 1.23
+      },
+      {
+        "turn": 7,
+        "year": 1000,
+        "month": 7,
+        "cycle_phase": "active",
+        "cycle_position": 7,
+        "alive_countries": 131,
+        "total_human_power": 18726.61,
+        "average_monster_threat": 1.228
+      },
+      {
+        "turn": 9,
+        "year": 1000,
+        "month": 9,
+        "cycle_phase": "active",
+        "cycle_position": 9,
+        "alive_countries": 131,
+        "total_human_power": 18485.69,
+        "average_monster_threat": 1.226
+      },
+      {
+        "turn": 12,
+        "year": 1000,
+        "month": 12,
+        "cycle_phase": "active",
+        "cycle_position": 12,
+        "alive_countries": 130,
+        "total_human_power": 18191.82,
+        "average_monster_threat": 1.22
+      }
+    ]
+  },
+  "nationsAtThisTurn": {
+    "collapse": [],
+    "birthCollapse": []
+  }
+}

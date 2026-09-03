@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魔法IF地球 — 地図シミュレーター＆エディタ</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <style>
+    :root {
+      --bg:#1a1410; --panel:#241c16; --border:#4a3c30; --text:#f0e6d6;
+      --muted:#a89880; --accent:#c9a227; --accent2:#8b4513; --danger:#c0392b; --wild:#5a5a5a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:"Palatino Linotype","Hiragino Mincho ProN",serif;background:var(--bg);color:var(--text)}
+    #app{display:grid;grid-template-columns:1fr 380px;grid-template-rows:auto 1fr auto;height:100vh}
+    #topbar{grid-column:1/-1;display:flex;align-items:center;gap:12px;padding:8px 16px;background:var(--panel);border-bottom:2px solid var(--border)}
+    #topbar h1{font-size:15px;color:var(--accent);flex:1}
+    #map-wrap{background:#5b8fa8} #map{width:100%;height:100%;background:#5b8fa8}
+    #sidebar{background:var(--panel);border-left:2px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+    .sec{padding:12px 14px;border-bottom:1px solid var(--border)}
+    .sec h2{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .sec-scroll{flex:1;overflow-y:auto;padding:10px 14px;min-height:0}
+    button,.btn{padding:7px 11px;border:1px solid var(--border);border-radius:4px;background:#2a2218;color:var(--text);cursor:pointer;font-family:inherit;font-size:12px}
+    button:hover{background:#3a3028} button.primary{background:var(--accent2);border-color:var(--accent)}
+    button.danger{background:#5c1a1a;border-color:var(--danger)} button:disabled{opacity:.45;cursor:not-allowed}
+    .btn-row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+    label.field{display:block;margin:7px 0 3px;font-size:11px;color:var(--muted)}
+    input,select{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:4px;background:#1a1410;color:var(--text);font-family:inherit;font-size:13px}
+    input[type=range]{padding:0} .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .file-label{display:block;padding:8px;border:1px dashed var(--border);border-radius:4px;text-align:center;font-size:11px;color:var(--muted);cursor:pointer}
+    .file-label input{display:none}
+    .hint{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.4}
+    #status-bar{grid-column:1/-1;padding:6px 16px;font-size:11px;color:var(--muted);background:#120e0a;border-top:1px solid var(--border)}
+    .turn-display{font-size:18px;font-weight:700;color:var(--accent);margin:4px 0}
+    .era-indicator{display:none;font-size:11px;padding:5px 10px;border-radius:4px;margin:4px 0 8px;font-weight:600}
+    .era-indicator.active{display:inline-block;background:#5c1a1a;color:#f5c6c6;border:1px solid var(--danger)}
+    .era-indicator.dormant{display:inline-block;background:#1a3a5c;color:#a8d4f0;border:1px solid #5dade2}
+    .log-entry{padding:7px 9px;margin-bottom:5px;border-radius:4px;font-size:11px;line-height:1.45;border-left:3px solid var(--border);background:#1a1410}
+    .log-entry.monster{border-left-color:var(--danger)} .log-entry.birth{border-left-color:#58d68d}
+    .log-entry.death{border-left-color:#888} .log-entry.conflict{border-left-color:var(--accent)}
+    .log-entry.domestic{border-left-color:#5dade2} .log-entry.system{border-left-color:var(--muted)}
+    .threat-pulse{animation:pulse 1.2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{fill-opacity:.2}50%{fill-opacity:.55}}
+    .continent-bg{fill:#d9c9a8;fill-opacity:.95;stroke:#6b5a45;stroke-width:1.1}
+    #editor-empty{color:var(--muted);font-size:12px;text-align:center;padding:20px 8px}
+    .sim-running{color:var(--accent);font-size:11px}
+  </style>
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <h1>魔法IF地球 — 地図シミュレーター＆エディタ</h1>
+    <span id="sim-badge" style="font-size:11px;color:var(--muted)">編集モード</span>
+  </header>
+  <div id="map-wrap"><div id="map"></div></div>
+  <aside id="sidebar">
+    <div class="sec">
+      <h2>設定セーブ / ロード</h2>
+      <div class="btn-row">
+        <button id="btn-gen-world">世界再生成</button>
+        <button id="btn-save-setup" class="primary">設定セーブ</button>
+        <button id="btn-load-setup-btn">設定ロード</button>
+      </div>
+      <input type="file" id="load-setup-file" accept=".json,application/json" multiple style="display:none">
+      <p class="hint" id="world-stats">国家: — / 脅威ゾーン: —</p>
+    </div>
+    <div class="sec">
+      <h2>地図編集</h2>
+      <div class="btn-row">
+        <button id="btn-add-state">国家追加</button>
+        <button id="btn-add-threat" class="danger">脅威円追加</button>
+      </div>
+      <p class="hint">国をクリックで編集。脅威円内の国は脅威因子が上昇。</p>
+    </div>
+    <div class="sec" id="state-form-wrap">
+      <div id="editor-empty">国家をクリックして編集</div>
+      <form id="state-form" style="display:none">
+        <input type="hidden" id="f-id">
+        <label class="field">国名</label><input id="f-name">
+        <label class="field">政体</label><select id="f-government">
+          <option>君主制</option><option>大公国</option><option>共和制</option><option>首長国</option><option>帝国</option><option>幕府</option>
+        </select>
+        <label class="field">地域</label><select id="f-region"></select>
+        <div class="stat-grid">
+          <div><label class="field">経済</label><input type="number" id="f-economy" min="0"></div>
+          <div><label class="field">軍事</label><input type="number" id="f-military" min="0"></div>
+          <div><label class="field">魔力</label><input type="number" id="f-magic" min="0"></div>
+          <div><label class="field">領土</label><input type="number" id="f-territory" min="1"></div>
+        </div>
+        <label class="field">国内脅威因子 (0.5〜2.0)</label>
+        <input type="range" id="f-threat" min="0.5" max="2" step="0.05"><span id="f-threat-val">1.0</span>
+        <label class="field">色</label><input type="color" id="f-color">
+        <div class="btn-row"><button type="submit" class="primary">適用</button><button type="button" id="btn-del-state" class="danger">削除</button></div>
+      </form>
+      <form id="threat-form" style="display:none;margin-top:10px">
+        <h2 style="font-size:11px;color:var(--danger);margin-bottom:6px">脅威ゾーン</h2>
+        <label class="field">名称</label><input id="tz-name">
+        <label class="field">脅威度</label><input type="range" id="tz-level" min="0.5" max="2" step="0.05"><span id="tz-level-val">1.5</span>
+        <div class="btn-row"><button type="submit" class="primary">適用</button><button type="button" id="btn-del-threat" class="danger">削除</button></div>
+      </form>
+    </div>
+    <div class="sec">
+      <h2>シミュレーション</h2>
+      <label class="field">世界難易度（魔物の凶暴度）</label>
+      <input type="range" id="difficulty-scale" min="0.1" max="2.0" step="0.1" value="0.3">
+      <div style="display:flex;justify-content:space-between;font-size:11px"><span>0.1x</span><span id="difficulty-val">0.3x</span><span>2.0x</span></div>
+      <label class="field">シミュレーション年数</label>
+      <input type="range" id="sim-years" min="10" max="100" step="10" value="50">
+      <div style="display:flex;justify-content:space-between;font-size:11px"><span>10年</span><span id="sim-years-val">50年</span><span>100年</span></div>
+      <div class="btn-row" style="margin-top:8px">
+        <button id="btn-run-sim" class="primary" style="flex:1">シミュレーション実行</button>
+      </div>
+      <p class="hint" id="sim-hint">実行後、タイムラインで再生できます。</p>
+    </div>
+    <div class="sec">
+      <h2>タイムライン</h2>
+      <div class="turn-display" id="turn-display">—</div>
+      <div id="era-indicator" class="era-indicator"></div>
+      <div class="btn-row">
+        <button id="btn-play" class="primary" disabled>再生</button>
+        <button id="btn-pause" disabled>停止</button>
+        <button id="btn-to-start" disabled>最初へ</button>
+        <button id="btn-back-edit">編集に戻る</button>
+        <button id="btn-save-history">履歴保存</button>
+      </div>
+      <input type="range" id="turn-slider" min="0" max="0" value="0" disabled>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted)">
+        <span>T0</span><span id="slider-val">0</span><span id="slider-max">0</span>
+      </div>
+    </div>
+    <div class="sec-scroll"><div id="log-timeline"><div class="log-entry system">ログはシミュレーション実行後に表示されます。</div></div></div>
+  </aside>
+  <footer id="status-bar">準備完了</footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+<script>
+// =============================================================================
+// 世界大陸データ（簡略化した地球の陸地形状・GeoJSON標準 [経度, 緯度]）
+// =============================================================================
+const WORLD_LAND={
+  type:"FeatureCollection",
+  features:[
+    {type:"Feature",properties:{name:"北米"},geometry:{type:"Polygon",coordinates:[[
+      [-168,72],[-140,70],[-125,50],[-95,49],[-82,42],[-75,45],[-70,47],[-67,45],[-80,25],[-97,26],[-105,22],[-115,32],[-125,48],[-135,58],[-155,62],[-168,72]
+    ]]}},
+    {type:"Feature",properties:{name:"南米"},geometry:{type:"Polygon",coordinates:[[
+      [-82,12],[-72,12],[-35,5],[-38,-8],[-48,-28],[-58,-38],[-68,-55],[-75,-52],[-82,12]
+    ]]}},
+    {type:"Feature",properties:{name:"グリーンランド"},geometry:{type:"Polygon",coordinates:[[
+      [-45,60],[-25,60],[-20,70],[-30,78],[-50,82],[-58,76],[-45,60]
+    ]]}},
+    {type:"Feature",properties:{name:"ヨーロッパ"},geometry:{type:"Polygon",coordinates:[[
+      [-10,36],[-9,44],[-6,48],[0,51],[3,58],[8,58],[12,55],[18,58],[25,70],[30,72],[35,70],[40,68],[42,55],[40,45],[35,42],[28,38],[20,36],[12,38],[5,36],[-5,36],[-10,36]
+    ]]}},
+    {type:"Feature",properties:{name:"アフリカ"},geometry:{type:"Polygon",coordinates:[[
+      [-17,36],[10,38],[32,32],[42,12],[51,12],[40,-5],[30,-35],[18,-35],[12,-5],[-8,5],[-17,20],[-17,36]
+    ]]}},
+    {type:"Feature",properties:{name:"アジア"},geometry:{type:"Polygon",coordinates:[[
+      [26,40],[40,45],[55,42],[68,38],[80,42],[90,35],[95,22],[105,5],[118,-5],[130,2],[140,15],[135,30],[145,45],[160,55],[180,65],[170,72],[140,75],[100,78],[60,75],[45,55],[26,40]
+    ]]}},
+    {type:"Feature",properties:{name:"オーストラリア"},geometry:{type:"Polygon",coordinates:[[
+      [113,-11],[155,-12],[155,-38],[115,-35],[113,-11]
+    ]]}},
+    {type:"Feature",properties:{name:"日本列島"},geometry:{type:"Polygon",coordinates:[[
+      [130,31],[132,34],[140,38],[142,43],[145,45],[141,40],[135,33],[130,31]
+    ]]}},
+    {type:"Feature",properties:{name:"インド亜大陸"},geometry:{type:"Polygon",coordinates:[[
+      [68,24],[88,22],[92,10],[80,8],[72,18],[68,24]
+    ]]}},
+    {type:"Feature",properties:{name:"東南アジア"},geometry:{type:"Polygon",coordinates:[[
+      [95,22],[110,22],[120,12],[110,0],[100,-8],[95,5],[95,22]
+    ]]}},
+    {type:"Feature",properties:{name:"イギリス"},geometry:{type:"Polygon",coordinates:[[
+      [-5,50],[-3,58],[0,58],[2,51],[-5,50]
+    ]]}}
+  ]
+};
+
+const WorldMap={
+  landRings(){
+    const rings=[];
+    for(const f of WORLD_LAND.features){
+      const g=f.geometry;
+      if(g.type==="Polygon")rings.push(g.coordinates[0]);
+      else if(g.type==="MultiPolygon")g.coordinates.forEach(p=>rings.push(p[0]));
+    }
+    return rings;
+  },
+  onLand(lat,lng){
+    const x=lng,y=lat;
+    return this.landRings().some(ring=>{
+      let inside=false;
+      for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+        const[xi,yi]=ring[i],[xj,yj]=ring[j];
+        if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)inside=!inside;
+      }
+      return inside;
+    });
+  },
+  haversineKm(a,b){
+    const R=6371, toR=d=>d*Math.PI/180;
+    const dLat=toR(b[0]-a[0]), dLng=toR(b[1]-a[1]);
+    const s=Math.sin(dLat/2)**2+Math.cos(toR(a[0]))*Math.cos(toR(b[0]))*Math.sin(dLng/2)**2;
+    return 2*R*Math.asin(Math.sqrt(s));
+  }
+};
+
+// =============================================================================
+// MEDIEVAL WORLD GENERATOR (129国家) — 実地球の緯度経度上に配置
+// =============================================================================
+const MedievalGenerator = {
+  regions: [
+    { id:"western_europe", name:"西ヨーロッパ", threat_level:0.9, bbox:[36,-10,56,15] },
+    { id:"eastern_europe", name:"東ヨーロッパ", threat_level:1.2, bbox:[44,18,62,50] },
+    { id:"mediterranean", name:"地中海", threat_level:1.0, bbox:[30,-6,46,38] },
+    { id:"middle_east", name:"中東・中央アジア", threat_level:1.3, bbox:[12,32,44,72] },
+    { id:"east_asia", name:"東アジア", threat_level:1.1, bbox:[18,72,52,142] },
+    { id:"south_asia", name:"南・東南アジア", threat_level:1.0, bbox:[-8,68,32,122] }
+  ],
+  names: {
+    western_europe:"フランドル伯領|ノルマンディー公国|ブルゴーニュ公国|プロヴァンス伯領|アキテーヌ公国|ガスコーニュ伯領|トゥールーヌ伯領|シャンパーニュ伯領|バルセロナ伯領|カタルーニャ公国|レオン王国|カスティーリャ王国|ナバラ王国|アラゴン王国|ポルトガル王国|ガリシア王国|コルドバ首長国|セビリア王国|バスク諸邑|アストゥリアス公国|ブルターニュ公国|アンジュー伯領".split("|"),
+    eastern_europe:"マーシア王国|キエフ大公国|ノヴゴロド公国|ヴラジミール大公国|ポーランド王国|ボヘミア王国|モラヴィア公国|ハンガリー王国|クロアチア王国|セルビア公国|ボスニア Banate|ペチェネグ汗国|クマン部族連合|リューリク朝|チェルニゴフ公国|ガリシア公国|テュルキー公国|モルダヴィア公国|エストニア部族|リトアニア部族|ブルガリア帝国|ラトビア部族".split("|"),
+    mediterranean:"ビザンツ帝国|ラテン帝国|エピロス Despotate|トラペゾント帝国|シチリア王国|ナポリ王国|パプリック・ヴェネツィア|ジェノヴァ共和国|ピサ共和国|フィレンツェ共和国|教皇領|サルデーニャ王国|コルシカ伯領|マルタ騎士団領|エルサレム王国|トリポリ伯領|アンティオキア公国|エジプト Fatimid 残存勢力|チュニジア Zirid|モロッコ Almoravid".split("|"),
+    middle_east:"アッバース朝|セルジューク朝|ガズナ朝|フワリズム Shah|ゴール朝|デリー Sultanate|ペルシア Buyid|タブリーズ Emirate|アラビア諸部族|オマーン Imamate|イエメン Ziyarid|アルメニア Bagratid|ジョージア Bagratid|アナトリア Beylik|モスル Emirate|ホラサン Samanid 残勢|トルクメン部族|シベリア魔境縁|アフリカ奥地 Sultanate|カフサ遺跡国|フタブ Shah|マルワール Raj".split("|"),
+    east_asia:"唐|五代十国|遼|北宋|西夏|高麗|渤海遺臣国|日本（平安朝廷）|藤原氏政権|奥州独立勢力|大理国|吐蕃|南詔|黒水部|契丹|女真部|蒙古高原諸部|西域回鶻|于闐王国|疏勒王国|龟兹王国|吴越国|南唐".split("|"),
+    south_asia:"朱罗王国|潘地亚王国|遮娄其帝国|瞿折罗|波罗王朝|帕ラ王朝|室利佛逝|三佛齐|吴哥王朝|蒲甘王朝|阿瑜陀耶前身|占婆|蘭納|素可泰前身|锡兰|马尔代夫 Sultanate|勃固|若开|孟邦|禅族諸国|真腊|文莱前身".split("|")
+  },
+  governments:["君主制","大公国","共和制","首長国","帝国","幕府","部族連合"],
+  birthNames:["新興公国","遺民連合","開拓領","復興王国","辺境伯領","独立都市","氏族共和国","魔討伐団領"],
+
+  hashColor(n){let h=0;for(let i=0;i<n.length;i++)h=n.charCodeAt(i)+((h<<5)-h);return`hsl(${Math.abs(h)%360},45%,42%)`},
+  rng(s){let x=s;return()=>{x=(x*16807)%2147483647;return(x-1)/2147483646}},
+  /** GeoJSONリング [経度, 緯度] */
+  cell(lat,lng,dLat,dLng,j,r){
+    const jj=j*r();
+    return[[lng+jj,lat+jj],[lng+dLng-jj,lat+jj*.5],[lng+dLng,lat+dLat-jj],[lng+jj*.5,lat+dLat],[lng+jj,lat+jj]];
+  },
+
+  placeState(reg,name,rand){
+    const[minLat,minLng,maxLat,maxLng]=reg.bbox;
+    for(let t=0;t<60;t++){
+      const lat=minLat+rand()*(maxLat-minLat), lng=minLng+rand()*(maxLng-minLng);
+      if(!WorldMap.onLand(lat,lng))continue;
+      const dLat=.5+rand()*1.1, dLng=.6+rand()*1.4;
+      return this.cell(lat,lng,dLat,dLng,.08,rand);
+    }
+    return null;
+  },
+
+  generate(seed=867){
+    const rand=this.rng(seed), features=[]; let idx=0;
+    for(const reg of this.regions){
+      for(const name of this.names[reg.id]){
+        const ring=this.placeState(reg,name,rand);
+        if(!ring)continue;
+        features.push({type:"Feature",id:`state_${String(idx).padStart(3,"0")}`,
+          properties:{id:`state_${String(idx++).padStart(3,"0")}`,name,government:this.governments[Math.floor(rand()*this.governments.length)],
+            region_id:reg.id,economy:Math.floor(20+rand()*70),military:Math.floor(20+rand()*70),
+            magic_level:Math.floor(rand()*80),territory_size:Math.floor(40+rand()*50),
+            domestic_threat_factor:Math.round((.6+rand()*1.2)*20)/20,color:this.hashColor(name)},
+          geometry:{type:"Polygon",coordinates:[ring]}});
+      }
+    }
+    return {version:1,meta:{startYear:1000,crs:"EPSG4326",nationCount:features.length},
+      regions:this.regions.map(r=>({id:r.id,name:r.name,threat_level:r.threat_level})),
+      threat_zones:[
+        {id:"tz_siberia",name:"シベリア魔境",threat_level:1.9,geometry:{type:"Circle",center:[68,95],radius:2800000}},
+        {id:"tz_africa",name:"アフリカ奥地",threat_level:1.7,geometry:{type:"Circle",center:[5,22],radius:2200000}},
+        {id:"tz_central_asia",name:"中央アジア瘴気帯",threat_level:1.5,geometry:{type:"Circle",center:[38,72],radius:1600000}}
+      ],
+      geojson:{type:"FeatureCollection",features}};
+  }
+};
+
+// 旧抽象座標データは廃止（EPSG4326 地球座標に移行）
+
+// =============================================================================
+// UTIL
+// =============================================================================
+const Util={
+  dl(obj,name){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:"application/json"}));a.download=name;a.click()},
+  readFile(f){return new Promise((ok,ng)=>{const r=new FileReader();r.onload=()=>{try{ok(JSON.parse(r.result))}catch(e){ng(e)}};r.onerror=ng;r.readAsText(f,"UTF-8")})},
+  centroid(ring){let ln=0,la=0;const n=ring.length-1;for(let i=0;i<n;i++){ln+=ring[i][0];la+=ring[i][1]}return[la/n,ln/n]},
+  scaleRing(ring,cLatLng,f){const[cLat,cLng]=cLatLng;return ring.map(([lng,lat])=>[cLng+(lng-cLng)*f,cLat+(lat-cLat)*f])},
+  distKm(a,b){return WorldMap.haversineKm(a,b)},
+  inCircleKm(pt,center,radiusKm){return WorldMap.haversineKm(pt,center)<=radiusKm},
+  inPolyLatLng(lat,lng,ring){
+    const x=lng,y=lat;let inside=false;
+    for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+      const[xi,yi]=ring[i],[xj,yj]=ring[j];
+      if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)inside=!inside;
+    }return inside;
+  },
+  zoneThreatAt(pt,zones){
+    let m=0;for(const z of zones){
+      const g=z.geometry;
+      if(g.type==="Circle"&&Util.inCircleKm(pt,g.center,g.radius/1000))m=Math.max(m,z.threat_level);
+      else if(g.type==="Polygon"&&Util.inPolyLatLng(pt[0],pt[1],g.coordinates[0]))m=Math.max(m,z.threat_level);
+    }return m;
+  },
+  ringToLatLngs(ring){return ring.map(([lng,lat])=>[lat,lng])},
+  latLngsToRing(latlngs){return latlngs.map(p=>[p.lng,p.lat])},
+  ym(turn,startYear){if(turn<=0)return{year:startYear,month:0};return{year:startYear+Math.floor((turn-1)/12),month:((turn-1)%12)+1}},
+  logText(turn,startYear,event,state,extra=""){
+    const{year,month}=Util.ym(turn,startYear);
+  return month?`${year}年${month}月：${state}${event}${extra}`:`${event}`;
+  }
+};
+
+// =============================================================================
+// 魔物活性・休眠サイクル（20年 = 240ターン周期）
+// =============================================================================
+const WaveCycle={
+  CYCLE:240,
+  ACTIVE:120,
+
+  pos(turn){return((turn-1)%this.CYCLE)+1},
+  isActive(turn){return this.pos(turn)<=this.ACTIVE},
+  phaseId(turn){return this.isActive(turn)?"active":"dormant"},
+  label(turn){return this.isActive(turn)?"活性期 (Active Era)":"休眠期 (Dormant Era)"},
+  labelJa(turn){return this.isActive(turn)?"魔物活性期":"魔物休眠期（復興期）"},
+
+  isTransition(turn){
+    const p=this.pos(turn);
+    return p===1||p===this.ACTIVE+1;
+  },
+
+  attackRateMul(turn){return this.isActive(turn)?1.5:0.2},
+  damageMul(turn){return this.isActive(turn)?1.4:0.25},
+  attackCapMul(turn){return this.isActive(turn)?1.3:0.3},
+};
+
+// =============================================================================
+// SIMULATION ENGINE (内蔵)
+// =============================================================================
+const SimEngine={
+  rng:null,
+  rand:()=>SimEngine.rng(),
+  ri:(a,b)=>Math.floor(SimEngine.rand()*(b-a+1))+a,
+  rf:(a,b)=>a+SimEngine.rand()*(b-a),
+
+  buildWorld(setup){
+    const regionMap={};for(const r of setup.regions)regionMap[r.id]=r;
+    const states={};
+    for(const f of setup.geojson.features){
+      const p=f.properties, ring=f.geometry.coordinates[0], c=Util.centroid(ring);
+      states[p.id]={id:p.id,name:p.name,alive:true,wilderness:false,
+        government:p.government,region_id:p.region_id,
+        economy:p.economy,military:p.military,magic:p.magic_level,
+        territory:p.territory_size,baseFactor:p.domestic_threat_factor,
+        factor:p.domestic_threat_factor,color:p.color,
+        ring:[...ring.map(x=>[...x])],centroid:c,initTerritory:p.territory_size};
+    }
+    return {startYear:setup.meta?.startYear||1000,regions:regionMap,states,threatZones:setup.threat_zones||[],adjacency:this.buildAdjacency(states)};
+  },
+
+  buildAdjacency(states){
+    const ids=Object.keys(states), adj={};
+    for(const a of ids){adj[a]=[];for(const b of ids){
+      if(a!==b&&Util.distKm(states[a].centroid,states[b].centroid)<550)adj[a].push(b);
+    }}return adj;
+  },
+
+  effectiveFactor(st,threatZones,regions){
+    const z=Util.zoneThreatAt(st.centroid,threatZones);
+    const reg=regions[st.region_id]?.threat_level||1;
+    const f=Math.min(2,Math.max(.5,st.baseFactor*(1+z*.35)));
+    return Math.round(reg*f*100)/100;
+  },
+
+  logEntry(turn,startYear,event,category,state,states,result){
+    const s=state||(states?states.join("・"):"");
+    let text="";
+    if(event==="国家滅亡")text=Util.logText(turn,startYear,"が滅亡、無主地化",s);
+    else if(event==="国家誕生")text=Util.logText(turn,startYear,"が建国",s,`（領${result?.territory||"?"}）`);
+    else if(event==="魔物襲撃")text=Util.logText(turn,startYear,"が魔物襲撃を受けた",s,`（軍${result?.military_change||0} 領${result?.territory_change||0}）`);
+    else if(event==="魔物襲撃撃退")text=Util.logText(turn,startYear,"が魔物襲撃を撃退",s);
+    else if(event==="局地戦")text=Util.logText(turn,startYear,"と局地戦",s,` 勝者:${result?.winner}`);
+    else if(event==="魔法開拓")text=Util.logText(turn,startYear,"が領土変動",s,` ${result?.territory_change>0?"+":""}${result?.territory_change}`);
+    else if(event==="魔物活性期突入"){
+      const fact="魔物活性期突入。";
+      text=Util.logText(turn,startYear,fact,"");
+      return {turn,event:fact,category,state,states,result,text};
+    }
+    else if(event==="魔物休眠期突入"){
+      const fact="魔物休眠期（復興期）突入。全国家の国力自然増加バフ発動。";
+      text=Util.logText(turn,startYear,fact,"");
+      return {turn,event:fact,category,state,states,result,text};
+    }
+    else text=Util.logText(turn,startYear,event,s);
+    return {turn,event,category,state,states,result,text};
+  },
+
+  checkDeath(st){
+    return st.territory<=0||st.military<=0||(st.economy+st.military)<=0;
+  },
+
+  markWilderness(st){
+    st.alive=false;st.wilderness=true;st.color="#5a5a5a";
+  },
+
+  tryBirth(world,turn,logs,startYear){
+    const wild=Object.values(world.states).filter(s=>s.wilderness);
+    if(!wild.length)return;
+    const w=wild[Math.floor(this.rand()*wild.length)];
+    const neighbors=Object.values(world.states).filter(s=>s.alive&&Util.distKm(s.centroid,w.centroid)<600);
+    if(!neighbors.length)return;
+    const parent=neighbors[Math.floor(this.rand()*neighbors.length)];
+    if(this.rand()>0.025)return; // 2.5%/turn per attempt sample
+
+    const newId=`born_${turn}_${this.ri(1000,9999)}`;
+    const suffix=MedievalGenerator.birthNames[this.ri(0,MedievalGenerator.birthNames.length-1)];
+    const name=`${w.name||"無主地"}${suffix}`;
+    const ring=Util.scaleRing(w.ring,Util.centroid(w.ring),.85);
+    world.states[newId]={id:newId,name,alive:true,wilderness:false,
+      government:"君主制",region_id:parent.region_id,
+      economy:this.ri(15,35),military:this.ri(15,35),magic:this.ri(5,25),
+      territory:this.ri(25,40),baseFactor:.9,factor:.9,
+      color:MedievalGenerator.hashColor(name+newId),
+      ring,centroid:Util.centroid(ring),initTerritory:this.ri(25,40),bornAt:turn};
+    delete world.states[w.id]; // consume wilderness
+    world.adjacency=this.buildAdjacency(world.states);
+    logs.push(this.logEntry(turn,startYear,"国家誕生","birth",name,null,{territory:world.states[newId].territory,parent:parent.name}));
+  },
+
+  processTurn(world,turn,logs,config){
+    const{states,threatZones,regions,startYear}=world;
+    const living=Object.values(states).filter(s=>s.alive);
+    const difficulty=config?.difficultyScale??0.3;
+    const active=WaveCycle.isActive(turn);
+    const waveRate=WaveCycle.attackRateMul(turn);
+    const waveDmg=WaveCycle.damageMul(turn);
+    const waveCap=WaveCycle.attackCapMul(turn);
+
+    world.cyclePhase=WaveCycle.phaseId(turn);
+    world.cyclePosition=WaveCycle.pos(turn);
+
+    if(WaveCycle.isTransition(turn)){
+      if(active){
+        logs.push(this.logEntry(turn,startYear,"魔物活性期突入","system",null,null,{cycle_position:WaveCycle.pos(turn)}));
+      }else{
+        logs.push(this.logEntry(turn,startYear,"魔物休眠期突入","system",null,null,{cycle_position:WaveCycle.pos(turn)}));
+      }
+    }
+
+    const effDifficulty=difficulty*waveRate;
+    const attackCap=Math.max(active?1:0,Math.floor(((living.length*0.03)+(living.length*0.02*difficulty))*waveCap));
+
+    const attackCandidates=living.map(st=>{
+      const ft=this.effectiveFactor(st,threatZones,regions);
+      const zoneBoost=Util.zoneThreatAt(st.centroid,threatZones);
+      const baseProb=(0.04+ft*0.10)*(0.7+zoneBoost*0.25)*effDifficulty;
+      return {st,ft,baseProb};
+    }).sort((a,b)=>b.baseProb-a.baseProb);
+    const attackTargets=[];
+    for(const c of attackCandidates){
+      if(attackTargets.length>=attackCap)break;
+      if(this.rand()<Math.min(active?0.75:0.25,c.baseProb))attackTargets.push(c);
+    }
+
+    for(const st of living){
+      st.factor=Math.min(2,Math.max(.5,st.baseFactor+Util.zoneThreatAt(st.centroid,threatZones)*.25));
+    }
+
+    if(!active){
+      for(const st of living){
+        const eco=this.rf(1.2,3.2), mil=this.rf(0.8,2.4), mag=this.rf(1.0,2.8);
+        st.economy+=eco;st.military+=mil;st.magic+=mag;
+      }
+    }
+
+    for(const target of attackTargets){
+      const st=target.st, ft=target.ft;
+      const defense=st.military*0.55+st.magic*0.5+st.economy*0.18;
+      const autoDefenseBias=(st.military+st.magic)>=150?1.2:1.0;
+      const atk=ft*(16+14*difficulty)*waveDmg*this.rf(0.8,1.15);
+      const defended=(defense*autoDefenseBias)>=atk || this.rand()<Math.min(0.45,(defense/(atk+1))*0.06);
+      if(defended){
+        const milLoss=this.rf(0.5,3.0)*difficulty*waveDmg;
+        st.military-=milLoss;
+        logs.push(this.logEntry(turn,startYear,"魔物襲撃撃退","monster",st.name,null,{
+          military_change:-Math.round(milLoss*10)/10,final_threat:ft,cycle:world.cyclePhase
+        }));
+      }else{
+        const dmgScale=(0.45+difficulty*0.9)*waveDmg;
+        const tc=-this.rf(0.8,4.5)*dmgScale, mc=-this.rf(2.0,8.5)*dmgScale, ec=-this.rf(1.5,6.5)*dmgScale;
+        st.territory+=tc;st.military+=mc;st.economy+=ec;
+        logs.push(this.logEntry(turn,startYear,"魔物襲撃","monster",st.name,null,{
+          territory_change:Math.round(tc*10)/10,military_change:Math.round(mc*10)/10,economy_change:Math.round(ec*10)/10,
+          final_threat:ft,cycle:world.cyclePhase
+        }));
+      }
+    }
+
+    // 内政・紛争（サンプリングで高速化）
+    const sample=living.sort(()=>this.rand()-.5).slice(0,Math.min(25,living.length));
+    for(const st of sample){
+      const ft=this.effectiveFactor(st,threatZones,regions);
+      const roll=this.rand();
+      if(roll<.12){
+        const d=this.rf(1,5);st.territory+=d;
+        logs.push(this.logEntry(turn,startYear,"魔法開拓","domestic",st.name,null,{territory_change:Math.round(d)}));
+      }else if(roll<.18){
+        st.baseFactor=Math.max(.5,st.baseFactor-this.rf(.02,.08));
+        logs.push(this.logEntry(turn,startYear,"結界強化","domestic",st.name,null,{factor_change:-.05}));
+      }else if(ft<1.0&&st.military>0){
+        const enemies=(world.adjacency[st.id]||[]).map(id=>states[id]).filter(e=>e?.alive);
+        if(enemies.length&&this.rand()<.04){
+          const en=enemies[Math.floor(this.rand()*enemies.length)];
+          const win=this.rand()<.5?st:en, lose=win===st?en:st;
+          lose.military-=this.rf(3,9);win.military-=this.rf(1,4);lose.territory-=this.rf(1,3);
+          logs.push(this.logEntry(turn,startYear,"局地戦","conflict",`${st.name}・${en.name}`,null,{winner:win.name}));
+        }
+      }
+    }
+
+    // 滅亡判定
+    for(const st of Object.values(states)){
+      if(st.alive&&this.checkDeath(st)){
+        this.markWilderness(st);
+        logs.push(this.logEntry(turn,startYear,"国家滅亡","death",st.name,null,{economy:st.economy,military:st.military,territory:st.territory}));
+      }
+    }
+
+    // 建国
+    if(this.rand()<0.35)this.tryBirth(world,turn,logs,startYear);
+  },
+
+  buildAnalytics(snapshots,startYear){
+    const analytics=[];
+    for(let t=1;t<snapshots.length;t++){
+      const snap=snapshots[t];
+      if(!snap)continue;
+      const states=Object.values(snap.states||{});
+      const living=states.filter(s=>s.alive&&!s.wilderness);
+      const totalHumanPower=living.reduce((sum,s)=>sum+(s.economy||0)+(s.military||0)+(s.magic||0),0);
+      const avgThreat=living.length
+        ? living.reduce((sum,s)=>sum+(s.factor||1),0)/living.length
+        : 0;
+      const ym=Util.ym(t,startYear);
+      analytics.push({
+        turn:t,
+        year:ym.year,
+        month:ym.month,
+        cycle_phase:WaveCycle.phaseId(t),
+        cycle_position:WaveCycle.pos(t),
+        alive_countries:living.length,
+        total_human_power:Math.round(totalHumanPower*100)/100,
+        average_monster_threat:Math.round(avgThreat*1000)/1000
+      });
+    }
+    return analytics;
+  },
+
+  run(setup,years,config={},seed=42){
+    let s=seed;this.rng=()=>{s=(s*16807)%2147483647;return(s-1)/2147483646};
+    const months=years*12;
+    const base=this.buildWorld(setup);
+    const snapshots=[JSON.parse(JSON.stringify(base))];
+    const allLogs=[];
+    for(let t=1;t<=months;t++){
+      const w=JSON.parse(JSON.stringify(snapshots[t-1]));
+      const turnLogs=[];
+      this.processTurn(w,t,turnLogs,config);
+      allLogs.push(...turnLogs);
+      w.turn=t;snapshots[t]=w;
+    }
+    const analytics=this.buildAnalytics(snapshots,base.startYear);
+    return {snapshots,maxTurn:months,logs:allLogs,setup,startYear:base.startYear,analytics};
+  }
+};
+
+// =============================================================================
+// MAP + EDITOR
+// =============================================================================
+const App={
+  map:null, stateFG:null, threatFG:null, drawCtl:null,
+  world:null, selected:null, selType:null,
+  simResult:null, playTimer:null, playing:false, editMode:true,
+  renderFG:null, eventFG:null, currentTurn:0,
+
+  init(){
+    this.map=L.map("map",{minZoom:2,maxZoom:8,worldCopyJump:true});
+    this.map.fitBounds([[-40,-175],[78,180]],{padding:[12,12]});
+    this.map.setMaxBounds([[-85,-200],[88,200]]);
+    this.landLayer=L.geoJSON(WORLD_LAND,{
+      style:()=>({className:"continent-bg",fillColor:"#d9c9a8",fillOpacity:.95,color:"#6b5a45",weight:1.1}),
+      interactive:false
+    }).addTo(this.map);
+    this.stateFG=L.featureGroup().addTo(this.map);
+    this.threatFG=L.featureGroup().addTo(this.map);
+    this.renderFG=L.layerGroup();
+    this.eventFG=L.layerGroup();
+    this.drawCtl=new L.Control.Draw({position:"topright",edit:{featureGroup:this.stateFG},
+      draw:{polygon:{shapeOptions:{color:"#8b4513"}},rectangle:false,circle:false,marker:false,polyline:false,circlemarker:false}});
+    this.map.addControl(this.drawCtl);
+    this.map.on(L.Draw.Event.CREATED,e=>this.onDraw(e));
+    this.bindUI();
+    this.loadWorld(MedievalGenerator.generate());
+  },
+
+  bindUI(){
+    document.getElementById("btn-gen-world").onclick=()=>this.loadWorld(MedievalGenerator.generate());
+    document.getElementById("btn-save-setup").onclick=()=>this.saveSetup();
+    document.getElementById("btn-load-setup-btn").onclick=()=>document.getElementById("load-setup-file").click();
+    document.getElementById("load-setup-file").onchange=async e=>{
+      const files=[...(e.target.files||[])];
+      if(!files.length)return;
+      for(const f of files){
+        try{
+          const data=await Util.readFile(f);
+          this.loadWorld(data);
+          document.getElementById("status-bar").textContent=`設定ロード: ${f.name}`;
+          return;
+        }catch(_){}
+      }
+      document.getElementById("status-bar").textContent="設定ロード失敗: JSON形式を確認してください";
+    };
+    document.getElementById("btn-add-state").onclick=()=>new L.Draw.Polygon(this.map,{shapeOptions:{color:"#8b4513"}}).enable();
+    document.getElementById("btn-add-threat").onclick=()=>{this._drawThreat=true;new L.Draw.Circle(this.map,{shapeOptions:{color:"#c0392b",fillColor:"#c0392b",fillOpacity:.25}}).enable()};
+    document.getElementById("state-form").onsubmit=e=>{e.preventDefault();this.applyState()};
+    document.getElementById("threat-form").onsubmit=e=>{e.preventDefault();this.applyThreat()};
+    document.getElementById("btn-del-state").onclick=()=>this.deleteSel();
+    document.getElementById("btn-del-threat").onclick=()=>this.deleteSel();
+    document.getElementById("f-threat").oninput=e=>document.getElementById("f-threat-val").textContent=e.target.value;
+    document.getElementById("tz-level").oninput=e=>document.getElementById("tz-level-val").textContent=e.target.value;
+    document.getElementById("sim-years").oninput=e=>document.getElementById("sim-years-val").textContent=e.target.value+"年";
+    document.getElementById("difficulty-scale").oninput=e=>document.getElementById("difficulty-val").textContent=(+e.target.value).toFixed(1)+"x";
+    document.getElementById("btn-run-sim").onclick=()=>this.runSim();
+    document.getElementById("btn-play").onclick=()=>this.play();
+    document.getElementById("btn-pause").onclick=()=>this.stopPlay();
+    document.getElementById("btn-to-start").onclick=()=>{this.stopPlay();this.goTurn(0)};
+    document.getElementById("btn-back-edit").onclick=()=>this.setEditMode(true);
+    document.getElementById("turn-slider").oninput=e=>{this.stopPlay();this.goTurn(+e.target.value)};
+    document.getElementById("turn-slider").addEventListener("pointerdown",e=>this.onTimelinePointerDown(e));
+    document.getElementById("turn-slider").addEventListener("click",e=>this.onTimelinePointerDown(e));
+    document.getElementById("btn-save-history").onclick=()=>{if(this.simResult)Util.dl({history:this.simResult.logs},"world_history.json")};
+  },
+
+  onTimelinePointerDown(e){
+    const slider=document.getElementById("turn-slider");
+    if(slider.disabled||!this.simResult)return;
+    const rect=slider.getBoundingClientRect();
+    if(rect.width<=0)return;
+    const ratio=Math.min(1,Math.max(0,(e.clientX-rect.left)/rect.width));
+    const min=Number(slider.min||0), max=Number(slider.max||0);
+    const target=Math.round(min+(max-min)*ratio);
+    this.stopPlay();
+    this.goTurn(target);
+  },
+
+  setEditMode(on){
+    this.editMode=on;
+    if(on){this.map.addControl(this.drawCtl);this.stateFG.addTo(this.map);this.threatFG.addTo(this.map);
+      this.renderFG.remove();this.eventFG.remove();document.getElementById("sim-badge").textContent="編集モード";}
+    else{this.map.removeControl(this.drawCtl);this.stateFG.remove();this.threatFG.remove();
+      this.renderFG.addTo(this.map);this.eventFG.addTo(this.map);document.getElementById("sim-badge").textContent="再生モード";}
+  },
+
+  loadWorld(data){
+    if(data.meta?.crs==="LeafletSimple"){
+      document.getElementById("status-bar").textContent="旧形式の座標です。【世界再生成】を実行してください。";
+      return;
+    }
+    this.world=data;this.simResult=null;this.stopPlay();
+    this.setEditMode(true);
+    this.stateFG.clearLayers();this.threatFG.clearLayers();this.deselect();
+    L.geoJSON(data.geojson,{onEachFeature:(f,l)=>{
+      if(!f.properties.id)f.properties.id=f.id||`s_${Date.now()}`;
+      l.feature=f;l.setStyle(this.stStyle(f.properties));
+      l.on("click",()=>this.select(l,"state"));this.stateFG.addLayer(l);
+    }});
+    (data.threat_zones||[]).forEach(tz=>this.addThreatLayer(tz));
+    this.fillRegionSelect(data.regions);
+    this.updateStats();
+    this.disableTimeline();
+    document.getElementById("status-bar").textContent=`世界読込: ${data.geojson.features.length} 国家`;
+  },
+
+  fillRegionSelect(regs){
+    document.getElementById("f-region").innerHTML=(regs||[]).map(r=>`<option value="${r.id}">${r.name}</option>`).join("");
+  },
+
+  stStyle(p,sel){return{color:sel?"#ffd700":p.color,weight:sel?3:1.2,fillColor:p.color,fillOpacity:p.wilderness?0.35:0.55}},
+  tzStyle(sel){return{color:"#c0392b",weight:sel?3:2,fillColor:"#c0392b",fillOpacity:.28,dashArray:sel?null:"6 4"}},
+
+  addThreatLayer(tz){
+    let l;const g=tz.geometry;
+    if(g.type==="Circle"){
+      l=L.circle(g.center,{radius:g.radius,...this.tzStyle()});
+    }else{
+      l=L.geoJSON({type:"Feature",geometry:{type:"Polygon",coordinates:g.coordinates}},{style:()=>this.tzStyle()}).getLayers()[0];
+    }
+    l.feature={properties:{id:tz.id,name:tz.name,threat_level:tz.threat_level},geometry:g};
+    l.on("click",()=>this.select(l,"threat"));this.threatFG.addLayer(l);
+  },
+
+  onDraw(e){
+    const l=e.layer;
+    if(this._drawThreat){
+      const ll=l.getLatLng();
+      l.feature={properties:{id:`tz_${Date.now()}`,name:"魔物高脅威ゾーン",threat_level:1.6},
+        geometry:{type:"Circle",center:[ll.lat,ll.lng],radius:l.getRadius()}};
+      l.setStyle(this.tzStyle());l.on("click",()=>this.select(l,"threat"));this.threatFG.addLayer(l);
+      this._drawThreat=false;this.select(l,"threat");
+    }else{
+      const ring=Util.latLngsToRing(l.getLatLngs()[0]);
+      const id=`state_${Date.now()}`;
+      l.feature={type:"Feature",properties:{id,name:"新規国家",government:"君主制",region_id:"western_europe",
+        economy:50,military:50,magic_level:30,territory_size:60,domestic_threat_factor:1,color:"#8b7355"},
+        geometry:{type:"Polygon",coordinates:[ring]}};
+      l.setStyle(this.stStyle(l.feature.properties));l.on("click",()=>this.select(l,"state"));
+      this.stateFG.addLayer(l);this.select(l,"state");
+    }
+    this.updateStats();
+  },
+
+  select(layer,type){
+    this.deselect();this.selected=layer;this.selType=type;
+    document.getElementById("editor-empty").style.display="none";
+    if(type==="state"){
+      layer.setStyle(this.stStyle(layer.feature.properties,true));
+      document.getElementById("state-form").style.display="block";
+      document.getElementById("threat-form").style.display="none";
+      const p=layer.feature.properties;
+      f_id.value=p.id;f_name.value=p.name;f_government.value=p.government;f_region.value=p.region_id;
+      f_economy.value=p.economy;f_military.value=p.military;f_magic.value=p.magic_level;
+      f_territory.value=p.territory_size;f_threat.value=p.domestic_threat_factor;
+      f_threat_val.textContent=p.domestic_threat_factor;f_color.value=p.color?.startsWith("#")?p.color:"#8b7355";
+    }else{
+      layer.setStyle(this.tzStyle(true));
+      document.getElementById("state-form").style.display="none";
+      document.getElementById("threat-form").style.display="block";
+      const p=layer.feature.properties;
+      tz_name.value=p.name;tz_level.value=p.threat_level;tz_level_val.textContent=p.threat_level;
+    }
+  },
+
+  deselect(){
+    if(!this.selected)return;
+    if(this.selType==="state")this.selected.setStyle(this.stStyle(this.selected.feature.properties));
+    else this.selected.setStyle(this.tzStyle());
+    this.selected=null;
+  },
+
+  applyState(){
+    if(!this.selected||this.selType!=="state")return;
+    const p=this.selected.feature.properties;
+    p.name=f_name.value;p.government=f_government.value;p.region_id=f_region.value;
+    p.economy=+f_economy.value;p.military=+f_military.value;p.magic_level=+f_magic.value;
+    p.territory_size=+f_territory.value;p.domestic_threat_factor=+f_threat.value;p.color=f_color.value;
+    this.selected.setStyle(this.stStyle(p,true));
+  },
+
+  applyThreat(){
+    if(!this.selected||this.selType!=="threat")return;
+    this.selected.feature.properties.name=tz_name.value;
+    this.selected.feature.properties.threat_level=+tz_level.value;
+  },
+
+  deleteSel(){
+    if(!this.selected)return;
+    (this.selType==="state"?this.stateFG:this.threatFG).removeLayer(this.selected);
+    this.deselect();
+    document.getElementById("state-form").style.display="none";
+    document.getElementById("threat-form").style.display="none";
+    document.getElementById("editor-empty").style.display="block";
+    this.updateStats();
+  },
+
+  collectSetup(){
+    const features=[];
+    this.stateFG.eachLayer(l=>{
+      const ring=Util.latLngsToRing(l.getLatLngs()[0]);
+      features.push({...l.feature,geometry:{type:"Polygon",coordinates:[ring]}});
+    });
+    const threat_zones=[];
+    this.threatFG.eachLayer(l=>{
+      const p=l.feature.properties;
+      if(l instanceof L.Circle){const c=l.getLatLng();threat_zones.push({id:p.id,name:p.name,threat_level:p.threat_level,geometry:{type:"Circle",center:[c.lat,c.lng],radius:l.getRadius()}});}
+      else{const ring=Util.latLngsToRing(l.getLatLngs()[0]);threat_zones.push({id:p.id,name:p.name,threat_level:p.threat_level,geometry:{type:"Polygon",coordinates:[ring]}});}
+    });
+    return {version:1,meta:{startYear:1000,crs:"EPSG4326",nationCount:features.length,exportedAt:new Date().toISOString()},
+      regions:this.world?.regions||MedievalGenerator.regions.map(r=>({id:r.id,name:r.name,threat_level:r.threat_level})),
+      threat_zones,geojson:{type:"FeatureCollection",features}};
+  },
+
+  saveSetup(){Util.dl(this.collectSetup(),"world_setup.json");document.getElementById("status-bar").textContent="world_setup.json を保存しました"},
+
+  updateStats(){
+    document.getElementById("world-stats").textContent=`国家: ${this.stateFG.getLayers().length} / 脅威ゾーン: ${this.threatFG.getLayers().length}`;
+  },
+
+  runSim(){
+    const years=+document.getElementById("sim-years").value;
+    const difficultyScale=+document.getElementById("difficulty-scale").value;
+    const setup=this.collectSetup();
+    document.getElementById("status-bar").textContent=`シミュレーション実行中 (${years}年 / 難易度${difficultyScale.toFixed(1)}x)...`;
+    document.getElementById("sim-hint").textContent="計算中...";
+    setTimeout(()=>{
+      this.simResult=SimEngine.run(setup,years,{difficultyScale});
+      Util.dl(this.simResult.analytics||[],"world_analytics.json");
+      this.setEditMode(false);
+      this.enableTimeline();
+      this.goTurn(0);
+      const deaths=this.simResult.logs.filter(l=>l.event==="国家滅亡").length;
+      const births=this.simResult.logs.filter(l=>l.event==="国家誕生").length;
+      document.getElementById("status-bar").textContent=`完了: ${years}年 (${this.simResult.maxTurn}ターン) 難易度${difficultyScale.toFixed(1)}x 滅亡${deaths} 建国${births} ログ${this.simResult.logs.length}件`;
+      document.getElementById("sim-hint").textContent="スライダーまたは再生で確認。world_history.json と world_analytics.json はダウンロード可能です。";
+    },50);
+  },
+
+  disableTimeline(){
+    ["btn-play","btn-pause","btn-to-start","turn-slider"].forEach(id=>document.getElementById(id).disabled=true);
+    turn_slider.max=0;
+  },
+
+  enableTimeline(){
+    ["btn-play","btn-pause","btn-to-start","turn-slider","btn-save-history"].forEach(id=>document.getElementById(id).disabled=false);
+    turn_slider.max=this.simResult.maxTurn;
+    slider_max.textContent=this.simResult.maxTurn;
+  },
+
+  goTurn(turn){
+    this.currentTurn=turn;turn_slider.value=turn;slider_val.textContent=turn;
+    const{startYear}=this.simResult;
+    const{year,month}=Util.ym(turn,startYear);
+    turn_display.textContent=turn===0?`初期状態 (${startYear}年)`:`${year}年 ${month}月 (T${turn})`;
+    this.updateEraIndicator(turn);
+    this.renderSimTurn(turn);
+    this.renderTurnLogs(turn);
+  },
+
+  updateEraIndicator(turn){
+    const el=document.getElementById("era-indicator");
+    if(!this.simResult||turn<=0){el.className="era-indicator";el.textContent="";return;}
+    const active=WaveCycle.isActive(turn);
+    el.className=`era-indicator ${active?"active":"dormant"}`;
+    el.textContent=`${WaveCycle.label(turn)} — 周期 ${WaveCycle.pos(turn)}/240`;
+  },
+
+  renderSimTurn(turn){
+    this.renderFG.clearLayers();this.eventFG.clearLayers();
+    const snap=this.simResult.snapshots[turn];
+    if(!snap)return;
+    const initSnap=this.simResult.snapshots[0];
+
+    for(const st of Object.values(snap.states)){
+      const init=initSnap.states[st.id];
+      if(!init&&!st.bornAt)continue;
+      const initT=init?.initTerritory||st.initTerritory||st.territory;
+      const scale=Math.sqrt(Math.max(.05,st.territory/initT));
+      const ring=st.ring||init?.ring;
+      if(!ring)continue;
+      const c=Util.centroid(ring);
+      const scaled=Util.scaleRing(ring,c,scale);
+      const isWild=st.wilderness||!st.alive;
+      const col=isWild?"#5a5a5a":st.color;
+      const label=isWild?`${st.name||st.id}（無主地）`:st.name;
+      const poly=L.geoJSON({type:"Feature",geometry:{type:"Polygon",coordinates:[scaled]}},{
+        style:{color:col,weight:isWild?1:1.5,fillColor:col,fillOpacity:isWild?0.35:0.55}
+      }).getLayers()[0];
+      poly.bindTooltip(`${label}<br>領:${st.territory.toFixed(0)} 軍:${st.military.toFixed(0)}`);
+      this.renderFG.addLayer(poly);
+
+      const ft=st.factor||1;
+      if(!isWild&&ft>=1){
+        this.renderFG.addLayer(L.geoJSON({type:"Feature",geometry:{type:"Polygon",coordinates:[scaled]}},{
+          style:{color:"#c0392b",fillColor:"#c0392b",fillOpacity:Math.min(.5,(ft-.7)*.3),weight:ft>=1.5?2.5:1,className:ft>=1.5?"threat-pulse":""}
+        }).getLayers()[0]);
+      }
+    }
+
+    (this.world?.threat_zones||this.simResult.setup.threat_zones||[]).forEach(tz=>{
+      if(tz.geometry.type==="Circle")
+        this.renderFG.addLayer(L.circle(tz.geometry.center,{radius:tz.geometry.radius,color:"#c0392b",fillColor:"#c0392b",fillOpacity:.12,weight:1,dashArray:"4 4"}));
+    });
+
+    const evts=this.simResult.logs.filter(l=>l.turn===turn);
+    for(const e of evts){
+      if(e.event.includes("魔物")&&e.state){
+        const st=Object.values(snap.states).find(s=>s.name===e.state);
+        if(st?.centroid)this.eventFG.addLayer(L.circleMarker(st.centroid,{radius:9,color:"#c0392b",fillColor:"#e74c3c",fillOpacity:.9}));
+      }
+      if(e.event==="国家滅亡"&&e.state){
+        const st=Object.values(snap.states).find(s=>s.name===e.state);
+        if(st?.centroid)this.eventFG.addLayer(L.circleMarker(st.centroid,{radius:6,color:"#888",fillColor:"#666",fillOpacity:.8}));
+      }
+      if(e.event==="国家誕生"&&e.state){
+        const st=Object.values(snap.states).find(s=>s.name===e.state);
+        if(st?.centroid)this.eventFG.addLayer(L.circleMarker(st.centroid,{radius:7,color:"#27ae60",fillColor:"#58d68d",fillOpacity:.9}));
+      }
+    }
+  },
+
+  renderTurnLogs(turn){
+    const el=document.getElementById("log-timeline");el.innerHTML="";
+    if(!this.simResult||turn===0){el.innerHTML='<div class="log-entry system">初期状態</div>';return;}
+    const logs=this.simResult.logs.filter(l=>l.turn===turn);
+    if(!logs.length){el.innerHTML='<div class="log-entry system">イベントなし</div>';return;}
+    for(const l of logs){
+      const d=document.createElement("div");
+      d.className=`log-entry ${l.category||"system"}`;
+      d.textContent=l.text||l.event;
+      el.appendChild(d);
+    }
+  },
+
+  play(){
+    if(!this.simResult||this.playing)return;
+    this.playing=true;
+    this.playTimer=setInterval(()=>{
+      if(this.currentTurn>=this.simResult.maxTurn){this.stopPlay();return;}
+      this.goTurn(this.currentTurn+1);
+    },400);
+  },
+
+  stopPlay(){this.playing=false;if(this.playTimer){clearInterval(this.playTimer);this.playTimer=null}}
+};
+
+const f_id=document.getElementById("f-id"),f_name=document.getElementById("f-name"),
+  f_government=document.getElementById("f-government"),f_region=document.getElementById("f-region"),
+  f_economy=document.getElementById("f-economy"),f_military=document.getElementById("f-military"),
+  f_magic=document.getElementById("f-magic"),f_territory=document.getElementById("f-territory"),
+  f_threat=document.getElementById("f-threat"),f_threat_val=document.getElementById("f-threat-val"),
+  f_color=document.getElementById("f-color"),
+  tz_name=document.getElementById("tz-name"),tz_level=document.getElementById("tz-level"),
+  tz_level_val=document.getElementById("tz-level-val"),
+  turn_slider=document.getElementById("turn-slider"),slider_val=document.getElementById("slider-val"),
+  slider_max=document.getElementById("slider-max"),turn_display=document.getElementById("turn-display");
+
+document.addEventListener("DOMContentLoaded",()=>App.init());
+</script>
+</body>
+</html>

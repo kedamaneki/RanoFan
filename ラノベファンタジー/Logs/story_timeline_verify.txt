@@ -1,0 +1,1 @@
+﻿mode=StoryMode turn=1 turbulent=True dramas=9/12 phase=24

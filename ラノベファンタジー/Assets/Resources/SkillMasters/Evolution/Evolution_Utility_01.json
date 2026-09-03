@@ -1,0 +1,1361 @@
+{
+  "skills": [
+    {
+      "skillId": "SKL_UTIL_RADAR_DEEP",
+      "skillName": "深層敵感知",
+      "category": "Utility",
+      "description": "基礎の敵感知が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_RADAR_DEEP_01",
+          "artName": "深層敵感知・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_RADAR_DEEP_02",
+              "artName": "深層敵感知・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_EnemyDetect",
+                  "value": 0.7,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_RADAR_DEEP_03",
+                  "artName": "深層敵感知・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_EnemyDetect",
+                      "value": 1.0,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_RADAR_PEAK",
+      "skillName": "極致敵感知",
+      "category": "Utility",
+      "description": "基礎の敵感知が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_RADAR_PEAK_01",
+          "artName": "極致敵感知・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_RADAR_PEAK_02",
+              "artName": "極致敵感知・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_EnemyDetect",
+                  "value": 0.7,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_RADAR_PEAK_03",
+                  "artName": "極致敵感知・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_EnemyDetect",
+                      "value": 1.0,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_MAPRADAR_DEEP",
+      "skillName": "深層マップ機能",
+      "category": "Utility",
+      "description": "基礎のマップ機能が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_MAPRADAR_DEEP_01",
+          "artName": "深層マップ機能・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_MAPRADAR_DEEP_02",
+              "artName": "深層マップ機能・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MapRadar",
+                  "value": 0.7,
+                  "duration": 8.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_MAPRADAR_DEEP_03",
+                  "artName": "深層マップ機能・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MapRadar",
+                      "value": 1.0,
+                      "duration": 10.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_MINDACCEL_DEEP",
+      "skillName": "深層思考加速",
+      "category": "Utility",
+      "description": "基礎の思考加速が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_MINDACCEL_DEEP_01",
+          "artName": "深層思考加速・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_MINDACCEL_DEEP_02",
+              "artName": "深層思考加速・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MindAccelerate",
+                  "value": 0.32,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_MINDACCEL_DEEP_03",
+                  "artName": "深層思考加速・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MindAccelerate",
+                      "value": 0.45,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_MINDACCEL_PEAK",
+      "skillName": "極致思考加速",
+      "category": "Utility",
+      "description": "基礎の思考加速が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_MINDACCEL_PEAK_01",
+          "artName": "極致思考加速・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_MINDACCEL_PEAK_02",
+              "artName": "極致思考加速・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MindAccelerate",
+                  "value": 0.32,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_MINDACCEL_PEAK_03",
+                  "artName": "極致思考加速・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MindAccelerate",
+                      "value": 0.45,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_WAVESEE_DEEP",
+      "skillName": "深層魔力波形看破",
+      "category": "Utility",
+      "description": "基礎の魔力波形看破が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_WAVESEE_DEEP_01",
+          "artName": "深層魔力波形看破・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_WAVESEE_DEEP_02",
+              "artName": "深層魔力波形看破・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_EnemyDetect",
+                  "value": 0.7,
+                  "duration": 5.6
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_WAVESEE_DEEP_03",
+                  "artName": "深層魔力波形看破・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_EnemyDetect",
+                      "value": 1.0,
+                      "duration": 7.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_STEALTH_DEEP",
+      "skillName": "深層隠密",
+      "category": "Utility",
+      "description": "基礎の隠密が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_STEALTH_DEEP_01",
+          "artName": "深層隠密・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_STEALTH_DEEP_02",
+              "artName": "深層隠密・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MindAccelerate",
+                  "value": 0.17,
+                  "duration": 8.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_STEALTH_DEEP_03",
+                  "artName": "深層隠密・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MindAccelerate",
+                      "value": 0.25,
+                      "duration": 10.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_STEALTH_PEAK",
+      "skillName": "極致隠密",
+      "category": "Utility",
+      "description": "基礎の隠密が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_STEALTH_PEAK_01",
+          "artName": "極致隠密・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_STEALTH_PEAK_02",
+              "artName": "極致隠密・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MindAccelerate",
+                  "value": 0.17,
+                  "duration": 8.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_STEALTH_PEAK_03",
+                  "artName": "極致隠密・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MindAccelerate",
+                      "value": 0.25,
+                      "duration": 10.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_PRESENCE_DEEP",
+      "skillName": "深層気配察知",
+      "category": "Utility",
+      "description": "基礎の気配察知が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_PRESENCE_DEEP_01",
+          "artName": "深層気配察知・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_PRESENCE_DEEP_02",
+              "artName": "深層気配察知・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_EnemyDetect",
+                  "value": 0.7,
+                  "duration": 7.2
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_PRESENCE_DEEP_03",
+                  "artName": "深層気配察知・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_EnemyDetect",
+                      "value": 1.0,
+                      "duration": 9.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_DANGER_DEEP",
+      "skillName": "深層危険予知",
+      "category": "Utility",
+      "description": "基礎の危険予知が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_DANGER_DEEP_01",
+          "artName": "深層危険予知・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_DANGER_DEEP_02",
+              "artName": "深層危険予知・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MindAccelerate",
+                  "value": 0.24,
+                  "duration": 7.2
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_DANGER_DEEP_03",
+                  "artName": "深層危険予知・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MindAccelerate",
+                      "value": 0.35,
+                      "duration": 9.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_DANGER_PEAK",
+      "skillName": "極致危険予知",
+      "category": "Utility",
+      "description": "基礎の危険予知が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_DANGER_PEAK_01",
+          "artName": "極致危険予知・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_DANGER_PEAK_02",
+              "artName": "極致危険予知・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MindAccelerate",
+                  "value": 0.24,
+                  "duration": 7.2
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_DANGER_PEAK_03",
+                  "artName": "極致危険予知・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MindAccelerate",
+                      "value": 0.35,
+                      "duration": 9.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_DARKVIS_DEEP",
+      "skillName": "深層暗視",
+      "category": "Utility",
+      "description": "基礎の暗視が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_DARKVIS_DEEP_01",
+          "artName": "深層暗視・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_DARKVIS_DEEP_02",
+              "artName": "深層暗視・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MapRadar",
+                  "value": 0.7,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_DARKVIS_DEEP_03",
+                  "artName": "深層暗視・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MapRadar",
+                      "value": 1.0,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_FARSIGHT_DEEP",
+      "skillName": "深層千里眼",
+      "category": "Utility",
+      "description": "基礎の千里眼が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_FARSIGHT_DEEP_01",
+          "artName": "深層千里眼・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_FARSIGHT_DEEP_02",
+              "artName": "深層千里眼・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MapRadar",
+                  "value": 0.7,
+                  "duration": 9.6
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_FARSIGHT_DEEP_03",
+                  "artName": "深層千里眼・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MapRadar",
+                      "value": 1.0,
+                      "duration": 12.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_FARSIGHT_PEAK",
+      "skillName": "極致千里眼",
+      "category": "Utility",
+      "description": "基礎の千里眼が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_FARSIGHT_PEAK_01",
+          "artName": "極致千里眼・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_FARSIGHT_PEAK_02",
+              "artName": "極致千里眼・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MapRadar",
+                  "value": 0.7,
+                  "duration": 9.6
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_FARSIGHT_PEAK_03",
+                  "artName": "極致千里眼・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MapRadar",
+                      "value": 1.0,
+                      "duration": 12.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_TRACK_DEEP",
+      "skillName": "深層足跡追跡",
+      "category": "Utility",
+      "description": "基礎の足跡追跡が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_TRACK_DEEP_01",
+          "artName": "深層足跡追跡・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_TRACK_DEEP_02",
+              "artName": "深層足跡追跡・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_EnemyDetect",
+                  "value": 0.7,
+                  "duration": 8.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_TRACK_DEEP_03",
+                  "artName": "深層足跡追跡・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_EnemyDetect",
+                      "value": 1.0,
+                      "duration": 10.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_TRAPDET_DEEP",
+      "skillName": "深層罠感知",
+      "category": "Utility",
+      "description": "基礎の罠感知が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_TRAPDET_DEEP_01",
+          "artName": "深層罠感知・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_TRAPDET_DEEP_02",
+              "artName": "深層罠感知・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_EnemyDetect",
+                  "value": 0.7,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_TRAPDET_DEEP_03",
+                  "artName": "深層罠感知・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_EnemyDetect",
+                      "value": 1.0,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_TRAPDET_PEAK",
+      "skillName": "極致罠感知",
+      "category": "Utility",
+      "description": "基礎の罠感知が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_TRAPDET_PEAK_01",
+          "artName": "極致罠感知・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_TRAPDET_PEAK_02",
+              "artName": "極致罠感知・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_EnemyDetect",
+                  "value": 0.7,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_TRAPDET_PEAK_03",
+                  "artName": "極致罠感知・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_EnemyDetect",
+                      "value": 1.0,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_STRUCT_DEEP",
+      "skillName": "深層構造把握",
+      "category": "Utility",
+      "description": "基礎の構造把握が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_STRUCT_DEEP_01",
+          "artName": "深層構造把握・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_STRUCT_DEEP_02",
+              "artName": "深層構造把握・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MapRadar",
+                  "value": 0.7,
+                  "duration": 7.2
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_STRUCT_DEEP_03",
+                  "artName": "深層構造把握・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MapRadar",
+                      "value": 1.0,
+                      "duration": 9.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_MOTION_DEEP",
+      "skillName": "深層動体予測",
+      "category": "Utility",
+      "description": "基礎の動体予測が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_MOTION_DEEP_01",
+          "artName": "深層動体予測・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_MOTION_DEEP_02",
+              "artName": "深層動体予測・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MindAccelerate",
+                  "value": 0.28,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_MOTION_DEEP_03",
+                  "artName": "深層動体予測・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MindAccelerate",
+                      "value": 0.4,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_MOTION_PEAK",
+      "skillName": "極致動体予測",
+      "category": "Utility",
+      "description": "基礎の動体予測が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_MOTION_PEAK_01",
+          "artName": "極致動体予測・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_MOTION_PEAK_02",
+              "artName": "極致動体予測・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MindAccelerate",
+                  "value": 0.28,
+                  "duration": 6.4
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_MOTION_PEAK_03",
+                  "artName": "極致動体予測・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MindAccelerate",
+                      "value": 0.4,
+                      "duration": 8.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_HEARING_DEEP",
+      "skillName": "深層聴覚鋭敏",
+      "category": "Utility",
+      "description": "基礎の聴覚鋭敏が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_HEARING_DEEP_01",
+          "artName": "深層聴覚鋭敏・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_HEARING_DEEP_02",
+              "artName": "深層聴覚鋭敏・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_EnemyDetect",
+                  "value": 0.7,
+                  "duration": 7.2
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_HEARING_DEEP_03",
+                  "artName": "深層聴覚鋭敏・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_EnemyDetect",
+                      "value": 1.0,
+                      "duration": 9.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_SCAN_DEEP",
+      "skillName": "深層広域走査",
+      "category": "Utility",
+      "description": "基礎の広域走査が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_SCAN_DEEP_01",
+          "artName": "深層広域走査・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_SCAN_DEEP_02",
+              "artName": "深層広域走査・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MapRadar",
+                  "value": 0.7,
+                  "duration": 8.8
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_SCAN_DEEP_03",
+                  "artName": "深層広域走査・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MapRadar",
+                      "value": 1.0,
+                      "duration": 11.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_UTIL_SCAN_PEAK",
+      "skillName": "極致広域走査",
+      "category": "Utility",
+      "description": "基礎の広域走査が持つ機能を融合せず、持続時間と探知半径のみを純粋に延長・強化した発展形。便利枠の単体派生として設計されている。",
+      "baseArts": [
+        {
+          "artId": "ART_UTIL_SCAN_PEAK_01",
+          "artName": "極致広域走査・基調",
+          "poiseDamage": 0,
+          "manaCost": 15,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_UTIL_SCAN_PEAK_02",
+              "artName": "極致広域走査・延長",
+              "poiseDamage": 0,
+              "manaCost": 22,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Utility_MapRadar",
+                  "value": 0.7,
+                  "duration": 8.8
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_UTIL_SCAN_PEAK_03",
+                  "artName": "極致広域走査・極限",
+                  "poiseDamage": 0,
+                  "manaCost": 30,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Utility_MapRadar",
+                      "value": 1.0,
+                      "duration": 11.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 6,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "UtilityLog_UsageTime",
+          "requiredValue": 20
+        },
+        "nextSkillId": ""
+      }
+    }
+  ]
+}

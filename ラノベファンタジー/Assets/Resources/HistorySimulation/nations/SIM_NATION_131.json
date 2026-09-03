@@ -1,0 +1,294 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_131_MonsterAttack_7",
+      "macroTurn": 7,
+      "timestamp": {
+        "year": 7,
+        "month": 7,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "NATION_131",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 5.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は魔物活性期ということもあり、多くの市民が緊張感を抱えて日々を過ごしていた。しかし同時に、助け合うことの大切さや、互いの存在を心から感謝することを改めて認識した一年でもあった。「魔物なんかに負けるかよ」という口癖を持つリュックも、この年に初めて妻アヤの優しさと強さを感じた一人である。\n\n結界が我々を守っていると信じ、一日一日を精一杯生きていく。この土地の市民たちにとって、それは唯一の道であり希望だった。",
+      "conditionFlag": "HIST_NATION_131_GEO_TURN_007_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_131_GEO_TURN_007_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_131_MONSTERATTACK_T007",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N131_T007"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事7年・年初（ターン007）",
+          "npcDialogue": "「魔物なんかに負けるかよ」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事7年・年央（ターン007）",
+          "npcDialogue": "「魔物なんかに負けるかよ」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事7年・年末（ターン007）",
+          "npcDialogue": "「魔物なんかに負けるかよ」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_131_MonsterAttack_25",
+      "macroTurn": 25,
+      "timestamp": {
+        "year": 25,
+        "month": 1,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "NATION_131",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.4 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0025年は魔物活性期（active）であるため、市民たちは夜間外出禁止令や結晶配給制限などの規則を遵守している。また、活性期の始まりと同時に魔物への警戒心も高まる。\n\n「今日は魔物が近づいてくる日だね」と、通りで会った知り合いのミラに声をかける。「でも、結界効率は良好だから安心していられるよ」\n\nウルガスの市民たちはこのような状況の中で、日々の生活を送っている。リズラとカレンのような家族もまた、毎日の生活の中で互いに支え合いながら、魔物からの脅威に立ち向かう日々を過ごしている。\n\n「結晶配給所の列が長い日もあるけど、みんなで協力すれば必ず乗り越えられるんだよ」と、リズラはカレンを見つめた。「明日もまた、頑張ろうね」",
+      "conditionFlag": "HIST_NATION_131_GEO_TURN_025_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_131_GEO_TURN_025_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_131_MONSTERATTACK_T025",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N131_T025"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事25年・年初（ターン025）",
+          "npcDialogue": "「今日は魔物が近づいてくる日だね」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事25年・年央（ターン025）",
+          "npcDialogue": "「今日は魔物が近づいてくる日だね」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事25年・年末（ターン025）",
+          "npcDialogue": "「今日は魔物が近づいてくる日だね」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_131_BarrierDrop_28",
+      "macroTurn": 28,
+      "timestamp": {
+        "year": 28,
+        "month": 4,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_131",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【最西端の大陸帯】で防衛障壁の循環効率が急落した（低下幅 0.22）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "晨光渐明，この土地的城市在微弱的光线中缓缓苏醒。然而，破晓之际，最为显著的景象还是那道环绕全城的巨大透明结界——魔力结晶构成的屏障，在阳光下熠熠生辉，守护着这座城市与居民免受外界侵害。\n\n城市的中心地带早已挤满了人们前来领取今日份配给品的身影，他们穿着朴素的衣服，手提着大大小小的布袋或篮筐。队伍中一位名叫莱娜的老妇人，满脸皱纹却依旧坚定地站在队伍之中等待着。她身后的几个小孩相互推搡嬉笑，偶尔从人群中探出头来张望四周。\n\n\"快点排队啊！今天轮到我们家拿配给的魔力结晶了！\"\n\n一名年轻男子催促着身后的孩子们继续向前走，他名叫艾登，是这座城市里的一名普通木匠。虽然工作辛苦，但他依然乐于助人，经常帮助邻里解决各种难题。\n\n\"早上好！大家今天心情怎么样？希望今天的配给品能让我们过个好日子吧！\"\n\n莱娜与周围的人们打着招呼，笑容中透露着对生活的乐观态度，仿佛这样可以驱散些许阴霾。然而，结界外的森林深处传来阵阵异响，使人不免心生警惕。\n\n城市街道上繁忙而嘈杂，人们为了生存忙碌奔波于各个角落。尽管生活困窘、资源匮乏，但每个人都在努力维持着自己的生活方式，尽力让每一天过得更有意义一些。莱娜家附近的面包店老板正忙着制作新鲜出炉的面包，他的名字叫",
+      "conditionFlag": "HIST_NATION_131_GEO_TURN_028_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_131_GEO_TURN_028_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_131_BARRIERDROP_T028",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N131_T028"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事28年・年初（ターン028）",
+          "npcDialogue": "「障壁の唸りが低い。結晶を足しても、膜が薄くなる。」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事28年・年央（ターン028）",
+          "npcDialogue": "「外周の光帯に穴が開いた。見回りを倍にしろ。」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事28年・年末（ターン028）",
+          "npcDialogue": "「循環を戻せ。戻らなければ、内側の輪だけでも守れ。」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_131_MonsterAttack_28",
+      "macroTurn": 28,
+      "timestamp": {
+        "year": 28,
+        "month": 4,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_131",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 11.0 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "晨光渐明，この土地的城市在微弱的光线中缓缓苏醒。然而，破晓之际，最为显著的景象还是那道环绕全城的巨大透明结界——魔力结晶构成的屏障，在阳光下熠熠生辉，守护着这座城市与居民免受外界侵害。\n\n城市的中心地带早已挤满了人们前来领取今日份配给品的身影，他们穿着朴素的衣服，手提着大大小小的布袋或篮筐。队伍中一位名叫莱娜的老妇人，满脸皱纹却依旧坚定地站在队伍之中等待着。她身后的几个小孩相互推搡嬉笑，偶尔从人群中探出头来张望四周。\n\n\"快点排队啊！今天轮到我们家拿配给的魔力结晶了！\"\n\n一名年轻男子催促着身后的孩子们继续向前走，他名叫艾登，是这座城市里的一名普通木匠。虽然工作辛苦，但他依然乐于助人，经常帮助邻里解决各种难题。\n\n\"早上好！大家今天心情怎么样？希望今天的配给品能让我们过个好日子吧！\"\n\n莱娜与周围的人们打着招呼，笑容中透露着对生活的乐观态度，仿佛这样可以驱散些许阴霾。然而，结界外的森林深处传来阵阵异响，使人不免心生警惕。\n\n城市街道上繁忙而嘈杂，人们为了生存忙碌奔波于各个角落。尽管生活困窘、资源匮乏，但每个人都在努力维持着自己的生活方式，尽力让每一天过得更有意义一些。莱娜家附近的面包店老板正忙着制作新鲜出炉的面包，他的名字叫",
+      "conditionFlag": "HIST_NATION_131_GEO_TURN_028_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_131_GEO_TURN_028_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_131_MONSTERATTACK_T028",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N131_T028"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事28年・年初（ターン028）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事28年・年央（ターン028）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事28年・年末（ターン028）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_131_NationCollapse_33",
+      "macroTurn": 33,
+      "timestamp": {
+        "year": 33,
+        "month": 9,
+        "day": 19,
+        "hour": 4
+      },
+      "targetNationId": "NATION_131",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【最西端の大陸帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地の市民たちは今、絶望と混乱の中で生活している。生存圏が逼迫し、不動産不足によるスラム化は人々の間で奪い合いを生んでいる。それでも人々は祈り続け、防衛隊とともに戦う。\n\nだが、このターンではこの土地は滅亡することになるだろう。魔物周期の活性期が最盛期を迎え、結界がついに崩落するのだ。市民たちは一斉に散り散りとなり、それぞれが新たな地で生き延びていくことを望むのである。",
+      "conditionFlag": "HIST_NATION_131_GEO_TURN_033_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_131_GEO_TURN_033_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_131_NATIONCOLLAPSE_T033",
+          "alternativeLogMessage": "【最西端の大陸帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N131_T033"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事24年〜26年（滅亡10〜7年前）",
+          "npcDialogue": "「結界の灯が週ごとに短くなっている。配給も、夜の見回りも、間に合わない。」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事27年〜30年（6〜3年前）",
+          "npcDialogue": "「外縁の集落から煙が途絶えた。道は異形の粘糸 で塞がれている。」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事31年〜33年（2年前〜崩壊）",
+          "npcDialogue": "「最後の結晶炉が落ちる。逃げるなら今だ。」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

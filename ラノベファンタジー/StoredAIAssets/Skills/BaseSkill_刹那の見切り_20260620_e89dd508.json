@@ -1,0 +1,11 @@
+﻿{
+  "generationType": "baseSkill",
+  "phase": "Training",
+  "baseSkill": {
+    "skillID": "skill_momentary_insight",
+    "skillName": "刹那の見切り",
+    "description": "幾多の死線を紙一重でかわし続けた経験が昇華された、敵のわずかな予兆を瞬時に捉え、最小限の動きで危機を回避する基礎理論。研ぎ澄まされた動体視力と空間認識能力の賜物。",
+    "targetBonus": "evasionBonus",
+    "bonusValue": 3
+  }
+}

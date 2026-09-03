@@ -1,0 +1,4 @@
+﻿2026-08-31T01:50:47.9890656Z success=True
+manual-advance: T1->2 power=3205 barrier=1.000 expectedBarrier=1.000 propagated=7
+turn=True day1=True alt=True ripple=True pass=True
+max-turn-cap: turn=250 capped=True pass=True

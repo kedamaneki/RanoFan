@@ -1,0 +1,50 @@
+﻿2026-08-31T19:35:50.8946823Z success=True
+completed1000=True haltedManual=False gens=15 finalTurn=1000 main=ALT_NATION_001_TURN_961_BEAST_CATASTROPHE
+1000年史完成域到達 — 最終正史枝=ALT_NATION_001_TURN_961_BEAST_CATASTROPHE
+  density T251: phase=Dormant pos=250 beast×0.45 | observation: 観測 T251 領域・西·魔力巡回巨獣#2 routine=ManaSiphonPatrol flag=HIST_NATION_001_GEO_TURN_251_OBSERVED_COLOSSUS (territory=True mana=False) | T251 routines=50 reactions=0 | magic: T251 phase=Dormant civilized=0 lost=0 techs=2
+gen=1 T251-T300 branches=5 status=AllAgreed selected=ALT_NATION_001_TURN_261_BEAST_CATASTROPHE bio=Dormant pos=299 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_261_BEAST_CATASTROPHE score=377
+  density T300: phase=Dormant pos=299 beast×0.45 | observation: 観測 T300 領域・西·休眠山脈巨獣#4 routine=DormantMountain flag=HIST_NATION_001_GEO_TURN_300_OBSERVED_COLOSSUS (territory=True mana=False) | T300 routines=50 reactions=0 | magic: T300 phase=Dormant civilized=0 lost=0 techs=2
+  density T301: phase=Dormant pos=300 beast×0.45 | observation: 観測 T301 領域・西·魔力巡回巨獣#5 routine=ManaSiphonPatrol flag=HIST_NATION_001_GEO_TURN_301_OBSERVED_COLOSSUS (territory=True mana=False) | T301 routines=50 reactions=0 | magic: T301 phase=Dormant civilized=0 lost=0 techs=2
+gen=2 T301-T350 branches=6 status=AllAgreed selected=ALT_NATION_001_TURN_311_BEAST_CATASTROPHE bio=Rising pos=349 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_311_BEAST_CATASTROPHE score=377
+  density T350: phase=Rising pos=349 beast×0.72 | observation: 観測 T350 領域・西·休眠山脈巨獣#7 routine=DormantMountain flag=HIST_NATION_001_GEO_TURN_350_OBSERVED_COLOSSUS (territory=True mana=False) | T350 routines=50 reactions=2 |   領域・西·魔力巡回巨獣#5(ManaSiphonPatrol) 結界-10.0% stimulus=0.81 |   領域・西·過熱覚醒巨獣#6(OverheatAwakening) 結界-16.0% stimulus=0.82 | magic: T350 phase=Rising civilized=0 lost=0 techs=2
+  density T351: phase=Rising pos=350 beast×0.75 | observation: 観測 T351 領域・西·魔力巡回巨獣#8 routine=ManaSiphonPatrol flag=HIST_NATION_001_GEO_TURN_351_OBSERVED_COLOSSUS (territory=True mana=False) | T351 routines=50 reactions=0 | magic: T351 phase=Rising civilized=0 lost=0 techs=2
+gen=3 T351-T400 branches=7 status=AllAgreed selected=ALT_NATION_001_TURN_361_BEAST_CATASTROPHE bio=PeakCatastrophe pos=399 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_361_BEAST_CATASTROPHE score=377
+  density T400: phase=PeakCatastrophe pos=399 beast×2.35 | T400 routines=50 reactions=0 | magic: T400 phase=PeakCatastrophe civilized=0 lost=0 techs=2
+  density T401: phase=Dormant pos=0 beast×0.45 | T401 routines=50 reactions=0 | magic: T401 phase=Dormant civilized=0 lost=0 techs=2
+gen=4 T401-T450 branches=8 status=AllAgreed selected=ALT_NATION_001_TURN_411_BEAST_CATASTROPHE bio=Dormant pos=49 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_411_BEAST_CATASTROPHE score=377
+  density T450: phase=Dormant pos=49 beast×0.45 | T450 routines=50 reactions=0 | magic: T450 phase=Dormant civilized=0 lost=0 techs=2
+  density T451: phase=Dormant pos=50 beast×0.45 | T451 routines=50 reactions=0 | magic: T451 phase=Dormant civilized=0 lost=0 techs=2
+gen=5 T451-T500 branches=5 status=AllAgreed selected=ALT_NATION_001_TURN_461_BEAST_CATASTROPHE bio=Dormant pos=99 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_461_BEAST_CATASTROPHE score=377
+  density T500: phase=Dormant pos=99 beast×0.45 | T500 routines=50 reactions=0 | magic: T500 phase=Dormant civilized=0 lost=0 techs=2
+  density T501: phase=Dormant pos=100 beast×0.45 | T501 routines=50 reactions=0 | magic: T501 phase=Dormant civilized=0 lost=0 techs=2
+gen=6 T501-T550 branches=6 status=AllAgreed selected=ALT_NATION_001_TURN_511_BEAST_CATASTROPHE bio=Dormant pos=149 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_511_BEAST_CATASTROPHE score=377
+  density T550: phase=Dormant pos=149 beast×0.45 | T550 routines=50 reactions=0 | magic: T550 phase=Dormant civilized=0 lost=0 techs=2
+  density T551: phase=Dormant pos=150 beast×0.45 | T551 routines=50 reactions=0 | magic: T551 phase=Dormant civilized=0 lost=0 techs=2
+gen=7 T551-T600 branches=7 status=AllAgreed selected=ALT_NATION_001_TURN_561_BEAST_CATASTROPHE bio=Dormant pos=199 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_561_BEAST_CATASTROPHE score=377
+  density T600: phase=Dormant pos=199 beast×0.45 | T600 routines=50 reactions=0 | magic: T600 phase=Dormant civilized=0 lost=0 techs=2
+  density T601: phase=Dormant pos=200 beast×0.45 | T601 routines=50 reactions=0 | magic: T601 phase=Dormant civilized=0 lost=0 techs=2
+gen=8 T601-T650 branches=8 status=AllAgreed selected=ALT_NATION_001_TURN_611_BEAST_CATASTROPHE bio=Dormant pos=249 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_611_BEAST_CATASTROPHE score=377
+  density T650: phase=Dormant pos=249 beast×0.45 | T650 routines=50 reactions=0 | magic: T650 phase=Dormant civilized=0 lost=0 techs=2
+  density T651: phase=Dormant pos=250 beast×0.45 | T651 routines=50 reactions=0 | magic: T651 phase=Dormant civilized=0 lost=0 techs=2
+gen=9 T651-T700 branches=5 status=AllAgreed selected=ALT_NATION_001_TURN_661_BEAST_CATASTROPHE bio=Dormant pos=299 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_661_BEAST_CATASTROPHE score=377
+  density T700: phase=Dormant pos=299 beast×0.45 | T700 routines=50 reactions=0 | magic: T700 phase=Dormant civilized=0 lost=0 techs=2
+  density T701: phase=Dormant pos=300 beast×0.45 | T701 routines=50 reactions=0 | magic: T701 phase=Dormant civilized=0 lost=0 techs=2
+gen=10 T701-T750 branches=6 status=AllAgreed selected=ALT_NATION_001_TURN_711_BEAST_CATASTROPHE bio=Rising pos=349 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_711_BEAST_CATASTROPHE score=377
+  density T750: phase=Rising pos=349 beast×0.72 | T750 routines=50 reactions=0 | magic: T750 phase=Rising civilized=0 lost=0 techs=2
+  density T751: phase=Rising pos=350 beast×0.75 | T751 routines=50 reactions=0 | magic: T751 phase=Rising civilized=0 lost=0 techs=2
+gen=11 T751-T800 branches=7 status=AllAgreed selected=ALT_NATION_001_TURN_761_BEAST_CATASTROPHE bio=PeakCatastrophe pos=399 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_761_BEAST_CATASTROPHE score=377
+  density T800: phase=PeakCatastrophe pos=399 beast×2.35 | T800 routines=50 reactions=0 | magic: T800 phase=PeakCatastrophe civilized=0 lost=0 techs=2
+  density T801: phase=Dormant pos=0 beast×0.45 | T801 routines=50 reactions=0 | magic: T801 phase=Dormant civilized=0 lost=0 techs=2
+gen=12 T801-T850 branches=8 status=AllAgreed selected=ALT_NATION_001_TURN_811_BEAST_CATASTROPHE bio=Dormant pos=49 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_811_BEAST_CATASTROPHE score=377
+  density T850: phase=Dormant pos=49 beast×0.45 | T850 routines=50 reactions=0 | magic: T850 phase=Dormant civilized=0 lost=0 techs=2
+  density T851: phase=Dormant pos=50 beast×0.45 | T851 routines=50 reactions=0 | magic: T851 phase=Dormant civilized=0 lost=0 techs=2
+gen=13 T851-T900 branches=5 status=AllAgreed selected=ALT_NATION_001_TURN_861_BEAST_CATASTROPHE bio=Dormant pos=99 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_861_BEAST_CATASTROPHE score=377
+  density T900: phase=Dormant pos=99 beast×0.45 | T900 routines=50 reactions=0 | magic: T900 phase=Dormant civilized=0 lost=0 techs=2
+  density T901: phase=Dormant pos=100 beast×0.45 | T901 routines=50 reactions=0 | magic: T901 phase=Dormant civilized=0 lost=0 techs=2
+gen=14 T901-T950 branches=6 status=AllAgreed selected=ALT_NATION_001_TURN_911_BEAST_CATASTROPHE bio=Dormant pos=149 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_911_BEAST_CATASTROPHE score=377
+  density T950: phase=Dormant pos=149 beast×0.45 | T950 routines=50 reactions=0 | magic: T950 phase=Dormant civilized=0 lost=0 techs=2
+  density T951: phase=Dormant pos=150 beast×0.45 | T951 routines=50 reactions=0 | magic: T951 phase=Dormant civilized=0 lost=0 techs=2
+gen=15 T951-T1000 branches=7 status=AllAgreed selected=ALT_NATION_001_TURN_961_BEAST_CATASTROPHE bio=Dormant pos=199 msg=全会一致 ➔ 自動 Commit: ALT_NATION_001_TURN_961_BEAST_CATASTROPHE score=377
+  density T1000: phase=Dormant pos=199 beast×0.45 | T1000 routines=50 reactions=0 | magic: T1000 phase=Dormant civilized=0 lost=0 techs=2
+1000年史完成域到達 — 最終正史枝=ALT_NATION_001_TURN_961_BEAST_CATASTROPHE
+

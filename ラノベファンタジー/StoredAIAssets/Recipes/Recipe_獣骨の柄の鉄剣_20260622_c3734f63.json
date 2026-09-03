@@ -1,0 +1,16 @@
+﻿{
+  "generationType": "craft",
+  "phase": "Crafting",
+  "craft": {
+    "itemName": "獣骨の柄の鉄剣",
+    "quality": 0.68,
+    "materials": ["鉄鉱石", "獣骨"],
+    "qualityBonusOnSuccess": 0.1
+  },
+  "recipeRequest": {
+    "isNewRecipe": false,
+    "recipeName": null,
+    "requiredMaterials": [],
+    "outputItemName": null
+  }
+}

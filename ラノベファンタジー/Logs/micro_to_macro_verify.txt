@@ -1,0 +1,1 @@
+﻿2026-08-30T11:24:41.9198358Z success=True Power=1184.3 E=568.1 M=314.8 Mag=301.4 Barrier=0.8989 yearEnd=True geoWriteback=True barrierDropOnce=False

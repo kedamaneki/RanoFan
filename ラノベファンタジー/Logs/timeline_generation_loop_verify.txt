@@ -1,0 +1,4 @@
+﻿2026-08-31T13:39:19.4110378Z success=True
+loop: success=True gen2=ALT_NATION_001_TURN_057_FACTION_WAR score=385 main=ALT_NATION_001_TURN_057_FACTION_WAR turn=100->101 hero=結界再建の守護者 evaluated=8 child=ALT_NATION_001_TURN_051_NEW_TECH
+checks: eval=True child=True commit=True topAlt=True turn=True possess=True job=True hp=True mp=True
+top=ALT_NATION_001_TURN_057_FACTION_WAR score=391 main=ALT_NATION_001_TURN_057_FACTION_WAR hero=結界再建の守護者 job=JOB_BARRIER_REPAIRER

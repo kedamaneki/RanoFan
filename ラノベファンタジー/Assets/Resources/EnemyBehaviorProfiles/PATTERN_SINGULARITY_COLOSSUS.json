@@ -1,0 +1,30 @@
+{
+  "patternId": "PATTERN_SINGULARITY_COLOSSUS",
+  "comment": "特異点巨獣。普段は休眠。過度な魔力刺激時のみ結界破壊行動。",
+  "attacks": [
+    {
+      "actionId": "ATTACK_COLOSSUS_MANA_SURGE",
+      "actionName": "魔力共鳴の裂け目",
+      "attackDelaySeconds": 2.1,
+      "parryWindowSeconds": 0.08,
+      "staminaDamageValue": 18,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 60,
+      "nextComboActionId": "ATTACK_COLOSSUS_BARRIER_RIFT",
+      "comboIntervalSeconds": 0.8
+    },
+    {
+      "actionId": "ATTACK_COLOSSUS_BARRIER_RIFT",
+      "actionName": "結界杭の粉砕",
+      "attackDelaySeconds": 0.0,
+      "parryWindowSeconds": 0.06,
+      "staminaDamageValue": 42,
+      "isGuardBreakable": true,
+      "feintChance": 0.0,
+      "weight": 0,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    }
+  ]
+}

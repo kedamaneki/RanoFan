@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_046_BarrierDrop_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_046",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【最西端の大陸帯】で防衛障壁の循環効率が急落した（低下幅 0.19）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0001は、多くの人々にとって不安な一年が始まった。特に魔物周期の初期では、前線からの避難民が多く、都市内のコミュニティも変化している。\n\nまた、この時期には多くの祈りと監視が行われる。「神様に願いを捧げてね」と、エルの母親は毎晩のように口にする。「魔物から私たちを守ってほしいわ」\n\nその一方で、防衛隊員たちは日々の訓練を行い、都市全体の安全を確保する。人々の間では、「今日はどんな一日になるかわからないね」「結晶が足りないのは大変だけど、みんな頑張っているよね」というような会話が多く聞かれる。\n\nこうした日々の中で、この土地の市民たちはそれぞれの役割を持ちつつ、互いを支え合いながら生活を続けていく。",
+      "conditionFlag": "HIST_NATION_046_GEO_TURN_001_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_046_GEO_TURN_001_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_046_BARRIERDROP_T001",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N046_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「神様に願いを捧げてね」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「神様に願いを捧げてね」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「神様に願いを捧げてね」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_046_MonsterAttack_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_046",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.4 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0001は、多くの人々にとって不安な一年が始まった。特に魔物周期の初期では、前線からの避難民が多く、都市内のコミュニティも変化している。\n\nまた、この時期には多くの祈りと監視が行われる。「神様に願いを捧げてね」と、エルの母親は毎晩のように口にする。「魔物から私たちを守ってほしいわ」\n\nその一方で、防衛隊員たちは日々の訓練を行い、都市全体の安全を確保する。人々の間では、「今日はどんな一日になるかわからないね」「結晶が足りないのは大変だけど、みんな頑張っているよね」というような会話が多く聞かれる。\n\nこうした日々の中で、この土地の市民たちはそれぞれの役割を持ちつつ、互いを支え合いながら生活を続けていく。",
+      "conditionFlag": "HIST_NATION_046_GEO_TURN_001_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_046_GEO_TURN_001_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_046_MONSTERATTACK_T001",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N046_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「神様に願いを捧げてね」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「神様に願いを捧げてね」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「神様に願いを捧げてね」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_046_MonsterAttack_4",
+      "macroTurn": 4,
+      "timestamp": {
+        "year": 4,
+        "month": 4,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_046",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.2 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は魔物周期の活性期であるため、ザンクール市民たちは日々、緊迫した状況の中で生き抜こうとしている。配給所の行列や灯火管制、そして防衛隊の訓練が日常となっている。しかし、経済力と軍事力を失い、また生活空間も制限されたことにより、人々はストレスに喘いでいる。\n\nそれでも、ザンクール市民たちは「セイバー」を信じ続けている。「結界さえあれば大丈夫」という声や、「防衛隊長が頑張ってくれるなら大丈夫だよね」と言うような言葉も聞こえてくる。それは魔物たちの脅威に直面しながら、それでも生き抜こうとするザンクール市民たちの希望を表しているのである。",
+      "conditionFlag": "HIST_NATION_046_GEO_TURN_004_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_046_GEO_TURN_004_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_046_MONSTERATTACK_T004",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N046_T004"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事4年・年初（ターン004）",
+          "npcDialogue": "「結界さえあれば大丈夫」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事4年・年央（ターン004）",
+          "npcDialogue": "「結界さえあれば大丈夫」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事4年・年末（ターン004）",
+          "npcDialogue": "「結界さえあれば大丈夫」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_046_NationCollapse_30",
+      "macroTurn": 30,
+      "timestamp": {
+        "year": 30,
+        "month": 6,
+        "day": 10,
+        "hour": 4
+      },
+      "targetNationId": "NATION_046",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【最西端の大陸帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、この土地の市民にとって、日常生活そのものが試練となった。都市は逼迫した状況にあり、人々の心は絶望と不安で満ち溢れていた。それでも、市民たちは日々を生き抜くための工夫や支えを見出し続けた。\n\n食事に関しては、ミラたちのように共同で料理を作ったり、互いの余剰品を交換したりすることで、栄養バランスを保つ努力がなされた。また、信仰心も強まった。「神様に祈れば、大丈夫になるって信じてるから」という言葉と共に、日々の生活は続けられた。\n\nしかし、このターンでは魔物侵攻により都市の生存圏が損壊したため、この土地は滅亡へと至った。人々は混乱の中で避難を試みたが、結界の崩落と防衛隊の撤退によって、逃げ場も失われていった。\n\n「こうなったら、それぞれが生き延びるしかないんだ」とミラはつぶやくように呟いた。「この土地は消えたけど、私たちはまだ生きている。これから先、何があっても、明日があるって信じて進んでいくよ」",
+      "conditionFlag": "HIST_NATION_046_GEO_TURN_030_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_046_GEO_TURN_030_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_046_NATIONCOLLAPSE_T030",
+          "alternativeLogMessage": "【最西端の大陸帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N046_T030"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事21年〜23年（滅亡10〜7年前）",
+          "npcDialogue": "「神様に祈れば、大丈夫になるって信じてるから」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事24年〜27年（6〜3年前）",
+          "npcDialogue": "「神様に祈れば、大丈夫になるって信じてるから」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事28年〜30年（2年前〜崩壊）",
+          "npcDialogue": "「神様に祈れば、大丈夫になるって信じてるから」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

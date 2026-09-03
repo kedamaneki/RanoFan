@@ -1,0 +1,8 @@
+﻿2026-08-31T13:25:02.2777443Z success=True
+gen2-setup: success=True branch=ALT_NATION_001_TURN_006_INNOVATION turn=51
+day1: log=1日目: 結界杭のエネルギーが3%低下 barrier=57.7 pass=True
+inject: restore=21.3 threat-0.36 pass=True
+day2: threat=1.14 barrier=58.3 pass=True
+if-branch: id=ALT_NATION_001_TURN_051_NEW_TECH parent=ALT_NATION_001_TURN_006_INNOVATION spawn=True parentNode=True childLink=True
+flags: outcome=True hero=歴史の代行者
+year-complete: day=365 turn=52

@@ -1,0 +1,16 @@
+﻿{
+  "generationType": "craft",
+  "phase": "Crafting",
+  "craft": {
+    "itemName": "鉄骨の堅実剣",
+    "quality": 0.68,
+    "materials": ["鉄鉱石", "獣骨"],
+    "qualityBonusOnSuccess": 0.1
+  },
+  "recipeRequest": {
+    "isNewRecipe": false,
+    "recipeName": "",
+    "requiredMaterials": [],
+    "outputItemName": ""
+  }
+}

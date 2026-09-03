@@ -1,0 +1,178 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_168_BarrierDrop_30",
+      "macroTurn": 30,
+      "timestamp": {
+        "year": 30,
+        "month": 6,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_168",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【東方の結晶生産圏】で防衛障壁の循環効率が急落した（低下幅 0.19）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "今年のこの土地は魔物活性期が特に厳しい年となった。「絶望」と「崩壊」が市民たちの口から頻繁に出るようになった。誰もが自分がこの街を最後まで生き残ることができるかと不安な日々を過ごしていた。\n\nだが、それでも人々は祈り続けた。魔獣に対する恐怖心は増すばかりで、祈りが唯一の希望となっていた。「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」とエリカは言った。\n\nそしてこの日、この土地は滅亡した。「これ以上続かないってことがわかったんだね…」とシナさんは悲しそうに言った。「でも、人々が生き抜いていくための道を示してくれたのは、あなたたち防衛隊員だったよ。ありがとう。」\n\nエリカは目を閉じて静かに祈った。「来年、どこで誰と一緒に生きて行けるのか…それがわからないけど、それでも僕たちは希望を持って生き抜くんだ。」と彼女は強く心の中で誓う。\n\nそして、新たな始まりが待っている世界へと散り散りとなったのであった。",
+      "conditionFlag": "HIST_NATION_168_GEO_TURN_030_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_168_GEO_TURN_030_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_168_BARRIERDROP_T030",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N168_T030"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事30年・年初（ターン030）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事30年・年央（ターン030）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事30年・年末（ターン030）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_168_MonsterAttack_30",
+      "macroTurn": 30,
+      "timestamp": {
+        "year": 30,
+        "month": 6,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_168",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【東方の結晶生産圏】が脅威侵攻を受け、生存圏が 9.3 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "今年のこの土地は魔物活性期が特に厳しい年となった。「絶望」と「崩壊」が市民たちの口から頻繁に出るようになった。誰もが自分がこの街を最後まで生き残ることができるかと不安な日々を過ごしていた。\n\nだが、それでも人々は祈り続けた。魔獣に対する恐怖心は増すばかりで、祈りが唯一の希望となっていた。「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」とエリカは言った。\n\nそしてこの日、この土地は滅亡した。「これ以上続かないってことがわかったんだね…」とシナさんは悲しそうに言った。「でも、人々が生き抜いていくための道を示してくれたのは、あなたたち防衛隊員だったよ。ありがとう。」\n\nエリカは目を閉じて静かに祈った。「来年、どこで誰と一緒に生きて行けるのか…それがわからないけど、それでも僕たちは希望を持って生き抜くんだ。」と彼女は強く心の中で誓う。\n\nそして、新たな始まりが待っている世界へと散り散りとなったのであった。",
+      "conditionFlag": "HIST_NATION_168_GEO_TURN_030_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_168_GEO_TURN_030_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_168_MONSTERATTACK_T030",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N168_T030"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事30年・年初（ターン030）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事30年・年央（ターン030）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事30年・年末（ターン030）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_168_NationCollapse_30",
+      "macroTurn": 30,
+      "timestamp": {
+        "year": 30,
+        "month": 6,
+        "day": 10,
+        "hour": 4
+      },
+      "targetNationId": "NATION_168",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【東方の結晶生産圏】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "今年のこの土地は魔物活性期が特に厳しい年となった。「絶望」と「崩壊」が市民たちの口から頻繁に出るようになった。誰もが自分がこの街を最後まで生き残ることができるかと不安な日々を過ごしていた。\n\nだが、それでも人々は祈り続けた。魔獣に対する恐怖心は増すばかりで、祈りが唯一の希望となっていた。「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」とエリカは言った。\n\nそしてこの日、この土地は滅亡した。「これ以上続かないってことがわかったんだね…」とシナさんは悲しそうに言った。「でも、人々が生き抜いていくための道を示してくれたのは、あなたたち防衛隊員だったよ。ありがとう。」\n\nエリカは目を閉じて静かに祈った。「来年、どこで誰と一緒に生きて行けるのか…それがわからないけど、それでも僕たちは希望を持って生き抜くんだ。」と彼女は強く心の中で誓う。\n\nそして、新たな始まりが待っている世界へと散り散りとなったのであった。",
+      "conditionFlag": "HIST_NATION_168_GEO_TURN_030_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_168_GEO_TURN_030_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_168_NATIONCOLLAPSE_T030",
+          "alternativeLogMessage": "【東方の結晶生産圏】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N168_T030"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事21年〜23年（滅亡10〜7年前）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事24年〜27年（6〜3年前）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事28年〜30年（2年前〜崩壊）",
+          "npcDialogue": "「魔獣には勝てないかもしれないけど…私たちの願いも届くように祈るしかないよね。」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

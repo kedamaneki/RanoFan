@@ -1,0 +1,30 @@
+{
+  "patternId": "PATTERN_BASIC_SLIME",
+  "comment": "初期アクション慣らし用。素直な約0.6秒の予備動作と広めのパリィ窓。フェイントなし。",
+  "attacks": [
+    {
+      "actionId": "ATTACK_SLIME_SPLASH",
+      "actionName": "粘性の叩きつけ",
+      "attackDelaySeconds": 0.6,
+      "parryWindowSeconds": 0.22,
+      "staminaDamageValue": 8,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 70,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    },
+    {
+      "actionId": "ATTACK_SLIME_BODYPRESS",
+      "actionName": "体当たり",
+      "attackDelaySeconds": 0.65,
+      "parryWindowSeconds": 0.2,
+      "staminaDamageValue": 10,
+      "isGuardBreakable": false,
+      "feintChance": 0.0,
+      "weight": 30,
+      "nextComboActionId": "",
+      "comboIntervalSeconds": 0.0
+    }
+  ]
+}

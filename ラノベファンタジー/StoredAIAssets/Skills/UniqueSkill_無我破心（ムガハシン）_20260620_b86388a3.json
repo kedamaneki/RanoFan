@@ -1,0 +1,15 @@
+﻿{
+  "generationType": "skill",
+  "phase": "Crisis",
+  "skill": {
+    "skillName": "無我破心（ムガハシン）",
+    "flavorText": "死線を越え、無我の境地に達した者のみが振るう究極の一撃。あらゆる攻撃を躱し、その刹那、全身全霊を込めた打撃は敵の存在そのものを根源から砕き去る。",
+    "probability": 0.00001,
+    "effectParameters": [
+      { "key": "ignoreDefense", "value": 1.0 },
+      { "key": "haltFleshDegradation", "value": 1.0 },
+      { "key": "invincibilityDurationAfterJustDodge", "value": 3.0 },
+      { "key": "nextMeleeAttackDamageMultiplier", "value": 10.0 }
+    ]
+  }
+}

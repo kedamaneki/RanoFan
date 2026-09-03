@@ -1,0 +1,352 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_121_MonsterAttack_9",
+      "macroTurn": 9,
+      "timestamp": {
+        "year": 9,
+        "month": 9,
+        "day": 1,
+        "hour": 10
+      },
+      "targetNationId": "NATION_121",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 6.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0009では、魔物周期が活性期に入ると同時に、地域ごとの祭りや祝祭も減速する。人々は結界維持のために余計なエネルギーを費やすことを避けつつ、それでも互いの生活に必要なサポートと祈りを忘れることはない。\n\n「今年も無事に暮らせますように」という言葉が頻繁に耳に入る。それぞれの家庭で小さな祭典が行われる中、人々は魔物たちへの対策と自身の日常生活を見つめ直す大切な時期となっている。",
+      "conditionFlag": "HIST_NATION_121_GEO_TURN_009_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_121_GEO_TURN_009_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_121_MONSTERATTACK_T009",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N121_T009"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事9年・年初（ターン009）",
+          "npcDialogue": "「今年も無事に暮らせますように」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事9年・年央（ターン009）",
+          "npcDialogue": "「今年も無事に暮らせますように」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事9年・年末（ターン009）",
+          "npcDialogue": "「今年も無事に暮らせますように」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_121_Innovation_48",
+      "macroTurn": 48,
+      "timestamp": {
+        "year": 48,
+        "month": 12,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_121",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【南方の山岳・海洋前線】で障壁イノベーションが発生した。循環係数 0.96、生存圏 +2.0。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この時期には祭りや結婚の話題が増えている。魔物周期の休眠期は、市民にとって束の間の安堵であり、その瞬間に感謝する祭りが開かれることが多い。「この期間だけは、少しでも楽しい時間を過ごそうね」と言いながら、人々は互いに手を取って踊る。\n\nまた、新築や結婚の話題も増えている。魔物周期の休眠期は、新しい生活が始まるタイミングと捉えられるからだ。「新しい家ができるんだよ」と言いながら、若者たちは新たな家族の一員として迎えられることに期待感を抱いている。\n\nこの年の風俗メモとしては、「休む時間を作る」ということが特筆される。魔物周期の休眠期は、市民にとって貴重な休息期間であるため、「今日も一日、頑張ったね」と言いながら、年長者が若者たちを慰めている。",
+      "conditionFlag": "HIST_NATION_121_GEO_TURN_048_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_121_GEO_TURN_048_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_121_INNOVATION_T048",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N121_T048"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事48年・年初（ターン048）",
+          "npcDialogue": "「この期間だけは、少しでも楽しい時間を過ごそうね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事48年・年央（ターン048）",
+          "npcDialogue": "「この期間だけは、少しでも楽しい時間を過ごそうね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事48年・年末（ターン048）",
+          "npcDialogue": "「この期間だけは、少しでも楽しい時間を過ごそうね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_121_MonsterAttack_57",
+      "macroTurn": 57,
+      "timestamp": {
+        "year": 57,
+        "month": 9,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_121",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 7.0 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年57は特に厳しい年となった。前ターンからの連続性を保つために、街では常に防衛態勢を整える必要がある。「環境一体型異形（魔獣）」の脅威は絶えず高まり続けているが、それでも人々は結界に支えられ、希望を持って日々を過ごしている。\n\nこの年はまた、「障壁イノベーション」というニュースが市民たちの間で話題となった。新たな技術により、防衛効率が上がったことで、夜間も安心して眠ることができるようになった。「これがなければ、もっと不安だったでしょう」と誰もが口にする。\n\nしかし一方で、経済面では厳しい現実もある。配給所での行列は日々の風景となり、「今日もまた同じ配分」が口ぐちに広まっている。それでも人々は互いを支え合いながら、生活を続けていくのである。",
+      "conditionFlag": "HIST_NATION_121_GEO_TURN_057_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_121_GEO_TURN_057_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_121_MONSTERATTACK_T057",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N121_T057"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事57年・年初（ターン057）",
+          "npcDialogue": "「環境一体型異形（魔獣）」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事57年・年央（ターン057）",
+          "npcDialogue": "「環境一体型異形（魔獣）」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事57年・年末（ターン057）",
+          "npcDialogue": "「環境一体型異形（魔獣）」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_121_Innovation_87",
+      "macroTurn": 87,
+      "timestamp": {
+        "year": 87,
+        "month": 3,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_121",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【南方の山岳・海洋前線】で障壁イノベーションが発生した。循環係数 1.25、生存圏 +2.3。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "休眠期においては、祭りや結婚式、新築祝いなどが増加する傾向にある。魔物周期の安定感を最大限に活用し、人々は思い切り楽しむようにしている。「今年もまた、私たちが安心して生活できる魔法結晶の力に感謝しなければならないね」とシルヴィアとリズは夜空を見上げながら話す。\n\n「そうだよ。明日もまた一日が始まるけど、そのために必要なのが安定した魔力結晶だよね」とリズは続け、「だからこそ、エドワード先生のような職人の方々に感謝しなければならないと思うんだ」。\n\nこの土地の市民たちは、日々を送る中で常にこの世界と向き合いながら、同時に希望と感謝の気持ちを持ち続ける。",
+      "conditionFlag": "HIST_NATION_121_GEO_TURN_087_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_121_GEO_TURN_087_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_121_INNOVATION_T087",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 14,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N121_T087"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事87年・年初（ターン087）",
+          "npcDialogue": "「今年もまた、私たちが安心して生活できる魔法結晶の力に感謝しなければならないね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事87年・年央（ターン087）",
+          "npcDialogue": "「今年もまた、私たちが安心して生活できる魔法結晶の力に感謝しなければならないね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事87年・年末（ターン087）",
+          "npcDialogue": "「今年もまた、私たちが安心して生活できる魔法結晶の力に感謝しなければならないね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_121_Innovation_137",
+      "macroTurn": 137,
+      "timestamp": {
+        "year": 137,
+        "month": 5,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_121",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【南方の山岳・海洋前線】で障壁イノベーションが発生した。循環係数 1.42、生存圏 +1.9。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Inspiration",
+      "microLore": "叙事年0137（ターン137）には、休眠期における祭りや結婚など様々な行事が開催された。人々は束の間の安堵感を楽しみつつ、次の活性期に備えて心の準備をしている。\n\n魔物周期の現状では、市民たちは生活を送る一方で、常に防衛態勢を整えている。また、経済や社会的な側面においても、結晶炉と配給システムが安定していることは大きな支えとなっている。",
+      "conditionFlag": "HIST_NATION_121_GEO_TURN_137_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_121_GEO_TURN_137_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_121_INNOVATION_T137",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N121_T137"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事137年・年初（ターン137）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事137年・年央（ターン137）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事137年・年末（ターン137）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_121_Innovation_174",
+      "macroTurn": 174,
+      "timestamp": {
+        "year": 174,
+        "month": 6,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_121",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【南方の山岳・海洋前線】で障壁イノベーションが発生した。循環係数 1.51、生存圏 +2.1。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年0174は、この土地にとって平凡ながらも重要な一年となった。魔獣の脅威が高まる中でも、市民たちは互いを支え合いながら日々を送っている。特に結界技術や魔力結晶の重要性が再認識され、人々の生活には欠かせない存在となっている。\n\nまた、各都市では地域ごとの風土や祭りも盛んに行われている。カーゼンでも、魔物周期に合わせた特別な祈りが行われており、その音楽と歌声は街を穏やかな気分に包む。人々は互いの存在を感じ合いながら、日々の生活を繋いでいくのである。",
+      "conditionFlag": "HIST_NATION_121_GEO_TURN_174_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_121_GEO_TURN_174_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_121_INNOVATION_T174",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N121_T174"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事174年・年初（ターン174）",
+          "npcDialogue": "「循環を折り返せ。同じ結晶量で膜を厚くできる。」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事174年・年央（ターン174）",
+          "npcDialogue": "「新しい結晶柱が点灯した。外周の影が少し遠のいた。」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事174年・年末（ターン174）",
+          "npcDialogue": "「この循環なら、次の活性期も内側の市井は守れる。」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

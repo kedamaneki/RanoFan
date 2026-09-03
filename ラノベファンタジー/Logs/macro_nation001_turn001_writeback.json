@@ -1,0 +1,4 @@
+﻿{
+  "meta": { "note": "MicroToMacro writeback for nation 001 turn 1","facilities":{"palisade_level":1,"workshop_level":2,"housing_durability_avg":68.7,"food":0.4,"timber":254.0,"barrier_percent":100.0} },
+  "snapshot": {"id":1,"name":"国家001","region":"領域・西","lat":22.971,"lng":-103.1242,"alive":false,"territory":30,"power":46029.04,"economy":15404.01,"military":15311.27,"magic":15313.75,"barrier_efficiency":1,"born_turn":0,"died_turn":28,"turn":250,"source":"MicroToMacroAggregator"}
+}

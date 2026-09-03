@@ -1,0 +1,352 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_007_MonsterAttack_11",
+      "macroTurn": 11,
+      "timestamp": {
+        "year": 11,
+        "month": 11,
+        "day": 7,
+        "hour": 10
+      },
+      "targetNationId": "NATION_007",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 6.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物周期の活性期では、多くの人々が祈りと監視に力を注ぐ。教会では昼夜問わず祈りのための集会が行われ、街中には警戒心高まる住民たちの姿がある。また、緊迫した状況を緩和するためのコミュニティイベントも開催されることがある。\n\n「この時期はいつも不安定だ」\n\nこの土地の一般市民たちは、日々の生活の中で常に魔物周期と向き合いながら生き抜くことを学んでいく。それは決して容易なことではなく、人々は互いに支え合い、一緒に困難を乗り越えてきた。",
+      "conditionFlag": "HIST_NATION_007_GEO_TURN_011_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_007_GEO_TURN_011_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_007_MONSTERATTACK_T011",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N007_T011"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事11年・年初（ターン011）",
+          "npcDialogue": "「この時期はいつも不安定だ」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事11年・年央（ターン011）",
+          "npcDialogue": "「この時期はいつも不安定だ」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事11年・年末（ターン011）",
+          "npcDialogue": "「この時期はいつも不安定だ」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_007_Innovation_48",
+      "macroTurn": 48,
+      "timestamp": {
+        "year": 48,
+        "month": 12,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_007",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【極寒針葉樹林の前線】で障壁イノベーションが発生した。循環係数 1.02、生存圏 +2.1。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "魔物休眠期には、結婚式や新築祝いなどの祭典が多く行われる傾向にある。また、この時期になると避難民の流入も落ち着きを見せ、人々は安定した生活を取り戻し始める。\n\n「今日が最後の夜だね」と誰かが静かな声で呟く。「来週からまた忙しくなるだろうな」それでも、今宵の安らぎと明日への準備を兼ね備えた心持ちで過ごすことが多くなるのである。",
+      "conditionFlag": "HIST_NATION_007_GEO_TURN_048_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_007_GEO_TURN_048_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_007_INNOVATION_T048",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N007_T048"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事48年・年初（ターン048）",
+          "npcDialogue": "「今日が最後の夜だね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事48年・年央（ターン048）",
+          "npcDialogue": "「今日が最後の夜だね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事48年・年末（ターン048）",
+          "npcDialogue": "「今日が最後の夜だね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_007_MonsterAttack_58",
+      "macroTurn": 58,
+      "timestamp": {
+        "year": 58,
+        "month": 10,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_007",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【極寒針葉樹林の前線】が脅威侵攻を受け、生存圏が 4.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0058は特に厳しい一年となっていた。魔物周期の位相10/24における生存圏の逼迫や不動産不足、スラム化が進行している。それでも人々は互いを支え合いながら生活を続けており、祈りと監視の日々が続いている。\n\nまた、この年には新たな防衛障壁増強工事も進んでおり、多くの志願兵たちが日夜作業に励んでいる。その労働者たちは夜間でも結界の光を頼りに働き続けているため、都市全体は一種の灯火管制下に置かれている。\n\nこのような状況の中で、人々の生活は窮屈さや窒息感を感じさせつつも、互いへの信頼と支えによって少しずつ前進している。",
+      "conditionFlag": "HIST_NATION_007_GEO_TURN_058_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_007_GEO_TURN_058_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_007_MONSTERATTACK_T058",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 11,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N007_T058"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事58年・年初（ターン058）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事58年・年央（ターン058）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事58年・年末（ターン058）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_007_Innovation_68",
+      "macroTurn": 68,
+      "timestamp": {
+        "year": 68,
+        "month": 8,
+        "day": 16,
+        "hour": 10
+      },
+      "targetNationId": "NATION_007",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【極寒針葉樹林の前線】で障壁イノベーションが発生した。循環係数 1.07、生存圏 +2.7。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0068は市民にとってさまざまな出来事が発生した。魔物休眠期中では祭りが開催されたり結婚が増えたりする一方で、その終わりに向けての不安も常につきまとう。人々はこの束の間の平和を最大限に活用しようとしている。\n\nアスカリオンには多くの信仰があり、それぞれが生活に影響を与えている。「魔物から私たちを守って」という祈りは、どの神殿でも聞こえる。また新築や祝祭も休眠期中に多く行われるため、市民の間では話題となりやすい。\n\n「魔力結晶、もっと確保しなきゃ」はこの年一番多い呟きかもしれない。魔物活性期への備えは常に最優先事項であり、その準備が全てである。",
+      "conditionFlag": "HIST_NATION_007_GEO_TURN_068_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_007_GEO_TURN_068_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_007_INNOVATION_T068",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 12,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N007_T068"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事68年・年初（ターン068）",
+          "npcDialogue": "「魔物から私たちを守って」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事68年・年央（ターン068）",
+          "npcDialogue": "「魔物から私たちを守って」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事68年・年末（ターン068）",
+          "npcDialogue": "「魔物から私たちを守って」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_007_Innovation_102",
+      "macroTurn": 102,
+      "timestamp": {
+        "year": 102,
+        "month": 6,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_007",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【極寒針葉樹林の前線】で障壁イノベーションが発生した。循環係数 1.31、生存圏 +2.6。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Inspiration",
+      "microLore": "この土地では、現在の生存圏は狭く、居住空間の争奪や配給への不満が増えている。それでも、人々は互いに支え合いながら生き抜こうと試みている。魔力結晶炉から放たれる青白い光が街を守り、市民たちの心を落ち着かせる。\n\nこの年の風俗としては、「絶望や不安の中でも希望を見つける」ということが重要なキーワードとなっている。人々は「魔法と科学の融合」によって生き抜こうとしており、魔力結晶炉からの光がその象徴となっている。「今日も一日、頑張ろうね」という口癖が市民間で広まっている。\n\nビルダーマンやカタリーナのような人々が、「絶望と希望の狭間」に生きるこの街を支えている。彼らの努力によって、この土地はなおも存続し続けている。",
+      "conditionFlag": "HIST_NATION_007_GEO_TURN_102_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_007_GEO_TURN_102_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_007_INNOVATION_T102",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 19,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N007_T102"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事102年・年初（ターン102）",
+          "npcDialogue": "「絶望や不安の中でも希望を見つける」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事102年・年央（ターン102）",
+          "npcDialogue": "「絶望や不安の中でも希望を見つける」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事102年・年末（ターン102）",
+          "npcDialogue": "「絶望や不安の中でも希望を見つける」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_007_Innovation_190",
+      "macroTurn": 190,
+      "timestamp": {
+        "year": 190,
+        "month": 10,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_007",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【極寒針葉樹林の前線】で障壁イノベーションが発生した。循環係数 1.54、生存圏 +2.8。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "この年は魔物の休眠期が長く続き、そのため様々な祭りや祝賀行事が行われた。特に位相22/24という重要な時期にあたり、多くの人々が集まり、盛大な宴が開かれた。「ここ数日で街全体が華やいでいるね」とアルフレッドは友人らと話す。\n\nまた、この年には新築や結婚の話題が多く聞かれるようになった。魔物の休眠期という安定した時期にあたり、多くの人々が新たな生活を始めるための準備を進めている。「新しい家ができて良かったね」とアルフレッドは友人らと共に祝う。\n\nこれらの出来事はこの土地市民たちにとって大切な思い出となり、また彼らの心をより強く結びつけるものとなっている。",
+      "conditionFlag": "HIST_NATION_007_GEO_TURN_190_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_007_GEO_TURN_190_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_007_INNOVATION_T190",
+          "alternativeLogMessage": "【極寒針葉樹林の前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、極寒針葉樹林の前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_NORTH_TAIGA",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_NORTH_TAIGA_N007_T190"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事190年・年初（ターン190）",
+          "npcDialogue": "「ここ数日で街全体が華やいでいるね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事190年・年央（ターン190）",
+          "npcDialogue": "「ここ数日で街全体が華やいでいるね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事190年・年末（ターン190）",
+          "npcDialogue": "「ここ数日で街全体が華やいでいるね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

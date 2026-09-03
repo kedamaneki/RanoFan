@@ -1,0 +1,110 @@
+{
+  "skills": [
+    {
+      "skillId": "SKL_PROD_INSTRUMENT_ADV",
+      "skillName": "上位楽器工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位楽器工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_INSTRUMENT_ADV_01",
+          "artName": "楽器工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_INSTRUMENT_ADV_02",
+              "artName": "楽器工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_INSTRUMENT_ADV_03",
+                  "artName": "楽器工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityBonus",
+                      "value": 0.12,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_QualityTotal",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    },
+    {
+      "skillId": "SKL_PROD_GEM_ADV",
+      "skillName": "上位宝石工",
+      "category": "Production",
+      "description": "クラフトの成功回数と品質の蓄積、あるいは危険域での作業実績から開花する上位宝石工。後半の技に純度・抽出の底上げ効果を宿す。",
+      "baseArts": [
+        {
+          "artId": "ART_PROD_GEM_ADV_01",
+          "artName": "宝石工・基礎工程",
+          "poiseDamage": 0,
+          "manaCost": 8,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PROD_GEM_ADV_02",
+              "artName": "宝石工・安定操作",
+              "poiseDamage": 0,
+              "manaCost": 12,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PROD_GEM_ADV_03",
+                  "artName": "宝石工・精密仕上げ",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_ExtractionBonus",
+                      "value": 0.15,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "evolutionData": {
+        "isEvolvable": true,
+        "requiredLevel": 8,
+        "conditionFlag": "",
+        "evolutionCriteria": {
+          "requiredLogType": "CraftLog_BurstZoneTime",
+          "requiredValue": 12
+        },
+        "nextSkillId": ""
+      }
+    }
+  ]
+}

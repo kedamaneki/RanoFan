@@ -1,0 +1,294 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_148_MonsterAttack_10",
+      "macroTurn": 10,
+      "timestamp": {
+        "year": 10,
+        "month": 10,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_148",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 10.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、魔物周期の活性期には「祈りと監視の日々」という慣習がある。特にこのターンは、位相10/24という最悪のタイミングであるため、「夜間の警戒」が厳しく行われている。\n\nまた、避難民たちを援助するボランティアも活発であり、「みんなで力を合わせて乗り越えよう」という気運が高まっている。「魔物から守ってやりたい」という市民たちの思いは、この国の存続に大きな役割を果たしている。\n\nしかし、一方では「結晶不足」による不満も広がっている。人々は、「もっと配給が増えれば」と願いながら、自分の分だけを確保しようと必死だ。「このターンは特に厳しいね……」という声が多く聞こえる。\n\nこれらの現象は、この土地の市民たちが日々直面する困難と挑戦を如実に表しており、「魔物周期」は彼らの生活に深く影響を与えていた。",
+      "conditionFlag": "HIST_NATION_148_GEO_TURN_010_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_148_GEO_TURN_010_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_148_MONSTERATTACK_T010",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N148_T010"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事10年・年初（ターン010）",
+          "npcDialogue": "「祈りと監視の日々」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事10年・年央（ターン010）",
+          "npcDialogue": "「祈りと監視の日々」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事10年・年末（ターン010）",
+          "npcDialogue": "「祈りと監視の日々」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_148_MonsterAttack_12",
+      "macroTurn": 12,
+      "timestamp": {
+        "year": 12,
+        "month": 12,
+        "day": 10,
+        "hour": 10
+      },
+      "targetNationId": "NATION_148",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 4.9 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年の風俗では、「祈りと助け合い」が主となる。魔物周期の活性期である現在、人々は互いを支えつつ日々を過ごしている。「神様、守ってください」「一緒に頑張ろう」という言葉と共に、市民たちの心は団結し始めている。\n\nまた、魔力不足を補うために、多くの人が自宅で小規模な発電装置を作り始める。これは魔力を節約するための手段であり、「少しでも長く明るい夜が続くように」という願いとともに作られている。\n\nこの土地の一般市民たちは、このような日々の中で生活を続けていく。魔物周期は常に彼らに圧迫感を与えているが、それでも希望を持ち続け、互いを支え合うことで前進を目指している。",
+      "conditionFlag": "HIST_NATION_148_GEO_TURN_012_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_148_GEO_TURN_012_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_148_MONSTERATTACK_T012",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N148_T012"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事12年・年初（ターン012）",
+          "npcDialogue": "「神様、守ってください」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事12年・年央（ターン012）",
+          "npcDialogue": "「神様、守ってください」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事12年・年末（ターン012）",
+          "npcDialogue": "「神様、守ってください」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_148_BarrierDrop_31",
+      "macroTurn": 31,
+      "timestamp": {
+        "year": 31,
+        "month": 7,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_148",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【南方の山岳・海洋前線】で防衛障壁の循環効率が急落した（低下幅 0.23）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0031は、この土地にとって極めて重要な年となった。魔物活性期でありながら経済は安定しているものの、市民たちは日々の生活の中で緊張感と不安定さを感じ続けている。絶望的な状況にもかかわらず、人々は祈りと監視を続ける一方で、「奪い合い」や「閉塞感」という言葉が街に蔓延していく。\n\nそして、このターン31では国家自体が滅亡するという予定が立っていた。その事実を知った市民たちは、それぞれの形で絶望と混乱に見舞われる。「今月はこれ以上何も起きないことを願う」という声とともに、人々は散り散りになることとなる。\n\n結界は崩壊し、魔獣が侵攻する中、避難のための人々の足取りが忙しくなる。その背後では、この土地としての歴史が歴史上の欠番として固定される。やがて、その名前と共に消え失せることとなった。",
+      "conditionFlag": "HIST_NATION_148_GEO_TURN_031_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_148_GEO_TURN_031_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_148_BARRIERDROP_T031",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N148_T031"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事31年・年初（ターン031）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事31年・年央（ターン031）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事31年・年末（ターン031）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_148_MonsterAttack_31",
+      "macroTurn": 31,
+      "timestamp": {
+        "year": 31,
+        "month": 7,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_148",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【南方の山岳・海洋前線】が脅威侵攻を受け、生存圏が 11.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0031は、この土地にとって極めて重要な年となった。魔物活性期でありながら経済は安定しているものの、市民たちは日々の生活の中で緊張感と不安定さを感じ続けている。絶望的な状況にもかかわらず、人々は祈りと監視を続ける一方で、「奪い合い」や「閉塞感」という言葉が街に蔓延していく。\n\nそして、このターン31では国家自体が滅亡するという予定が立っていた。その事実を知った市民たちは、それぞれの形で絶望と混乱に見舞われる。「今月はこれ以上何も起きないことを願う」という声とともに、人々は散り散りになることとなる。\n\n結界は崩壊し、魔獣が侵攻する中、避難のための人々の足取りが忙しくなる。その背後では、この土地としての歴史が歴史上の欠番として固定される。やがて、その名前と共に消え失せることとなった。",
+      "conditionFlag": "HIST_NATION_148_GEO_TURN_031_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_148_GEO_TURN_031_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_148_MONSTERATTACK_T031",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N148_T031"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事31年・年初（ターン031）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事31年・年央（ターン031）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事31年・年末（ターン031）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_148_NationCollapse_31",
+      "macroTurn": 31,
+      "timestamp": {
+        "year": 31,
+        "month": 7,
+        "day": 13,
+        "hour": 4
+      },
+      "targetNationId": "NATION_148",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【南方の山岳・海洋前線】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0031は、この土地にとって極めて重要な年となった。魔物活性期でありながら経済は安定しているものの、市民たちは日々の生活の中で緊張感と不安定さを感じ続けている。絶望的な状況にもかかわらず、人々は祈りと監視を続ける一方で、「奪い合い」や「閉塞感」という言葉が街に蔓延していく。\n\nそして、このターン31では国家自体が滅亡するという予定が立っていた。その事実を知った市民たちは、それぞれの形で絶望と混乱に見舞われる。「今月はこれ以上何も起きないことを願う」という声とともに、人々は散り散りになることとなる。\n\n結界は崩壊し、魔獣が侵攻する中、避難のための人々の足取りが忙しくなる。その背後では、この土地としての歴史が歴史上の欠番として固定される。やがて、その名前と共に消え失せることとなった。",
+      "conditionFlag": "HIST_NATION_148_GEO_TURN_031_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_148_GEO_TURN_031_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_148_NATIONCOLLAPSE_T031",
+          "alternativeLogMessage": "【南方の山岳・海洋前線】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、南方の山岳・海洋前線の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_SOUTH_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_SOUTH_FRONT_N148_T031"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事22年〜24年（滅亡10〜7年前）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事25年〜28年（6〜3年前）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事29年〜31年（2年前〜崩壊）",
+          "npcDialogue": "「今月はこれ以上何も起きないことを願う」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

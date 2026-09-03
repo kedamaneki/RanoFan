@@ -1,0 +1,526 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_024_BarrierDrop_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【中央海平原の結節帯】で防衛障壁の循環効率が急落した（低下幅 0.21）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0001は、この土地にとって新たな年ではあるが、その中でも魔物周期の始まりである「活性期」を目の当たりにし、人々はより深く地域のつながりと協力の大切さを感じた。配給所での交換や結界補強作業を通じて、それぞれが互いを支え合いながら日々を過ごす。\n\n魔物からの脅威が迫る中で、人々は祈りと監視の日常に加えて、地域ごとの風土や祭礼を通じた交流も大切にしていった。例えば、春の「結界の花祭り」では、美しい花々とともに人々の間で平和を願う歌が歌われる。\n\nそして、夜明けと共に再び始まる朝の光の中で、この土地はまた一日を始めようとしている。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_001_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_001_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_BARRIERDROP_T001",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「障壁の唸りが低い。結晶を足しても、膜が薄くなる。」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「外周の光帯に穴が開いた。見回りを倍にしろ。」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「循環を戻せ。戻らなければ、内側の輪だけでも守れ。」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_024_MonsterAttack_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 10.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0001は、この土地にとって新たな年ではあるが、その中でも魔物周期の始まりである「活性期」を目の当たりにし、人々はより深く地域のつながりと協力の大切さを感じた。配給所での交換や結界補強作業を通じて、それぞれが互いを支え合いながら日々を過ごす。\n\n魔物からの脅威が迫る中で、人々は祈りと監視の日常に加えて、地域ごとの風土や祭礼を通じた交流も大切にしていった。例えば、春の「結界の花祭り」では、美しい花々とともに人々の間で平和を願う歌が歌われる。\n\nそして、夜明けと共に再び始まる朝の光の中で、この土地はまた一日を始めようとしている。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_001_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_001_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_MONSTERATTACK_T001",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_024_MonsterAttack_35",
+      "macroTurn": 35,
+      "timestamp": {
+        "year": 35,
+        "month": 11,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 6.1 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年35年は、この土地にとって特別な年となった。魔力結晶と配給制度により生活が維持されているが、その一方で、前線からの避難民や兵士たちの出入りも激しい年でもあった。\n\n「今年は、みんなで力を合わせて」と、リーヴンフォートの住民たちは互いに励まし合っている。「明るい未来を信じよう」\n\n都市内外では、魔力結晶による防衛障壁や、祈りと監視が日常となっている。市民たち一人ひとりはそれぞれの役割を持ち、自分なりの道を歩み続けている。\n\n「今日も一日、頑張ろう」と、人々は新たな日を迎えようとしている。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_035_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_035_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_MONSTERATTACK_T035",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T035"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事35年・年初（ターン035）",
+          "npcDialogue": "「今年は、みんなで力を合わせて」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事35年・年央（ターン035）",
+          "npcDialogue": "「今年は、みんなで力を合わせて」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事35年・年末（ターン035）",
+          "npcDialogue": "「今年は、みんなで力を合わせて」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_024_Innovation_46",
+      "macroTurn": 46,
+      "timestamp": {
+        "year": 46,
+        "month": 10,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【中央海平原の結節帯】で障壁イノベーションが発生した。循環係数 1.03、生存圏 +1.6。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年、この土地では周期の安定性を祝うための祭りや結婚式が開かれた。農地から都市へ避難した人々も再び故郷に戻る準備が始まった。特に、休眠期の後半になると、新たな家を建てる話題が増えた。\n\n「結界の光が安定しているうちに、新しい家を建てたいね」と建築業者のハルト・ブリーグは言う。「次の周期に入ったらまた忙しくなるから、この時期にできることはすべてやっておきたい。」\n\n街には祭りの音楽と笑い声が響き渡る中、人々はそれぞれの生活や仕事の中で互いを支え合いながら、次なる周期への準備を進めていた。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_046_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_046_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_INNOVATION_T046",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T046"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事46年・年初（ターン046）",
+          "npcDialogue": "「結界の光が安定しているうちに、新しい家を建てたいね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事46年・年央（ターン046）",
+          "npcDialogue": "「結界の光が安定しているうちに、新しい家を建てたいね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事46年・年末（ターン046）",
+          "npcDialogue": "「結界の光が安定しているうちに、新しい家を建てたいね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_024_MonsterAttack_53",
+      "macroTurn": 53,
+      "timestamp": {
+        "year": 53,
+        "month": 5,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 6.3 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0053のこの時期、この土地では宗教的な祈りと監視の日常が増えている。人々が防衛塔や都市周囲の監視ポイントに立ち寄る回数が増え、その結果、街全体が緊張感で満ち溢れている。\n\nエリクシルもまた、毎晩の祈りを欠かさず、家族とともに魔物から守られることを願う。彼らはそれぞれの家の中で、窓際に立って防衛塔や周囲の光を眺めながら、神々への礼拝を行っている。\n\nこの時期、食事もまた重要な生活要素となっている。エリクシルは家族と共に、手作りのパンと煮込み料理を楽しむ。これらの食材は市場で得たものから作られており、それらは魔力結晶の配給とともに人々の精神的支柱となっている。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_053_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_053_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_MONSTERATTACK_T053",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T053"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事53年・年初（ターン053）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事53年・年央（ターン053）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事53年・年末（ターン053）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_024_MonsterAttack_59",
+      "macroTurn": 59,
+      "timestamp": {
+        "year": 59,
+        "month": 11,
+        "day": 16,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【中央海平原の結節帯】が脅威侵攻を受け、生存圏が 5.9 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年59という年に暮らす人々にとって、生活は刻一刻と変化し続ける。結晶配給所の行列や防衛隊の訓練など、毎日のルーチンが市民たちを強く結びつけている。一方で、魔物周期の影響により、不安定な日々を送る者も少なくない。\n\nまた、この年には新たな信仰として「防衛の女神」が広まったと言われている。「私たちを守ってくれる強力な存在」として、多くの人々が彼女の名前を口にしていた。リーゼロットもその一人で、「防衛の女神が私を守ってください」と祈っていた。\n\nしかし、一方では「結晶は足りない」という声も聞かれる。「私たちの生活を支える結晶が不足している」という不満から、時には争いが起こることもある。リーゼロットとシルビアの両親が並ぶ行列で、「これだけじゃ足りないよ」と嘆く声も聞こえていた。\n\nこのように、叙事年59という年に暮らす人々は、それぞれに抱える悩みや問題を乗り越えながら日々を過ごしていた。魔物周期の影響下にある生活では、誰にとっても容易な道のりではないが、それでも互いを支え合い、希望を持ち続けることで、この時代を生き抜こうとしていた。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_059_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_059_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_MONSTERATTACK_T059",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T059"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事59年・年初（ターン059）",
+          "npcDialogue": "「私たちを守ってくれる強力な存在」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事59年・年央（ターン059）",
+          "npcDialogue": "「私たちを守ってくれる強力な存在」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事59年・年末（ターン059）",
+          "npcDialogue": "「私たちを守ってくれる強力な存在」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_024_Innovation_80",
+      "macroTurn": 80,
+      "timestamp": {
+        "year": 80,
+        "month": 8,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【中央海平原の結節帯】で障壁イノベーションが発生した。循環係数 1.09、生存圏 +1.9。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "今年のこの土地では、魔法職人ギルドを中心とした結晶市場が活発である一方で、魔力結晶の不足とそれに伴う不満や不安は常に市民たちを覆っていた。経済的には活況であり、魔物からの脅威も防衛効率が高いとはいえ、その中でも結晶の配給制限が人々の日常生活に大きな影響を与えている。\n\nこの年、特に夜間外出禁止令と灯火管制が強化されたため、市民たちは昼間の時間を大切に過ごしていた。「明日はまた一日が始まる。魔物から守られていることを感謝しよう」という声も聞こえる一方で、「もっと結晶が必要だ」という嘆きもまた絶えない。\n\n市民たちの口癖には「これ以上結晶が減ったらどうするんだ」という不満や、「夜間外出禁止令、もう少し早く解除してくれないか？」といった懸念が多く聞かれる。それでも魔物からの脅威に備えながら、一日を過ごすための工夫や対策は日々進化し続けている。\n\nこの年のこの土地では、このような日常が繰り返されつつも、人々は互いを支え合いながら生きていたのである。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_080_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_080_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_INNOVATION_T080",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 12,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T080"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事80年・年初（ターン080）",
+          "npcDialogue": "「明日はまた一日が始まる。魔物から守られていることを感謝しよう」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事80年・年央（ターン080）",
+          "npcDialogue": "「明日はまた一日が始まる。魔物から守られていることを感謝しよう」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事80年・年末（ターン080）",
+          "npcDialogue": "「明日はまた一日が始まる。魔物から守られていることを感謝しよう」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_024_Innovation_131",
+      "macroTurn": 131,
+      "timestamp": {
+        "year": 131,
+        "month": 11,
+        "day": 16,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【中央海平原の結節帯】で障壁イノベーションが発生した。循環係数 1.36、生存圏 +2.0。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Inspiration",
+      "microLore": "叙事年131日目のこの時期、魔物周期による生活リズムは人々の日々に大きな影響を与える。「魔物から守られるために」という共通の目標が皆の心に刻まれている。また、避難民を受け入れるための新たな風習も生まれつつある。\n\nエドワード夫妻は新しい職場で多くの人と出会い、それぞれの背景や経験を共有し合うことで、コミュニティの一員として認知されていく。一方で、エリナ家も家族揃って祈りの時間を大切にしている。「魔物が遠ざかることを願い、互いに支え合いましょう」という言葉は、この年を通じて街全体の口癖となった。\n\n叙事年131日目の生活史を振り返ると、人々の協力と結束がより強く感じられる。魔物周期による不安定な状況下でも、この土地の市民たちは希望を持って互いに支え合っている。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_131_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_131_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_INNOVATION_T131",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T131"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事131年・年初（ターン131）",
+          "npcDialogue": "「魔物から守られるために」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事131年・年央（ターン131）",
+          "npcDialogue": "「魔物から守られるために」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事131年・年末（ターン131）",
+          "npcDialogue": "「魔物から守られるために」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_024_Innovation_196",
+      "macroTurn": 196,
+      "timestamp": {
+        "year": 196,
+        "month": 4,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "NATION_024",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【中央海平原の結節帯】で障壁イノベーションが発生した。循環係数 1.60、生存圏 +2.5。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年0196のゼロス市内には、多くの祭りや行事が開催されている。この時期、市民たちは魔物周期に合わせて様々な祈りを行う。教会では「魔獣退散祈願」という祭典があり、その日に限って特別な魔法石を配布する。\n\nまた、結界技術の発展に伴い、「障壁技師感謝祭」も始まった。この日は、街全体で祝いが行われ、市民たちは自分たちの安全を守る障壁技師たちに敬意を表す。\n\n「来週の祭典では、新しく開癯した結晶炉の前で祈りを捧げようね」とリオとエイミーは話していた。「その時に新しい魔力結晶も見つけられるかもしれないしね。」\n\nこのように、この土地における市民たちは、日々の生活の中で魔物周期や結界技術に密接に関わる様々な出来事を見舞われながら、それでも互いを支え合いながら生きている。",
+      "conditionFlag": "HIST_NATION_024_GEO_TURN_196_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_024_GEO_TURN_196_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_024_INNOVATION_T196",
+          "alternativeLogMessage": "【中央海平原の結節帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、中央海平原の結節帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_CENTRAL_PLAIN",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_CENTRAL_PLAIN_N024_T196"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事196年・年初（ターン196）",
+          "npcDialogue": "「来週の祭典では、新しく開癯した結晶炉の前で祈りを捧げようね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事196年・年央（ターン196）",
+          "npcDialogue": "「来週の祭典では、新しく開癯した結晶炉の前で祈りを捧げようね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事196年・年末（ターン196）",
+          "npcDialogue": "「来週の祭典では、新しく開癯した結晶炉の前で祈りを捧げようね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}

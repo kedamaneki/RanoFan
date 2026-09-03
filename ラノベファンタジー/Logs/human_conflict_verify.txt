@@ -1,0 +1,1 @@
+﻿events=3 civil=True academy=True succession=False border=True 食料危機100.0% 派閥100.0% 技術独占100.0% phase=24

@@ -1,0 +1,1092 @@
+[
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_HUNT",
+      "skillName": "狩猟",
+      "category": "Production",
+      "description": "魔獣を狩り素材を得る基礎。極めることで伝説獣の完全解体と高級素材の安定入手へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_HUNT_ROOT",
+          "artName": "基礎狩猟",
+          "description": "安全に魔獣を仕留める。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_HUNT_B2",
+              "artName": "剥取目利き",
+              "description": "ドロップ率を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Hobby_GatherLuck",
+                  "value": 1.12,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_HUNT_L1",
+                  "artName": "伝説狩",
+                  "description": "希少素材の発見率を高める。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 10,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Hobby_GatherLuck",
+                      "value": 1.28,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_HUNT_B4",
+              "artName": "部位確認",
+              "description": "剥取部位の適性を見極める。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 2,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_HUNT_L2",
+                  "artName": "狩猟記録",
+                  "description": "最高狩猟結果をレシピに記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_FISHERY",
+      "skillName": "漁業",
+      "category": "Production",
+      "description": "水域から大量の魚介を獲る基礎。極めることで深海漁場の大規模操業へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_FSRY_ROOT",
+          "artName": "基礎漁",
+          "description": "安全に魚を獲る。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_FSRY_B2",
+              "artName": "網目利き",
+              "description": "漁獲ドロップ率を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 3,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Hobby_GatherLuck",
+                  "value": 1.14,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_FSRY_L1",
+                  "artName": "豊漁",
+                  "description": "希少魚介の発見率を高める。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 9,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Hobby_GatherLuck",
+                      "value": 1.25,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_FSRY_B4",
+              "artName": "潮流読み",
+              "description": "水域の魔力適性を見極める。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 2,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_FSRY_L2",
+                  "artName": "漁場記録",
+                  "description": "最高漁獲結果を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 13,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_GLASS",
+      "skillName": "硝子工",
+      "category": "Production",
+      "description": "砂と魔力で硝子を作る基礎。極めることで魔力透過レンズ・結晶窓の製作へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_GLAS_ROOT",
+          "artName": "基礎吹き",
+          "description": "硝子を安全に成形する。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 3,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_GLAS_B2",
+              "artName": "純度熔解",
+              "description": "硝子純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 7,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.1,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_GLAS_L1",
+                  "artName": "透晶仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 4.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_GLAS_B4",
+              "artName": "溶解調律",
+              "description": "溶解率を最適化する。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_DissolutionRate",
+                  "value": 1.1,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_GLAS_L2",
+                  "artName": "硝子記録",
+                  "description": "最高品質の加工幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 17,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_BRICK",
+      "skillName": "煉瓦工",
+      "category": "Production",
+      "description": "土と火力で煉瓦を焼く基礎。極めることで魔力耐熱建材の大規模築造へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_BRCK_ROOT",
+          "artName": "基礎成型",
+          "description": "煉瓦を安全に成型する。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_BRCK_B2",
+              "artName": "焼成調律",
+              "description": "煉瓦純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.09,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_BRCK_L1",
+                  "artName": "堅牢仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 3.5,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_BRCK_B4",
+              "artName": "土質確認",
+              "description": "土壌の魔力適性を見る。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 3,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_BRCK_L2",
+                  "artName": "築造記録",
+                  "description": "最高品質の焼成幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 15,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_POTTERY",
+      "skillName": "陶芸",
+      "category": "Production",
+      "description": "粘土を焼き陶器を作る基礎。極めることで魔力容器・触媒壺の精密製作へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_POTT_ROOT",
+          "artName": "基礎陶塑",
+          "description": "粘土を安全に成形する。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 2,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_POTT_B2",
+              "artName": "釉薬調律",
+              "description": "陶器純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.11,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_POTT_L1",
+                  "artName": "名陶仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 13,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 4.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_POTT_B4",
+              "artName": "窯温調整",
+              "description": "溶解率を安定させる。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_DissolutionRate",
+                  "value": 1.12,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_POTT_L2",
+                  "artName": "陶芸記録",
+                  "description": "最高品質の焼成幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_BREW",
+      "skillName": "醸造",
+      "category": "Production",
+      "description": "発酵させて飲料を作る基礎。極めることで魔力活性化の霊酒製造へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_BREW_ROOT",
+          "artName": "基礎醸造",
+          "description": "安全な発酵を始める。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 2,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_BREW_B2",
+              "artName": "発酵抽出",
+              "description": "有効成分の抽出を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 7,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_ExtractionBonus",
+                  "value": 1.14,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_BREW_L1",
+                  "artName": "熟成仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 13,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 3.5,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_BREW_B4",
+              "artName": "酵母調律",
+              "description": "溶解率を最適化する。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_DissolutionRate",
+                  "value": 1.12,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_BREW_L2",
+                  "artName": "醸造記録",
+                  "description": "最高品質の醸造幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 17,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_PAPER",
+      "skillName": "製紙",
+      "category": "Production",
+      "description": "繊維から紙を作る基礎。極めることで魔力導線付き魔導紙の製造へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_PAPR_ROOT",
+          "artName": "基礎抄紙",
+          "description": "紙を安全に抄き出す。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 1,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_PAPR_B2",
+              "artName": "繊維抽出",
+              "description": "有効繊維の抽出を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_ExtractionBonus",
+                  "value": 1.1,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_PAPR_L1",
+                  "artName": "上質仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 11,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 3.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_PAPR_B4",
+              "artName": "紙目確認",
+              "description": "繊維の魔力適性を見る。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 3,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_PAPR_L2",
+                  "artName": "製紙記録",
+                  "description": "最高品質の抄紙幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_BOOKBIND",
+      "skillName": "製本",
+      "category": "Production",
+      "description": "紙と革で書物を綴じる基礎。極めることで魔力封印の魔導書製作へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_BKBD_ROOT",
+          "artName": "基礎綴じ",
+          "description": "書物を安全に綴じる。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 2,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_BKBD_B2",
+              "artName": "純度綴じ",
+              "description": "綴じ純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.08,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_BKBD_L1",
+                  "artName": "名綴じ仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 3.5,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_BKBD_B4",
+              "artName": "版面確認",
+              "description": "版面の魔力適性を見る。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 3,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_BKBD_L2",
+                  "artName": "製本記録",
+                  "description": "最高品質の綴じ幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 15,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_ENGRAVE",
+      "skillName": "彫金",
+      "category": "Production",
+      "description": "金属に紋様を刻む基礎。極めることで魔力回路刻印の精密加工へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_ENGR_ROOT",
+          "artName": "基礎刻印",
+          "description": "金属に安全に刻む。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 3,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_ENGR_B2",
+              "artName": "精密彫刻",
+              "description": "刻印純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.12,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_ENGR_L1",
+                  "artName": "名彫仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 14,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 4.5,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_ENGR_B4",
+              "artName": "紋様設計",
+              "description": "刻印の魔力適性を見る。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_ENGR_L2",
+                  "artName": "彫金記録",
+                  "description": "最高精度の刻印幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 18,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_EMBROID",
+      "skillName": "刺繍",
+      "category": "Production",
+      "description": "布に刺繍で紋様を施す基礎。極めることで魔力織り紋章の衣装製作へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_EMBR_ROOT",
+          "artName": "基礎刺繍",
+          "description": "安全に刺繍する。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 1,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_EMBR_B2",
+              "artName": "糸調律",
+              "description": "刺繍純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.1,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_EMBR_L1",
+                  "artName": "名刺仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 11,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 4.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_EMBR_B4",
+              "artName": "織目設計",
+              "description": "刺繍の魔力適性を見る。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 3,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_EMBR_L2",
+                  "artName": "刺繍記録",
+                  "description": "最高品質の刺繍幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 15,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_FURNITURE",
+      "skillName": "家具工",
+      "category": "Production",
+      "description": "木材で家具を作る基礎。極めることで魔力導線付き工房設備の製作へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_FURN_ROOT",
+          "artName": "基礎組立",
+          "description": "家具を安全に組み立てる。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 0,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_FURN_B2",
+              "artName": "木目調律",
+              "description": "木材純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 5,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.09,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_FURN_L1",
+                  "artName": "匠の仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 12,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 4.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_FURN_B4",
+              "artName": "構造確認",
+              "description": "家具の魔力適性を見る。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 3,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_FURN_L2",
+                  "artName": "家具記録",
+                  "description": "最高品質の組立幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_INSTRUMENT",
+      "skillName": "楽器工",
+      "category": "Production",
+      "description": "木材と金属で楽器を作る基礎。極めることで魔力共鳴楽器の製作へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_INST_ROOT",
+          "artName": "基礎製作",
+          "description": "楽器を安全に組み立てる。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 3,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_INST_B2",
+              "artName": "共鳴調律",
+              "description": "共鳴純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 8,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.11,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_INST_L1",
+                  "artName": "名器仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 15,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_INST_B4",
+              "artName": "音孔調整",
+              "description": "溶解率を最適化する。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 6,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_DissolutionRate",
+                  "value": 1.1,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_INST_L2",
+                  "artName": "楽器記録",
+                  "description": "最高品質の調律幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 19,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "contentType": "SkillMaster",
+    "skillMaster": {
+      "skillId": "SKILL_PROD_GEM",
+      "skillName": "宝石工",
+      "category": "Production",
+      "description": "原石を研磨し宝石にする基礎。極めることで魔力結晶宝石の精密研磨へ派生する。",
+      "baseArts": [
+        {
+          "artId": "ART_GEM_ROOT",
+          "artName": "基礎研磨",
+          "description": "宝石を安全に研磨する。（技1個目）",
+          "poiseDamage": 0,
+          "manaCost": 4,
+          "unlocked": true,
+          "specialEffects": [],
+          "derivatives": [
+            {
+              "artId": "ART_GEM_B2",
+              "artName": "純度研磨",
+              "description": "宝石純度を高める。（技2個目）",
+              "poiseDamage": 0,
+              "manaCost": 9,
+              "unlocked": false,
+              "specialEffects": [
+                {
+                  "effectType": "Craft_PurityBonus",
+                  "value": 1.15,
+                  "duration": 0.0
+                }
+              ],
+              "derivatives": [
+                {
+                  "artId": "ART_GEM_L1",
+                  "artName": "極光仕上げ",
+                  "description": "完成品Qualityに固定値を加算。（技3個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 16,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_PurityFlatBonus",
+                      "value": 5.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            },
+            {
+              "artId": "ART_GEM_B4",
+              "artName": "原石目利き",
+              "description": "原石の魔力適性を見極める。（技4個目）",
+              "poiseDamage": 0,
+              "manaCost": 4,
+              "unlocked": false,
+              "specialEffects": [],
+              "derivatives": [
+                {
+                  "artId": "ART_GEM_L2",
+                  "artName": "宝石記録",
+                  "description": "最高純度の研磨幅を記録。（技5個目）",
+                  "poiseDamage": 0,
+                  "manaCost": 20,
+                  "unlocked": false,
+                  "specialEffects": [
+                    {
+                      "effectType": "Craft_RecipeRecord",
+                      "value": 1.0,
+                      "duration": 0.0
+                    }
+                  ],
+                  "derivatives": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

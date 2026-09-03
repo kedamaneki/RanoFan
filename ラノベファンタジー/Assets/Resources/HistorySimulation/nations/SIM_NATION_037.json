@@ -1,0 +1,410 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_037_MonsterAttack_5",
+      "macroTurn": 5,
+      "timestamp": {
+        "year": 5,
+        "month": 5,
+        "day": 16,
+        "hour": 10
+      },
+      "targetNationId": "NATION_037",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【東方の結晶生産圏】が脅威侵攻を受け、生存圏が 6.5 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年5では、魔物活性期における防衛体制が強化されつつある。市民たちは日々の生活の中で、防衛障壁や結晶配給に対する信頼を深めている一方で、常に脅威から自分たちを守るための努力が必要であることを痛感している。\n\nまた、この年は前線からの避難民が増加しており、都市には新たな人々と物資の流れが生じている。そのため、市民たちはより多くの配慮と共存の姿勢を持ち、互いに支え合う大切さを再認識した一年となった。",
+      "conditionFlag": "HIST_NATION_037_GEO_TURN_005_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_037_GEO_TURN_005_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_037_MONSTERATTACK_T005",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N037_T005"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事5年・年初（ターン005）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事5年・年央（ターン005）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事5年・年末（ターン005）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_037_MonsterAttack_8",
+      "macroTurn": 8,
+      "timestamp": {
+        "year": 8,
+        "month": 8,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_037",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【東方の結晶生産圏】が脅威侵攻を受け、生存圏が 8.4 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、魔物周期と同様に生活のリズムを保つため、日々の祈りや監視が欠かせない行事となっている。特にこの時期は、多くの市民が結界の補強や維持に力を注いでいる。\n\nまた、前線からの避難民が増えたことから、新しい人々を迎え入れる仕組みも整えている。その一方で、魔力供給が不足しているため、技術者たちは昼夜を問わず結界のメンテナンスに勤しんでいる。\n\nエリカのような主婦たちにとっては、日々の生活はそれなりに安定しているものの、常に魔物の脅威と向き合いながら過ごさなければならないという状況が常にある。しかし、それでも彼らは互いに支え合い、明日への希望を失わずに生き抜こうとしている。",
+      "conditionFlag": "HIST_NATION_037_GEO_TURN_008_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_037_GEO_TURN_008_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_037_MONSTERATTACK_T008",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N037_T008"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事8年・年初（ターン008）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事8年・年央（ターン008）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事8年・年末（ターン008）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_037_MonsterAttack_10",
+      "macroTurn": 10,
+      "timestamp": {
+        "year": 10,
+        "month": 10,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_037",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【東方の結晶生産圏】が脅威侵攻を受け、生存圏が 5.8 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、信仰とともに防衛を強く意識している。魔物周期の影響下で、各家庭や共同体では祈り会が頻繁に行われている。また、避難民たちとの文化交流も盛んであり、彼らは自国から持ち込んだ独特な信仰の方法や習慣を共有し合っている。\n\nこの年の風俗としては、夜間外出禁止令にもかかわらず市民たちは様々な方法でコミュニティ活動を行い、心の支えとする。また、防衛隊員たちが日々の訓練だけでなく、地域の生活に密接に関わり、避難民たちとも交流することで、人々は互いの理解と信頼を深めている。\n\nこの風俗メモは、この土地の市民たちは常に魔物周期の影響下で生活しながらも、それぞれが持つ価値観や文化を通じて互いに支え合い、前向きな姿勢を保っていることを示している。",
+      "conditionFlag": "HIST_NATION_037_GEO_TURN_010_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_037_GEO_TURN_010_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_037_MONSTERATTACK_T010",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N037_T010"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事10年・年初（ターン010）",
+          "npcDialogue": "「膜の向こうで土がうねっている。今夜は外出禁止を徹底しろ。」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事10年・年央（ターン010）",
+          "npcDialogue": "「外周の灯が三つ消えた。避難民が内門に殺到している。」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事10年・年末（ターン010）",
+          "npcDialogue": "「内側の輪まで下がる。結晶は監視塔へ回せ。」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_037_MonsterAttack_13",
+      "macroTurn": 13,
+      "timestamp": {
+        "year": 13,
+        "month": 1,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_037",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【東方の結晶生産圏】が脅威侵攻を受け、生存圏が 7.1 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、魔物休眠期になると祭りや結婚などが増える。しかし、同時に今月末にはまた新たな活動期が始まるという事実から、人々は喜びと不安の両方を抱えて生活している。「休憩期間」と呼ぶが、「安堵の一瞬」がより深く刻まれる。\n\nリヴェルタでは「結界の感謝祭」という小さなイベントがあり、全町民が集まって互いに支え合う心温まる光景を見ることができる。この時期は人々が互いを思いやり、力を合わせて困難を乗り越えることを強く意識し、「共に生きる」という信念を確認する大切な機会となっている。\n\nまた、住民たちは「魔物休眠期の間に」と称して、新たな家屋や店舗の建設も進めている。「この町がこれからも安全で快適な場所であるように」という願いを込めて、日々努力と希望と共に過ごしている。",
+      "conditionFlag": "HIST_NATION_037_GEO_TURN_013_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_037_GEO_TURN_013_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_037_MONSTERATTACK_T013",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N037_T013"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事13年・年初（ターン013）",
+          "npcDialogue": "「魔物休眠期の間に」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事13年・年央（ターン013）",
+          "npcDialogue": "「魔物休眠期の間に」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事13年・年末（ターン013）",
+          "npcDialogue": "「魔物休眠期の間に」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_037_BarrierDrop_33",
+      "macroTurn": 33,
+      "timestamp": {
+        "year": 33,
+        "month": 9,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_037",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【東方の結晶生産圏】で防衛障壁の循環効率が急落した（低下幅 0.20）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0033年にこの土地では、「魔獣侵攻による生存圏損壊」という重大な出来事があった。「領-10.0、軍-18.3、経-8.2」といった数値の背後には、多くの人々の心が揺らいでいた。そして、このターンでは「滅亡（脅威侵攻・障壁崩落）」という厳しい現実を受け入れるしかなかった。\n\n街の人々は不安と絶望に包まれていたが、「それでも頑張ろう」という言葉を忘れることはなかった。「ここにはまだ希望がある。みんなで力を合わせて、この困難な状況を乗り越えていこう」と語る人々の声が、その暗闇を少しだけ照らしていた。\n\nそして、この土地は叙事年0033年のターン33で歴史上の欠番となった。だが、「希望」の灯りは消えないように、未来へと繋がっていた。",
+      "conditionFlag": "HIST_NATION_037_GEO_TURN_033_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_037_GEO_TURN_033_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_037_BARRIERDROP_T033",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N037_T033"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事33年・年初（ターン033）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事33年・年央（ターン033）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事33年・年末（ターン033）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_037_MonsterAttack_33",
+      "macroTurn": 33,
+      "timestamp": {
+        "year": 33,
+        "month": 9,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_037",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【東方の結晶生産圏】が脅威侵攻を受け、生存圏が 10.0 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0033年にこの土地では、「魔獣侵攻による生存圏損壊」という重大な出来事があった。「領-10.0、軍-18.3、経-8.2」といった数値の背後には、多くの人々の心が揺らいでいた。そして、このターンでは「滅亡（脅威侵攻・障壁崩落）」という厳しい現実を受け入れるしかなかった。\n\n街の人々は不安と絶望に包まれていたが、「それでも頑張ろう」という言葉を忘れることはなかった。「ここにはまだ希望がある。みんなで力を合わせて、この困難な状況を乗り越えていこう」と語る人々の声が、その暗闇を少しだけ照らしていた。\n\nそして、この土地は叙事年0033年のターン33で歴史上の欠番となった。だが、「希望」の灯りは消えないように、未来へと繋がっていた。",
+      "conditionFlag": "HIST_NATION_037_GEO_TURN_033_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_037_GEO_TURN_033_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_037_MONSTERATTACK_T033",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N037_T033"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事33年・年初（ターン033）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事33年・年央（ターン033）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事33年・年末（ターン033）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_037_NationCollapse_33",
+      "macroTurn": 33,
+      "timestamp": {
+        "year": 33,
+        "month": 9,
+        "day": 19,
+        "hour": 4
+      },
+      "targetNationId": "NATION_037",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【東方の結晶生産圏】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年0033年にこの土地では、「魔獣侵攻による生存圏損壊」という重大な出来事があった。「領-10.0、軍-18.3、経-8.2」といった数値の背後には、多くの人々の心が揺らいでいた。そして、このターンでは「滅亡（脅威侵攻・障壁崩落）」という厳しい現実を受け入れるしかなかった。\n\n街の人々は不安と絶望に包まれていたが、「それでも頑張ろう」という言葉を忘れることはなかった。「ここにはまだ希望がある。みんなで力を合わせて、この困難な状況を乗り越えていこう」と語る人々の声が、その暗闇を少しだけ照らしていた。\n\nそして、この土地は叙事年0033年のターン33で歴史上の欠番となった。だが、「希望」の灯りは消えないように、未来へと繋がっていた。",
+      "conditionFlag": "HIST_NATION_037_GEO_TURN_033_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_037_GEO_TURN_033_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_037_NATIONCOLLAPSE_T033",
+          "alternativeLogMessage": "【東方の結晶生産圏】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N037_T033"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事24年〜26年（滅亡10〜7年前）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事27年〜30年（6〜3年前）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事31年〜33年（2年前〜崩壊）",
+          "npcDialogue": "「魔獣侵攻による生存圏損壊」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

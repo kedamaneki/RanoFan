@@ -1,0 +1,410 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_058_BarrierDrop_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_058",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "BarrierDrop",
+      "logMessageTemplate": "【最西端の大陸帯】で防衛障壁の循環効率が急落した（低下幅 0.19）。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、魔物周期と並行して独自の年中行事も存在する。叙事年1の初春には「シールド・プリズム祭り」が行われる。「シールド・プリズム祭り」は、結界維持技術に感謝し、その効力を祈念する重要な祭典である。\n\nこの日は、防衛隊や魔法使いたちによる「プロテクション・バリア」の点検と強化が行われる。また、市民たちは「シールドウェーブ」を通じて明滅する光を眺めながら、夜間の不安から一時的に解放される。\n\nしかし、魔物周期はまだ活性期であるため、「シールド・プリズム祭り」後も人々の生活は落ち着かない。避難民が流入し続ける一方で、防衛結界「プロテクション・バリア」と「シールドウェーブ」の安定性にはさらなる努力が必要とされている。\n\nこの土地の住民たちは、「シールド・プリズム祭り」を経て新たな一歩を踏み出す。彼らは魔物周期がもたらす不安や緊迫感に向き合いながら、日々の生活と防衛のために頑張っている。",
+      "conditionFlag": "HIST_NATION_058_GEO_TURN_001_BARRIERDROP",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_058_GEO_TURN_001_BARRIERDROP"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_058_BARRIERDROP_T001",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N058_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「シールド・プリズム祭り」",
+          "statusBuff": "障壁効率低下。夜間警戒の強化。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「シールド・プリズム祭り」",
+          "visualChange": "結界の明滅、避難民の流入、市場の閉鎖時間延長。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「シールド・プリズム祭り」",
+          "gameplayReward": "障壁修復クエスト。Ritual 系の循環補修が解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_058_MonsterAttack_1",
+      "macroTurn": 1,
+      "timestamp": {
+        "year": 1,
+        "month": 1,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_058",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.4 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、魔物周期と並行して独自の年中行事も存在する。叙事年1の初春には「シールド・プリズム祭り」が行われる。「シールド・プリズム祭り」は、結界維持技術に感謝し、その効力を祈念する重要な祭典である。\n\nこの日は、防衛隊や魔法使いたちによる「プロテクション・バリア」の点検と強化が行われる。また、市民たちは「シールドウェーブ」を通じて明滅する光を眺めながら、夜間の不安から一時的に解放される。\n\nしかし、魔物周期はまだ活性期であるため、「シールド・プリズム祭り」後も人々の生活は落ち着かない。避難民が流入し続ける一方で、防衛結界「プロテクション・バリア」と「シールドウェーブ」の安定性にはさらなる努力が必要とされている。\n\nこの土地の住民たちは、「シールド・プリズム祭り」を経て新たな一歩を踏み出す。彼らは魔物周期がもたらす不安や緊迫感に向き合いながら、日々の生活と防衛のために頑張っている。",
+      "conditionFlag": "HIST_NATION_058_GEO_TURN_001_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_058_GEO_TURN_001_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_058_MONSTERATTACK_T001",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N058_T001"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事1年・年初（ターン001）",
+          "npcDialogue": "「シールド・プリズム祭り」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事1年・年央（ターン001）",
+          "npcDialogue": "「シールド・プリズム祭り」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事1年・年末（ターン001）",
+          "npcDialogue": "「シールド・プリズム祭り」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_058_MonsterAttack_26",
+      "macroTurn": 26,
+      "timestamp": {
+        "year": 26,
+        "month": 2,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_058",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 8.7 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地では、魔物周期と結界維持に密接に関連した様々な風習がある。特に活性期には、人々は神への祈りを欠かさない。\n\n「この時期になると、みんなが神殿に行きますよ」とリリアンが語った。「それぞれの家で祈祷する人もいれば、街中で大規模な祈り会を行うこともあります」\n\nまた、配給所では魔力結晶の配分や交換が頻繁に行われている。市民たちは労働力を共有し、食料を確保するために日々努力している。\n\n「この時期はみんなが協力しますね」とジェイムスが言った。「誰もがお互いのために働き、支え合っています」\n\n魔物周期の影響により、この土地の日常生活は常に緊張感に包まれている。しかし、人々の互助精神や祈りによって、彼らは日々を乗り越えていけるのだ。\n\n「今日はまた一日、頑張ろうね」と、リリアンが明るく言った。「みんなで力を合わせて、この難局を乗り越えよう」",
+      "conditionFlag": "HIST_NATION_058_GEO_TURN_026_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_058_GEO_TURN_026_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_058_MONSTERATTACK_T026",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N058_T026"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事26年・年初（ターン026）",
+          "npcDialogue": "「この時期になると、みんなが神殿に行きますよ」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事26年・年央（ターン026）",
+          "npcDialogue": "「この時期になると、みんなが神殿に行きますよ」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事26年・年末（ターン026）",
+          "npcDialogue": "「この時期になると、みんなが神殿に行きますよ」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_058_MonsterAttack_31",
+      "macroTurn": 31,
+      "timestamp": {
+        "year": 31,
+        "month": 7,
+        "day": 13,
+        "hour": 10
+      },
+      "targetNationId": "NATION_058",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 7.8 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この土地ではこの年もまた、魔物周期の影響による生活状況が市民たちの心に深い痕跡を残す。特に活性期には夜間への恐怖や配給所での争奪戦など、常に緊張感が高まる。\n\n「今年も冬は厳しいんだな」\n「結晶さえあれば大丈夫だよ」\n\n住民たちは互いに支え合いながら、この年を乗り越えるべく日々の生活に励んでいる。また、魔物に対する恐怖心は、人々の日常会話や信仰心にも影響を与えている。\n\nこの年の暮れ、この土地では新しい祈りの儀式が行われた。結界と防衛力向上を願うもので、住民たち全員が参加し、互いに支え合いながら魔物との闘いを続けていくことを誓った。",
+      "conditionFlag": "HIST_NATION_058_GEO_TURN_031_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_058_GEO_TURN_031_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_058_MONSTERATTACK_T031",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N058_T031"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事31年・年初（ターン031）",
+          "npcDialogue": "「今年も冬は厳しいんだな」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事31年・年央（ターン031）",
+          "npcDialogue": "「今年も冬は厳しいんだな」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事31年・年末（ターン031）",
+          "npcDialogue": "「今年も冬は厳しいんだな」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_058_MonsterAttack_34",
+      "macroTurn": 34,
+      "timestamp": {
+        "year": 34,
+        "month": 10,
+        "day": 22,
+        "hour": 10
+      },
+      "targetNationId": "NATION_058",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 3.6 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年34では、「夜間外出禁止令」や「配給制限」といった言葉が市民の口ぐちに広まっている。また、結界効率低下による防衛力の不足は、人々の心をより重くしている。\n\nこの年に特徴的な風俗としては、魔物からの侵攻により夜間外出禁止令が強制化されたことから、「結界増強工事」や「祈りと監視の日常」が注目を集めている。また、生存圏が狭いという状況下で、市民たちは防衛隊への信頼を失いつつあり、自らの力で生活を守る必要性を感じている。\n\nこの年の風俗は、不確実な未来と日々の現実に生き抜くための忍耐力を試すものであり、人々が互いに支え合いながら共に生き延びていく様子を浮き彫りにする。",
+      "conditionFlag": "HIST_NATION_058_GEO_TURN_034_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_058_GEO_TURN_034_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_058_MONSTERATTACK_T034",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N058_T034"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事34年・年初（ターン034）",
+          "npcDialogue": "「祈りと監視の日常」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事34年・年央（ターン034）",
+          "npcDialogue": "「祈りと監視の日常」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事34年・年末（ターン034）",
+          "npcDialogue": "「祈りと監視の日常」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_058_MonsterAttack_35",
+      "macroTurn": 35,
+      "timestamp": {
+        "year": 35,
+        "month": 11,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_058",
+      "relatedNationId": "",
+      "eventCategory": "monster",
+      "eventType": "MonsterAttack",
+      "logMessageTemplate": "【最西端の大陸帯】が脅威侵攻を受け、生存圏が 9.4 縮小した。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は魔獣からの侵攻が激しく、市民たちは常に恐怖と戦いながら日々を過ごしている。防衛障壁が破壊される度に、人々の心にも深い傷が残る。結界効率も低下し、夜間には不安定さが増す。\n\n「もうこの国は救えないんだ」と誰かが呟くと、周囲の人々が静かな溜め息を吐く。彼らにはすでにこの土地の滅亡が見えているように感じる。それでも人々は、最後まで自分の身を守るための努力を続けている。\n\n魔獣活性期の最中、多くの人が避難を決意する。しかし、不動産不足やスラム化により避難先を見つけるのは容易ではなく、多くの人が混乱と絶望の中で過ごす。\n\nこの年はこの土地にとって最後の一年となった。結界が崩壊し、魔獣たちが押し寄せる中で、市民たちは散り散りとなる。しかし彼らの記憶には、その恐怖と不安の日々が永遠に刻まれ続けるだろう。",
+      "conditionFlag": "HIST_NATION_058_GEO_TURN_035_MONSTERATTACK",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_058_GEO_TURN_035_MONSTERATTACK"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_058_MONSTERATTACK_T035",
+          "alternativeLogMessage": "【最西端の大陸帯】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N058_T035"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事35年・年初（ターン035）",
+          "npcDialogue": "「もうこの国は救えないんだ」",
+          "statusBuff": "領土・軍事・経済の低下。異形出没会話の増加。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事35年・年央（ターン035）",
+          "npcDialogue": "「もうこの国は救えないんだ」",
+          "visualChange": "放棄された耕作地、粘液痕、明滅する結界。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事35年・年末（ターン035）",
+          "npcDialogue": "「もうこの国は救えないんだ」",
+          "gameplayReward": "防衛失敗ペナルティ。掃討クエスト発生。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_058_NationCollapse_35",
+      "macroTurn": 35,
+      "timestamp": {
+        "year": 35,
+        "month": 11,
+        "day": 25,
+        "hour": 4
+      },
+      "targetNationId": "NATION_058",
+      "relatedNationId": "",
+      "eventCategory": "lifecycle",
+      "eventType": "NationCollapse",
+      "logMessageTemplate": "【最西端の大陸帯】の防衛結界が崩壊し、統治体は歴史上の欠番として固定された。",
+      "isHistoricalCollapseRoute": true,
+      "evolutionSystemType": "Ritual",
+      "microLore": "この年は魔獣からの侵攻が激しく、市民たちは常に恐怖と戦いながら日々を過ごしている。防衛障壁が破壊される度に、人々の心にも深い傷が残る。結界効率も低下し、夜間には不安定さが増す。\n\n「もうこの国は救えないんだ」と誰かが呟くと、周囲の人々が静かな溜め息を吐く。彼らにはすでにこの土地の滅亡が見えているように感じる。それでも人々は、最後まで自分の身を守るための努力を続けている。\n\n魔獣活性期の最中、多くの人が避難を決意する。しかし、不動産不足やスラム化により避難先を見つけるのは容易ではなく、多くの人が混乱と絶望の中で過ごす。\n\nこの年はこの土地にとって最後の一年となった。結界が崩壊し、魔獣たちが押し寄せる中で、市民たちは散り散りとなる。しかし彼らの記憶には、その恐怖と不安の日々が永遠に刻まれ続けるだろう。",
+      "conditionFlag": "HIST_NATION_058_GEO_TURN_035_NATIONCOLLAPSE",
+      "historicalMode": {
+        "timeLockedHourOffset": 24,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_058_GEO_TURN_035_NATIONCOLLAPSE"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "ShieldReinforcementCount",
+          "requiredValue": 10
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_058_NATIONCOLLAPSE_T035",
+          "alternativeLogMessage": "【最西端の大陸帯】の結界崩壊を回避し、欠番化を食い止めた。",
+          "alternativeLore": "改変世界線では、最西端の大陸帯の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_WEST_FRONT",
+        "recommendedLevel": 10,
+        "progressTriggerFlag": "MMO_ZONE_WEST_FRONT_N058_T035"
+      },
+      "decayTimeline": {
+        "phase1_premonition": {
+          "timeRange": "叙事26年〜28年（滅亡10〜7年前）",
+          "npcDialogue": "「もうこの国は救えないんだ」",
+          "statusDebuff": "国内脅威上昇。工房猶予の短縮。物資配給の不安定化。"
+        },
+        "phase2_poverty": {
+          "timeRange": "叙事29年〜32年（6〜3年前）",
+          "npcDialogue": "「もうこの国は救えないんだ」",
+          "visualChange": "耕作地の放棄、結界の明滅、無主地化の進行。"
+        },
+        "phase3_critical": {
+          "timeRange": "叙事33年〜35年（2年前〜崩壊）",
+          "npcDialogue": "「もうこの国は救えないんだ」",
+          "gameplayRisk": "無主地化。工房猶予 100s→20s。異形の定着。"
+        }
+      }
+    }
+  ]
+}

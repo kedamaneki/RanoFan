@@ -1,0 +1,75 @@
+{
+  "nationId": "NATION_008",
+  "deepEventPlan": [
+    {
+      "chapter": "第1章・初期高脅威",
+      "macroTurnRange": [
+        1,
+        20
+      ],
+      "suggestedMacroTurn": 10,
+      "narrativeYear": 100,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第2章・瓦解と同盟",
+      "macroTurnRange": [
+        21,
+        40
+      ],
+      "suggestedMacroTurn": 30,
+      "narrativeYear": 300,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第3章・常夜の底",
+      "macroTurnRange": [
+        41,
+        60
+      ],
+      "suggestedMacroTurn": 50,
+      "narrativeYear": 500,
+      "evolutionSystemType": "Inspiration",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第4章・大開拓",
+      "macroTurnRange": [
+        61,
+        80
+      ],
+      "suggestedMacroTurn": 70,
+      "narrativeYear": 700,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第5章・完全駆逐",
+      "macroTurnRange": [
+        81,
+        100
+      ],
+      "suggestedMacroTurn": 90,
+      "narrativeYear": 900,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "固有技術",
+      "suggestedMacroTurn": 10,
+      "eventTypeHint": "ShieldFortification or MagicPioneering",
+      "technologies": [
+        "国家008",
+        "河川防衛要塞群"
+      ],
+      "recommendedRoute": "prosperity"
+    }
+  ],
+  "bodyText": "領域・西の大陸中央部に位置した「国家008」は、覇権国家001との激しい生存摩擦の当事者として歴史を動かした有力国である。第1章の初期大崩壊期より、地理的優位性を活かした「河川防衛要塞群」を構築し、周辺の小国から頼られる中核拠点として君臨した。第2章および第3章の暗黒期には、急速に肥大化する国家001の統合政策に強く反発。国家015などと同盟を組み、領域内における生存領域やエネルギー結晶地帯の占有権を巡り、水面下で局地的な武力衝突を展開した。第4章の低脅威周期において、国家001の圧倒的な開拓速度の前に軍事的主導権を奪われたものの、強固な防衛インフラを盾に自治権を保ち、最終的にはその統治構造の主要構成体として独立を維持した。（322文字）",
+  "quotedTechnologies": [
+    "国家008",
+    "河川防衛要塞群"
+  ]
+}

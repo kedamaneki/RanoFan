@@ -1,0 +1,4 @@
+﻿2026-08-31T15:13:02.2404893Z success=True
+gen5: success=True gen4=ALT_NATION_001_TURN_158_HERETIC_ARCANA score=385 turn=T200->T201 ancient=True gen5=T201-T250 generated=5 evaluated=23 hero=ミサ
+checks: commit=True score=True turn=True gen=True eval=True awaiting=True possess=True parent=True endTurn=True
+main=ALT_NATION_001_TURN_158_HERETIC_ARCANA gen4Score=385 top=ALT_NATION_001_TURN_158_HERETIC_ARCANA topScore=383 hero=ミサ job=JOB_ACADEMY_SCHOLAR

@@ -1,0 +1,75 @@
+{
+  "nationId": "NATION_001",
+  "deepEventPlan": [
+    {
+      "chapter": "第1章・初期高脅威",
+      "macroTurnRange": [
+        1,
+        20
+      ],
+      "suggestedMacroTurn": 10,
+      "narrativeYear": 100,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第2章・瓦解と同盟",
+      "macroTurnRange": [
+        21,
+        40
+      ],
+      "suggestedMacroTurn": 30,
+      "narrativeYear": 300,
+      "evolutionSystemType": "Ritual",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第3章・常夜の底",
+      "macroTurnRange": [
+        41,
+        60
+      ],
+      "suggestedMacroTurn": 50,
+      "narrativeYear": 500,
+      "evolutionSystemType": "Inspiration",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第4章・大開拓",
+      "macroTurnRange": [
+        61,
+        80
+      ],
+      "suggestedMacroTurn": 70,
+      "narrativeYear": 700,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "第5章・完全駆逐",
+      "macroTurnRange": [
+        81,
+        100
+      ],
+      "suggestedMacroTurn": 90,
+      "narrativeYear": 900,
+      "evolutionSystemType": "Recipe",
+      "recommendedRoute": "prosperity"
+    },
+    {
+      "chapter": "固有技術",
+      "suggestedMacroTurn": 10,
+      "eventTypeHint": "ShieldFortification or MagicPioneering",
+      "technologies": [
+        "国家001",
+        "広域統合システム"
+      ],
+      "recommendedRoute": "prosperity"
+    }
+  ],
+  "bodyText": "領域・西の最西端の大陸に位置する「国家001」は、初期には乱立する脆弱な小国の一つに過ぎなかった。しかし、高脅威周期の到来に伴い、地理的障壁を利用した空間防衛網をいち早く構築。周辺の崩壊国家を冷徹に吸収する「広域統合システム」を推し進めた。第3章の暗黒期には一時的に防衛線を内周へと収縮させ資源を死守。これが第4章の低脅威周期における電撃的な対外遠征の原動力となった。周辺の対抗勢力を圧倒的な物量で完全統合し、第5章では最西端の大陸から脅威個体群を完全に放逐することに成功。千年紀の結末において、世界最強の軍事的一極秩序秩序を敷く超大国として君臨した。（303文字）",
+  "quotedTechnologies": [
+    "国家001",
+    "広域統合システム"
+  ]
+}

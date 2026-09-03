@@ -1,0 +1,236 @@
+{
+  "simulationEvents": [
+    {
+      "eventId": "SIM_EVT_NATION_019_Innovation_78",
+      "macroTurn": 78,
+      "timestamp": {
+        "year": 78,
+        "month": 6,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_019",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【東方の結晶生産圏】で障壁イノベーションが発生した。循環係数 1.29、生存圏 +1.9。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Ritual",
+      "microLore": "叙事年78はフランベルグにとって、魔物周期と向き合う一年となった。しかし、経済の活況や防衛隊の訓練、そして障壁技術の進歩が市民たちの心を支えている。リナのような若者たちは、この時期を越えるために日々頑張っている。\n\n「魔力結晶で守られていること…それが一番大切さよね」リナは自宅に戻りながらそう語る。「でも、みんな一緒に戦っているから大丈夫だよ」という言葉は、彼女だけでなくフランベルグ全市民の心情を表している。",
+      "conditionFlag": "HIST_NATION_019_GEO_TURN_078_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_019_GEO_TURN_078_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_019_INNOVATION_T078",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 12,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N019_T078"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事78年・年初（ターン078）",
+          "npcDialogue": "「魔力結晶で守られていること…それが一番大切さよね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事78年・年央（ターン078）",
+          "npcDialogue": "「魔力結晶で守られていること…それが一番大切さよね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事78年・年末（ターン078）",
+          "npcDialogue": "「魔力結晶で守られていること…それが一番大切さよね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_019_Innovation_125",
+      "macroTurn": 125,
+      "timestamp": {
+        "year": 125,
+        "month": 5,
+        "day": 25,
+        "hour": 10
+      },
+      "targetNationId": "NATION_019",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【東方の結晶生産圏】で障壁イノベーションが発生した。循環係数 1.48、生存圏 +1.8。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Inspiration",
+      "microLore": "叙事年125年はこの土地にとって重要な年となった。魔物周期の活性期が長引き、市民たちの生活に大きな影響を及ぼしている。しかし同時に、経済や軍事力も向上し、都市間の連携も強まっている。\n\nこの時期には多くの祭りや祝い事が行われている。特に、結界の技術者たちを称える「光の祭典」では、様々な魔力結晶を使用した芸術作品が展示され、市民たちはその美しさに感動する。\n\nまた、夜間外出禁止令下でも、人々は互いを支え合いながら生活を続けていく。特に家族や親しい友人同士で、互いの安否を確認しあう習慣が増えている。「みんなが大丈夫だよね」という言葉が街中に聞こえてくる。\n\nシルフィアもリナと共にこの祭りに参加し、「今日も一日ありがとう」と感謝の気持ちを伝える。そんな日々の中で、人々は互いを支え合いながら生き抜くことを学んでいるのであった。",
+      "conditionFlag": "HIST_NATION_019_GEO_TURN_125_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_019_GEO_TURN_125_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_019_INNOVATION_T125",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N019_T125"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事125年・年初（ターン125）",
+          "npcDialogue": "「みんなが大丈夫だよね」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事125年・年央（ターン125）",
+          "npcDialogue": "「みんなが大丈夫だよね」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事125年・年末（ターン125）",
+          "npcDialogue": "「みんなが大丈夫だよね」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_019_Innovation_168",
+      "macroTurn": 168,
+      "timestamp": {
+        "year": 168,
+        "month": 12,
+        "day": 19,
+        "hour": 10
+      },
+      "targetNationId": "NATION_019",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【東方の結晶生産圏】で障壁イノベーションが発生した。循環係数 1.79、生存圏 +2.4。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年168年に、この土地では多くの祝祭や記念行事が開催された。例えば、休眠期の終わりを前にして行われる「結界感謝祭」は市民にとって重要なイベントである。「魔物たちから守られていることへの感謝と、次の活性期への準備の意味がある」と説明している。\n\nまた、「新築祝い」や「結婚式」なども増加し、市民たちは束の間の平和を大切にしようと努力していた。",
+      "conditionFlag": "HIST_NATION_019_GEO_TURN_168_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_019_GEO_TURN_168_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_019_INNOVATION_T168",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N019_T168"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事168年・年初（ターン168）",
+          "npcDialogue": "「魔物たちから守られていることへの感謝と、次の活性期への準備の意味がある」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事168年・年央（ターン168）",
+          "npcDialogue": "「魔物たちから守られていることへの感謝と、次の活性期への準備の意味がある」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事168年・年末（ターン168）",
+          "npcDialogue": "「魔物たちから守られていることへの感謝と、次の活性期への準備の意味がある」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    },
+    {
+      "eventId": "SIM_EVT_NATION_019_Innovation_208",
+      "macroTurn": 208,
+      "timestamp": {
+        "year": 208,
+        "month": 4,
+        "day": 4,
+        "hour": 10
+      },
+      "targetNationId": "NATION_019",
+      "relatedNationId": "",
+      "eventCategory": "domestic",
+      "eventType": "Innovation",
+      "logMessageTemplate": "【東方の結晶生産圏】で障壁イノベーションが発生した。循環係数 1.89、生存圏 +1.5。",
+      "isHistoricalCollapseRoute": false,
+      "evolutionSystemType": "Recipe",
+      "microLore": "叙事年0208は特に祝祭の多い年だった。魔物休眠期の束の間の安堵の中で、結婚式や新築祝いが頻繁に行われた。「この日を大切にしよう」という言葉と共に、人々は家族と友人と一緒に喜びを分かち合った。\n\nまた、各地域ごとの祭りも大きな話題となった。春には花見祭りがあり、「花が美しいですね」という言葉と共に多くの人々が参加した。「夏の祭典では、地元の職人たちによる手作り品の展示会が開かれ、「ここでの作品を見ると心が温かくなりますね」という声が多く聞こえた。\n\n秋は収穫祭で、農地帯から採れた新鮮な食材や果物を楽しむことができた。「この季節だけの味ですね」という言葉と共に、多くの人々が集まり食事会を行う。冬には暖炉前の音楽会があり、「寒さも吹き飛ぶね」という言葉と共に人々は音楽と笑顔で一年を締めくくる。\n\nこれらの祭りを通じて、エラのような一般市民たちは地域の伝統や文化に触れ、互いの絆を深めていった。",
+      "conditionFlag": "HIST_NATION_019_GEO_TURN_208_INNOVATION",
+      "historicalMode": {
+        "timeLockedHourOffset": 12,
+        "forcedFlagsOnTrigger": [
+          "HIST_NATION_019_GEO_TURN_208_INNOVATION"
+        ]
+      },
+      "alternativeMode": {
+        "causalPrerequisites": {
+          "requiredLogType": "MonsterEradicatedCount",
+          "requiredValue": 8
+        },
+        "unlockRewards": {
+          "alternativeFlag": "ALT_NATION_019_INNOVATION_T208",
+          "alternativeLogMessage": "【東方の結晶生産圏】で史実の被害を事前掃討により軽減できた。",
+          "alternativeLore": "改変世界線では、東方の結晶生産圏の防衛循環が維持され、市井の配給と夜間監視が途切れなかった。"
+        }
+      },
+      "mmoMode": {
+        "zoneId": "ZONE_EAST_CRYSTAL",
+        "recommendedLevel": 22,
+        "progressTriggerFlag": "MMO_ZONE_EAST_CRYSTAL_N019_T208"
+      },
+      "prosperityTimeline": {
+        "phase1_accumulation": {
+          "timeRange": "叙事208年・年初（ターン208）",
+          "npcDialogue": "「この日を大切にしよう」",
+          "statusBuff": "障壁効率上昇。生存圏の微増。"
+        },
+        "phase2_pioneering": {
+          "timeRange": "叙事208年・年央（ターン208）",
+          "npcDialogue": "「この日を大切にしよう」",
+          "visualChange": "防衛線の青白い光帯が外側へ伸びる。"
+        },
+        "phase3_perfection": {
+          "timeRange": "叙事208年・年末（ターン208）",
+          "npcDialogue": "「この日を大切にしよう」",
+          "gameplayReward": "障壁強化ボーナス。進化系統の解禁候補。"
+        }
+      }
+    }
+  ]
+}
