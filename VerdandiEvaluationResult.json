@@ -2,41 +2,41 @@
 {
   "branchEvaluations": [
     {
-      "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA",
-      "verdandiScore": 40,
-      "reasoning": "新設学術機関という響きはあるが、争いも禁忌要素も薄く波乱に欠ける。"
+      "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T1250",
+      "verdandiScore": -250,
+      "reasoning": "学術機関設立という平穏な内政展開に留まり、人間ドラマの波乱要素が皆無でマンネリ感が強い。"
     },
     {
-      "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE",
+      "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T1250",
+      "verdandiScore": -100,
+      "reasoning": "古代結界の解読は禁忌魔導に触れる可能性を秘めるが、記述上は平穏な研究行為に終始しており波乱度は低い。"
+    },
+    {
+      "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T1250",
       "verdandiScore": 180,
-      "reasoning": "古代結界の解読は禁忌魔導への接触を予感させ、未知の脅威覚醒という波乱の芽がある。"
+      "reasoning": "魔獣との縄張り衝突は前線防衛戦的な緊張感を生み、人間と魔獣の対立ドラマとして評価できる。"
     },
     {
-      "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY",
-      "verdandiScore": 220,
-      "reasoning": "魔獣との縄張り衝突は前線防衛戦的な緊張感を孕み、人間ドラマの発生余地が大きい。"
+      "branchId": "ALT_REVIVAL_NEW_TRADE_SPHERE_T1250",
+      "verdandiScore": -300,
+      "reasoning": "交易圏形成という経済的安定志向の展開で、争いも波乱もなく完全にマンネリ化している。"
     },
     {
-      "branchId": "ALT_REVIVAL_NEW_TRADE_SPHERE",
-      "verdandiScore": -220,
-      "reasoning": "交易圏形成のみでは利害対立の火種が乏しく、平和的すぎてマンネリ感が強い。"
-    },
-    {
-      "branchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE",
+      "branchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1250",
       "verdandiScore": -350,
-      "reasoning": "インフラ共有という行政的展開は争いも波乱もなく、典型的なマンネリ展開として大幅減点。"
+      "reasoning": "インフラ共有という協調路線は平和すぎて人間ドラマの緊張感が全く生まれない典型的な停滞展開。"
     },
     {
-      "branchId": "ALT_REVIVAL_ACADEMY_GUILD_UNION",
-      "verdandiScore": 60,
-      "reasoning": "ギルド間の連合は将来的な派閥抗争の伏線になり得るが、現状は穏健で評価は控えめ。"
+      "branchId": "ALT_REVIVAL_ACADEMY_GUILD_UNION_T1250",
+      "verdandiScore": -280,
+      "reasoning": "ギルド間の連合形成は協調的すぎて派閥抗争の火種が見えず、ロマンや波乱に欠ける。"
     },
     {
-      "branchId": "ALT_REVIVAL_BEAST_COEXISTENCE_PACT",
-      "verdandiScore": -180,
-      "reasoning": "共生条約という和解路線は安定志向が強く、ドラマ性に乏しいため減点対象。"
+      "branchId": "ALT_REVIVAL_BEAST_COEXISTENCE_PACT_T1250",
+      "verdandiScore": -200,
+      "reasoning": "魔獣との共生条約は対立の芽を摘む穏健路線であり、防衛戦や衝突のドラマ性を失わせている。"
     }
   ],
-  "topRecommendedBranchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY"
+  "topRecommendedBranchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T1250"
 }
 ```
