@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 
+
 def run_step(description, command, cwd=None, log_file=None):
     print(f"\n🚀 [{description}] を実行中...")
     try:
@@ -20,6 +21,12 @@ def run_step(description, command, cwd=None, log_file=None):
         return True
     except subprocess.CalledProcessError as e:
         print(f"❌ [{description}] でエラーが発生しました (exit={e.returncode}):")
+        combined = ((e.stdout or "") + "\n" + (e.stderr or "")).strip()
+        if "another Unity instance is running" in combined or "Multiple Unity instances" in combined:
+            print(
+                "⚠️ 原因: 同じプロジェクトを Unity エディタが開いたままです。\n"
+                "   → Unity を完全に閉じてから再実行してください（Hub は開いたままでも可）。"
+            )
         if e.stdout and e.stdout.strip():
             print("--- stdout ---")
             print(e.stdout.strip()[-2000:])
@@ -42,6 +49,38 @@ def run_step(description, command, cwd=None, log_file=None):
         return False
 
 
+def find_unity_editor_holding_project(unity_project):
+    """同一プロジェクトを開いている Unity.exe のコマンドラインを列挙。"""
+    holders = []
+    norm = os.path.normcase(os.path.abspath(unity_project)).replace("/", "\\")
+    try:
+        probe = subprocess.run(
+            [
+                "powershell",
+                "-NoProfile",
+                "-Command",
+                "Get-CimInstance Win32_Process -Filter \"Name='Unity.exe'\" | "
+                "Select-Object -ExpandProperty CommandLine",
+            ],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        for line in (probe.stdout or "").splitlines():
+            raw = line.strip()
+            if not raw:
+                continue
+            if norm in os.path.normcase(raw).replace("/", "\\"):
+                holders.append(raw)
+    except Exception:
+        pass
+
+    lock_path = os.path.join(unity_project, "Temp", "UnityLockfile")
+    lock_exists = os.path.isfile(lock_path)
+    return holders, lock_exists
+
+
 def main():
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     unity_project = os.path.join(project_root, "ラノベファンタジー")
@@ -60,10 +99,27 @@ def main():
     if not success:
         sys.exit(1)
 
-    # Step 2: Unity BatchMode（MAGI検証・T≥1001 剪定プローブ含む）
+    # Step 2 事前チェック: エディタ多重起動ロック
+    holders, lock_exists = find_unity_editor_holding_project(unity_project)
+    if holders or lock_exists:
+        print("\n⛔ Step 2 を開始できません: Unity プロジェクトがロックされています。")
+        print(f"   プロジェクト: {unity_project}")
+        if holders:
+            print(f"   検出: Unity.exe がこのプロジェクトを開いています（{len(holders)} 件）")
+        if lock_exists:
+            print("   検出: Temp/UnityLockfile が存在します")
+        print(
+            "\n対処:\n"
+            "  1. Unity エディタ（ラノベファンタジー）を保存して閉じる\n"
+            "  2. タスクマネージャで Unity.exe が残っていれば終了\n"
+            "  3. このパイプラインを再実行\n"
+            "（Unity Hub はそのままで問題ありません）"
+        )
+        sys.exit(1)
+
+    # Step 2: Unity BatchMode
     unity_path = r"C:\Program Files\Unity\Hub\Editor\6000.5.0f1\Editor\Unity.exe"
     if not os.path.isfile(unity_path):
-        # フォールバック: 近いバージョンを探す
         hub_editor = r"C:\Program Files\Unity\Hub\Editor"
         if os.path.isdir(hub_editor):
             versions = sorted(os.listdir(hub_editor), reverse=True)
@@ -83,7 +139,7 @@ def main():
         "-batchmode",
         "-nographics",
         "-projectPath", unity_project,
-        # Gen4 ではなく文明復興50年（T1001-1050）一括生成・MAGI合議・正史コミット
+        # 現状: 文明復興50年（T1001-1050）。T1050-1250 連続バッチは未接続。
         "-executeMethod", "MagiSystemDecisionEngineMenu.BatchRunCivilizationRevival50YearsAndQuit",
         "-logFile", log_file,
         "-quit",
