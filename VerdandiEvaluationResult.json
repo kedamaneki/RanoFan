@@ -3,38 +3,38 @@
   "branchEvaluations": [
     {
       "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA",
-      "verdandiScore": 60,
-      "reasoning": "新魔導学術という響きに禁忌魔導解禁の可能性は感じるが、詳細不明で波乱要素が薄い。"
+      "verdandiScore": 40,
+      "reasoning": "新設学術機関という響きはあるが、争いも禁忌要素も薄く波乱に欠ける。"
     },
     {
       "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE",
-      "verdandiScore": 120,
-      "reasoning": "古代結界陣という未知の禁忌領域への接触は危険な力の解放を予感させ、一定のロマンがある。"
+      "verdandiScore": 180,
+      "reasoning": "古代結界の解読は禁忌魔導への接触を予感させ、未知の脅威覚醒という波乱の芽がある。"
     },
     {
       "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY",
       "verdandiScore": 220,
-      "reasoning": "魔獣との縄張り衝突は前線防衛戦的な緊張感と人的犠牲のドラマを生む可能性が高く高評価。"
+      "reasoning": "魔獣との縄張り衝突は前線防衛戦的な緊張感を孕み、人間ドラマの発生余地が大きい。"
     },
     {
       "branchId": "ALT_REVIVAL_NEW_TRADE_SPHERE",
-      "verdandiScore": -250,
-      "reasoning": "交易圏形成は平和的な経済発展路線であり、争いも波乱もなくマンネリ感が強い。"
+      "verdandiScore": -220,
+      "reasoning": "交易圏形成のみでは利害対立の火種が乏しく、平和的すぎてマンネリ感が強い。"
     },
     {
       "branchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE",
-      "verdandiScore": -320,
-      "reasoning": "インフラ共有という協調路線は完全に平和的で、人間ドラマの起爆剤に欠ける典型的な停滞展開。"
+      "verdandiScore": -350,
+      "reasoning": "インフラ共有という行政的展開は争いも波乱もなく、典型的なマンネリ展開として大幅減点。"
     },
     {
       "branchId": "ALT_REVIVAL_ACADEMY_GUILD_UNION",
-      "verdandiScore": -150,
-      "reasoning": "ギルド連合という協力体制は派閥抗争の芽もあるが、表面上は融和的でドラマ性が弱い。"
+      "verdandiScore": 60,
+      "reasoning": "ギルド間の連合は将来的な派閥抗争の伏線になり得るが、現状は穏健で評価は控えめ。"
     },
     {
       "branchId": "ALT_REVIVAL_BEAST_COEXISTENCE_PACT",
-      "verdandiScore": -280,
-      "reasoning": "魔獣との共生条約は衝突回避の融和路線であり、緊張感を欠くため大幅減点。"
+      "verdandiScore": -180,
+      "reasoning": "共生条約という和解路線は安定志向が強く、ドラマ性に乏しいため減点対象。"
     }
   ],
   "topRecommendedBranchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY"
