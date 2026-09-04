@@ -95,7 +95,10 @@ public class EnvironmentBiorhythmEngine : MonoBehaviour
 
     public static EnvironmentBiorhythmEngine Instance { get; private set; }
 
+    // Inspector 用の周期原点（将来のオフセット計算で使用予定）
+#pragma warning disable CS0414
     [SerializeField] private int cycleEpochTurn = 1;
+#pragma warning restore CS0414
 
     public static EnvironmentBiorhythmEngine EnsureInstance()
     {
@@ -254,11 +257,7 @@ public class EnvironmentBiorhythmEngine : MonoBehaviour
 
     public static int NormalizeCyclePosition(int turn)
     {
-        if (MidCycleTurns <= 0)
-        {
-            return 0;
-        }
-
+        // MidCycleTurns は定数 400。ゼロ除算ガードは不要だが Safe-Fail として残すなら pragma で警告抑制。
         int zeroBased = turn - 1;
         int mod = zeroBased % MidCycleTurns;
         return mod < 0 ? mod + MidCycleTurns : mod;

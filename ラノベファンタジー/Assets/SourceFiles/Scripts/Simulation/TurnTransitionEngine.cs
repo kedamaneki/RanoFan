@@ -310,6 +310,46 @@ public class TurnTransitionEngine : MonoBehaviour
         return verify;
     }
 
+    /// <summary>
+    /// 文明復興フェーズ（T≥1001）向け年代進行。GameTimeManager 連動で目標年へ進めます。
+    /// EraContextResolver.MaxTurn(250) のキャップを超えるシミュ年に対応します。
+    /// </summary>
+    public static TurnTransitionResult AdvanceCivilizationRevivalYear(int targetYear)
+    {
+        TurnTransitionResult result = new TurnTransitionResult();
+        try
+        {
+            EnsureInstance();
+            GameTimeManager timeMgr = GameTimeManager.EnsureInstance();
+            HistoryFlagRegistry.EnsureWired();
+
+            int previous = Mathf.Max(1, timeMgr.CurrentYear);
+            int safeTarget = Mathf.Max(EnvironmentBiorhythmEngine.CivilizationRevivalStartTurn, targetYear);
+
+            result.previousTurn = previous;
+            timeMgr.SetYear(safeTarget);
+            EnvironmentBiorhythmEngine.TryLogCivilizationRevivalTransition(safeTarget);
+
+            EraContextResolver.TrySetCurrentTurn(Mathf.Min(safeTarget, EraContextResolver.MaxTurn));
+
+            result.success = true;
+            result.advanced = safeTarget != previous;
+            result.newTurn = safeTarget;
+            result.message =
+                $"文明復興年代進行: 年{previous} → 年{safeTarget}（GameTimeManager）";
+            Debug.Log($"<color=#80DEEA><b>{LogTag}</b></color> {result.message}");
+            return result;
+        }
+        catch (Exception exception)
+        {
+            result.success = false;
+            result.message = $"Safe-Fail: {exception.Message}";
+            Debug.LogWarning(
+                $"[TurnTransitionEngine] AdvanceCivilizationRevivalYear Safe-Fail: {exception.Message}");
+            return result;
+        }
+    }
+
     private TurnTransitionResult HandleMaxTurnSafeFail(
         TurnTransitionResult result,
         int previousTurn,

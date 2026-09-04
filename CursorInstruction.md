@@ -1,654 +1,584 @@
-はい、承知いたしました。
-「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」における、ターン1001以降の文明復興フェーズ起動とMAGI自動合議検証のためのC#実装指示を、CursorのCtrl+Lにそのまま読み込ませられるMarkdown形式で出力します。
+承知いたしました。リードディレクターとして、ターン1050から1250までの200年間（第22〜25世代）を連続自律進行させ、スクルドの剪定理論に基づきMAGI自動合議で正史にコミットし続けるための、精密なC#実装指示プロンプトを生成します。
+
+このプロンプトは、Cursor(IDE)のCtrl+Lにそのまま読み込ませてC#コード化できるよう、Markdown形式で記述されています。Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約を厳格に守ります。
 
 ---
 
-## 精密な実装指示プロンプト：文明復興フェーズとMAGI自動合議の検証
+## 精密な実装指示プロンプト：千年史自律シミュレーター - ターン1050-1250連続進行
 
 ### 目的
-ターン1001以降に「文明復興フェーズ」を起動し、そのフェーズ内で「MAGI自動合議システム」が社会技術（Magic）を提案・検証・選択するプロセスをシミュレートし、その挙動を検証します。Safe-Fail構造、MagicSanitizerEngineの厳格な利用、およびJob/Magicの定義規約を遵守します。
 
-### 主要コンポーネントの設計
+ターン1050から1250までの200年間（第22〜25世代）を連続自律進行させます。各ターンにおいて、MAGI自動合議システムがスクルドの剪定理論に基づき、未来の選択肢、学術、街道開拓の可能性が最も太い復興ルートを評価・選択し、正史にコミットし続けます。
 
-以下のクラス、インターフェース、およびEnumを定義・実装します。
+### 前提条件
 
-#### 1. `GamePhase.cs` (Enum)
-ゲームの進行フェーズを定義します。
+以下のクラスは既に存在し、基本的な構造を持っているものと仮定します。
 
-```csharp
-// GamePhase.cs
-public enum GamePhase
-{
-    /// <summary>
-    /// 文明崩壊前のフェーズ。
-    /// </summary>
-    PreCollapse,
+*   `SimulationState`: 現在のターン、世代、世界の状態（地理、資源、社会構造、技術レベル、利用可能な選択肢、学術研究状況、街道開拓状況など）を保持するクラス。
+*   `Magic`: 魔法（社会技術）を表すクラス。
+*   `Job`: ジョブ（生活職業）を表すクラス。
+*   `Logger`: ログ出力のための簡易的なインターフェースまたはクラス（ここでは`Console.WriteLine`で代用）。
 
-    /// <summary>
-    /// 文明崩壊後の荒廃フェーズ。
-    /// </summary>
-    PostCollapse,
+### 実装指示
 
-    /// <summary>
-    /// 文明復興を目指すフェーズ。ターン1001以降に起動。
-    /// </summary>
-    CivilizationRecovery,
+以下のクラスとメソッドを定義し、指定されたロジックを実装してください。
 
-    /// <summary>
-    /// ゲーム終了フェーズ（任意）。
-    /// </summary>
-    EndGame
-}
-```
+---
 
-#### 2. `ResourceType.cs` (Enum)
-ゲーム内で使用されるリソースの種類を定義します。
+### 1. `MagicSanitizerEngine` クラス
+
+**役割**: 魔法（社会技術）がゲームバランスや世界観を逸脱しないよう、その健全性を検証・調整するエンジン。
 
 ```csharp
-// ResourceType.cs
-public enum ResourceType
-{
-    Food,
-    Materials,
-    Energy,
-    Knowledge,
-    Influence
-}
-```
-
-#### 3. `SocialTechnology.cs` (Class - Magicの定義規約遵守)
-**規約:** `Magic` = `SocialTechnology` (社会技術)
-
-MAGIが提案する社会技術のデータ構造を定義します。
-
-```csharp
-// SocialTechnology.cs
-using System.Collections.Generic;
-
-/// <summary>
-/// ゲーム内の「魔法」に相当する社会技術のデータ構造。
-/// </summary>
-public class SocialTechnology
-{
-    /// <summary>社会技術の一意な識別子。</summary>
-    public string ID { get; set; } = string.Empty;
-
-    /// <summary>社会技術の名称。</summary>
-    public string Name { get; set; } = string.Empty;
-
-    /// <summary>社会技術の説明。</summary>
-    public string Description { get; set; = string.Empty;
-
-    /// <summary>この社会技術を開発・適用するために必要なリソースコスト。</summary>
-    public Dictionary<ResourceType, int> ResourceCost { get; set; } = new Dictionary<ResourceType, int>();
-
-    /// <summary>MagicSanitizerEngineによって検証・調整済みであるかを示すフラグ。</summary>
-    public bool IsSanitized { get; set; } = false;
-
-    // 必要に応じて、この社会技術がもたらす効果や前提条件などを追加
-    // public List<Effect> Effects { get; set; }
-    // public List<string> Prerequisites { get; set; }
-
-    /// <summary>
-    /// SocialTechnologyオブジェクトの文字列表現を返します。
-    /// </summary>
-    public override string ToString()
-    {
-        return $"[SocialTechnology] ID: {ID}, Name: '{Name}', Sanitized: {IsSanitized}";
-    }
-}
-```
-
-#### 4. `LifeOccupation.cs` (Class - Jobの定義規約遵守)
-**規約:** `Job` = `LifeOccupation` (生活職業)
-
-社会技術によってアンロックされたり、文明復興フェーズで必要となる生活職業のデータ構造を定義します。
-
-```csharp
-// LifeOccupation.cs
-using System.Collections.Generic;
-
-/// <summary>
-/// ゲーム内の「ジョブ」に相当する生活職業のデータ構造。
-/// </summary>
-public class LifeOccupation
-{
-    /// <summary>生活職業の一意な識別子。</summary>
-    public string ID { get; set; } = string.Empty;
-
-    /// <summary>生活職業の名称。</summary>
-    public string Name { get; set; } = string.Empty;
-
-    /// <summary>生活職業の説明。</summary>
-    public string Description { get; set; } = string.Empty;
-
-    /// <summary>この職業に就くために必要なスキルリスト。</summary>
-    public List<string> RequiredSkills { get; set; } = new List<string>();
-
-    /// <summary>この職業がもたらす生産性ボーナス（リソースタイプと倍率）。</summary>
-    public Dictionary<ResourceType, float> ProductivityBonus { get; set; } = new Dictionary<ResourceType, float>();
-
-    // 必要に応じて、その他の特性（幸福度ボーナス、特定の施設への依存など）を追加
-    // public int HappinessBonus { get; set; }
-
-    /// <summary>
-    /// LifeOccupationオブジェクトの文字列表現を返します。
-    /// </summary>
-    public override string ToString()
-    {
-        return $"[LifeOccupation] ID: {ID}, Name: '{Name}'";
-    }
-}
-```
-
-#### 5. `IMagicSanitizerEngine.cs` (Interface)
-`MagicSanitizerEngine`のインターフェースを定義します。これは既存のコンポーネントまたは外部システムとの連携を想定しています。
-
-```csharp
-// IMagicSanitizerEngine.cs
-/// <summary>
-/// 提案された社会技術（Magic）の妥当性を検証し、必要に応じて調整するエンジン。
-/// </summary>
-public interface IMagicSanitizerEngine
-{
-    /// <summary>
-    /// 指定された社会技術を検証し、ゲームのルールやバランスに適合するように調整します。
-    /// </summary>
-    /// <param name="magic">検証・調整対象の社会技術。</param>
-    /// <returns>社会技術が有効で、ゲームに適用可能であればtrue。そうでなければfalse。</returns>
-    bool Sanitize(SocialTechnology magic);
-}
-```
-
-#### 6. `ConcreteMagicSanitizerEngine.cs` (Class - Mock Implementation)
-`IMagicSanitizerEngine`のモック実装を提供します。Safe-Fail構造を厳格に適用します。
-
-```csharp
-// ConcreteMagicSanitizerEngine.cs
 using System;
-using System.Linq;
+using System.Collections.Generic;
 
-/// <summary>
-/// IMagicSanitizerEngineの具体的なモック実装。
-/// 社会技術の妥当性チェックとランダムな失敗をシミュレートします。
-/// </summary>
-public class ConcreteMagicSanitizerEngine : IMagicSanitizerEngine
+public class MagicSanitizerEngine
 {
-    private readonly Random _random = new Random();
-
     /// <summary>
-    /// 社会技術を検証し、ゲームのルールやバランスに適合するように調整します。
-    /// Safe-Fail: nullチェック、無効なデータチェック、ランダムな失敗を組み込みます。
+    /// 魔法（社会技術）の健全性を検証し、必要に応じて調整します。
+    /// Safe-Fail: 不正な魔法はデフォルト値に調整するか、警告を発します。
     /// </summary>
-    /// <param name="magic">検証・調整対象の社会技術。</param>
-    /// <returns>社会技術が有効で、ゲームに適用可能であればtrue。そうでなければfalse。</returns>
-    public bool Sanitize(SocialTechnology magic)
+    /// <param name="magic">検証・調整対象のMagicオブジェクト。</param>
+    /// <returns>健全化されたMagicオブジェクト。</returns>
+    public Magic Sanitize(Magic magic)
     {
-        // Safe-Fail: 入力検証
         if (magic == null)
         {
-            Logger.LogError("MagicSanitizerEngine: Received a null SocialTechnology for sanitization. Aborting.");
-            return false;
-        }
-        if (string.IsNullOrWhiteSpace(magic.ID) || string.IsNullOrWhiteSpace(magic.Name))
-        {
-            Logger.LogError($"MagicSanitizerEngine: Received an invalid SocialTechnology (ID: '{magic.ID}', Name: '{magic.Name}'). ID or Name cannot be empty. Aborting.");
-            return false;
+            Console.WriteLine("[ERROR][MagicSanitizer] Null Magicオブジェクトが渡されました。デフォルトの健全なMagicを返します。");
+            return CreateDefaultSafeMagic(); // Safe-Fail: デフォルトの安全な魔法を生成
         }
 
-        Logger.Log($"MagicSanitizerEngine: Initiating sanitization for '{magic.Name}' (ID: {magic.ID})...");
+        // 規約: 魔法 = 社会技術
+        // 社会技術としての側面を考慮し、過度な効果や矛盾する効果を調整します。
 
-        // Safe-Fail: リソースコストの妥当性チェック (例: 負のコストは許容しない)
-        if (magic.ResourceCost.Any(cost => cost.Value < 0))
+        // 例: 効果値の範囲チェック
+        if (magic.EffectMagnitude > 1000)
         {
-            Logger.LogWarning($"Sanitizer: SocialTechnology '{magic.Name}' has negative resource costs. This is invalid. Rejecting.");
-            magic.IsSanitized = false;
-            return false;
+            Console.WriteLine($"[WARNING][MagicSanitizer] Magic '{magic.Name}' のEffectMagnitudeが過大です ({magic.EffectMagnitude})。1000に調整します。");
+            magic.EffectMagnitude = 1000; // 調整
+        }
+        if (magic.EffectMagnitude < 0)
+        {
+            Console.WriteLine($"[WARNING][MagicSanitizer] Magic '{magic.Name}' のEffectMagnitudeが負の値です ({magic.EffectMagnitude})。0に調整します。");
+            magic.EffectMagnitude = 0; // 調整
         }
 
-        // Safe-Fail: 複雑な検証ルールをシミュレート (例: 技術ツリーの前提条件、バランス調整)
-        // 15%の確率でランダムに検証失敗をシミュレート
-        if (_random.Next(0, 100) < 15)
+        // 例: コストの妥当性チェック
+        if (magic.ManaCost < 10 && magic.EffectMagnitude > 500)
         {
-            Logger.LogWarning($"Sanitizer: SocialTechnology '{magic.Name}' failed a complex validation check (simulated random failure). Rejecting.");
-            magic.IsSanitized = false;
-            return false;
+            Console.WriteLine($"[WARNING][MagicSanitizer] Magic '{magic.Name}' は低コスト高効果です。ManaCostを調整します。");
+            magic.ManaCost = (int)(magic.EffectMagnitude / 5); // 調整
         }
 
-        // 調整ロジック（例: コストの正規化、隠し効果の追加など、今回はモック）
-        // magic.ResourceCost[ResourceType.Energy] = Math.Max(10, magic.ResourceCost.GetValueOrDefault(ResourceType.Energy));
-
-        magic.IsSanitized = true;
-        Logger.LogSuccess($"MagicSanitizerEngine: SocialTechnology '{magic.Name}' (ID: {magic.ID}) successfully sanitized.");
-        return true;
-    }
-}
-```
-
-#### 7. `MAGIConsensusSystem.cs` (Class)
-MAGI自動合議システムを実装します。社会技術の提案、`MagicSanitizerEngine`による検証、および最適な社会技術の選択を行います。
-
-```csharp
-// MAGIConsensusSystem.cs
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-/// <summary>
-/// MAGI自動合議システム。複数のエージェントが社会技術を提案し、合議によって最適なものを選択します。
-/// </summary>
-public class MAGIConsensusSystem
-{
-    private readonly IMagicSanitizerEngine _sanitizerEngine;
-    private readonly Random _random;
-
-    /// <summary>
-    /// MAGIConsensusSystemの新しいインスタンスを初期化します。
-    /// </summary>
-    /// <param name="sanitizerEngine">社会技術の検証に使用するMagicSanitizerEngine。</param>
-    public MAGIConsensusSystem(IMagicSanitizerEngine sanitizerEngine)
-    {
-        // Safe-Fail: 依存性注入の検証
-        _sanitizerEngine = sanitizerEngine ?? throw new ArgumentNullException(nameof(sanitizerEngine), "MAGI Consensus System requires a non-null MagicSanitizerEngine.");
-        _random = new Random();
-        Logger.Log("MAGI Consensus System initialized.");
-    }
-
-    /// <summary>
-    /// MAGIエージェントが複数の社会技術を提案します。
-    /// </summary>
-    /// <param name="currentTurn">現在のターン数。</param>
-    /// <returns>提案された社会技術のリスト。</returns>
-    public List<SocialTechnology> ProposeSocialTechnologies(int currentTurn)
-    {
-        var proposals = new List<SocialTechnology>();
-        int numProposals = _random.Next(2, 5); // 2～4個の社会技術を提案
-
-        Logger.Log($"MAGI System: Generating {numProposals} proposals for Social Technologies...");
-        for (int i = 0; i < numProposals; i++)
+        // 例: 依存関係のチェック (架空の例)
+        if (magic.RequiredTechs != null && magic.RequiredTechs.Contains("ForbiddenAncientTech") && !magic.IsForbidden)
         {
-            var newMagic = GenerateRandomSocialTechnology(currentTurn, i);
-            proposals.Add(newMagic);
-            Logger.Log($"  - MAGI Agent {i + 1} proposes: '{newMagic.Name}' (ID: {newMagic.ID})");
-        }
-        return proposals;
-    }
-
-    /// <summary>
-    /// 提案された社会技術を評価し、MagicSanitizerEngineで検証した後、最適なものを選択します。
-    /// Safe-Fail: 入力検証、検証失敗時のスキップを組み込みます。
-    /// </summary>
-    /// <param name="proposals">評価対象の社会技術リスト。</param>
-    /// <returns>合議によって選択された最適な社会技術。選択されなかった場合はnull。</returns>
-    public SocialTechnology EvaluateAndSelectBestMagic(List<SocialTechnology> proposals)
-    {
-        // Safe-Fail: 入力検証
-        if (proposals == null || !proposals.Any())
-        {
-            Logger.LogWarning("MAGI Consensus System: No proposals provided for evaluation. Returning null.");
-            return null;
+            Console.WriteLine($"[WARNING][MagicSanitizer] Magic '{magic.Name}' はForbiddenAncientTechを要求しますが、Forbiddenとしてマークされていません。マークします。");
+            magic.IsForbidden = true; // 調整
         }
 
-        SocialTechnology bestMagic = null;
-        float bestScore = -1.0f;
-        List<SocialTechnology> validProposals = new List<SocialTechnology>();
+        // その他の社会技術としての整合性チェックや調整ロジックを追加...
+        // 例: 特定の社会フェーズでのみ有効な技術、倫理的制約など
 
-        Logger.Log("MAGI System: Evaluating proposals and validating with MagicSanitizerEngine...");
-
-        foreach (var magic in proposals)
-        {
-            // Step 1: MagicSanitizerEngineによる検証
-            // Sanitizerはmagicオブジェクトを直接変更し、IsValidフラグを設定する可能性がある
-            bool isValid = _sanitizerEngine.Sanitize(magic);
-
-            if (!isValid)
-            {
-                Logger.LogWarning($"  - Proposal '{magic.Name}' (ID: {magic.ID}) was rejected by MagicSanitizerEngine. Skipping.");
-                continue; // Safe-Fail: 無効な社会技術は評価対象から除外
-            }
-
-            validProposals.Add(magic);
-
-            // Step 2: MAGI内部基準による評価 (モック実装)
-            float score = CalculateMagicScore(magic);
-            Logger.Log($"  - Proposal '{magic.Name}' (ID: {magic.ID}) score: {score:F2}");
-
-            if (score > bestScore)
-            {
-                bestScore = score;
-                bestMagic = magic;
-            }
-        }
-
-        if (!validProposals.Any())
-        {
-            Logger.LogWarning("MAGI Consensus System: All proposed Social Technologies were rejected by the sanitizer. No consensus reached.");
-            return null;
-        }
-
-        if (bestMagic == null)
-        {
-            // This case should ideally not happen if validProposals is not empty,
-            // but as a Safe-Fail fallback for unexpected scoring issues.
-            Logger.LogError("MAGI Consensus System: No best magic could be selected despite valid proposals. This indicates a scoring logic error or an unexpected state.");
-            return validProposals.First(); // Fallback to the first valid one
-        }
-
-        Logger.LogSuccess($"MAGI System: Consensus reached! Selected Social Technology: '{bestMagic.Name}' (ID: {bestMagic.ID}) with score {bestScore:F2}.");
-        return bestMagic;
-    }
-
-    /// <summary>
-    /// ランダムな社会技術を生成するモックメソッド。
-    /// </summary>
-    private SocialTechnology GenerateRandomSocialTechnology(int currentTurn, int index)
-    {
-        string[] magicNames = { "Basic Agriculture", "Simple Metallurgy", "Early Writing", "Communal Housing", "Basic Medicine", "Primitive Tools", "Water Purification" };
-        string name = magicNames[_random.Next(magicNames.Length)];
-        string id = name.Replace(" ", "_").ToUpper() + "_TECH";
-
-        var magic = new SocialTechnology
-        {
-            ID = id,
-            Name = name,
-            Description = $"A foundational social technology proposed by MAGI at turn {currentTurn}. (Variant {index + 1})",
-            ResourceCost = new Dictionary<ResourceType, int>
-            {
-                { ResourceType.Food, _random.Next(50, 200) },
-                { ResourceType.Materials, _random.Next(20, 100) },
-                { ResourceType.Knowledge, _random.Next(10, 50) }
-            },
-            IsSanitized = false // Sanitizerによって設定される
-        };
-
-        // ランダムに特定のコストを追加する可能性
-        if (_random.NextDouble() < 0.3) magic.ResourceCost[ResourceType.Energy] = _random.Next(10, 50);
-        if (_random.NextDouble() < 0.2) magic.ResourceCost[ResourceType.Influence] = _random.Next(5, 25);
-
+        Console.WriteLine($"[INFO][MagicSanitizer] Magic '{magic.Name}' を健全化しました。");
         return magic;
     }
 
-    /// <summary>
-    /// 社会技術の評価スコアを計算するモックメソッド。
-    /// </summary>
-    private float CalculateMagicScore(SocialTechnology magic)
+    private Magic CreateDefaultSafeMagic()
     {
-        // モック評価ロジック: コストが高いほど影響力があるが、複雑さも増す。
-        // 簡単のため、コストの合計にランダム性を加える。
-        float score = 0;
-        foreach (var cost in magic.ResourceCost)
+        // Safe-Fail: 何らかの問題があった場合に返す、デフォルトの安全な魔法
+        return new Magic
         {
-            score += cost.Value * GetResourceWeight(cost.Key);
-        }
-        // ランダム性を加えて、合議の不確実性をシミュレート
-        score += (float)_random.NextDouble() * 20; // 0-20点のランダムボーナス
-        return score;
-    }
-
-    /// <summary>
-    /// リソースタイプに応じた重み付けを返すモックメソッド。
-    /// </summary>
-    private float GetResourceWeight(ResourceType type)
-    {
-        switch (type)
-        {
-            case ResourceType.Food: return 0.1f;
-            case ResourceType.Materials: return 0.08f;
-            case ResourceType.Knowledge: return 0.15f; // 知識は重要
-            case ResourceType.Energy: return 0.12f;
-            case ResourceType.Influence: return 0.05f;
-            default: return 0.01f; // Safe-Fail: 未知のリソースタイプ
-        }
+            Name = "Default_Safe_SocialTech",
+            Description = "デフォルトの安全な社会技術。システムエラー時に生成されました。",
+            EffectMagnitude = 10,
+            ManaCost = 5,
+            RequiredTechs = new List<string>(),
+            IsForbidden = false
+        };
     }
 }
 ```
 
-#### 8. `GameManager.cs` (Class)
-ゲームのメインループ、フェーズ管理、およびMAGI自動合議の起動を制御します。
+---
+
+### 2. `SkuldPruningTheory` クラス
+
+**役割**: スクルドの剪定理論に基づき、未来の選択肢・学術・街道開拓の可能性が最も太い復興ルートを評価する。
 
 ```csharp
-// GameManager.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public static class SkuldPruningTheory
+{
+    /// <summary>
+    /// スクルドの剪定理論に基づき、与えられたシミュレーション状態の「復興ルートの太さ」を評価します。
+    /// 評価値が高いほど、未来の可能性が豊かであることを示します。
+    /// </summary>
+    /// <param name="state">評価対象のSimulationState。</param>
+    /// <returns>復興ルートの太さを示す評価値。</returns>
+    public static double CalculateRevivalRouteStrength(SimulationState state)
+    {
+        if (state == null)
+        {
+            Console.WriteLine("[ERROR][SkuldPruningTheory] Null SimulationStateが渡されました。評価できません。");
+            return -1.0; // Safe-Fail: 無効な状態
+        }
+
+        double strength = 0.0;
+
+        // 1. 未来の選択肢の多様性
+        // 利用可能なアクションやイベントの数が多いほど、多様性が高いと評価
+        strength += state.AvailableChoices?.Count * 10 ?? 0; // Nullチェックとデフォルト値
+
+        // 2. 学術研究の可能性
+        // 未発見の技術ツリー、未研究の知識領域が多いほど、学術的発展の余地があると評価
+        strength += state.UnresearchedTechBranches?.Count * 20 ?? 0;
+        strength += state.UnexploredKnowledgeDomains?.Count * 15 ?? 0;
+
+        // 3. 街道開拓の可能性
+        // 未探索の領域、未発見の資源、未接続の地域が多いほど、開拓の余地があると評価
+        strength += state.UnexploredRegions?.Count * 25 ?? 0;
+        strength += state.UndiscoveredResources?.Count * 18 ?? 0;
+        strength += state.UnconnectedSettlements?.Count * 12 ?? 0;
+
+        // 既存の技術レベルや社会安定度も加味 (安定しているほど、新たな可能性を追求しやすい)
+        strength += state.CurrentTechLevel * 0.5;
+        strength += state.SocialStability * 0.3;
+
+        // 負の要素 (例: 災害リスク、紛争リスク) は減点
+        strength -= state.DisasterRisk * 50;
+        strength -= state.ConflictRisk * 70;
+
+        // 評価値が負になるのを防ぐ (最低値を保証)
+        return Math.Max(0.0, strength);
+    }
+}
+```
+
+---
+
+### 3. `MAGI_ConsensusEngine` クラス
+
+**役割**: スクルドの剪定理論に基づき、複数の未来パスから最適なものを自動合議で選択し、正史にコミットする。
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class MAGI_ConsensusEngine
+{
+    private readonly MagicSanitizerEngine _magicSanitizer;
+
+    public MAGI_ConsensusEngine(MagicSanitizerEngine magicSanitizer)
+    {
+        _magicSanitizer = magicSanitizer ?? throw new ArgumentNullException(nameof(magicSanitizer));
+    }
+
+    /// <summary>
+    /// 現在のシミュレーション状態から、スクルドの剪定理論に基づき最適な次の状態を決定し、正史にコミットします。
+    /// Safe-Fail: 合議に失敗した場合、現在の状態を維持するか、最も安全なデフォルトパスを選択します。
+    /// </summary>
+    /// <param name="currentState">現在のシミュレーション状態。</param>
+    /// <returns>MAGIによって選択され、コミットされた次のシミュレーション状態。</returns>
+    public SimulationState DecideAndCommitNextState(SimulationState currentState)
+    {
+        if (currentState == null)
+        {
+            Console.WriteLine("[ERROR][MAGI_ConsensusEngine] Null currentStateが渡されました。決定できません。");
+            throw new ArgumentNullException(nameof(currentState), "MAGIはNull状態では意思決定できません。");
+        }
+
+        Console.WriteLine($"[MAGI] ターン {currentState.CurrentTurn} の意思決定を開始します。");
+
+        try
+        {
+            // 1. 複数の潜在的な未来パスを生成 (仮のロジック)
+            // 実際には、利用可能な選択肢に基づいて複数の分岐パスを生成する必要があります。
+            List<SimulationState> potentialFutures = GeneratePotentialFutureStates(currentState);
+
+            if (!potentialFutures.Any())
+            {
+                Console.WriteLine("[WARNING][MAGI] 潜在的な未来パスが生成されませんでした。現在の状態を維持します。");
+                return currentState; // Safe-Fail: パスがない場合は現在の状態を維持
+            }
+
+            // 2. 各未来パスをスクルドの剪定理論で評価
+            var evaluatedPaths = potentialFutures
+                .Select(path => new
+                {
+                    Path = path,
+                    Strength = SkuldPruningTheory.CalculateRevivalRouteStrength(path)
+                })
+                .OrderByDescending(p => p.Strength)
+                .ToList();
+
+            // 3. MAGI合議: 最も評価の高いパスを選択
+            SimulationState chosenPath = evaluatedPaths.FirstOrDefault()?.Path;
+
+            if (chosenPath == null)
+            {
+                Console.WriteLine("[ERROR][MAGI] 評価されたパスから最適なパスを選択できませんでした。現在の状態を維持します。");
+                return currentState; // Safe-Fail: 選択失敗
+            }
+
+            Console.WriteLine($"[MAGI] 最適な未来パスを決定しました (評価値: {evaluatedPaths.First().Strength:F2})。");
+
+            // 4. 選択されたパスを正史にコミット
+            CommitToTrueHistory(chosenPath);
+
+            // 選択されたパス内の新しいMagic（社会技術）をサニタイズ
+            if (chosenPath.NewlyDiscoveredMagics != null)
+            {
+                foreach (var magic in chosenPath.NewlyDiscoveredMagics)
+                {
+                    _magicSanitizer.Sanitize(magic);
+                }
+            }
+
+            return chosenPath;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[CRITICAL][MAGI_ConsensusEngine] 意思決定中に致命的なエラーが発生しました: {ex.Message}");
+            Console.WriteLine(ex.StackTrace);
+            // Safe-Fail: エラー発生時は現在の状態を維持し、シミュレーションの続行を試みる
+            return currentState;
+        }
+    }
+
+    /// <summary>
+    /// 複数の潜在的な未来の状態を生成します。
+    /// このメソッドは、現在の状態から可能なアクションやイベントをシミュレートし、
+    /// それぞれの結果として得られる未来の状態をリストアップする役割を担います。
+    /// </summary>
+    /// <param name="currentState">現在のシミュレーション状態。</param>
+    /// <returns>潜在的な未来のSimulationStateのリスト。</returns>
+    private List<SimulationState> GeneratePotentialFutureStates(SimulationState currentState)
+    {
+        List<SimulationState> futures = new List<SimulationState>();
+
+        // ここに、現在の状態から可能なアクション（例：研究、開拓、外交、戦闘など）を適用し、
+        // それぞれの結果として得られる未来の状態を生成するロジックを実装します。
+        // 各アクションは、SimulationStateのクローンを作成し、そのクローンに変更を加える形で行います。
+
+        // 例: 3つの異なる未来パスを仮に生成
+        for (int i = 0; i < 3; i++)
+        {
+            SimulationState futureState = currentState.Clone(); // Deep Cloneを想定
+            futureState.CurrentTurn++;
+            futureState.GenerationsElapsed = (futureState.CurrentTurn - 1) / 50 + 1; // 50ターンで1世代と仮定
+
+            // 各パスに異なる特徴を与える (スクルドの剪定理論の評価に影響するように)
+            switch (i)
+            {
+                case 0: // 技術重視パス
+                    futureState.CurrentTechLevel += 0.5;
+                    futureState.UnresearchedTechBranches.RemoveAll(b => b.Contains("Basic"));
+                    futureState.AvailableChoices.Add("AdvancedResearchProject");
+                    futureState.NewlyDiscoveredMagics.Add(_magicSanitizer.Sanitize(new Magic { Name = "Tech_Boost_SocialTech", EffectMagnitude = 70, ManaCost = 30 }));
+                    break;
+                case 1: // 開拓重視パス
+                    futureState.UnexploredRegions.RemoveAll(r => r.Contains("Near"));
+                    futureState.UndiscoveredResources.Add("NewRareMineral");
+                    futureState.AvailableChoices.Add("ExpandRoadNetwork");
+                    futureState.NewlyDiscoveredMagics.Add(_magicSanitizer.Sanitize(new Magic { Name = "Exploration_Aid_SocialTech", EffectMagnitude = 50, ManaCost = 20 }));
+                    break;
+                case 2: // 社会安定重視パス
+                    futureState.SocialStability += 0.1;
+                    futureState.ConflictRisk -= 0.05;
+                    futureState.AvailableChoices.Add("DiplomaticInitiative");
+                    futureState.NewlyDiscoveredMagics.Add(_magicSanitizer.Sanitize(new Magic { Name = "Harmony_SocialTech", EffectMagnitude = 60, ManaCost = 25 }));
+                    break;
+            }
+            futures.Add(futureState);
+        }
+
+        return futures;
+    }
+
+    /// <summary>
+    /// MAGIによって選択されたパスを正史（永続的な記録）にコミットします。
+    /// </summary>
+    /// <param name="chosenPath">正史にコミットするSimulationState。</param>
+    private void CommitToTrueHistory(SimulationState chosenPath)
+    {
+        // ここに、選択されたSimulationStateをデータベース、ファイル、または永続ストレージに保存するロジックを実装します。
+        // これは、シミュレーションの「正史」として記録され、将来の参照や分析に利用されます。
+        Console.WriteLine($"[MAGI_COMMIT] ターン {chosenPath.CurrentTurn} の状態を正史にコミットしました。");
+        // 例: Database.SaveState(chosenPath);
+        // 例: HistoryLog.Append(chosenPath.ToJson());
+    }
+}
+```
+
+---
+
+### 4. `SimulationManager` クラス
+
+**役割**: シミュレーション全体の進行を管理し、MAGIエンジンを呼び出して自律進行させる。
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+public class SimulationManager
+{
+    private SimulationState _currentSimulationState;
+    private readonly MAGI_ConsensusEngine _magiEngine;
+    private readonly MagicSanitizerEngine _magicSanitizer; // 直接は使わないが、MAGIに渡すため保持
+
+    public SimulationManager(SimulationState initialState)
+    {
+        _currentSimulationState = initialState ?? throw new ArgumentNullException(nameof(initialState));
+        _magicSanitizer = new MagicSanitizerEngine();
+        _magiEngine = new MAGI_ConsensusEngine(_magicSanitizer);
+    }
+
+    /// <summary>
+    /// 指定されたターン範囲でシミュレーションを連続自律進行させます。
+    /// Safe-Fail: 各ターンでエラーが発生しても、可能な限りシミュレーションを続行します。
+    /// </summary>
+    /// <param name="startTurn">シミュレーションを開始するターン。</param>
+    /// <param name="endTurn">シミュレーションを終了するターン。</param>
+    public void RunAutonomousSimulation(int startTurn, int endTurn)
+    {
+        if (startTurn < 0 || endTurn < startTurn)
+        {
+            Console.WriteLine("[ERROR][SimulationManager] 無効なターン範囲が指定されました。");
+            throw new ArgumentOutOfRangeException("ターン範囲は正しく指定される必要があります。");
+        }
+
+        Console.WriteLine($"\n--- シミュレーション開始: ターン {startTurn} から {endTurn} ---");
+
+        // 現在のシミュレーション状態を初期ターンに合わせる
+        _currentSimulationState.CurrentTurn = startTurn - 1; // 次のターンでstartTurnになるように
+
+        for (int turn = startTurn; turn <= endTurn; turn++)
+        {
+            Console.WriteLine($"\n--- ターン {turn} (世代 {(turn - 1) / 50 + 1}) 進行中 ---");
+
+            try
+            {
+                // 1. ターン開始前の処理 (イベント発生、リソース更新など)
+                PreTurnUpdate(_currentSimulationState);
+
+                // 2. MAGIによる意思決定と正史コミット
+                // MAGIは次の状態を決定し、その状態を_currentSimulationStateに更新します。
+                _currentSimulationState = _magiEngine.DecideAndCommitNextState(_currentSimulationState);
+
+                // 3. ターン終了後の処理 (UI更新、レポート生成など)
+                PostTurnUpdate(_currentSimulationState);
+
+                // 進行状況の表示
+                Console.WriteLine($"[SIM_PROGRESS] ターン {turn} 完了。現在の技術レベル: {_currentSimulationState.CurrentTechLevel:F2}, 社会安定度: {_currentSimulationState.SocialStability:F2}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[CRITICAL][SimulationManager] ターン {turn} の処理中に致命的なエラーが発生しました: {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+                // Safe-Fail: エラーが発生しても、次のターンに進むか、適切なリカバリを試みる
+                // ここでは、エラーが発生したターンをスキップし、次のターンに進むことで自律進行を維持します。
+                Console.WriteLine($"[SIM_RECOVERY] ターン {turn} はスキップされ、次のターンに進みます。");
+            }
+        }
+
+        Console.WriteLine($"\n--- シミュレーション終了: ターン {endTurn} ---");
+    }
+
+    /// <summary>
+    /// 各ターン開始前の処理をシミュレートします。
+    /// </summary>
+    /// <param name="state">現在のシミュレーション状態。</param>
+    private void PreTurnUpdate(SimulationState state)
+    {
+        // 例: リソースの自動生成、ランダムイベントの発生、既存のプロジェクトの進行など
+        // Console.WriteLine($"[PRE_TURN] ターン {state.CurrentTurn + 1} の準備中...");
+        // state.Resources.Food += 100;
+        // state.Population += 10;
+    }
+
+    /// <summary>
+    /// 各ターン終了後の処理をシミュレートします。
+    /// </summary>
+    /// <param name="state">現在のシミュレーション状態。</param>
+    private void PostTurnUpdate(SimulationState state)
+    {
+        // 例: UIの更新、レポートの生成、次のターンの準備など
+        // Console.WriteLine($"[POST_TURN] ターン {state.CurrentTurn} の後処理中...");
+        // ReportGenerator.GenerateTurnSummary(state);
+    }
+}
+```
+
+---
+
+### 5. データ構造のスケルトン
+
+以下のクラスは、シミュレーションのデータモデルとして必要です。
+
+```csharp
 using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// ゲームの全体的な進行を管理するクラス。ターン進行、フェーズ移行、主要システムの連携を制御します。
+/// シミュレーションの現在の状態を保持するクラス。
 /// </summary>
-public class GameManager
+public class SimulationState
 {
-    /// <summary>現在のターン数。</summary>
-    public int CurrentTurn { get; private set; }
+    public int CurrentTurn { get; set; }
+    public int GenerationsElapsed { get; set; }
+    public double CurrentTechLevel { get; set; }
+    public double SocialStability { get; set; }
+    public double DisasterRisk { get; set; }
+    public double ConflictRisk { get; set; }
 
-    /// <summary>現在のゲームフェーズ。</summary>
-    public GamePhase CurrentPhase { get; private set; }
+    // 未来の選択肢の多様性に関連するデータ
+    public List<string> AvailableChoices { get; set; } = new List<string>();
 
-    private readonly MAGIConsensusSystem _magiSystem;
-    private readonly IMagicSanitizerEngine _sanitizerEngine; // 依存性注入されたSanitizerEngine
+    // 学術研究の可能性に関連するデータ
+    public List<string> UnresearchedTechBranches { get; set; } = new List<string>();
+    public List<string> UnexploredKnowledgeDomains { get; set; } = new List<string>();
 
-    /// <summary>
-    /// GameManagerの新しいインスタンスを初期化します。
-    /// </summary>
-    /// <param name="sanitizerEngine">MagicSanitizerEngineのインスタンス。</param>
-    public GameManager(IMagicSanitizerEngine sanitizerEngine)
+    // 街道開拓の可能性に関連するデータ
+    public List<string> UnexploredRegions { get; set; } = new List<string>();
+    public List<string> UndiscoveredResources { get; set; } = new List<string>();
+    public List<string> UnconnectedSettlements { get; set; } = new List<string>();
+
+    // 新たに発見された魔法（社会技術）
+    public List<Magic> NewlyDiscoveredMagics { get; set; } = new List<Magic>();
+
+    public SimulationState Clone()
     {
-        // Safe-Fail: 依存性注入の検証
-        _sanitizerEngine = sanitizerEngine ?? throw new ArgumentNullException(nameof(sanitizerEngine), "GameManager requires a non-null MagicSanitizerEngine.");
-        _magiSystem = new MAGIConsensusSystem(_sanitizerEngine);
-        CurrentTurn = 0;
-        CurrentPhase = GamePhase.PreCollapse; // 初期フェーズ設定
-        Logger.Log("GameManager initialized. Starting in PreCollapse phase.");
+        // ディープクローンを実装する必要があります。
+        // ここでは簡易的な実装ですが、実際には全ての参照型プロパティもクローンする必要があります。
+        return new SimulationState
+        {
+            CurrentTurn = this.CurrentTurn,
+            GenerationsElapsed = this.GenerationsElapsed,
+            CurrentTechLevel = this.CurrentTechLevel,
+            SocialStability = this.SocialStability,
+            DisasterRisk = this.DisasterRisk,
+            ConflictRisk = this.ConflictRisk,
+            AvailableChoices = new List<string>(this.AvailableChoices),
+            UnresearchedTechBranches = new List<string>(this.UnresearchedTechBranches),
+            UnexploredKnowledgeDomains = new List<string>(this.UnexploredKnowledgeDomains),
+            UnexploredRegions = new List<string>(this.UnexploredRegions),
+            UndiscoveredResources = new List<string>(this.UndiscoveredResources),
+            UnconnectedSettlements = new List<string>(this.UnconnectedSettlements),
+            NewlyDiscoveredMagics = this.NewlyDiscoveredMagics.ConvertAll(m => m.Clone()) // Magicもクローン
+        };
     }
+}
 
-    /// <summary>
-    /// ゲームのターンを1つ進めます。
-    /// Safe-Fail: ターン制限チェック、フェーズ移行ロジックを組み込みます。
-    /// </summary>
-    public void AdvanceTurn()
+/// <summary>
+/// 魔法（社会技術）を表すクラス。
+/// 規約: 魔法 = 社会技術
+/// </summary>
+public class Magic
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public int EffectMagnitude { get; set; } // 効果の大きさ
+    public int ManaCost { get; set; } // 発動コスト
+    public List<string> RequiredTechs { get; set; } = new List<string>(); // 前提となる技術
+    public bool IsForbidden { get; set; } // 禁忌の技術か
+
+    public Magic Clone()
     {
-        CurrentTurn++;
-        Logger.Log($"--- Turn {CurrentTurn} --- Current Phase: {CurrentPhase}");
-
-        // Safe-Fail: 異常なターン数の上限チェック (無限ループ防止)
-        if (CurrentTurn > 5000) // 例: 5000ターンで強制終了
+        return new Magic
         {
-            Logger.LogError("Simulation reached maximum turn limit (5000). Ending simulation.");
-            CurrentPhase = GamePhase.EndGame; // ゲーム終了フェーズへ移行
-            return;
-        }
-
-        // フェーズ移行ロジック: ターン1001以降で文明復興フェーズを起動
-        if (CurrentTurn >= 1001 && CurrentPhase < GamePhase.CivilizationRecovery)
-        {
-            StartCivilizationRecoveryPhase();
-        }
-
-        // 現在のフェーズに応じたアクションを実行
-        switch (CurrentPhase)
-        {
-            case GamePhase.PreCollapse:
-                // 文明崩壊前のロジック (例: 資源生産、技術開発など)
-                // Logger.Log("PreCollapse phase actions...");
-                if (CurrentTurn == 500) // 例: ターン500で崩壊フェーズへ
-                {
-                    Logger.LogWarning("Turn 500: Civilization is collapsing! Transitioning to PostCollapse phase.");
-                    CurrentPhase = GamePhase.PostCollapse;
-                }
-                break;
-            case GamePhase.PostCollapse:
-                // 文明崩壊後のロジック (例: 生存、資源枯渇、小規模集落の形成など)
-                // Logger.Log("PostCollapse phase actions...");
-                break;
-            case GamePhase.CivilizationRecovery:
-                // 文明復興フェーズの主要アクション: MAGI自動合議の検証
-                SimulateMAGIConsensus();
-                break;
-            case GamePhase.EndGame:
-                Logger.Log("Game is in EndGame phase. No further actions.");
-                break;
-            default:
-                // Safe-Fail: 未定義のフェーズに対する処理
-                Logger.LogWarning($"GameManager: No specific actions defined for current phase: {CurrentPhase}.");
-                break;
-        }
+            Name = this.Name,
+            Description = this.Description,
+            EffectMagnitude = this.EffectMagnitude,
+            ManaCost = this.ManaCost,
+            RequiredTechs = new List<string>(this.RequiredTechs),
+            IsForbidden = this.IsForbidden
+        };
     }
+}
 
-    /// <summary>
-    /// 文明復興フェーズを開始します。
-    /// </summary>
-    private void StartCivilizationRecoveryPhase()
-    {
-        CurrentPhase = GamePhase.CivilizationRecovery;
-        Logger.LogSuccess($"Turn {CurrentTurn}: Initiating Civilization Recovery Phase! The long journey to rebuild begins.");
-        // このフェーズ固有の初期化処理などをここに追加
-    }
-
-    /// <summary>
-    /// MAGI自動合議プロセスをシミュレートし、その結果を検証します。
-    /// Safe-Fail: MAGIシステムの準備状況チェック、例外処理を組み込みます。
-    /// </summary>
-    private void SimulateMAGIConsensus()
-    {
-        Logger.Log("GameManager: Initiating MAGI automatic consensus process for Civilization Recovery.");
-        try
-        {
-            // Safe-Fail: MAGIシステムが正しく初期化されているか確認
-            if (_magiSystem == null)
-            {
-                Logger.LogError("GameManager: MAGI Consensus System is not initialized. Cannot simulate consensus.");
-                return;
-            }
-
-            // Step 1: MAGIが社会技術（Magic）を提案
-            var proposedMagics = _magiSystem.ProposeSocialTechnologies(CurrentTurn);
-            if (proposedMagics == null || proposedMagics.Count == 0)
-            {
-                Logger.LogWarning("GameManager: MAGI System proposed no Social Technologies. Skipping consensus for this turn.");
-                return;
-            }
-
-            // Step 2: MAGIが提案を評価し、MagicSanitizerEngineで検証後、最適なものを選択
-            var selectedMagic = _magiSystem.EvaluateAndSelectBestMagic(proposedMagics);
-
-            if (selectedMagic != null)
-            {
-                Logger.LogSuccess($"GameManager: MAGI consensus successfully selected Social Technology '{selectedMagic.Name}' (ID: {selectedMagic.ID}).");
-                // 選択された社会技術をゲーム状態に適用 (モック実装)
-                ApplySocialTechnology(selectedMagic);
-            }
-            else
-            {
-                Logger.LogWarning("GameManager: MAGI System failed to reach a conclusive consensus or no valid Social Technology was selected this turn.");
-            }
-        }
-        catch (Exception ex)
-        {
-            // Safe-Fail: 予期せぬエラーを捕捉し、ログに記録
-            Logger.LogError($"GameManager: An unexpected error occurred during MAGI consensus simulation: {ex.Message}\nStackTrace: {ex.StackTrace}");
-            // エラー発生時のフォールバック処理 (例: デフォルトの社会技術を適用、ターンをスキップなど)
-        }
-    }
-
-    /// <summary>
-    /// 選択された社会技術をゲーム状態に適用するモックメソッド。
-    /// </summary>
-    /// <param name="magic">適用する社会技術。</param>
-    private void ApplySocialTechnology(SocialTechnology magic)
-    {
-        // Safe-Fail: 入力検証
-        if (magic == null)
-        {
-            Logger.LogError("GameManager: Attempted to apply a null SocialTechnology. Aborting.");
-            return;
-        }
-
-        Logger.Log($"GameManager: Applying Social Technology '{magic.Name}' (ID: {magic.ID}). Is Sanitized: {magic.IsSanitized}");
-
-        // 例: 特定の社会技術が特定の生活職業（Job）をアンロックする
-        if (magic.ID == "BASIC_AGRICULTURE_TECH")
-        {
-            Logger.Log("GameManager: Unlocking new Life Occupation: Farmer.");
-            // 実際のゲームでは、ここでゲーム状態を更新し、新しいJobをアンロックする
-            // GameState.UnlockLifeOccupation(new LifeOccupation { ID = "FARMER", Name = "Farmer", ... });
-        }
-        else if (magic.ID == "SIMPLE_METALLURGY_TECH")
-        {
-            Logger.Log("GameManager: Unlocking new Life Occupation: Miner.");
-            // GameState.UnlockLifeOccupation(new LifeOccupation { ID = "MINER", Name = "Miner", ... });
-        }
-        // 他の社会技術に応じたゲーム状態の変更ロジック
-    }
+/// <summary>
+/// ジョブ（生活職業）を表すクラス。
+/// 規約: ジョブ = 生活職業
+/// </summary>
+public class Job
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public string PrimarySkill { get; set; } // 主要スキル
+    public double ProductivityBonus { get; set; } // 生産性ボーナス
+    // その他の生活職業に関連する属性
 }
 ```
 
-#### 9. `Logger.cs` (Utility Class)
-シンプルなロギングユーティリティ。
+---
+
+### 6. エントリポイント (`Program` クラス)
+
+シミュレーションを開始するためのメインメソッド。
 
 ```csharp
-// Logger.cs
 using System;
+using System.Collections.Generic;
 
-/// <summary>
-/// シミュレーションのログ出力を行うユーティリティクラス。
-/// </summary>
-public static class Logger
-{
-    public static void Log(string message) => Console.WriteLine($"[INFO] {DateTime.Now:HH:mm:ss} {message}");
-    public static void LogWarning(string message) => Console.WriteLine($"[WARNING] {DateTime.Now:HH:mm:ss} {message}");
-    public static void LogError(string message) => Console.Error.WriteLine($"[ERROR] {DateTime.Now:HH:mm:ss} {message}");
-    public static void LogSuccess(string message) => Console.WriteLine($"[SUCCESS] {DateTime.Now:HH:mm:ss} {message}");
-}
-```
-
-#### 10. `Program.cs` (Entry Point for Testing)
-シミュレーションを実行するためのエントリポイント。
-
-```csharp
-// Program.cs
-using System;
-
-/// <summary>
-/// シミュレーションのエントリポイント。
-/// </summary>
 public class Program
 {
     public static void Main(string[] args)
     {
-        Logger.Log("--- Starting Game Simulation ---");
+        Console.WriteLine("千年史自律シミュレーター起動...");
 
-        // MagicSanitizerEngineのインスタンスを生成
-        IMagicSanitizerEngine sanitizer = new ConcreteMagicSanitizerEngine();
-
-        // GameManagerを初期化（依存性注入）
-        GameManager gameManager = new GameManager(sanitizer);
-
-        // ターンをシミュレート
-        // ターン1001以降で文明復興フェーズが起動し、MAGI合議が検証されることを確認
-        for (int i = 0; i < 1050; i++) // 1050ターンまでシミュレート
+        // 初期シミュレーション状態のセットアップ
+        SimulationState initialState = new SimulationState
         {
-            gameManager.AdvanceTurn();
-            // 各ターンの進行を視覚的に確認したい場合は、ここで短い遅延を入れる
-            // System.Threading.Thread.Sleep(50); 
+            CurrentTurn = 1049, // 1050ターン目から開始するため、初期値は1049
+            GenerationsElapsed = 21, // 第22世代から開始するため、初期値は21
+            CurrentTechLevel = 50.0,
+            SocialStability = 0.8,
+            DisasterRisk = 0.1,
+            ConflictRisk = 0.05,
+            AvailableChoices = new List<string> { "ResearchBasicTech", "ExploreLocalArea", "BuildSmallSettlement" },
+            UnresearchedTechBranches = new List<string> { "AdvancedMetallurgy", "BioEngineering", "SpaceFlight" },
+            UnexploredKnowledgeDomains = new List<string> { "QuantumPhysics", "AncientRunes", "PsychicStudies" },
+            UnexploredRegions = new List<string> { "NorthernWastes", "SunkenCity", "FloatingIslands" },
+            UndiscoveredResources = new List<string> { "AdamantiteOre", "AetherCrystal" },
+            UnconnectedSettlements = new List<string> { "MountainVillage", "DesertOasis" }
+        };
+
+        // シミュレーションマネージャーのインスタンス化
+        SimulationManager manager = new SimulationManager(initialState);
+
+        // ターン1050から1250までの200年間（第22〜25世代）を連続自律進行
+        int startTurn = 1050;
+        int endTurn = 1250; // 200年間 = 200ターン (1年1ターンと仮定)
+
+        try
+        {
+            manager.RunAutonomousSimulation(startTurn, endTurn);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\n[FATAL_ERROR] シミュレーション全体で予期せぬエラーが発生しました: {ex.Message}");
+            Console.WriteLine(ex.StackTrace);
         }
 
-        Logger.Log("--- Game Simulation Finished ---");
-        Console.ReadKey(); // コンソールがすぐに閉じないように待機
+        Console.WriteLine("\n千年史自律シミュレーター終了。");
     }
 }
 ```
 
-### 実装のポイントとSafe-Fail構造の適用
+---
 
-*   **フェーズ移行:** `GameManager.AdvanceTurn()`メソッド内で`CurrentTurn >= 1001`の条件が満たされた際に`StartCivilizationRecoveryPhase()`を呼び出し、`CurrentPhase`を`CivilizationRecovery`に設定します。
-*   **MAGI自動合議の起動:** `CivilizationRecovery`フェーズに入ると、`GameManager.SimulateMAGIConsensus()`が毎ターン呼び出され、MAGIの合議プロセスが実行されます。
-*   **`MagicSanitizerEngine`の厳格な利用:**
-    *   `MAGIConsensusSystem`は、提案されたすべての`SocialTechnology`を`IMagicSanitizerEngine.Sanitize()`メソッドを通じて検証します。
-    *   `ConcreteMagicSanitizerEngine`は、`null`入力、無効なID/名称、負のリソースコストなど、様々な異常ケースをチェックし、`false`を返すことで安全に失敗します。また、ランダムな確率で検証失敗をシミュレートし、システムの堅牢性をテストします。
-*   **Safe-Fail構造:**
-    *   各クラスのコンストラクタで依存オブジェクトの`null`チェックを行い、`ArgumentNullException`をスローします。
-    *   メソッドの引数に対して`null`や空文字列、範囲外の値などの基本的な入力検証を行います。
-    *   処理の途中で予期せぬ状態（例: MAGIが提案を生成しない、Sanitizerが全てを拒否する）が発生した場合、`Logger.LogWarning`や`Logger.LogError`で通知し、処理をスキップするか、安全なデフォルト値にフォールバックします。
-    *   複雑な処理ブロック（例: `SimulateMAGIConsensus`）では`try-catch`ブロックを使用し、予期せぬ例外を捕捉してログに記録します。
-    *   `GameManager.AdvanceTurn()`には、無限ループを防ぐためのターン上限チェックを設けています。
-*   **規約遵守:** `SocialTechnology`クラスは`Magic`、`LifeOccupation`クラスは`Job`として明確に定義され、コード内のコメントや変数名でもこの規約が反映されています。
+### 補足事項
 
-この指示に従ってC#コードを実装することで、要件を満たすシステムが構築されます。
+*   **Safe-Fail構造**: 各主要メソッドには`try-catch`ブロックを配置し、エラー発生時にはログ出力、デフォルト値の返却、または現在の状態の維持を行うことで、シミュレーションの継続性を確保しています。`ArgumentNullException`や`ArgumentOutOfRangeException`による入力検証も含まれます。
+*   **ロギング**: 簡易的に`Console.WriteLine`を使用していますが、実際のプロジェクトでは専用のロギングライブラリ（例: Serilog, NLog）を導入し、ログレベル（INFO, WARNING, ERROR, CRITICAL）に応じて出力先や詳細度を制御することを推奨します。
+*   **`SimulationState.Clone()`**: ディープクローンは非常に重要です。`GeneratePotentialFutureStates`で複数の未来パスを生成する際に、元の状態を破壊しないよう、全ての参照型プロパティも適切にクローンする必要があります。上記のコードでは簡易的な実装に留めていますが、実際の開発ではシリアライゼーション/デシリアライゼーションを利用したり、専用のディープクローンロジックを実装したりしてください。
+*   **MAGI合議の複雑性**: `GeneratePotentialFutureStates`や`SkuldPruningTheory.CalculateRevivalRouteStrength`のロジックは、シミュレーターの核となる部分です。フロム風戦闘、ブラインド熱科学クラフトの要素を深く組み込むには、これらのメソッド内で、戦闘結果の予測、未解明技術のランダムな発見、クラフトシステムの複雑性などを考慮した詳細なシミュレーションロジックを実装する必要があります。
+*   **世代の計算**: 1世代を50ターンと仮定しています。この値はプロジェクトの要件に合わせて調整してください。
+
+このプロンプトは、ユーザーの要求を網羅し、Cursorで直接利用可能な形で提供されています。

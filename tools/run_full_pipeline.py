@@ -83,8 +83,8 @@ def main():
         "-batchmode",
         "-nographics",
         "-projectPath", unity_project,
-        # Gen4 ではなく MAGI 検証（T1051 剪定・文明復興系プローブ含む）
-        "-executeMethod", "MagiSystemDecisionEngineMenu.BatchVerifyMagiAndQuit",
+        # Gen4 ではなく文明復興50年（T1001-1050）一括生成・MAGI合議・正史コミット
+        "-executeMethod", "MagiSystemDecisionEngineMenu.BatchRunCivilizationRevival50YearsAndQuit",
         "-logFile", log_file,
         "-quit",
     ]

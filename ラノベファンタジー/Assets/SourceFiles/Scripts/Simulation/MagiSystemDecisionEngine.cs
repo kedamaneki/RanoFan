@@ -1088,20 +1088,21 @@ public class MagiSystemDecisionEngine : MonoBehaviour
 
     /// <summary>
     /// リポジトリ直下へ CurrentBranchCandidates.json を書き出します（Claude Verdandi 評価用）。
-    /// Safe-Fail: 失敗しても検証自体は継続します。
+    /// Safe-Fail: 失敗しても false を返し、呼び出し側は継続できます。
     /// </summary>
-    private static void TryExportBranchCandidatesForPipeline(
+    public static bool ExportBranchCandidatesForPipeline(
         IReadOnlyList<HistoryTimelineBranch> branches,
-        int evaluationTurn)
+        int evaluationTurn,
+        out string exportedPath)
     {
+        exportedPath = string.Empty;
         try
         {
             if (branches == null || branches.Count == 0)
             {
-                return;
+                return false;
             }
 
-            // Assets → ラノベファンタジー → リポジトリルート（その6）
             string unityProjectRoot = Directory.GetParent(Application.dataPath)?.FullName
                                      ?? Application.dataPath;
             string repoRoot = Directory.GetParent(unityProjectRoot)?.FullName ?? unityProjectRoot;
@@ -1135,13 +1136,27 @@ public class MagiSystemDecisionEngine : MonoBehaviour
             sb.AppendLine("}");
 
             File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            exportedPath = path;
             Debug.Log($"[MagiSystemDecisionEngine] IF枝候補を書き出しました: {path}");
+            return true;
         }
         catch (Exception exception)
         {
             Debug.LogWarning(
                 $"[MagiSystemDecisionEngine] CurrentBranchCandidates.json 書き出し Safe-Fail: {exception.Message}");
+            return false;
         }
+    }
+
+    /// <summary>
+    /// リポジトリ直下へ CurrentBranchCandidates.json を書き出します（Claude Verdandi 評価用）。
+    /// Safe-Fail: 失敗しても検証自体は継続します。
+    /// </summary>
+    private static void TryExportBranchCandidatesForPipeline(
+        IReadOnlyList<HistoryTimelineBranch> branches,
+        int evaluationTurn)
+    {
+        ExportBranchCandidatesForPipeline(branches, evaluationTurn, out _);
     }
 
     private static string EscapeJson(string value)
@@ -1207,6 +1222,37 @@ public static class MagiSystemDecisionEngineMenu
     public static void BatchVerifyMagiAndQuit()
     {
         MagiSystemDecisionVerifyResult result = MagiSystemDecisionEngine.RunVerification();
+        EditorApplication.Exit(result.success ? 0 : 1);
+    }
+
+    [MenuItem("Tools/Procedural Map/Batch Run Civilization Revival 50 Years And Quit")]
+    [MenuItem("Tools/Procedural Map/Run Civilization Revival 50 Years (T1001-1050)")]
+    public static void RunCivilizationRevival50YearsFromMenu()
+    {
+        CivilizationRevivalBatchResult result =
+            TimelineGenerationLoopEngine.RunCivilizationRevival50YearsAndCommit();
+        Debug.Log(
+            result.success
+                ? $"<color=#A5D6A7><b>{result.message}</b></color>"
+                : $"<color=#FF8A80><b>【文明復興50年】FAIL</b></color>\n{result.message}");
+        EditorUtility.DisplayDialog(
+            "Civilization Revival 50 Years",
+            result.message,
+            result.success ? "OK" : "FAIL");
+    }
+
+    /// <summary>
+    /// Unity バッチ:
+    /// -executeMethod MagiSystemDecisionEngineMenu.BatchRunCivilizationRevival50YearsAndQuit
+    /// </summary>
+    public static void BatchRunCivilizationRevival50YearsAndQuit()
+    {
+        CivilizationRevivalBatchResult result =
+            TimelineGenerationLoopEngine.RunCivilizationRevival50YearsAndCommit();
+        Debug.Log(
+            result.success
+                ? $"<color=#A5D6A7><b>{result.message}</b></color>"
+                : $"<color=#FF8A80><b>【文明復興50年】FAIL</b></color>\n{result.message}");
         EditorApplication.Exit(result.success ? 0 : 1);
     }
 }

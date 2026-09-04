@@ -55,11 +55,11 @@ public class VisibleEnemySpawnSettings : MonoBehaviour
         GameObject hub = GameObject.Find("DebugSystemsHub");
         if (hub == null)
         {
-            Debug.LogWarning(
-                "[VisibleEnemySpawnSettings] DebugSystemsHub が見つかりません。" +
-                " Hierarchy で DebugSystemsHub を選択し、" +
-                "Add Component → デバッグ → Visible Enemy Spawn Settings を追加してください。");
-            return null;
+            hub = new GameObject("DebugSystemsHub");
+            Debug.Log(
+                "<color=#FFE082><b>[VisibleEnemySpawnSettings]</b></color> " +
+                "DebugSystemsHub が無かったため自動生成しました。" +
+                "（Untitled 空シーンのときは、正式デモシーンを開くことを推奨）");
         }
 
         RemoveBrokenScriptSlotsInEditor(hub);

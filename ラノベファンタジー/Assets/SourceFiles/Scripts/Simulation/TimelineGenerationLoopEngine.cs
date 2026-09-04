@@ -148,6 +148,23 @@ public sealed class MagiChroniclePipelineResult
     public List<MagiChroniclePipelineStepResult> steps = new List<MagiChroniclePipelineStepResult>();
 }
 
+/// <summary>文明復興フェーズ（T1001〜1050）一括生成・合議・正史コミット結果。</summary>
+public sealed class CivilizationRevivalBatchResult
+{
+    public bool success;
+    public int startTurn = TimelineGenerationLoopEngine.CivilizationRevivalStartTurn;
+    public int endTurn = TimelineGenerationLoopEngine.CivilizationRevivalEndTurn;
+    public int nextTurn = TimelineGenerationLoopEngine.CivilizationRevivalNextTurn;
+    public int generatedBranchCount;
+    public string bestBranchId = string.Empty;
+    public string bestBranchName = string.Empty;
+    public int skuldPruningScore;
+    public MagiDeliberationStatus deliberationStatus = MagiDeliberationStatus.Disagreed;
+    public bool candidatesExported;
+    public string candidatesPath = string.Empty;
+    public string message = string.Empty;
+}
+
 /// <summary>
 /// 第2世代 (T51〜100) の IF 分岐評価・確定と第3世代 (T101) への移行を一括 orchestrate します。
 /// </summary>
@@ -181,17 +198,25 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
     public const int ManualGen5CommitTurn = 250;
     public const string Gen5FinalCompleteLogTag = "【250年正史完結・400年周期適用】";
     public const string MagiChronicleBatchLogTag = "【1000年史MAGI自動バッチ進行】";
+    public const string CivilizationRevivalBatchLogTag = "【文明復興50年一括完走】";
     public const int PostCanonStartTurn = 251;
     public const int ChronicleCompletionTurn = 1000;
     public const int ChronicleGenerationSpan = 50;
     public const int MinPostCanonBranchCount = 5;
     public const int MaxPostCanonBranchCount = 8;
+    /// <summary>第21世代・文明復興フェーズ開始（T≥1001）。</summary>
+    public const int CivilizationRevivalStartTurn = EraContextResolver.ChronicleMaxTurn + 1;
+    /// <summary>文明復興50年区間の終端。</summary>
+    public const int CivilizationRevivalEndTurn = CivilizationRevivalStartTurn + 49;
+    /// <summary>復興一括完走後の移行先ターン。</summary>
+    public const int CivilizationRevivalNextTurn = CivilizationRevivalEndTurn + 1;
 
     public static BatchGenerationEraResult LastBatchResult { get; private set; }
     public static Gen4TransitionBatchResult LastGen4BatchResult { get; private set; }
     public static Gen5TransitionBatchResult LastGen5BatchResult { get; private set; }
     public static Gen5FinalizationResult LastGen5FinalizationResult { get; private set; }
     public static MagiChroniclePipelineResult LastMagiChroniclePipelineResult { get; private set; }
+    public static CivilizationRevivalBatchResult LastCivilizationRevivalBatchResult { get; private set; }
     public static bool AwaitingManualBranchSelection { get; private set; }
     public static List<TimelineScriptEvaluationResult> PendingBranchRankings { get; private set; }
         = new List<TimelineScriptEvaluationResult>();
@@ -1532,6 +1557,151 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ターン1001〜1050（第21世代・文明復興）の IF 枝を一括生成し、
+    /// MAGI（スクルド剪定理論）で合議 → 最高スコア枝を正史コミット → T1051 へ進行します。
+    /// </summary>
+    public static CivilizationRevivalBatchResult RunCivilizationRevival50YearsAndCommit()
+    {
+        CivilizationRevivalBatchResult result = new CivilizationRevivalBatchResult();
+        try
+        {
+            EnsureInstance();
+            MagiSystemDecisionEngine.EnsureInstance();
+            HistoryBranchManager mgr = HistoryBranchManager.EnsureInstance();
+            HistoryFlagRegistry.EnsureWired();
+            EnvironmentBiorhythmEngine.EnsureInstance();
+            EnvironmentBiorhythmEngine.ResetRevivalTransitionLogForVerification();
+            TurnTransitionEngine.EnsureInstance();
+            GameTimeManager timeMgr = GameTimeManager.EnsureInstance();
+            SkuldPruningTheoryManager.EnsureInstance();
+
+            AwaitingManualBranchSelection = false;
+            PendingBranchRankings = new List<TimelineScriptEvaluationResult>();
+
+            int startTurn = CivilizationRevivalStartTurn;
+            int endTurn = CivilizationRevivalEndTurn;
+            int nextTurn = CivilizationRevivalNextTurn;
+            result.startTurn = startTurn;
+            result.endTurn = endTurn;
+            result.nextTurn = nextTurn;
+
+            timeMgr.SetYear(startTurn);
+            EnvironmentBiorhythmEngine.TryLogCivilizationRevivalTransition(startTurn);
+
+            string parentId = mgr.MainStoryBranchId;
+            if (string.IsNullOrWhiteSpace(parentId) || HistoryBranchManager.IsCanonBranchKey(parentId))
+            {
+                HistoryTimelineBranch anchor = BuildCivilizationRevivalAnchorBranch(startTurn - 1);
+                mgr.UpsertRegisteredBranchForVerification(anchor);
+                HistoryBranchManager.CommitBranchAsMainStory(anchor.branchId, 200, startTurn - 1);
+                parentId = anchor.branchId;
+            }
+
+            List<HistoryTimelineBranch> candidates =
+                BuildCivilizationRevivalBranchBlueprints(parentId, startTurn, endTurn);
+            for (int i = 0; i < candidates.Count; i++)
+            {
+                mgr.UpsertRegisteredBranchForVerification(candidates[i]);
+            }
+
+            result.generatedBranchCount = candidates.Count;
+            if (candidates.Count == 0)
+            {
+                result.success = false;
+                result.message = "Safe-Fail: 文明復興 IF 枝が 0 件";
+                LastCivilizationRevivalBatchResult = result;
+                WriteCivilizationRevivalPipelineLog(result);
+                return result;
+            }
+
+            MagiDeliberationResult deliberation =
+                MagiSystemDecisionEngine.EvaluateAndProposeBranch(candidates, endTurn);
+            result.deliberationStatus = deliberation.status;
+
+            MagiUnitVote skuldVote = FindSkuldVote(deliberation);
+            string bestId = ResolveSelectedBranchLabel(deliberation, mgr);
+            int bestScore = skuldVote != null ? skuldVote.score : 0;
+
+            if (string.IsNullOrWhiteSpace(bestId))
+            {
+                bestId = candidates[0].branchId;
+            }
+
+            HistoryTimelineBranch bestBranch = mgr.FindRegisteredBranchForVerification(bestId)
+                                              ?? FindCandidateById(candidates, bestId);
+            if (bestBranch != null)
+            {
+                SkuldPossibilityAnalysis analysis =
+                    SkuldEvaluator.AnalyzePossibilityTree(bestBranch, endTurn);
+                bestScore = Mathf.Max(bestScore, analysis.totalScore);
+                bestScore = Mathf.Clamp(bestScore, 0, SkuldEvaluator.MaxPossibilityScore);
+            }
+
+            bool alreadyCommitted =
+                deliberation.status == MagiDeliberationStatus.AllAgreed &&
+                deliberation.commitResult != null &&
+                deliberation.commitResult.success &&
+                string.Equals(
+                    deliberation.commitResult.branchId,
+                    bestId,
+                    StringComparison.OrdinalIgnoreCase);
+
+            MainStoryCommitResult commit = alreadyCommitted
+                ? deliberation.commitResult
+                : HistoryBranchManager.CommitBranchAsMainStory(bestId, bestScore, endTurn);
+
+            if (!commit.success)
+            {
+                result.success = false;
+                result.bestBranchId = bestId;
+                result.skuldPruningScore = bestScore;
+                result.message = $"Safe-Fail: 正史コミット失敗 — {commit.message}";
+                LastCivilizationRevivalBatchResult = result;
+                WriteCivilizationRevivalPipelineLog(result);
+                return result;
+            }
+
+            result.bestBranchId = commit.branchId;
+            result.bestBranchName = bestBranch?.displayName ?? commit.branchId;
+            result.skuldPruningScore = commit.totalScore > 0 ? commit.totalScore : bestScore;
+            AwaitingManualBranchSelection = false;
+
+            TurnTransitionResult transition =
+                TurnTransitionEngine.AdvanceCivilizationRevivalYear(nextTurn);
+            result.nextTurn = transition.newTurn > 0 ? transition.newTurn : nextTurn;
+
+            string exportPath;
+            result.candidatesExported =
+                MagiSystemDecisionEngine.ExportBranchCandidatesForPipeline(
+                    candidates,
+                    result.nextTurn,
+                    out exportPath);
+            result.candidatesPath = exportPath ?? string.Empty;
+
+            result.success = true;
+            result.message =
+                $"{CivilizationRevivalBatchLogTag} ターン{startTurn}〜{endTurn}の復興IF枝を量産・合議完了！ " +
+                $"正史確定軸: 「{result.bestBranchId}」 (剪定理論スコア: {result.skuldPruningScore}) " +
+                $"➔ ターン{result.nextTurn}へ移行しました。";
+
+            Debug.Log($"<color=#80DEEA><b>{result.message}</b></color>");
+            WriteCivilizationRevivalPipelineLog(result);
+            LastCivilizationRevivalBatchResult = result;
+            return result;
+        }
+        catch (Exception exception)
+        {
+            result.success = false;
+            result.message = $"Safe-Fail: {exception.Message}";
+            Debug.LogWarning(
+                $"[TimelineGenerationLoopEngine] RunCivilizationRevival50YearsAndCommit Safe-Fail: {exception.Message}");
+            WriteCivilizationRevivalPipelineLog(result);
+            LastCivilizationRevivalBatchResult = result;
+            return result;
+        }
+    }
+
     public static TimelineGenerationLoopVerifyResult RunFinalize250YearVerification()
     {
         TimelineGenerationLoopVerifyResult verify = new TimelineGenerationLoopVerifyResult();
@@ -2062,6 +2232,261 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
         }
 
         return string.Empty;
+    }
+
+    private static MagiUnitVote FindSkuldVote(MagiDeliberationResult deliberation)
+    {
+        if (deliberation?.votes == null)
+        {
+            return null;
+        }
+
+        for (int i = 0; i < deliberation.votes.Count; i++)
+        {
+            MagiUnitVote vote = deliberation.votes[i];
+            if (vote != null &&
+                string.Equals(vote.unitId, SkuldEvaluator.Id, StringComparison.OrdinalIgnoreCase))
+            {
+                return vote;
+            }
+        }
+
+        return null;
+    }
+
+    private static HistoryTimelineBranch FindCandidateById(
+        List<HistoryTimelineBranch> candidates,
+        string branchId)
+    {
+        if (candidates == null || string.IsNullOrWhiteSpace(branchId))
+        {
+            return null;
+        }
+
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            if (candidates[i] != null &&
+                string.Equals(candidates[i].branchId, branchId, StringComparison.OrdinalIgnoreCase))
+            {
+                return candidates[i];
+            }
+        }
+
+        return null;
+    }
+
+    private static HistoryTimelineBranch BuildCivilizationRevivalAnchorBranch(int turn)
+    {
+        int nationId = MicroToMacroAggregator.DefaultNationId;
+        return new HistoryTimelineBranch
+        {
+            branchId = "ALT_REVIVAL_ANCHOR_T1000",
+            parentBranchId = string.Empty,
+            displayName = "IF_Line: 千年史完結アンカー",
+            baseStartTurn = Mathf.Max(1, turn - 1),
+            primaryNationId = nationId,
+            nodes = new List<HistoryBranchNode>
+            {
+                new HistoryBranchNode
+                {
+                    turn = turn,
+                    nationId = nationId,
+                    keyEventId = "HIST_NATION_001_GEO_TURN_001_INNOVATION",
+                    outcomeFlag = "ALT_NATION_001_OUTCOME_INNOVATION",
+                    delta = new MacroParamDelta
+                    {
+                        powerMultiplier = 1.05f,
+                        barrierEfficiencyDelta = 0.03f,
+                        threatMultiplier = 0.95f
+                    }
+                }
+            }
+        };
+    }
+
+    /// <summary>文明復興 IF ブループリント（5〜8 本）を構築します。</summary>
+    private static List<HistoryTimelineBranch> BuildCivilizationRevivalBranchBlueprints(
+        string parentBranchId,
+        int startTurn,
+        int endTurn)
+    {
+        int nationId = MicroToMacroAggregator.DefaultNationId;
+        string parent = parentBranchId ?? string.Empty;
+        int midA = startTurn + 14;
+        int midB = startTurn + 29;
+
+        return new List<HistoryTimelineBranch>
+        {
+            BuildRevivalBranch(
+                "ALT_REVIVAL_NEW_ARCANE_ACADEMIA", parent, "IF_Line: 新魔導学術",
+                nationId, startTurn, midA, midB, endTurn,
+                "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
+                "HIST_NATION_001_GEO_TURN_001_ACADEMY_RIVALRY", "ALT_NATION_001_OUTCOME_ACADEMY_SCHISM",
+                1.16f, 0.08f, 0.88f, 1.20f),
+            BuildRevivalBranch(
+                "ALT_REVIVAL_ANCIENT_BARRIER_DECODE", parent, "IF_Line: 古代結界陣解読",
+                nationId, startTurn, midA, midB, endTurn,
+                "HIST_NATION_001_GEO_TURN_001_HERO", "ALT_NATION_001_OUTCOME_LOST_TECH_REVIVAL",
+                "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
+                1.12f, 0.12f, 0.90f, 1.15f),
+            BuildRevivalBranch(
+                "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY", parent, "IF_Line: 街道開拓と魔獣の縄張り衝突",
+                nationId, startTurn, midA, midB, endTurn,
+                "HIST_NATION_001_GEO_TURN_001_MONSTER_DEFENSE", "ALT_NATION_001_OUTCOME_MONSTER_DEFENSE",
+                "HIST_NATION_001_GEO_TURN_001_SUCCESSION", "ALT_NATION_001_OUTCOME_FRONTIER_EXPANSION",
+                1.08f, 0.04f, 1.05f, 1.25f),
+            BuildRevivalBranch(
+                "ALT_REVIVAL_NEW_TRADE_SPHERE", parent, "IF_Line: 新交易圏形成",
+                nationId, startTurn, midA, midB, endTurn,
+                "HIST_NATION_001_GEO_TURN_001_SUCCESSION", "ALT_NATION_001_OUTCOME_FRONTIER_EXPANSION",
+                "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
+                1.14f, 0.06f, 0.92f, 1.18f),
+            BuildRevivalBranch(
+                "ALT_REVIVAL_SHARED_INFRASTRUCTURE", parent, "IF_Line: 復興インフラ共有",
+                nationId, startTurn, midA, midB, endTurn,
+                "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
+                "HIST_NATION_001_GEO_TURN_001_HERO", "ALT_NATION_001_OUTCOME_LOST_TECH_REVIVAL",
+                1.10f, 0.09f, 0.94f, 1.22f),
+            BuildRevivalBranch(
+                "ALT_REVIVAL_ACADEMY_GUILD_UNION", parent, "IF_Line: 学術ギルド連合",
+                nationId, startTurn, midA, midB, endTurn,
+                "HIST_NATION_001_GEO_TURN_001_ACADEMY_RIVALRY", "ALT_NATION_001_OUTCOME_ACADEMY_SCHISM",
+                "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
+                1.13f, 0.07f, 0.91f, 1.28f),
+            BuildRevivalBranch(
+                "ALT_REVIVAL_BEAST_COEXISTENCE_PACT", parent, "IF_Line: 魔獣共生条約",
+                nationId, startTurn, midA, midB, endTurn,
+                "HIST_NATION_001_GEO_TURN_001_MONSTER_DEFENSE", "ALT_NATION_001_OUTCOME_MONSTER_DEFENSE",
+                "HIST_NATION_001_GEO_TURN_001_HERO", "ALT_NATION_001_OUTCOME_LOST_TECH_REVIVAL",
+                1.06f, 0.05f, 0.85f, 1.30f)
+        };
+    }
+
+    private static HistoryTimelineBranch BuildRevivalBranch(
+        string branchId,
+        string parentBranchId,
+        string displayName,
+        int nationId,
+        int t0,
+        int t1,
+        int t2,
+        int t3,
+        string keyA,
+        string flagA,
+        string keyB,
+        string flagB,
+        float power,
+        float barrier,
+        float threat,
+        float branchingBias)
+    {
+        float p2 = power * (0.96f + 0.04f * branchingBias);
+        float b2 = barrier * branchingBias;
+        float th2 = threat / Mathf.Max(0.85f, branchingBias * 0.9f);
+
+        return new HistoryTimelineBranch
+        {
+            branchId = branchId,
+            parentBranchId = parentBranchId ?? string.Empty,
+            displayName = displayName,
+            baseStartTurn = t0,
+            primaryNationId = nationId,
+            nodes = new List<HistoryBranchNode>
+            {
+                new HistoryBranchNode
+                {
+                    turn = t0,
+                    nationId = nationId,
+                    keyEventId = keyA,
+                    outcomeFlag = flagA,
+                    delta = new MacroParamDelta
+                    {
+                        powerMultiplier = power,
+                        barrierEfficiencyDelta = barrier,
+                        threatMultiplier = threat
+                    }
+                },
+                new HistoryBranchNode
+                {
+                    turn = t1,
+                    nationId = nationId,
+                    keyEventId = keyB,
+                    outcomeFlag = flagB,
+                    delta = new MacroParamDelta
+                    {
+                        powerMultiplier = p2,
+                        barrierEfficiencyDelta = b2 * 0.85f,
+                        threatMultiplier = th2
+                    }
+                },
+                new HistoryBranchNode
+                {
+                    turn = t2,
+                    nationId = nationId,
+                    keyEventId = keyA,
+                    outcomeFlag = flagA,
+                    delta = new MacroParamDelta
+                    {
+                        powerMultiplier = power * 1.02f,
+                        barrierEfficiencyDelta = barrier + 0.02f,
+                        threatMultiplier = Mathf.Max(0.80f, threat * 0.95f)
+                    }
+                },
+                new HistoryBranchNode
+                {
+                    turn = t3,
+                    nationId = nationId,
+                    keyEventId = keyB,
+                    outcomeFlag = flagB,
+                    delta = new MacroParamDelta
+                    {
+                        powerMultiplier = p2 * 1.03f,
+                        barrierEfficiencyDelta = b2,
+                        threatMultiplier = Mathf.Max(0.78f, th2 * 0.96f)
+                    }
+                }
+            }
+        };
+    }
+
+    private static void WriteCivilizationRevivalPipelineLog(CivilizationRevivalBatchResult result)
+    {
+        if (result == null)
+        {
+            return;
+        }
+
+        try
+        {
+            string unityProjectRoot = Directory.GetParent(Application.dataPath)?.FullName
+                                      ?? Application.dataPath;
+            string repoRoot = Directory.GetParent(unityProjectRoot)?.FullName ?? unityProjectRoot;
+            string line =
+                $"{DateTime.Now:yyyy-MM-ddTHH:mm:ss} success={result.success}\n{result.message}\n";
+
+            string[] paths =
+            {
+                Path.Combine(repoRoot, "Logs", "pipeline_execution.log"),
+                Path.Combine(unityProjectRoot, "Logs", "pipeline_execution.log")
+            };
+
+            for (int i = 0; i < paths.Length; i++)
+            {
+                string path = paths[i];
+                string dir = Path.GetDirectoryName(path);
+                if (!string.IsNullOrEmpty(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                File.AppendAllText(path, line, Encoding.UTF8);
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(
+                $"[TimelineGenerationLoopEngine] 文明復興ログ書き出し Safe-Fail: {exception.Message}");
+        }
     }
 
     private static void SyncToChronicleTurn(int turn)
