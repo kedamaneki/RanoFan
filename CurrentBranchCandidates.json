@@ -4,43 +4,43 @@
     {
       "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA",
       "displayName": "IF_Line: 新魔導学術",
-      "parentBranchId": "ALT_NATION_001_TURN_009_SUCCESSION",
+      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
       "baseStartTurn": 1001
     },
     {
       "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE",
       "displayName": "IF_Line: 古代結界陣解読",
-      "parentBranchId": "ALT_NATION_001_TURN_009_SUCCESSION",
+      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
       "baseStartTurn": 1001
     },
     {
       "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY",
       "displayName": "IF_Line: 街道開拓と魔獣の縄張り衝突",
-      "parentBranchId": "ALT_NATION_001_TURN_009_SUCCESSION",
+      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
       "baseStartTurn": 1001
     },
     {
       "branchId": "ALT_REVIVAL_NEW_TRADE_SPHERE",
       "displayName": "IF_Line: 新交易圏形成",
-      "parentBranchId": "ALT_NATION_001_TURN_009_SUCCESSION",
+      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
       "baseStartTurn": 1001
     },
     {
       "branchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE",
       "displayName": "IF_Line: 復興インフラ共有",
-      "parentBranchId": "ALT_NATION_001_TURN_009_SUCCESSION",
+      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
       "baseStartTurn": 1001
     },
     {
       "branchId": "ALT_REVIVAL_ACADEMY_GUILD_UNION",
       "displayName": "IF_Line: 学術ギルド連合",
-      "parentBranchId": "ALT_NATION_001_TURN_009_SUCCESSION",
+      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
       "baseStartTurn": 1001
     },
     {
       "branchId": "ALT_REVIVAL_BEAST_COEXISTENCE_PACT",
       "displayName": "IF_Line: 魔獣共生条約",
-      "parentBranchId": "ALT_NATION_001_TURN_009_SUCCESSION",
+      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
       "baseStartTurn": 1001
     }
   ]
