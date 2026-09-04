@@ -1,17 +1,47 @@
 ﻿{
-  "evaluationTurn": 1051,
+  "evaluationTurn": 1251,
   "branches": [
     {
-      "branchId": "ALT_VERIFY_PRUNING_BEAST_CONVERGED",
-      "displayName": "IF_Line: 収束・魔獣災害ループ",
-      "parentBranchId": "ALT_VERIFY_PRUNING_PARENT",
-      "baseStartTurn": 1049
+      "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T1250",
+      "displayName": "IF_Line: 新魔導学術",
+      "parentBranchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1200",
+      "baseStartTurn": 1201
     },
     {
-      "branchId": "ALT_VERIFY_PRUNING_DIVERSE_POSSIBILITY",
-      "displayName": "IF_Line: 汎人類史・多枝開拓",
-      "parentBranchId": "ALT_VERIFY_PRUNING_PARENT",
-      "baseStartTurn": 1048
+      "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T1250",
+      "displayName": "IF_Line: 古代結界陣解読",
+      "parentBranchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1200",
+      "baseStartTurn": 1201
+    },
+    {
+      "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T1250",
+      "displayName": "IF_Line: 街道開拓と魔獣の縄張り衝突",
+      "parentBranchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1200",
+      "baseStartTurn": 1201
+    },
+    {
+      "branchId": "ALT_REVIVAL_NEW_TRADE_SPHERE_T1250",
+      "displayName": "IF_Line: 新交易圏形成",
+      "parentBranchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1200",
+      "baseStartTurn": 1201
+    },
+    {
+      "branchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1250",
+      "displayName": "IF_Line: 復興インフラ共有",
+      "parentBranchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1200",
+      "baseStartTurn": 1201
+    },
+    {
+      "branchId": "ALT_REVIVAL_ACADEMY_GUILD_UNION_T1250",
+      "displayName": "IF_Line: 学術ギルド連合",
+      "parentBranchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1200",
+      "baseStartTurn": 1201
+    },
+    {
+      "branchId": "ALT_REVIVAL_BEAST_COEXISTENCE_PACT_T1250",
+      "displayName": "IF_Line: 魔獣共生条約",
+      "parentBranchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1200",
+      "baseStartTurn": 1201
     }
   ]
 }
