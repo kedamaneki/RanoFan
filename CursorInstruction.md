@@ -1,544 +1,725 @@
 はい、承知いたしました。
-「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」のリードディレクター兼C#設計者として、ターン1050から1250までの200年間（第22〜25世代）を連続自律進行させるための、精密なC#実装指示プロンプトをMarkdown形式で出力します。
+リードディレクター兼C#設計者として、ご指示の「ターン1050から1250までの200年間（第22〜25世代）を連続自律進行させ、復興・新文明の正史をコミットし続ける」ためのC#実装指示を、Cursor(IDE)のCtrl+Lへそのまま読み込ませてコード化できる精密なMarkdown形式で出力します。
 
-このプロンプトは、Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約（魔法=社会技術, ジョブ=生活職業）を厳格に守り、スクルドの剪定理論に基づき未来の選択肢・学術・街道開拓の可能性が最も太い復興ルートをMAGI自動合議で正史にコミットし続けるロジックをC#コードとして表現します。
-
-CursorのCtrl+Lにそのまま読み込ませてご活用ください。
+Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約（魔法=社会技術, ジョブ=生活職業）を厳格に守ります。
 
 ---
 
+```markdown
 ```csharp
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading; // シミュレーションの進行を視覚的に確認するための遅延用
 
-/// <summary>
-/// ゲームシミュレーションのメイン管理クラス。
-/// ターン1050から1250までの200年間（第22〜25世代）の連続自律進行を制御します。
-/// スクルドの剪定理論に基づき、未来の選択肢・学術・街道開拓の可能性が最も太い復興ルートをMAGI自動合議で正史にコミットし続けます。
-/// </summary>
-public class GameSimulationManager
+namespace MillenniumSimulator
 {
-    private SimulationState _currentState;
-    private SkuldPruningTheory _pruningTheory;
-    private MAGI_ConsensusEngine _magiEngine;
-    private MagicSanitizerEngine _sanitizerEngine;
-    private HistoricalRecordManager _recordManager;
-
-    private const int SimulationStartTurn = 1050;
-    private const int SimulationEndTurn = 1250; // ターン1250まで実行
-    private const int InitialGeneration = 22; // ターン1050が第22世代の開始
-    private const int TurnsPerGeneration = 50; // 1世代あたりのターン数 (200年 / 4世代 = 50年/世代)
-    private const int MaxGeneration = 25; // 指示された最大世代
-
     /// <summary>
-    /// GameSimulationManagerの新しいインスタンスを初期化します。
+    /// シミュレーションの現在の状態を保持するクラス。
+    /// 文明の力、リソース、アクティブな社会技術、ジョブ、歴史イベントなどを管理します。
     /// </summary>
-    /// <param name="initialState">シミュレーションの初期状態。</param>
-    public GameSimulationManager(SimulationState initialState)
+    public class SimulationState
     {
-        _currentState = initialState ?? throw new ArgumentNullException(nameof(initialState));
-        _pruningTheory = new SkuldPruningTheory();
-        _magiEngine = new MAGI_ConsensusEngine();
-        _sanitizerEngine = new MagicSanitizerEngine();
-        _recordManager = new HistoricalRecordManager();
+        public int CurrentTurn { get; private set; }
+        public int CurrentGeneration { get; private set; }
+        public long CivilizationPower { get; private set; }
+        public Dictionary<string, int> Resources { get; private set; }
+        public List<IMagic> ActiveSocialTechnologies { get; private set; }
+        public List<IJob> ActiveJobs { get; private set; }
+        public List<string> HistoricalEvents { get; private set; }
 
-        // 初期状態のターンと世代を設定
-        _currentState.CurrentTurn = SimulationStartTurn;
-        _currentState.CurrentGeneration = InitialGeneration;
+        /// <summary>
+        /// SimulationStateの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="startTurn">シミュレーションの開始ターン。</param>
+        public SimulationState(int startTurn)
+        {
+            CurrentTurn = startTurn;
+            UpdateGeneration(); // 初期世代を設定
+            CivilizationPower = 1000; // 文明の初期力
+            Resources = new Dictionary<string, int>
+            {
+                { "Food", 1000 },       // 食料: 生存と人口維持に必須
+                { "Materials", 500 },   // 材料: クラフトや建設に必要
+                { "Knowledge", 100 }    // 知識: 技術開発や魔法（社会技術）の発見に必要
+            };
+            ActiveSocialTechnologies = new List<IMagic>();
+            ActiveJobs = new List<IJob>();
+            HistoricalEvents = new List<string>();
+
+            // 初期ジョブの追加 (例: 農民)
+            ActiveJobs.Add(new Farmer());
+            AddHistoricalEvent("文明が再興し、初期の生活職業が確立された。");
+        }
+
+        /// <summary>
+        /// ターンを進め、それに伴い世代を更新します。
+        /// </summary>
+        public void AdvanceTurn()
+        {
+            CurrentTurn++;
+            UpdateGeneration();
+            // ターンごとのリソース消費・生産の基本ロジック
+            Resources["Food"] -= 50; // 基本的な食料消費
+            if (Resources["Food"] < 0) Resources["Food"] = 0; // 負の値にならないように
+            Resources["Materials"] += 5; // 自然な材料の増加
+            Resources["Knowledge"] += 2; // 自然な知識の増加
+        }
+
+        /// <summary>
+        /// 現在のターンに基づいて世代を更新します。
+        /// 1世代を50ターンと仮定し、ターン1050が第22世代の開始とします。
+        /// </summary>
+        private void UpdateGeneration()
+        {
+            // ターン1050が第22世代の開始なので、基準を調整
+            CurrentGeneration = 22 + (CurrentTurn - 1050) / 50;
+            if (CurrentTurn < 1050) CurrentGeneration = 21; // 1050ターン以前は第21世代以前として扱う
+        }
+
+        /// <summary>
+        /// 文明の力を増減させます。
+        /// </summary>
+        /// <param name="amount">増減量。</param>
+        public void AdjustCivilizationPower(long amount)
+        {
+            CivilizationPower += amount;
+            if (CivilizationPower < 0) CivilizationPower = 0; // 文明力は0未満にならない
+        }
+
+        /// <summary>
+        /// 歴史イベントを記録リストに追加します。
+        /// </summary>
+        /// <param name="eventDescription">イベントの記述。</param>
+        public void AddHistoricalEvent(string eventDescription)
+        {
+            HistoricalEvents.Add($"[T{CurrentTurn:D4}/G{CurrentGeneration:D2}] {eventDescription}");
+        }
     }
 
     /// <summary>
-    /// シミュレーションを自律的に進行させます。
-    /// ターン1050から1250まで、スクルドの剪定理論とMAGI合議に基づいて正史をコミットします。
-    /// Safe-Fail構造により、予期せぬエラー発生時にも堅牢に対応します。
+    /// 魔法（社会技術）のインターフェース。
     /// </summary>
-    public void RunAutonomousSimulation()
+    public interface IMagic
     {
-        Console.WriteLine($"--- Autonomous Simulation Started ---");
-        Console.WriteLine($"Period: Turn {SimulationStartTurn} to {SimulationEndTurn} (Generations {InitialGeneration} to {MaxGeneration})");
+        string Name { get; }
+        string Description { get; }
+        /// <summary>
+        /// この社会技術が現在の状態に適用可能かどうかを判断します。
+        /// </summary>
+        /// <param name="state">現在のシミュレーション状態。</param>
+        /// <returns>適用可能であればtrue、そうでなければfalse。</returns>
+        bool IsApplicable(SimulationState state);
+        /// <summary>
+        /// この社会技術をシミュレーション状態に適用します。
+        /// Safe-Fail: 適用が成功したかどうかを返します。
+        /// </summary>
+        /// <param name="state">現在のシミュレーション状態。</param>
+        /// <returns>適用が成功すればtrue、失敗すればfalse。</returns>
+        bool Apply(SimulationState state);
+    }
 
-        try
+    /// <summary>
+    /// ジョブ（生活職業）のインターフェース。
+    /// </summary>
+    public interface IJob
+    {
+        string Name { get; }
+        string Description { get; }
+        /// <summary>
+        /// このジョブの活動をシミュレーション状態に実行します。
+        /// Safe-Fail: 実行が成功したかどうかを返します。
+        /// </summary>
+        /// <param name="state">現在のシミュレーション状態。</param>
+        /// <returns>実行が成功すればtrue、失敗すればfalse。</returns>
+        bool Perform(SimulationState state);
+    }
+
+    /// <summary>
+    /// 例: 農業革命 - 食料生産を大幅に向上させる社会技術。
+    /// </summary>
+    public class AgriculturalRevolution : IMagic
+    {
+        public string Name => "農業革命";
+        public string Description => "食料生産を大幅に向上させる社会技術。知識を消費し、食料生産効率を永続的に高める。";
+
+        public bool IsApplicable(SimulationState state)
         {
-            for (int turn = SimulationStartTurn; turn <= SimulationEndTurn; turn++)
+            // 知識が50以上あり、かつまだこの技術が導入されていない場合
+            return state.Resources["Knowledge"] >= 50 && !state.ActiveSocialTechnologies.Any(m => m.Name == Name);
+        }
+
+        public bool Apply(SimulationState state)
+        {
+            if (!IsApplicable(state))
             {
-                _currentState.CurrentTurn = turn;
-                // 世代計算: 22世代目から開始し、50ターンごとに世代を進める。ただし、最大25世代までとする。
-                _currentState.CurrentGeneration = Math.Min(MaxGeneration, InitialGeneration + (turn - SimulationStartTurn) / TurnsPerGeneration);
+                Console.WriteLine($"[WARN][Magic] '{Name}' は適用条件を満たしていません。");
+                return false;
+            }
+            try
+            {
+                state.Resources["Knowledge"] -= 50; // 知識を消費
+                // 食料生産効率を向上させる永続的な効果を付与 (ここでは簡略化のため、初期ボーナスとログのみ)
+                state.Resources["Food"] += 100; // 初期ボーナス
+                state.AddHistoricalEvent($"{Name}が導入され、食料生産が向上した。");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][Magic] '{Name}' の適用中にエラー: {ex.Message}");
+                return false; // Safe-Fail
+            }
+        }
+    }
 
-                Console.WriteLine($"\n--- Turn {turn} (Generation {_currentState.CurrentGeneration}) ---");
+    /// <summary>
+    /// 例: 錬金術の基礎 - 材料を消費して知識を生み出す社会技術。
+    /// </summary>
+    public class BasicAlchemy : IMagic
+    {
+        public string Name => "錬金術の基礎";
+        public string Description => "材料を消費して知識を生み出す社会技術。";
 
-                // 1. 現在の状態に基づき、未来の選択肢（復興ルート）を生成
-                List<FuturePathOption> potentialPaths = GenerateFuturePathOptions(_currentState);
-                if (!potentialPaths.Any())
+        public bool IsApplicable(SimulationState state)
+        {
+            return state.Resources["Knowledge"] >= 30 && state.Resources["Materials"] >= 20 && !state.ActiveSocialTechnologies.Any(m => m.Name == Name);
+        }
+
+        public bool Apply(SimulationState state)
+        {
+            if (!IsApplicable(state))
+            {
+                Console.WriteLine($"[WARN][Magic] '{Name}' は適用条件を満たしていません。");
+                return false;
+            }
+            try
+            {
+                state.Resources["Knowledge"] -= 30;
+                state.Resources["Materials"] -= 20;
+                state.AddHistoricalEvent($"{Name}が導入され、知識獲得の新たな道が開かれた。");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][Magic] '{Name}' の適用中にエラー: {ex.Message}");
+                return false; // Safe-Fail
+            }
+        }
+    }
+
+    /// <summary>
+    /// 例: 農民 - 食料を生産する生活職業。
+    /// </summary>
+    public class Farmer : IJob
+    {
+        public string Name => "農民";
+        public string Description => "食料を生産し、文明の生存を支える。";
+
+        public bool Perform(SimulationState state)
+        {
+            try
+            {
+                if (state.Resources.ContainsKey("Food"))
                 {
-                    throw new InvalidOperationException($"No future path options generated at Turn {turn}. Simulation cannot proceed.");
+                    // 農業革命が導入されている場合、生産量にボーナス
+                    int production = 20;
+                    if (state.ActiveSocialTechnologies.Any(m => m.Name == "農業革命"))
+                    {
+                        production += 10; // ボーナス
+                    }
+                    state.Resources["Food"] += production;
+                    return true;
+                }
+                Console.WriteLine($"[WARN][Job] '{Name}' は食料リソースが見つからないため実行できません。");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][Job] '{Name}' の実行中にエラー: {ex.Message}");
+                return false; // Safe-Fail
+            }
+        }
+    }
+
+    /// <summary>
+    /// MagicSanitizerEngine: 社会技術（魔法）がシステムの整合性を破壊したり、
+    /// 倫理的・バランス的な制約に反しないかを検証するエンジン。
+    /// </summary>
+    public class MagicSanitizerEngine
+    {
+        /// <summary>
+        /// 指定された社会技術がシミュレーションに安全に導入できるかを検証します。
+        /// </summary>
+        /// <param name="magic">検証する社会技術。</param>
+        /// <param name="state">現在のシミュレーション状態。</param>
+        /// <returns>安全であればtrue、そうでなければfalse。</returns>
+        public bool ValidateMagic(IMagic magic, SimulationState state)
+        {
+            try
+            {
+                // 1. 不安定なキーワードチェック (例: 無限、即時滅亡など)
+                if (magic.Name.Contains("無限") || magic.Description.Contains("無限") ||
+                    magic.Name.Contains("即時滅亡") || magic.Description.Contains("即時滅亡"))
+                {
+                    Console.WriteLine($"[MagicSanitizer] 警告: 不安定なキーワードを含む魔法 '{magic.Name}' を検出しました。拒否します。");
+                    return false;
                 }
 
-                // 2. スクルドの剪定理論に基づき、各パスの「可能性の太さ」を評価
-                // 未来の選択肢・学術・街道開拓の可能性が最も太いルートを重視
-                _pruningTheory.EvaluatePaths(potentialPaths, _currentState);
-
-                // 3. MAGI自動合議システムが最も太いルートを決定
-                FuturePathOption chosenPath = _magiEngine.AchieveConsensus(potentialPaths);
-
-                if (chosenPath == null)
+                // 2. 既存の技術との競合チェック (例: 既に上位互換技術がある場合など)
+                // この例では簡略化。実際には複雑な依存関係グラフをチェックする。
+                if (magic.Name == "農業革命" && state.ActiveSocialTechnologies.Any(m => m.Name == "超農業技術"))
                 {
-                    // Safe-Fail: 合議が成立しない場合はエラーとしてシミュレーションを停止
-                    throw new InvalidOperationException($"MAGI failed to achieve consensus at Turn {turn}. Simulation halted.");
+                    Console.WriteLine($"[MagicSanitizer] 警告: '{magic.Name}' は既存の上位技術と競合するため拒否します。");
+                    return false;
                 }
 
-                Console.WriteLine($"MAGI Consensus: Chosen path '{chosenPath.Description}' with Pruning Score: {chosenPath.PruningScore:F4}");
+                // 3. リソース消費の妥当性チェック (例: 存在しないリソースを消費しようとする、過剰な消費)
+                // IMagicインターフェースにコスト情報を追加すればより詳細なチェックが可能だが、ここではApplyメソッド内でチェックされることを前提とする。
 
-                // 4. 決定されたルートを正史にコミットし、シミュレーション状態を更新
-                _recordManager.CommitToChronicle(_currentState, chosenPath);
-                ApplyChosenPath(_currentState, chosenPath);
-
-                // 5. MagicSanitizerEngineによる社会技術の健全性チェックと調整
-                _sanitizerEngine.SanitizeAllMagics(_currentState.AvailableMagics);
-
-                // Safe-Fail: 各ターンの終了時にシミュレーション状態の健全性をチェック
-                if (!_currentState.IsValid())
+                // 4. 文明の安定性への影響予測 (高度なAI分析を想定)
+                // 例: この技術が導入された場合、文明力が急激に低下する可能性がないか？
+                // 現状ではダミーロジック
+                if (magic.Name.Contains("危険"))
                 {
-                    throw new InvalidOperationException($"Simulation state became invalid at Turn {turn}. Halting simulation to prevent corruption.");
+                    Console.WriteLine($"[MagicSanitizer] 警告: '{magic.Name}' は文明の安定性を損なう可能性があり、拒否します。");
+                    return false;
                 }
 
-                // 進行状況のログ出力
-                LogSimulationProgress(_currentState);
+                Console.WriteLine($"[MagicSanitizer] 魔法 '{magic.Name}' は検証を通過しました。");
+                return true;
             }
-            Console.WriteLine($"\n--- Autonomous Simulation Completed Successfully up to Turn {SimulationEndTurn}. ---");
-        }
-        catch (Exception ex)
-        {
-            // Safe-Fail: 予期せぬ例外が発生した場合の処理
-            Console.Error.WriteLine($"\nCRITICAL ERROR during autonomous simulation at Turn {_currentState.CurrentTurn}: {ex.Message}");
-            Console.Error.WriteLine($"StackTrace: {ex.StackTrace}");
-            _recordManager.LogCriticalFailure(_currentState, ex); // エラー発生時の状態を詳細に記録
-            Console.WriteLine("Simulation halted due to a critical error. Please review logs.");
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][MagicSanitizer] 魔法検証中にエラー: {ex.Message}");
+                return false; // Safe-Fail
+            }
         }
     }
 
     /// <summary>
-    /// 現在のシミュレーション状態に基づき、未来の選択肢を生成します。
+    /// CombatEngine: フロム風戦闘シミュレーションを処理するクラス。
     /// </summary>
-    /// <param name="state">現在のシミュレーション状態。</param>
-    /// <returns>生成されたFuturePathOptionのリスト。</returns>
-    private List<FuturePathOption> GenerateFuturePathOptions(SimulationState state)
+    public class CombatEngine
     {
-        // TODO: 実際のゲームロジックに基づいて、現在の状況に応じた多様な選択肢を動的に生成する
-        // 例: 資源量、人口、既存の技術レベル、外交関係などによって選択肢が変化
-        List<FuturePathOption> options = new List<FuturePathOption>();
+        private Random _random = new Random();
 
-        // 仮の選択肢生成ロジック
-        options.Add(new FuturePathOption("Focus on Advanced Arcane Research", PathType.Academic, 0.7 + state.AcademicProgress.GetValueOrDefault("Arcane", 0.0)));
-        options.Add(new FuturePathOption("Expand Eastern Trade Routes", PathType.RoadDevelopment, 0.6 + (state.RoadNetworkStatus.GetValueOrDefault("East", false) ? 0.1 : 0.0)));
-        options.Add(new FuturePathOption("Develop Sustainable Agriculture Magics", PathType.SocialTechnology, 0.8 + state.AvailableMagics.Count(m => m.Name.Contains("Agriculture")) * 0.05));
-        options.Add(new FuturePathOption("Invest in Urban Infrastructure", PathType.Other, 0.65 + (double)state.Population / 1_000_000));
-        options.Add(new FuturePathOption("Explore Ancient Ruins for Lost Knowledge", PathType.Academic, 0.75));
-        options.Add(new FuturePathOption("Forge Alliance with Neighboring Faction", PathType.Other, 0.5));
-
-        return options;
-    }
-
-    /// <summary>
-    /// MAGIによって選択されたパスをシミュレーション状態に適用します。
-    /// </summary>
-    /// <param name="state">更新対象のシミュレーション状態。</param>
-    /// <param name="path">適用するFuturePathOption。</param>
-    private void ApplyChosenPath(SimulationState state, FuturePathOption path)
-    {
-        // TODO: 選択されたパスがシミュレーション状態に与える具体的な影響を実装する
-        // 例: 学術ポイントの増減、街道開拓状況の更新、新しいMagicやJobのアンロック、資源・人口の変動など
-        Console.WriteLine($"  Applying effects of: {path.Description}");
-        state.ApplyPathEffects(path); // SimulationStateクラス内にApplyPathEffectsメソッドを想定
-    }
-
-    /// <summary>
-    /// 現在のシミュレーション進行状況をコンソールにログ出力します。
-    /// </summary>
-    /// <param name="state">現在のシミュレーション状態。</param>
-    private void LogSimulationProgress(SimulationState state)
-    {
-        Console.WriteLine($"  Current Status: Pop={state.Population}, Res={state.Resources:F0}");
-        Console.WriteLine($"  Academic Progress: {string.Join(", ", state.AcademicProgress.Select(kv => $"{kv.Key}:{kv.Value:F2}"))}");
-        Console.WriteLine($"  Road Network: {string.Join(", ", state.RoadNetworkStatus.Select(kv => $"{kv.Key}:{(kv.Value ? "Connected" : "Disconnected")}"))}");
-        Console.WriteLine($"  Active Social Technologies (Magics): {state.AvailableMagics.Count(m => m.IsSocialTechnology)}");
-        Console.WriteLine($"  Active Life Occupations (Jobs): {state.AvailableJobs.Count(j => j.IsLifeOccupation)}");
-    }
-}
-
-/// <summary>
-/// シミュレーションの現在の状態を保持するクラス。
-/// </summary>
-public class SimulationState
-{
-    public int CurrentTurn { get; set; }
-    public int CurrentGeneration { get; set; }
-    public long Population { get; set; }
-    public double Resources { get; set; }
-    public List<Magic> AvailableMagics { get; private set; } = new List<Magic>();
-    public List<Job> AvailableJobs { get; private set; } = new List<Job>();
-    public Dictionary<string, double> AcademicProgress { get; private set; } = new Dictionary<string, double>();
-    public Dictionary<string, bool> RoadNetworkStatus { get; private set; } = new Dictionary<string, bool>();
-    public List<FuturePathOption> CommittedHistory { get; private set; } = new List<FuturePathOption>();
-
-    /// <summary>
-    /// SimulationStateの新しいインスタンスを初期化します。
-    /// </summary>
-    /// <param name="initialTurn">初期ターン。</param>
-    /// <param name="initialGeneration">初期世代。</param>
-    public SimulationState(int initialTurn, int initialGeneration)
-    {
-        CurrentTurn = initialTurn;
-        CurrentGeneration = initialGeneration;
-        Population = 1_000_000; // 初期人口
-        Resources = 100_000.0; // 初期資源
-        AcademicProgress["AncientLore"] = 0.5;
-        AcademicProgress["Arcane"] = 0.3;
-        RoadNetworkStatus["CentralHighway"] = true;
-        RoadNetworkStatus["West"] = false;
-        AvailableMagics.Add(new Magic("BasicFarmingTech", "基本的な農業技術", true, 1.2));
-        AvailableJobs.Add(new Job("Farmer", "食料生産者", true, 1.0));
-    }
-
-    /// <summary>
-    /// 選択されたパスの効果をシミュレーション状態に適用します。
-    /// </summary>
-    /// <param name="path">適用するFuturePathOption。</param>
-    public void ApplyPathEffects(FuturePathOption path)
-    {
-        // パスの種類とスコアに応じて状態を更新する具体的なロジック
-        double effectMultiplier = path.PruningScore; // スコアが高いほど効果も大きい
-
-        switch (path.Type)
+        /// <summary>
+        /// フロム風戦闘をシミュレートします。
+        /// </summary>
+        /// <param name="state">現在のシミュレーション状態。</param>
+        /// <returns>戦闘シミュレーションが成功すればtrue、致命的な失敗でシミュレーションを停止すべき場合はfalse。</returns>
+        public bool SimulateCombat(SimulationState state)
         {
-            case PathType.Academic:
-                // 学術進捗を増加させる
-                string academicField = path.Description.Contains("Arcane") ? "Arcane" : "NewField";
-                AcademicProgress[academicField] = AcademicProgress.GetValueOrDefault(academicField, 0.0) + 0.1 * effectMultiplier;
-                Console.WriteLine($"    Academic progress in '{academicField}' increased.");
-                break;
-            case PathType.RoadDevelopment:
-                // 街道開拓状況を更新する
-                string roadName = path.Description.Contains("Eastern") ? "East" : "NewRoad";
-                RoadNetworkStatus[roadName] = true;
-                Console.WriteLine($"    Road network '{roadName}' developed.");
-                break;
-            case PathType.SocialTechnology:
-                // 新しい社会技術（Magic）を追加する
-                string magicName = path.Description.Replace(" ", "");
-                if (!AvailableMagics.Any(m => m.Name == magicName))
+            try
+            {
+                // 50ターンごとに大規模な脅威が発生する可能性
+                if (state.CurrentTurn % 50 == 0 && state.CurrentTurn >= 1050)
                 {
-                    AvailableMagics.Add(new Magic(magicName, path.Description, true, 1.0 + effectMultiplier * 0.5));
-                    Console.WriteLine($"    New social technology '{magicName}' developed.");
+                    Console.WriteLine($"[戦闘] ターン {state.CurrentTurn}: 異形の脅威が迫る... 文明の存亡をかけた戦いが始まる！");
+                    state.AddHistoricalEvent("異形の脅威が文明に襲いかかった。");
+
+                    // 文明力とランダム要素で勝敗を決定
+                    int threatLevel = _random.Next(500, 2000); // 脅威のレベル
+                    long effectivePower = state.CivilizationPower + state.Resources["Knowledge"] / 5; // 知識も戦闘力に影響
+
+                    if (effectivePower > threatLevel)
+                    {
+                        // 勝利
+                        long powerGain = _random.Next(50, 200);
+                        state.AdjustCivilizationPower(powerGain);
+                        state.Resources["Materials"] += _random.Next(20, 50); // 戦利品
+                        state.AddHistoricalEvent("異形の脅威を退け、文明の力が増大した。");
+                        Console.WriteLine($"[戦闘] 勝利！文明の力が {powerGain} 向上しました。現在の文明力: {state.CivilizationPower}");
+                    }
+                    else
+                    {
+                        // 敗北
+                        long powerLoss = _random.Next(100, 300);
+                        state.AdjustCivilizationPower(-powerLoss);
+                        state.Resources["Food"] -= _random.Next(50, 100); // 食料損失
+                        state.Resources["Materials"] -= _random.Next(30, 80); // 材料損失
+                        state.AddHistoricalEvent("異形の脅威により、文明は甚大な被害を受け、力が衰退した。");
+                        Console.WriteLine($"[戦闘] 敗北...文明は {powerLoss} の力を失いました。現在の文明力: {state.CivilizationPower}");
+
+                        if (state.CivilizationPower <= 0)
+                        {
+                            Console.WriteLine("[戦闘] 文明は異形の脅威に屈し、滅亡しました。");
+                            return false; // 致命的な失敗、シミュレーション停止
+                        }
+                    }
                 }
-                break;
-            case PathType.Other:
-                // その他の影響（人口、資源など）
-                Population += (long)(10000 * effectMultiplier);
-                Resources += 5000 * effectMultiplier;
-                Console.WriteLine($"    Population and resources adjusted.");
-                break;
-        }
-        CommittedHistory.Add(path); // 選択されたパスを歴史として記録
-    }
-
-    /// <summary>
-    /// シミュレーション状態が健全であるか（Safe-Fail構造の一部）をチェックします。
-    /// </summary>
-    /// <returns>状態が健全であればtrue、そうでなければfalse。</returns>
-    public bool IsValid()
-    {
-        // TODO: シミュレーションが破綻していないか、ゲームバランスが崩れていないかなどの詳細なチェックを追加
-        return Population > 0 && Resources >= 0 && AvailableMagics.All(m => m != null) && AvailableJobs.All(j => j != null);
-    }
-}
-
-/// <summary>
-/// 未来の選択肢（復興ルート）を表すクラス。
-/// </summary>
-public class FuturePathOption
-{
-    public string Description { get; }
-    public PathType Type { get; }
-    public double BasePotential { get; } // この選択肢が持つ基本的な可能性の太さ
-    public double PruningScore { get; set; } // スクルドの剪定理論によって評価された最終スコア
-
-    /// <summary>
-    /// FuturePathOptionの新しいインスタンスを初期化します。
-    /// </summary>
-    /// <param name="description">選択肢の簡潔な説明。</param>
-    /// <param name="type">選択肢の種類（学術、街道開拓、社会技術など）。</param>
-    /// <param name="basePotential">この選択肢の初期的な可能性の太さ（0.0～1.0）。</param>
-    public FuturePathOption(string description, PathType type, double basePotential)
-    {
-        Description = description;
-        Type = type;
-        BasePotential = basePotential;
-        PruningScore = basePotential; // 初期評価スコアは基本可能性とする
-    }
-}
-
-/// <summary>
-/// FuturePathOptionの種類を定義する列挙型。
-/// </summary>
-public enum PathType
-{
-    Academic,           // 学術研究、知識の探求
-    RoadDevelopment,    // 街道開拓、インフラ整備
-    SocialTechnology,   // 社会技術（魔法）の開発・適用
-    Other               // その他の戦略的選択
-}
-
-/// <summary>
-/// スクルドの剪定理論を実装するクラス。
-/// 未来の選択肢の「可能性の太さ」を評価します。
-/// </summary>
-public class SkuldPruningTheory
-{
-    /// <summary>
-    /// 提供された未来の選択肢リストを、現在のシミュレーション状態に基づいて評価し、PruningScoreを更新します。
-    /// 「未来の選択肢・学術・街道開拓の可能性が最も太い復興ルート」を重視します。
-    /// </summary>
-    /// <param name="paths">評価対象のFuturePathOptionリスト。</param>
-    /// <param name="state">現在のシミュレーション状態。</param>
-    public void EvaluatePaths(List<FuturePathOption> paths, SimulationState state)
-    {
-        Console.WriteLine("  Evaluating paths using Skuld's Pruning Theory...");
-        foreach (var path in paths)
-        {
-            double score = path.BasePotential;
-
-            // 1. 学術の可能性を評価
-            if (path.Type == PathType.Academic)
-            {
-                // 現在の学術レベルが高いほど、学術ルートの可能性は太くなる
-                score *= (1.0 + state.AcademicProgress.Values.Sum() / Math.Max(1, state.AcademicProgress.Count) * 0.5);
+                return true;
             }
-            // 2. 街道開拓の可能性を評価
-            else if (path.Type == PathType.RoadDevelopment)
+            catch (Exception ex)
             {
-                // 現在の街道ネットワークが広がるほど、更なる開拓の可能性は太くなる
-                score *= (1.0 + state.RoadNetworkStatus.Count(kv => kv.Value) * 0.1);
+                Console.WriteLine($"[ERROR][CombatEngine] 戦闘シミュレーション中にエラー: {ex.Message}");
+                return false; // Safe-Fail
             }
-            // 3. 社会技術（魔法）の可能性を評価
-            else if (path.Type == PathType.SocialTechnology)
+        }
+    }
+
+    /// <summary>
+    /// CraftingEngine: ブラインド熱科学クラフトを処理するクラス。
+    /// </summary>
+    public class CraftingEngine
+    {
+        private Random _random = new Random();
+
+        /// <summary>
+        /// ブラインド熱科学クラフトを実行します。
+        /// </summary>
+        /// <param name="state">現在のシミュレーション状態。</param>
+        /// <returns>クラフト操作が成功すればtrue、失敗すればfalse。</returns>
+        public bool PerformCrafting(SimulationState state)
+        {
+            try
             {
-                // 既存の社会技術が多いほど、新たな技術開発の可能性は太くなる
-                score *= (1.0 + state.AvailableMagics.Count(m => m.IsSocialTechnology) * 0.05);
+                // 特定のターンでクラフトの機会を設ける (例: 25ターンごとに)
+                if (state.CurrentTurn % 25 == 0 && state.CurrentTurn >= 1050)
+                {
+                    int requiredMaterials = 50;
+                    int requiredKnowledge = 30;
+
+                    if (state.Resources["Materials"] >= requiredMaterials && state.Resources["Knowledge"] >= requiredKnowledge)
+                    {
+                        Console.WriteLine($"[クラフト] ターン {state.CurrentTurn}: 未知の熱科学クラフトを試みる...");
+                        state.Resources["Materials"] -= requiredMaterials;
+                        state.Resources["Knowledge"] -= requiredKnowledge;
+
+                        // 成功率をランダムで決定 (知識レベルで成功率が変動するように調整可能)
+                        int successChance = 60 + (state.Resources["Knowledge"] / 100); // 知識が多いほど成功率アップ
+                        if (successChance > 90) successChance = 90; // 上限設定
+
+                        if (_random.Next(100) < successChance) // 成功
+                        {
+                            int knowledgeGain = _random.Next(40, 80);
+                            int powerGain = _random.Next(30, 60);
+                            state.Resources["Knowledge"] += knowledgeGain; // 新しい技術や知識の発見
+                            state.AdjustCivilizationPower(powerGain);
+                            state.AddHistoricalEvent("熱科学クラフトにより新たな技術が発見され、文明の力が向上した。");
+                            Console.WriteLine($"[クラフト] 成功！新たな知識({knowledgeGain})と文明力({powerGain})を獲得しました。");
+                        }
+                        else // 失敗
+                        {
+                            int materialReturn = _random.Next(10, 30);
+                            state.Resources["Materials"] += materialReturn; // 一部資源が戻る
+                            state.AddHistoricalEvent("熱科学クラフトは失敗したが、貴重なデータを得た。");
+                            Console.WriteLine($"[クラフト] 失敗...しかし、貴重なデータを得ました。材料が {materialReturn} 戻りました。");
+                        }
+                    }
+                    else
+                    {
+                        // Console.WriteLine("[クラフト] 資源不足のためクラフトできません。"); // 毎ターン表示するとうるさいのでコメントアウト
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][CraftingEngine] クラフト中にエラー: {ex.Message}");
+                return false; // Safe-Fail
+            }
+        }
+    }
+
+    /// <summary>
+    /// HistoryRecorder: 文明の正史を記録するクラス。
+    /// </summary>
+    public class HistoryRecorder
+    {
+        private readonly string _historyFilePath = "civilization_history.log";
+        private readonly object _fileLock = new object(); // ファイル書き込みの排他制御用
+
+        /// <summary>
+        /// HistoryRecorderの新しいインスタンスを初期化します。
+        /// </summary>
+        public HistoryRecorder()
+        {
+            try
+            {
+                // ファイルが存在すれば追記、なければ新規作成し、開始メッセージを書き込む
+                if (!File.Exists(_historyFilePath))
+                {
+                    File.WriteAllText(_historyFilePath, "--- 文明の正史記録開始 ---\n");
+                }
+                else
+                {
+                    File.AppendAllText(_historyFilePath, "\n--- 既存の正史に追記開始 ---\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][HistoryRecorder] 履歴ファイルの初期化中にエラー: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// 現在のシミュレーション状態から最新の歴史イベントをファイルにコミットします。
+        /// Safe-Fail: コミットが成功したかどうかを返します。
+        /// </summary>
+        /// <param name="state">現在のシミュレーション状態。</param>
+        /// <returns>コミットが成功すればtrue、失敗すればfalse。</returns>
+        public bool CommitHistory(SimulationState state)
+        {
+            try
+            {
+                // 最新のイベントをファイルに追記
+                if (state.HistoricalEvents.Any())
+                {
+                    string latestEvent = state.HistoricalEvents.Last();
+                    lock (_fileLock) // ファイル書き込みの競合を避ける
+                    {
+                        File.AppendAllText(_historyFilePath, latestEvent + "\n");
+                    }
+                    // ログにも出力
+                    Console.WriteLine($"[正史コミット] {latestEvent}");
+                    // コミットしたイベントはクリアして、次ターンで新しいイベントのみを記録するようにする
+                    state.HistoricalEvents.Clear();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][HistoryRecorder] 正史コミット中にエラー: {ex.Message}");
+                return false; // Safe-Fail
+            }
+        }
+
+        /// <summary>
+        /// シミュレーション終了時に履歴ファイルに最終メッセージを追記します。
+        /// </summary>
+        /// <param name="endTurn">シミュレーションの終了ターン。</param>
+        public void FinalizeHistory(int endTurn)
+        {
+            try
+            {
+                lock (_fileLock)
+                {
+                    File.AppendAllText(_historyFilePath, $"--- ターン {endTurn} での記録終了 ---\n");
+                }
+                Console.WriteLine($"[正史] 記録をファイル '{_historyFilePath}' にコミットしました。");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][HistoryRecorder] 最終コミット中にエラー: {ex.Message}");
+            }
+        }
+    }
+
+    /// <summary>
+    /// GameSimulator: ゲームの主要なシミュレーションロジックを管理するクラス。
+    /// </summary>
+    public class GameSimulator
+    {
+        private SimulationState _state;
+        private CombatEngine _combatEngine;
+        private CraftingEngine _craftingEngine;
+        private MagicSanitizerEngine _magicSanitizer;
+        private HistoryRecorder _historyRecorder;
+
+        /// <summary>
+        /// GameSimulatorの新しいインスタンスを初期化します。
+        /// </summary>
+        public GameSimulator()
+        {
+            _combatEngine = new CombatEngine();
+            _craftingEngine = new CraftingEngine();
+            _magicSanitizer = new MagicSanitizerEngine();
+            _historyRecorder = new HistoryRecorder();
+        }
+
+        /// <summary>
+        /// 指定された期間、シミュレーションを連続自律進行させます。
+        /// </summary>
+        /// <param name="startTurn">シミュレーションの開始ターン。</param>
+        /// <param name="endTurn">シミュレーションの終了ターン。</param>
+        public void RunSimulationPeriod(int startTurn, int endTurn)
+        {
+            Console.WriteLine($"--- シミュレーション開始: ターン {startTurn} から {endTurn} ---");
+            _state = new SimulationState(startTurn); // シミュレーション開始ターンで状態を初期化
+
+            for (int turn = startTurn; turn <= endTurn; turn++)
+            {
+                Console.WriteLine($"\n--- ターン {turn:D4} (第 {_state.CurrentGeneration:D2} 世代) ---");
+                _state.AdvanceTurn(); // ターンを進める
+
+                // 1. ジョブの実行 (生活職業)
+                if (!ManageJobs())
+                {
+                    Console.WriteLine("[FATAL] ジョブ管理に失敗しました。シミュレーションを中断します。");
+                    break;
+                }
+
+                // 2. 魔法の適用 (社会技術) - 新規発見・研究・適用
+                if (!ApplySocialTechnologies())
+                {
+                    Console.WriteLine("[FATAL] 社会技術の適用に失敗しました。シミュレーションを中断します。");
+                    break;
+                }
+
+                // 3. フロム風戦闘
+                if (!_combatEngine.SimulateCombat(_state))
+                {
+                    Console.WriteLine("[FATAL] 戦闘シミュレーションに失敗しました。シミュレーションを中断します。");
+                    break;
+                }
+
+                // 4. ブラインド熱科学クラフト
+                if (!_craftingEngine.PerformCrafting(_state))
+                {
+                    Console.WriteLine("[FATAL] クラフトに失敗しました。シミュレーションを中断します。");
+                    break;
+                }
+
+                // 5. 正史のコミット
+                if (!_historyRecorder.CommitHistory(_state))
+                {
+                    Console.WriteLine("[FATAL] 正史コミットに失敗しました。シミュレーションを中断します。");
+                    break;
+                }
+
+                // 現在の状態をログ出力
+                Console.WriteLine($"[状態] 文明力: {_state.CivilizationPower}, 食料: {_state.Resources["Food"]}, 材料: {_state.Resources["Materials"]}, 知識: {_state.Resources["Knowledge"]}");
+
+                // 世代の変わり目に特別なイベントを発生させる
+                if ((_state.CurrentTurn - startTurn) % 50 == 0 && _state.CurrentTurn != startTurn)
+                {
+                    Console.WriteLine($"--- 第 {_state.CurrentGeneration} 世代の終わり ---");
+                    _state.AddHistoricalEvent($"第 {_state.CurrentGeneration} 世代が終わりを告げ、新たな時代が始まった。");
+                    _historyRecorder.CommitHistory(_state); // 世代末のイベントを即時コミット
+                }
+
+                // 致命的な状態チェック: 文明力または食料が枯渇したら滅亡
+                if (_state.CivilizationPower <= 0 || _state.Resources["Food"] <= 0)
+                {
+                    Console.WriteLine("[FATAL] 文明が維持不可能になりました。シミュレーションを中断します。");
+                    _state.AddHistoricalEvent("文明は滅亡した。");
+                    _historyRecorder.CommitHistory(_state);
+                    break;
+                }
+
+                Thread.Sleep(50); // 視覚的に進行を確認するための短い遅延
             }
 
-            // 4. その他の全体的な復興要素を考慮
-            // 人口が多いほど、大規模なプロジェクトを遂行できる可能性が太くなる
-            score *= (1.0 + (double)state.Population / 5_000_000);
-            // 資源が豊富であるほど、多様な選択肢を実行できる可能性が太くなる
-            score *= (1.0 + state.Resources / 500_000);
-            // 世代が進むにつれて、より複雑な選択肢の重要性が増す可能性
-            score *= (1.0 + (state.CurrentGeneration - 20) * 0.02); // 20世代目以降で世代が上がるごとにボーナス
-
-            // スコアを0.0～1.0の範囲に正規化し、過度な変動を抑制
-            path.PruningScore = Math.Min(1.0, Math.Max(0.0, score));
-            Console.WriteLine($"    Path '{path.Description}' evaluated with score: {path.PruningScore:F4}");
+            _historyRecorder.FinalizeHistory(endTurn);
+            Console.WriteLine($"--- シミュレーション終了: ターン {endTurn} ---");
         }
-    }
-}
 
-/// <summary>
-/// MAGI自動合議システム。
-/// スクルドの剪定理論で評価されたパスの中から、最も「太い」ルートを合議で決定します。
-/// </summary>
-public class MAGI_ConsensusEngine
-{
-    /// <summary>
-    /// 複数の潜在的なパスの中から、合議によって最適なパスを決定します。
-    /// 現在は最もPruningScoreが高いパスを選択するシンプルなロジックですが、
-    /// 実際には複数の「MAGI」が異なる視点から評価し、投票や交渉を通じて決定する複雑なシステムを想定しています。
-    /// </summary>
-    /// <param name="potentialPaths">評価済みのFuturePathOptionリスト。</param>
-    /// <returns>合議によって決定されたFuturePathOption。合議が成立しない場合はnull。</returns>
-    public FuturePathOption AchieveConsensus(List<FuturePathOption> potentialPaths)
-    {
-        if (!potentialPaths.Any())
+        /// <summary>
+        /// アクティブなジョブ（生活職業）を実行します。
+        /// Safe-Fail: ジョブ管理が成功したかどうかを返します。
+        /// </summary>
+        /// <returns>成功すればtrue、失敗すればfalse。</returns>
+        private bool ManageJobs()
         {
-            Console.WriteLine("  MAGI: No potential paths to achieve consensus on.");
-            return null;
+            try
+            {
+                foreach (var job in _state.ActiveJobs.ToList()) // ToList()で列挙中にコレクション変更を避ける
+                {
+                    if (!job.Perform(_state))
+                    {
+                        Console.WriteLine($"[WARN] ジョブ '{job.Name}' の実行に失敗しました。");
+                        // 失敗してもシミュレーションは続行するが、ログは残す
+                    }
+                }
+                // 新しいジョブの発見や割り当てロジックはここに追加可能
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][GameSimulator] ジョブ管理中にエラー: {ex.Message}");
+                return false; // Safe-Fail
+            }
         }
 
-        // TODO: 複数の仮想MAGIユニット（Melchior, Balthasar, Casparなど）が、
-        // それぞれ異なる優先順位（例: 安定性、成長、革新）に基づいてパスを評価し、
-        // 最終的な合議を形成する複雑なロジックを実装する。
-        // 現状は最も高いPruningScoreを持つパスを単純に選択。
-        FuturePathOption chosen = potentialPaths.OrderByDescending(p => p.PruningScore).FirstOrDefault();
-
-        if (chosen == null)
+        /// <summary>
+        /// 新しい社会技術（魔法）の発見・研究・適用を試みます。
+        /// Safe-Fail: 社会技術の適用プロセスが成功したかどうかを返します。
+        /// </summary>
+        /// <returns>成功すればtrue、失敗すればfalse。</returns>
+        private bool ApplySocialTechnologies()
         {
-            Console.WriteLine("  MAGI: Consensus failed to identify a suitable path.");
-        }
-        else
-        {
-            Console.WriteLine($"  MAGI: Consensus reached. Chosen path is '{chosen.Description}'.");
-        }
-        return chosen;
-    }
-}
+            try
+            {
+                // 特定のターンで新しい社会技術を発見するロジック (例)
+                IMagic newMagic = null;
+                if (_state.CurrentTurn == 1060 && !_state.ActiveSocialTechnologies.Any(m => m.Name == "農業革命"))
+                {
+                    newMagic = new AgriculturalRevolution();
+                }
+                else if (_state.CurrentTurn == 1120 && !_state.ActiveSocialTechnologies.Any(m => m.Name == "錬金術の基礎"))
+                {
+                    newMagic = new BasicAlchemy();
+                }
+                // 他の技術発見条件を追加...
 
-/// <summary>
-/// MagicSanitizerEngine。
-/// 魔法（社会技術）の定義規約を厳格に守り、ゲームバランスを崩す可能性のある要素を自動的に健全化します。
-/// </summary>
-public class MagicSanitizerEngine
-{
-    /// <summary>
-    /// 全ての利用可能なMagicオブジェクトを検査し、定義規約に沿っているか、ゲームバランスを崩さないかを検証・調整します。
-    /// </summary>
-    /// <param name="magics">健全化対象のMagicオブジェクトのリスト。</param>
-    public void SanitizeAllMagics(List<Magic> magics)
-    {
-        Console.WriteLine("  MagicSanitizerEngine: Running integrity check on all Magics...");
-        foreach (var magic in magics)
-        {
-            SanitizeMagic(magic);
-        }
-        Console.WriteLine("  MagicSanitizerEngine: Check completed.");
-    }
+                if (newMagic != null)
+                {
+                    Console.WriteLine($"[魔法] 新しい社会技術 '{newMagic.Name}' の研究が完了した。検証を開始します。");
+                    if (_magicSanitizer.ValidateMagic(newMagic, _state))
+                    {
+                        if (newMagic.IsApplicable(_state))
+                        {
+                            if (newMagic.Apply(_state))
+                            {
+                                _state.ActiveSocialTechnologies.Add(newMagic);
+                                _state.AddHistoricalEvent($"新たな社会技術 '{newMagic.Name}' が導入された。");
+                                Console.WriteLine($"[魔法] 社会技術 '{newMagic.Name}' を文明に導入しました。");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"[WARN] 社会技術 '{newMagic.Name}' の適用に失敗しました（Applyメソッドがfalseを返しました）。");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"[INFO] 社会技術 '{newMagic.Name}' は現在適用条件を満たしていません。");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"[WARN] 社会技術 '{newMagic.Name}' はMagicSanitizerEngineによって拒否されました。");
+                    }
+                }
 
-    /// <summary>
-    /// 個々のMagicオブジェクトを健全化します。
-    /// </summary>
-    /// <param name="magic">健全化対象のMagicオブジェクト。</param>
-    private void SanitizeMagic(Magic magic)
-    {
-        // 規約: 魔法 = 社会技術
-        if (!magic.IsSocialTechnology)
-        {
-            Console.WriteLine($"    [Sanitizer] WARNING: Magic '{magic.Name}' is not marked as a social technology. Forcing 'IsSocialTechnology = true'.");
-            magic.IsSocialTechnology = true; // 規約に強制的に合わせる
-            // 必要に応じて、その効果を調整する
-            magic.EffectMagnitude = Math.Min(magic.EffectMagnitude, 5.0); // 非社会技術的な効果を抑制
-        }
+                // 既存の社会技術の効果を毎ターン適用するロジック (もしあれば)
+                // 現在の例では、AgriculturalRevolutionやBasicAlchemyは一度適用されると永続的な効果を持つと想定。
+                // 毎ターン効果がある場合は、ここで各ActiveSocialTechnologiesのApplyを呼び出す。
+                // 例: foreach (var magic in _state.ActiveSocialTechnologies) { magic.ApplyPerTurnEffect(_state); }
 
-        // ゲームバランスを崩すような強力すぎる効果を調整
-        if (magic.EffectMagnitude > 10.0) // 仮の閾値
-        {
-            Console.WriteLine($"    [Sanitizer] WARNING: Magic '{magic.Name}' has an excessively high effect magnitude ({magic.EffectMagnitude:F2}). Reducing to 10.0.");
-            magic.EffectMagnitude = 10.0; // 上限を設定
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR][GameSimulator] 社会技術適用中にエラー: {ex.Message}");
+                return false; // Safe-Fail
+            }
         }
-        else if (magic.EffectMagnitude < 0.1) // 効果が小さすぎる場合も調整
-        {
-            Console.WriteLine($"    [Sanitizer] WARNING: Magic '{magic.Name}' has an excessively low effect magnitude ({magic.EffectMagnitude:F2}). Increasing to 0.1.");
-            magic.EffectMagnitude = 0.1; // 下限を設定
-        }
-
-        // TODO: その他、不整合な組み合わせ、前提条件を満たさないMagicなどを検出・修正するロジックを追加
-    }
-}
-
-/// <summary>
-/// HistoricalRecordManager。
-/// シミュレーションの進行とMAGIの決定を正史として記録し、エラー発生時には詳細なログを残します。
-/// </summary>
-public class HistoricalRecordManager
-{
-    /// <summary>
-    /// 現在のシミュレーション状態とMAGIによって選択されたパスを正史として記録します。
-    /// </summary>
-    /// <param name="state">現在のシミュレーション状態。</param>
-    /// <param name="chosenPath">MAGIによって選択されたFuturePathOption。</param>
-    public void CommitToChronicle(SimulationState state, FuturePathOption chosenPath)
-    {
-        // TODO: データベース、ファイル、または内部の永続的な歴史ログに詳細な情報を保存するロジックを実装
-        // 例: JSON形式で状態をシリアライズして保存、特定のイベントログを記録
-        Console.WriteLine($"  Chronicle: Turn {state.CurrentTurn} (Gen {state.CurrentGeneration}) - Committed '{chosenPath.Description}' (Score: {chosenPath.PruningScore:F4})");
     }
 
     /// <summary>
-    /// シミュレーション中に発生した致命的なエラーを詳細にログに記録します。
-    /// Safe-Fail構造の一部として、問題発生時の状況を把握するために重要です。
+    /// プログラムのエントリポイント。
     /// </summary>
-    /// <param name="state">エラー発生時のシミュレーション状態。</param>
-    /// <param name="ex">発生した例外オブジェクト。</param>
-    public void LogCriticalFailure(SimulationState state, Exception ex)
+    public class Program
     {
-        // TODO: エラーログファイルへの書き込み、監視システムへの通知など、より堅牢なエラーハンドリングを実装
-        Console.Error.WriteLine($"\n--- CRITICAL FAILURE LOG ---");
-        Console.Error.WriteLine($"Timestamp: {DateTime.UtcNow}");
-        Console.Error.WriteLine($"Turn: {state.CurrentTurn}, Generation: {state.CurrentGeneration}");
-        Console.Error.WriteLine($"Population: {state.Population}, Resources: {state.Resources}");
-        Console.Error.WriteLine($"Exception Type: {ex.GetType().Name}");
-        Console.Error.WriteLine($"Message: {ex.Message}");
-        Console.Error.WriteLine($"StackTrace:\n{ex.StackTrace}");
-        Console.Error.WriteLine($"--- END CRITICAL FAILURE LOG ---\n");
+        public static void Main(string[] args)
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8; // コンソールでの日本語表示を正しくする
+
+            // シミュレーション期間の定義
+            const int StartTurn = 1050;
+            const int EndTurn = 1250;
+
+            GameSimulator simulator = new GameSimulator();
+            simulator.RunSimulationPeriod(StartTurn, EndTurn);
+
+            Console.WriteLine("\nシミュレーションが完了しました。");
+            Console.WriteLine("正史は 'civilization_history.log' に記録されています。");
+            Console.WriteLine("何かキーを押して終了します...");
+            Console.ReadKey();
+        }
     }
 }
-
-/// <summary>
-/// Magicクラス。規約により「魔法=社会技術」として扱われます。
-/// </summary>
-public class Magic
-{
-    public string Name { get; }
-    public string Description { get; }
-    public bool IsSocialTechnology { get; set; } // 規約: 魔法は社会技術である
-    public double EffectMagnitude { get; set; } // 効果の大きさ
-
-    /// <summary>
-    /// Magicの新しいインスタンスを初期化します。
-    /// </summary>
-    /// <param name="name">魔法の名前。</param>
-    /// <param name="description">魔法の説明。</param>
-    /// <param name="isSocialTechnology">この魔法が社会技術であるか。</param>
-    /// <param name="effectMagnitude">魔法の効果の大きさ。</param>
-    public Magic(string name, string description, bool isSocialTechnology, double effectMagnitude = 1.0)
-    {
-        Name = name;
-        Description = description;
-        IsSocialTechnology = isSocialTechnology;
-        EffectMagnitude = effectMagnitude;
-    }
-}
-
-/// <summary>
-/// Jobクラス。規約により「ジョブ=生活職業」として扱われます。
-/// </summary>
-public class Job
-{
-    public string Name { get; }
-    public string Description { get; }
-    public bool IsLifeOccupation { get; } // 規約: ジョブは生活職業である
-    public double Productivity { get; set; } // 生産性や効率
-
-    /// <summary>
-    /// Jobの新しいインスタンスを初期化します。
-    /// </summary>
-    /// <param name="name">ジョブの名前。</param>
-    /// <param name="description">ジョブの説明。</param>
-    /// <param name="isLifeOccupation">このジョブが生活職業であるか。</param>
-    /// <param name="productivity">ジョブの生産性。</param>
-    public Job(string name, string description, bool isLifeOccupation, double productivity = 1.0)
-    {
-        Name = name;
-        Description = description;
-        IsLifeOccupation = isLifeOccupation;
-        Productivity = productivity;
-    }
-}
-
-// --- シミュレーション実行例 ---
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        // 初期状態のシミュレーションインスタンスを作成
-        SimulationState initialState = new SimulationState(1050, 22); // ターン1050, 第22世代から開始
-
-        // ゲームシミュレーションマネージャーを初期化
-        GameSimulationManager gameManager = new GameSimulationManager(initialState);
-
-        // 自律シミュレーションを実行
-        gameManager.RunAutonomousSimulation();
-
-        Console.WriteLine("\nPress any key to exit.");
-        Console.ReadKey();
-    }
-}
+```
 ```
