@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 // =============================================================================
 // MAGI-2 ウルズ — 因果律・歴史整合性・EraTag 合致（拒否権）
@@ -34,6 +35,7 @@ public sealed class UrdEvaluator : MagiSystemEvaluator
             return veto;
         }
 
+        int contradictionTax = ComputeEraContradictionTax(branch, evaluationTurn, out _);
         int score = scriptResult.continuityScore + (scriptResult.techGrowthScore / 2);
         EraTag era = EraContextResolver.ResolveEraTag(evaluationTurn);
         score += ScoreEraAlignment(branch, era);
@@ -59,7 +61,80 @@ public sealed class UrdEvaluator : MagiSystemEvaluator
             branch,
             score,
             $"整合={scriptResult.continuityScore} 技術={scriptResult.techGrowthScore} " +
-            $"ERA={EraContextResolver.FormatEraLabel(era)}");
+            $"ERA={EraContextResolver.FormatEraLabel(era)} Tax={contradictionTax}");
+    }
+
+    /// <summary>
+    /// 時代矛盾税（EraContradictionTax）。Veto 時は大きな値を返します。
+    /// 不遇枝蓄積の健全判定: Tax &lt; 50 かつ Veto なし。
+    /// </summary>
+    public static int ComputeEraContradictionTax(
+        HistoryTimelineBranch branch,
+        int evaluationTurn,
+        out bool vetoTriggered)
+    {
+        vetoTriggered = false;
+        if (branch == null)
+        {
+            return 0;
+        }
+
+        string vetoReason = TryBuildVetoReason(branch, evaluationTurn);
+        if (!string.IsNullOrEmpty(vetoReason))
+        {
+            vetoTriggered = true;
+            return 999;
+        }
+
+        int tax = 0;
+        string blob = BuildBranchBlob(branch);
+        EraTag era = EraContextResolver.ResolveEraTag(evaluationTurn);
+        MacroParamDelta terminal = branch.AccumulateParamDeltaUpToTurn(
+            evaluationTurn,
+            branch.primaryNationId > 0 ? branch.primaryNationId : 1);
+
+        if (era == EraTag.Early &&
+            ContainsKeyword(blob, "HERETIC", "ARCANE_REVIVAL", "ORTHODOXY"))
+        {
+            tax += 25;
+        }
+
+        if (terminal != null)
+        {
+            if (terminal.isSurvivalOverridden && !terminal.survivalValue)
+            {
+                tax += 18;
+            }
+
+            if (terminal.barrierEfficiencyDelta < -0.12f)
+            {
+                tax += 15;
+            }
+
+            if (terminal.threatMultiplier > 1.35f && terminal.powerMultiplier < 0.9f)
+            {
+                tax += 20;
+            }
+
+            if (terminal.powerMultiplier < 0.75f)
+            {
+                tax += 12;
+            }
+        }
+
+        if (ContainsKeyword(blob, "CIVILWAR", "SCHISM") && era == EraTag.Early)
+        {
+            tax += 10;
+        }
+
+        return Mathf.Max(0, tax);
+    }
+
+    /// <summary>不遇枝蓄積の対象となり得る健全枝か（Tax&lt;50 かつ Vetoなし）。</summary>
+    public static bool IsHealthyForLatentEnergy(HistoryTimelineBranch branch, int evaluationTurn)
+    {
+        int tax = ComputeEraContradictionTax(branch, evaluationTurn, out bool veto);
+        return !veto && tax < 50;
     }
 
     private static int ScoreEraAlignment(HistoryTimelineBranch branch, EraTag era)

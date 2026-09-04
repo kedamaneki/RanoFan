@@ -36,6 +36,8 @@ public sealed class MagiBranchComparisonRow
     public int skuldScore;
     public bool urdVeto;
     public int scriptTotalScore;
+    public int latentEnergyBonus;
+    public int eraContradictionTax;
 }
 
 /// <summary>MAGI 合議結果。</summary>
@@ -61,6 +63,7 @@ public sealed class MagiSystemDecisionVerifyResult
     public bool safeFailPass;
     public bool stalenessDisagreedPass;
     public bool skuldPruningPass;
+    public bool latentEnergyPass;
     public string message = string.Empty;
 }
 

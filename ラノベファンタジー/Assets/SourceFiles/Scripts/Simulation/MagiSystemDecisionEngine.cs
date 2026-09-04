@@ -86,6 +86,9 @@ public class MagiSystemDecisionEngine : MonoBehaviour
             List<HistoryTimelineBranch> candidates = SanitizeCandidates(branches, mgr, out bool usedFallback);
             result.usedSafeFailFallback = usedFallback;
 
+            // 世代審議の先頭でクールダウンを 1 世代分進行
+            HistoryBranchManager.TickCategoryCooldowns();
+
             if (candidates.Count == 0)
             {
                 result.status = MagiDeliberationStatus.SafeFailFallback;
@@ -149,6 +152,11 @@ public class MagiSystemDecisionEngine : MonoBehaviour
                 TimelineGenerationLoopEngine.SyncMagiDeliberationState(true, rankingList);
                 LogDisagreementComparison(votes, result.comparison);
             }
+
+            string selectedId = result.commitResult != null && result.commitResult.success
+                ? result.commitResult.branchId
+                : result.agreedBranchId;
+            AccumulateNeglectedLatentEnergy(candidates, selectedId, turn);
 
             LogDeliberation(result, votes);
             LastDeliberationResult = result;
@@ -290,6 +298,8 @@ public class MagiSystemDecisionEngine : MonoBehaviour
             MagiUnitVote v = verdandi.ScoreBranch(branch, script, turn, mainAnchor);
             MagiUnitVote u = urd.ScoreBranch(branch, script, turn, mainAnchor);
             MagiUnitVote s = skuld.ScoreBranch(branch, script, turn, mainAnchor);
+            int tax = UrdEvaluator.ComputeEraContradictionTax(branch, turn, out bool taxVeto);
+            int latent = HistoryBranchManager.GetLatentEnergyBonusForBranch(branch.branchId);
 
             rows.Add(new MagiBranchComparisonRow
             {
@@ -298,13 +308,77 @@ public class MagiSystemDecisionEngine : MonoBehaviour
                 verdandiScore = v.score,
                 urdScore = u.vetoTriggered ? int.MinValue : u.score,
                 skuldScore = s.score,
-                urdVeto = u.vetoTriggered,
-                scriptTotalScore = script.totalScore
+                urdVeto = u.vetoTriggered || taxVeto,
+                scriptTotalScore = script.totalScore,
+                latentEnergyBonus = latent,
+                eraContradictionTax = tax
             });
         }
 
         rows.Sort((a, b) => b.skuldScore.CompareTo(a.skuldScore));
         return rows;
+    }
+
+    /// <summary>
+    /// ウルズ健全かつクールダウン終了の不遇枝カテゴリへ +25pt 蓄積します。
+    /// 正史採択カテゴリ・破綻枝・クールダウン中は除外します。
+    /// </summary>
+    public static void AccumulateNeglectedLatentEnergy(
+        IReadOnlyList<HistoryTimelineBranch> candidates,
+        string selectedBranchId,
+        int evaluationTurn)
+    {
+        try
+        {
+            if (candidates == null || candidates.Count == 0)
+            {
+                return;
+            }
+
+            string selectedCategory = string.IsNullOrWhiteSpace(selectedBranchId)
+                ? string.Empty
+                : HistoryBranchManager.ResolveBranchCategory(selectedBranchId);
+
+            HashSet<string> processed = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            for (int i = 0; i < candidates.Count; i++)
+            {
+                HistoryTimelineBranch branch = candidates[i];
+                if (branch == null || string.IsNullOrWhiteSpace(branch.branchId))
+                {
+                    continue;
+                }
+
+                string category = HistoryBranchManager.ResolveBranchCategory(branch.branchId);
+                if (string.IsNullOrWhiteSpace(category) ||
+                    !processed.Add(category))
+                {
+                    continue;
+                }
+
+                if (!string.IsNullOrEmpty(selectedCategory) &&
+                    string.Equals(category, selectedCategory, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                if (HistoryBranchManager.IsCategoryOnCooldown(category))
+                {
+                    continue;
+                }
+
+                if (!UrdEvaluator.IsHealthyForLatentEnergy(branch, evaluationTurn))
+                {
+                    continue;
+                }
+
+                HistoryBranchManager.TryAccumulateLatentEnergy(category, out _);
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(
+                $"[MagiSystemDecisionEngine] AccumulateNeglectedLatentEnergy Safe-Fail: {exception.Message}");
+        }
     }
 
     private static bool TryResolveUnanimousChoice(
@@ -654,6 +728,7 @@ public class MagiSystemDecisionEngine : MonoBehaviour
 
             EnvironmentBiorhythmEngine.ResetRevivalTransitionLogForVerification();
             verify.skuldPruningPass = RunSkuldPruningProbe(mgr, log);
+            verify.latentEnergyPass = RunLatentEnergyProbe(mgr, log);
 
             VerdandiEvaluator verdandiProbe = new VerdandiEvaluator();
             UrdEvaluator urdProbe = new UrdEvaluator();
@@ -665,7 +740,8 @@ public class MagiSystemDecisionEngine : MonoBehaviour
                            $"skuld={skuldProbe.UnitDisplayName} pass={unitProbePass}");
 
             verify.success = verify.allAgreedPass && verify.disagreedPass && verify.safeFailPass &&
-                             verify.stalenessDisagreedPass && verify.skuldPruningPass && unitProbePass;
+                             verify.stalenessDisagreedPass && verify.skuldPruningPass &&
+                             verify.latentEnergyPass && unitProbePass;
             verify.message = log.ToString().TrimEnd();
             WriteVerifyLog(verify);
             return verify;
@@ -784,6 +860,118 @@ public class MagiSystemDecisionEngine : MonoBehaviour
             log.AppendLine($"staleness: Safe-Fail {exception.Message} pass=false");
             return false;
         }
+    }
+
+    /// <summary>
+    /// 不遇枝 +25pt 蓄積 → 正史採択でリセット＆CD3 → CD中は蓄積不可 → Tick 後に再蓄積、を検証します。
+    /// </summary>
+    private static bool RunLatentEnergyProbe(HistoryBranchManager mgr, StringBuilder log)
+    {
+        try
+        {
+            mgr.ClearRegisteredBranches();
+            mgr.ResetLatentEnergyStateForVerification();
+            TimelineGenerationLoopEngine.SyncMagiDeliberationState(false);
+
+            const int turn = 1100;
+            const string neglectedId = "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T1100";
+            const string winnerId = "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T1100";
+            string neglectedCat = HistoryBranchManager.ResolveBranchCategory(neglectedId);
+            string winnerCat = HistoryBranchManager.ResolveBranchCategory(winnerId);
+
+            HistoryTimelineBranch neglected = BuildVerifyLatentBranch(neglectedId, "IF_Line: 街道開拓と魔獣");
+            HistoryTimelineBranch winner = BuildVerifyLatentBranch(winnerId, "IF_Line: 新魔導学術");
+            mgr.UpsertRegisteredBranchForVerification(neglected);
+            mgr.UpsertRegisteredBranchForVerification(winner);
+
+            bool healthy = UrdEvaluator.IsHealthyForLatentEnergy(neglected, turn);
+            List<HistoryTimelineBranch> pool = new List<HistoryTimelineBranch> { neglected, winner };
+
+            // 審議1: 勝者なし扱い → 両健全カテゴリへ蓄積（winner も不遇として +25）
+            AccumulateNeglectedLatentEnergy(pool, selectedBranchId: string.Empty, turn);
+            int energyAfterFirst = HistoryBranchManager.GetLatentEnergy(neglectedCat);
+            bool accumPass = healthy &&
+                             energyAfterFirst == HistoryBranchManager.LatentEnergyPerGeneration &&
+                             HistoryBranchManager.GetLatentEnergy(winnerCat) ==
+                             HistoryBranchManager.LatentEnergyPerGeneration;
+
+            // 正史採択: winner 噴出（リセット＋CD3）
+            int beforeErupt = HistoryBranchManager.GetLatentEnergy(winnerCat);
+            HistoryBranchManager.CommitBranchAsMainStory(winnerId, beforeErupt + 100, turn);
+            bool eruptPass =
+                HistoryBranchManager.GetLatentEnergy(winnerCat) == 0 &&
+                HistoryBranchManager.GetCategoryCooldown(winnerCat) ==
+                HistoryBranchManager.CategoryCooldownGenerations &&
+                beforeErupt == HistoryBranchManager.LatentEnergyPerGeneration;
+
+            // CD 中は winner カテゴリへ蓄積されない
+            AccumulateNeglectedLatentEnergy(pool, selectedBranchId: winnerId, turn);
+            bool cooldownBlockPass =
+                HistoryBranchManager.GetLatentEnergy(winnerCat) == 0 &&
+                HistoryBranchManager.GetLatentEnergy(neglectedCat) ==
+                HistoryBranchManager.LatentEnergyPerGeneration * 2;
+
+            // 3 世代 Tick で CD 解除
+            HistoryBranchManager.TickCategoryCooldowns();
+            HistoryBranchManager.TickCategoryCooldowns();
+            HistoryBranchManager.TickCategoryCooldowns();
+            bool cooldownCleared = !HistoryBranchManager.IsCategoryOnCooldown(winnerCat);
+
+            AccumulateNeglectedLatentEnergy(pool, selectedBranchId: neglectedId, turn);
+            bool reaccumPass = cooldownCleared &&
+                               HistoryBranchManager.GetLatentEnergy(winnerCat) ==
+                               HistoryBranchManager.LatentEnergyPerGeneration;
+
+            // スコアバフ適用確認
+            TimelineScriptEvaluationResult script =
+                TimelineScriptEvaluator.EvaluateTimelineBranch(winner, turn);
+            MagiUnitVote skuldVote = new SkuldEvaluator().ScoreBranch(winner, script, turn, null);
+            int expectedFloor = HistoryBranchManager.GetLatentEnergy(winnerCat);
+            bool buffPass = skuldVote.score >= expectedFloor &&
+                            (skuldVote.reason?.IndexOf("Latent=", StringComparison.Ordinal) ?? -1) >= 0;
+
+            bool pass = accumPass && eruptPass && cooldownBlockPass && reaccumPass && buffPass;
+            log.AppendLine(
+                $"latentEnergy: healthy={healthy} accum={energyAfterFirst} eruptCd=" +
+                $"{HistoryBranchManager.CategoryCooldownGenerations} " +
+                $"blockOk={cooldownBlockPass} reaccum={HistoryBranchManager.GetLatentEnergy(winnerCat)} " +
+                $"buff={skuldVote.score} pass={pass}");
+            return pass;
+        }
+        catch (Exception exception)
+        {
+            log.AppendLine($"latentEnergy: Safe-Fail {exception.Message} pass=false");
+            return false;
+        }
+    }
+
+    private static HistoryTimelineBranch BuildVerifyLatentBranch(string branchId, string displayName)
+    {
+        int nationId = MicroToMacroAggregator.DefaultNationId;
+        return new HistoryTimelineBranch
+        {
+            branchId = branchId,
+            displayName = displayName,
+            parentBranchId = string.Empty,
+            primaryNationId = nationId,
+            baseStartTurn = 1051,
+            nodes = new List<HistoryBranchNode>
+            {
+                new HistoryBranchNode
+                {
+                    turn = 1051,
+                    nationId = nationId,
+                    keyEventId = "HIST_NATION_001_GEO_TURN_001_INNOVATION",
+                    outcomeFlag = "ALT_NATION_001_OUTCOME_INNOVATION",
+                    delta = new MacroParamDelta
+                    {
+                        powerMultiplier = 1.10f,
+                        barrierEfficiencyDelta = 0.05f,
+                        threatMultiplier = 0.95f
+                    }
+                }
+            }
+        };
     }
 
     private static bool RunSkuldPruningProbe(HistoryBranchManager mgr, StringBuilder log)

@@ -116,20 +116,26 @@ public sealed class SkuldEvaluator : MagiSystemEvaluator
         if (evaluationTurn >= PruningModelStartTurn)
         {
             SkuldPossibilityAnalysis analysis = AnalyzePossibilityTree(branch, evaluationTurn);
+            int latent = HistoryBranchManager.GetLatentEnergyBonusForBranch(branch.branchId);
+            int total = analysis.totalScore + Mathf.Max(0, latent);
+            string latentLabel = latent > 0 ? $" Latent=+{latent}" : string.Empty;
             return BuildVote(
                 branch,
-                analysis.totalScore,
+                total,
                 $"剪定 BF={analysis.branchingFactorScore} PU={analysis.potentialUnlocksScore} " +
                 $"CP={analysis.civilizationPlasticityScore} " +
-                $"枝={analysis.branchCount} 潜在={analysis.unlockCount} ➔ 合計={analysis.totalScore}");
+                $"枝={analysis.branchCount} 潜在={analysis.unlockCount}{latentLabel} ➔ 合計={total}");
         }
 
+        int compatLatent = HistoryBranchManager.GetLatentEnergyBonusForBranch(branch.branchId);
+        int compatScore = scriptResult.totalScore + Mathf.Max(0, compatLatent);
         return BuildVote(
             branch,
-            scriptResult.totalScore,
+            compatScore,
             $"正史互換 total={scriptResult.totalScore} " +
             $"(Dyn={scriptResult.dynamismScore} Human={scriptResult.humanConflictScore} " +
-            $"Tech={scriptResult.techGrowthScore} Cont={scriptResult.continuityScore})");
+            $"Tech={scriptResult.techGrowthScore} Cont={scriptResult.continuityScore})" +
+            (compatLatent > 0 ? $" Latent=+{compatLatent}" : string.Empty));
     }
 
     /// <summary>剪定理論モデルで枝の未来可能性を分析します。</summary>

@@ -99,6 +99,12 @@ public class HistoryBranchManager : MonoBehaviour
     public const string LogTag = "【歴史分岐】";
     public const string AltBranchPrefix = "ALT_";
     public const string CanonBranchId = "HIST_CANON";
+    public const string LatentEnergyAccumLogTag = "【歴史エネルギー蓄積】";
+    public const string LatentEnergyEruptLogTag = "【歴史エネルギー噴出・採択】";
+    /// <summary>不遇枝カテゴリへの毎世代蓄積量（20〜30pt 帯の固定値）。</summary>
+    public const int LatentEnergyPerGeneration = 25;
+    /// <summary>正史採択後、同カテゴリがボーナスを得られない世代数（3世代 ≒ 150年）。</summary>
+    public const int CategoryCooldownGenerations = 3;
 
     public static HistoryBranchManager Instance { get; private set; }
 
@@ -107,6 +113,14 @@ public class HistoryBranchManager : MonoBehaviour
     [SerializeField] private string activeBranchId = string.Empty;
     [SerializeField] private string mainStoryBranchId = string.Empty;
     [SerializeField] private bool canonMode = true;
+
+    /// <summary>カテゴリ別の不遇枝潜在エネルギー（LatentEnergy）。</summary>
+    private readonly Dictionary<string, int> unChosenBranchLatentEnergy =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>カテゴリ別クールダウン残世代（&gt;0 の間は蓄積不可）。</summary>
+    private readonly Dictionary<string, int> categoryCooldowns =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
     public HistoryTimelineBranch CurrentActiveBranch => currentActiveBranch;
     public string ActiveBranchId => canonMode ? CanonBranchId : activeBranchId;
@@ -552,6 +566,10 @@ public class HistoryBranchManager : MonoBehaviour
         activeBranchId = committed.branchId;
         mainStoryBranchId = committed.branchId;
 
+        string category = ResolveBranchCategory(committed.branchId);
+        int eruptedEnergy = GetLatentEnergy(category);
+        NotifyMainStoryCategoryCommitted(category, eruptedEnergy);
+
         if (committed.nodes != null)
         {
             HistoryFlagRegistry.EnsureWired();
@@ -832,6 +850,273 @@ public class HistoryBranchManager : MonoBehaviour
     {
         registeredBranches?.Clear();
         ResetToCanonModeIncludingMainStory();
+        ResetLatentEnergyStateForVerification();
+    }
+
+    // -------------------------------------------------------------------------
+    // 不遇枝エネルギー蓄積・歴史噴出モデル
+    // -------------------------------------------------------------------------
+
+    /// <summary>枝 ID からテーマ・カテゴリキーを解決します（Safe-Fail: UNKNOWN）。</summary>
+    public static string ResolveBranchCategory(string branchId)
+    {
+        if (string.IsNullOrWhiteSpace(branchId))
+        {
+            return "UNKNOWN";
+        }
+
+        string id = branchId.Trim();
+        // 世代サフィックス _T1050 等を除去
+        int tIdx = id.LastIndexOf("_T", StringComparison.OrdinalIgnoreCase);
+        if (tIdx > 0)
+        {
+            string tail = id.Substring(tIdx + 2);
+            bool allDigits = tail.Length > 0;
+            for (int i = 0; i < tail.Length && allDigits; i++)
+            {
+                if (!char.IsDigit(tail[i]))
+                {
+                    allDigits = false;
+                }
+            }
+
+            if (allDigits)
+            {
+                id = id.Substring(0, tIdx);
+            }
+        }
+
+        const string revivalPrefix = "ALT_REVIVAL_";
+        if (id.StartsWith(revivalPrefix, StringComparison.OrdinalIgnoreCase))
+        {
+            string cat = id.Substring(revivalPrefix.Length);
+            return string.IsNullOrWhiteSpace(cat) ? "UNKNOWN" : cat;
+        }
+
+        // ALT_..._OUTCOME_T007_INNOVATION → INNOVATION
+        int outcomeIdx = id.IndexOf("_OUTCOME_", StringComparison.OrdinalIgnoreCase);
+        if (outcomeIdx >= 0)
+        {
+            string after = id.Substring(outcomeIdx + "_OUTCOME_".Length);
+            int us = after.IndexOf('_');
+            if (us >= 0 && us + 1 < after.Length)
+            {
+                // T007_INNOVATION → INNOVATION
+                string rest = after.Substring(us + 1);
+                if (!string.IsNullOrWhiteSpace(rest))
+                {
+                    return rest;
+                }
+            }
+        }
+
+        // ALT_VERIFY_*_BEAST_CATASTROPHE → 末尾トークン群
+        int last = id.LastIndexOf('_');
+        if (last > 0 && last + 1 < id.Length)
+        {
+            return id.Substring(last + 1);
+        }
+
+        return id;
+    }
+
+    public static int GetLatentEnergy(string category)
+    {
+        HistoryBranchManager mgr = EnsureInstance();
+        string key = NormalizeCategoryKey(category);
+        if (string.IsNullOrEmpty(key))
+        {
+            return 0;
+        }
+
+        return mgr.unChosenBranchLatentEnergy.TryGetValue(key, out int energy)
+            ? Mathf.Max(0, energy)
+            : 0;
+    }
+
+    public static int GetLatentEnergyBonusForBranch(string branchId)
+    {
+        return GetLatentEnergy(ResolveBranchCategory(branchId));
+    }
+
+    public static int GetCategoryCooldown(string category)
+    {
+        HistoryBranchManager mgr = EnsureInstance();
+        string key = NormalizeCategoryKey(category);
+        if (string.IsNullOrEmpty(key))
+        {
+            return 0;
+        }
+
+        return mgr.categoryCooldowns.TryGetValue(key, out int cd) ? Mathf.Max(0, cd) : 0;
+    }
+
+    public static bool IsCategoryOnCooldown(string category)
+    {
+        return GetCategoryCooldown(category) > 0;
+    }
+
+    /// <summary>世代進行時: 全カテゴリのクールダウンを 1 減算し、0 で解除します。</summary>
+    public static void TickCategoryCooldowns()
+    {
+        try
+        {
+            HistoryBranchManager mgr = EnsureInstance();
+            if (mgr.categoryCooldowns.Count == 0)
+            {
+                return;
+            }
+
+            List<string> keys = new List<string>(mgr.categoryCooldowns.Keys);
+            for (int i = 0; i < keys.Count; i++)
+            {
+                string key = keys[i];
+                int next = Mathf.Max(0, mgr.categoryCooldowns[key] - 1);
+                if (next <= 0)
+                {
+                    mgr.categoryCooldowns.Remove(key);
+                }
+                else
+                {
+                    mgr.categoryCooldowns[key] = next;
+                }
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning($"[HistoryBranchManager] TickCategoryCooldowns Safe-Fail: {exception.Message}");
+        }
+    }
+
+    /// <summary>
+    /// 健全な不遇枝カテゴリへ +25pt 蓄積します。
+    /// クールダウン中は +0（蓄積しない）。
+    /// </summary>
+    public static int TryAccumulateLatentEnergy(string category, out int currentEnergy)
+    {
+        currentEnergy = 0;
+        try
+        {
+            HistoryBranchManager mgr = EnsureInstance();
+            string key = NormalizeCategoryKey(category);
+            if (string.IsNullOrEmpty(key) ||
+                string.Equals(key, "UNKNOWN", StringComparison.OrdinalIgnoreCase))
+            {
+                return 0;
+            }
+
+            if (mgr.categoryCooldowns.TryGetValue(key, out int cd) && cd > 0)
+            {
+                currentEnergy = GetLatentEnergy(key);
+                return 0;
+            }
+
+            int before = GetLatentEnergy(key);
+            int after = before + LatentEnergyPerGeneration;
+            mgr.unChosenBranchLatentEnergy[key] = after;
+            currentEnergy = after;
+
+            string line =
+                $"{LatentEnergyAccumLogTag} カテゴリ:{key} に +{LatentEnergyPerGeneration}pt 蓄積 (現在: {currentEnergy}pt)";
+            Debug.Log($"<color=#FFE082><b>{line}</b></color>");
+            AppendLatentEnergyPipelineLog(line);
+            return LatentEnergyPerGeneration;
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning($"[HistoryBranchManager] TryAccumulateLatentEnergy Safe-Fail: {exception.Message}");
+            currentEnergy = 0;
+            return 0;
+        }
+    }
+
+    /// <summary>正史採択時: エネルギー 0 リセット＋クールダウン開始。</summary>
+    public static void NotifyMainStoryCategoryCommitted(string category, int eruptedEnergy)
+    {
+        try
+        {
+            HistoryBranchManager mgr = EnsureInstance();
+            string key = NormalizeCategoryKey(category);
+            if (string.IsNullOrEmpty(key))
+            {
+                return;
+            }
+
+            mgr.unChosenBranchLatentEnergy[key] = 0;
+            mgr.categoryCooldowns[key] = CategoryCooldownGenerations;
+
+            if (eruptedEnergy > 0)
+            {
+                string line =
+                    $"{LatentEnergyEruptLogTag} 蓄積ボーナス(+{eruptedEnergy}pt)により カテゴリ:{key} が正史へ選出！ " +
+                    $"ボーナスリセット＆{CategoryCooldownGenerations}世代クールダウン開始。";
+                Debug.Log($"<color=#FF8A65><b>{line}</b></color>");
+                AppendLatentEnergyPipelineLog(line);
+            }
+            else
+            {
+                string line =
+                    $"{LatentEnergyEruptLogTag} カテゴリ:{key} が正史へ選出（蓄積0pt）。" +
+                    $"ボーナスリセット＆{CategoryCooldownGenerations}世代クールダウン開始。";
+                Debug.Log(line);
+                AppendLatentEnergyPipelineLog(line);
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(
+                $"[HistoryBranchManager] NotifyMainStoryCategoryCommitted Safe-Fail: {exception.Message}");
+        }
+    }
+
+    public void ResetLatentEnergyStateForVerification()
+    {
+        unChosenBranchLatentEnergy.Clear();
+        categoryCooldowns.Clear();
+    }
+
+    private static string NormalizeCategoryKey(string category)
+    {
+        return string.IsNullOrWhiteSpace(category) ? string.Empty : category.Trim();
+    }
+
+    private static void AppendLatentEnergyPipelineLog(string line)
+    {
+        try
+        {
+            string unityProjectRoot = Directory.GetParent(Application.dataPath)?.FullName
+                                      ?? Application.dataPath;
+            string repoRoot = Directory.GetParent(unityProjectRoot)?.FullName ?? unityProjectRoot;
+            string stamp = $"{DateTime.Now:yyyy-MM-ddTHH:mm:ss} {line}\n";
+            string[] paths =
+            {
+                Path.Combine(repoRoot, "Logs", "pipeline_execution.log"),
+                Path.Combine(unityProjectRoot, "Logs", "pipeline_execution.log")
+            };
+
+            for (int i = 0; i < paths.Length; i++)
+            {
+                string path = paths[i];
+                string dir = Path.GetDirectoryName(path);
+                if (!string.IsNullOrEmpty(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                try
+                {
+                    File.AppendAllText(path, stamp, Encoding.UTF8);
+                }
+                catch (IOException)
+                {
+                    // Unity -logFile 占有時は Safe-Fail でスキップ
+                }
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning($"[HistoryBranchManager] LatentEnergy ログ Safe-Fail: {exception.Message}");
+        }
     }
 
     private static float SanitizeBase(float value, float fallback)
