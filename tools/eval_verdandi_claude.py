@@ -1,20 +1,24 @@
 import os
 import sys
-import json
 import subprocess
 import anthropic
 
-# 1. Load API Key from .env
-env_path = os.path.join(os.path.dirname(__file__), '.env')
-if os.path.exists(env_path):
-    with open(env_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            if line.startswith('ANTHROPIC_API_KEY='):
-                os.environ['ANTHROPIC_API_KEY'] = line.strip().split('=', 1)[1]
+# Windows コンソールの文字化け対策
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
-api_key = os.environ.get('ANTHROPIC_API_KEY')
+# 1. Load API Key from .env
+env_path = os.path.join(os.path.dirname(__file__), ".env")
+if os.path.exists(env_path):
+    with open(env_path, "r", encoding="utf-8") as f:
+        for line in f:
+            if line.startswith("ANTHROPIC_API_KEY="):
+                os.environ["ANTHROPIC_API_KEY"] = line.strip().split("=", 1)[1]
+
+api_key = os.environ.get("ANTHROPIC_API_KEY")
 if not api_key:
-    print("Error: ANTHROPIC_API_KEY is missing in Tools/.env file.")
+    print("Error: ANTHROPIC_API_KEY is missing in Tools/.env file.", file=sys.stderr)
     sys.exit(1)
 
 client = anthropic.Anthropic(api_key=api_key)
@@ -42,37 +46,61 @@ VERDANDI_SYSTEM_PROMPT = """
 }
 """
 
+
 def auto_git_commit_eval():
     try:
-        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         print(f"📦 Git への自動コミットおよびプッシュを実行中... (対象: {project_root})")
-        
+
         subprocess.run(["git", "add", "."], check=True, cwd=project_root)
-        
+
         result = subprocess.run(
-            ["git", "status", "--porcelain"], 
-            capture_output=True, 
-            text=True, 
-            encoding='utf-8', 
-            errors='replace', 
-            cwd=project_root
+            ["git", "status", "--porcelain"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            cwd=project_root,
         )
-        
+
         if not result.stdout or not result.stdout.strip():
             print("ℹ️ 変更がないため Git コミットをスキップしました。")
             return
 
-        subprocess.run(["git", "commit", "-m", "auto: updated MAGI Verdandi evaluation result"], check=True, cwd=project_root)
-        subprocess.run(["git", "push", "origin", "main"], check=True, cwd=project_root)
-        print("✅ MAGI 審議結果の Git プッシュが完了しました！")
+        subprocess.run(
+            ["git", "commit", "-m", "auto: updated MAGI Verdandi evaluation result"],
+            check=True,
+            cwd=project_root,
+        )
+        push = subprocess.run(
+            ["git", "push", "origin", "main"],
+            cwd=project_root,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if push.returncode == 0:
+            print("✅ MAGI 審議結果の Git プッシュが完了しました！")
+        else:
+            print("⚠️ Git push はスキップ/失敗しました（ローカルコミットは成功している可能性があります）。")
+            if push.stderr:
+                print(push.stderr.strip()[-500:], file=sys.stderr)
     except Exception as e:
-        print(f"⚠️ Git 自動処理をスキップしました: {e}")
+        print(f"⚠️ Git 自動処理をスキップしました: {e}", file=sys.stderr)
+
+
 def evaluate_branches(input_json_path):
     if not os.path.exists(input_json_path):
-        print(f"Error: Target JSON file not found at {input_json_path}")
+        print(f"Error: Target JSON file not found at {input_json_path}", file=sys.stderr)
+        print(
+            "Unity BatchMode (MagiSystemDecisionEngineMenu.BatchVerifyMagiAndQuit) 実行後に "
+            "リポジトリ直下へ CurrentBranchCandidates.json が生成されます。",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
-    with open(input_json_path, 'r', encoding='utf-8') as f:
+    with open(input_json_path, "r", encoding="utf-8") as f:
         branch_data = f.read()
 
     print("Querying Claude 3.5 Sonnet for MAGI-1 (Verdandi) evaluation...")
@@ -83,20 +111,27 @@ def evaluate_branches(input_json_path):
         temperature=0.3,
         system=VERDANDI_SYSTEM_PROMPT,
         messages=[
-            {"role": "user", "content": f"以下の歴史分岐リストを審議してください:\n{branch_data}"}
-        ]
+            {
+                "role": "user",
+                "content": f"以下の歴史分岐リストを審議してください:\n{branch_data}",
+            }
+        ],
     )
 
     result_text = response.content[0].text.strip()
-    
-    # Save output to JSON for Unity / C# consumption
-    output_path = os.path.join(os.path.dirname(__file__), '..', 'VerdandiEvaluationResult.json')
-    with open(output_path, 'w', encoding='utf-8') as f:
+
+    output_path = os.path.join(os.path.dirname(__file__), "..", "VerdandiEvaluationResult.json")
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(result_text)
 
     print(f"✅ MAGI-1 (Verdandi) Evaluation Complete. Output saved to: {output_path}")
 
+
 if __name__ == "__main__":
-    target_file = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), '..', 'CurrentBranchCandidates.json')
+    target_file = (
+        sys.argv[1]
+        if len(sys.argv) > 1
+        else os.path.join(os.path.dirname(__file__), "..", "CurrentBranchCandidates.json")
+    )
     evaluate_branches(target_file)
     auto_git_commit_eval()

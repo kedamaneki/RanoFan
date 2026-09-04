@@ -842,6 +842,9 @@ public class MagiSystemDecisionEngine : MonoBehaviour
                 diverseCandidate
             };
 
+            // Claude パイプライン (eval_verdandi_claude.py) 用に IF 枝候補をリポジトリ直下へ書き出す
+            TryExportBranchCandidatesForPipeline(pruningSet, evaluationTurn);
+
             MagiDeliberationResult pruningResult =
                 EvaluateAndProposeBranch(pruningSet, evaluationTurn);
 
@@ -1081,6 +1084,78 @@ public class MagiSystemDecisionEngine : MonoBehaviour
                 }
             }
         };
+    }
+
+    /// <summary>
+    /// リポジトリ直下へ CurrentBranchCandidates.json を書き出します（Claude Verdandi 評価用）。
+    /// Safe-Fail: 失敗しても検証自体は継続します。
+    /// </summary>
+    private static void TryExportBranchCandidatesForPipeline(
+        IReadOnlyList<HistoryTimelineBranch> branches,
+        int evaluationTurn)
+    {
+        try
+        {
+            if (branches == null || branches.Count == 0)
+            {
+                return;
+            }
+
+            // Assets → ラノベファンタジー → リポジトリルート（その6）
+            string unityProjectRoot = Directory.GetParent(Application.dataPath)?.FullName
+                                     ?? Application.dataPath;
+            string repoRoot = Directory.GetParent(unityProjectRoot)?.FullName ?? unityProjectRoot;
+            string path = Path.Combine(repoRoot, "CurrentBranchCandidates.json");
+
+            var sb = new StringBuilder(1024);
+            sb.AppendLine("{");
+            sb.AppendLine($"  \"evaluationTurn\": {evaluationTurn},");
+            sb.AppendLine("  \"branches\": [");
+            for (int i = 0; i < branches.Count; i++)
+            {
+                HistoryTimelineBranch b = branches[i];
+                if (b == null)
+                {
+                    continue;
+                }
+
+                string id = EscapeJson(b.branchId ?? string.Empty);
+                string name = EscapeJson(b.displayName ?? string.Empty);
+                string parent = EscapeJson(b.parentBranchId ?? string.Empty);
+                sb.AppendLine("    {");
+                sb.AppendLine($"      \"branchId\": \"{id}\",");
+                sb.AppendLine($"      \"displayName\": \"{name}\",");
+                sb.AppendLine($"      \"parentBranchId\": \"{parent}\",");
+                sb.AppendLine($"      \"baseStartTurn\": {b.baseStartTurn}");
+                sb.Append(i < branches.Count - 1 ? "    }," : "    }");
+                sb.AppendLine();
+            }
+
+            sb.AppendLine("  ]");
+            sb.AppendLine("}");
+
+            File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+            Debug.Log($"[MagiSystemDecisionEngine] IF枝候補を書き出しました: {path}");
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(
+                $"[MagiSystemDecisionEngine] CurrentBranchCandidates.json 書き出し Safe-Fail: {exception.Message}");
+        }
+    }
+
+    private static string EscapeJson(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return string.Empty;
+        }
+
+        return value
+            .Replace("\\", "\\\\")
+            .Replace("\"", "\\\"")
+            .Replace("\r", "\\r")
+            .Replace("\n", "\\n");
     }
 
     private static void WriteVerifyLog(MagiSystemDecisionVerifyResult verify)
