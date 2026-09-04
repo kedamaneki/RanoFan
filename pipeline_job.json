@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "jobType": "magiChronicleLoop",
+  "startTurn": 1051,
+  "endTurn": 1250,
+  "generationSpan": 50,
+  "branchCount": 7,
+  "commitPolicy": "skuldPruningMax",
+  "preferThemes": [
+    "学術",
+    "街道開拓",
+    "復興"
+  ],
+  "exportCandidates": true,
+  "promptSummary": "T1050から1250まで連続進行 剪定理論で太いルートをコミット",
+  "preferThemesCsv": "学術,街道開拓,復興"
+}

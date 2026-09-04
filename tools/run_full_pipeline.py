@@ -2,6 +2,13 @@ import os
 import sys
 import subprocess
 
+# tools/ と Tools/ の両パスから import できるようにする
+_TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+if _TOOLS_DIR not in sys.path:
+    sys.path.insert(0, _TOOLS_DIR)
+
+from pipeline_job import prepare_job_from_argv  # noqa: E402
+
 
 def run_step(description, command, cwd=None, log_file=None):
     print(f"\n🚀 [{description}] を実行中...")
@@ -84,16 +91,29 @@ def find_unity_editor_holding_project(unity_project):
 def main():
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     unity_project = os.path.join(project_root, "ラノベファンタジー")
-    prompt = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "自動世代進行とMAGI審議の実行"
 
     if not os.path.isdir(os.path.join(unity_project, "ProjectSettings")):
         print(f"❌ Unity プロジェクトが見つかりません: {unity_project}")
         sys.exit(1)
 
+    # 自然言語 + CLI → pipeline_job.json（Unity が読む機械可読ジョブ）
+    job, job_path, prompt = prepare_job_from_argv(project_root, sys.argv[1:])
+    if not prompt:
+        prompt = "自動世代進行とMAGI審議の実行"
+    print(
+        f"📋 pipeline_job.json → {job_path}\n"
+        f"   type={job.get('jobType')} T{job.get('startTurn')}-{job.get('endTurn')} "
+        f"span={job.get('generationSpan')} branches={job.get('branchCount')}"
+    )
+
+    gen_script = "tools/generate_instruction.py"
+    if not os.path.isfile(os.path.join(project_root, gen_script)):
+        gen_script = "Tools/generate_instruction.py"
+
     # Step 1: Gemini API で指示書(CursorInstruction.md)を自動生成
     success = run_step(
         "1/3 Gemini による設計・指示書自動生成",
-        [sys.executable, "Tools/generate_instruction.py", prompt],
+        [sys.executable, gen_script, prompt],
         cwd=project_root,
     )
     if not success:
@@ -117,7 +137,7 @@ def main():
         )
         sys.exit(1)
 
-    # Step 2: Unity BatchMode
+    # Step 2: Unity BatchMode（pipeline_job.json 駆動）
     unity_path = r"C:\Program Files\Unity\Hub\Editor\6000.5.0f1\Editor\Unity.exe"
     if not os.path.isfile(unity_path):
         hub_editor = r"C:\Program Files\Unity\Hub\Editor"
@@ -139,14 +159,13 @@ def main():
         "-batchmode",
         "-nographics",
         "-projectPath", unity_project,
-        # 現状: 文明復興50年（T1001-1050）。T1050-1250 連続バッチは未接続。
-        "-executeMethod", "MagiSystemDecisionEngineMenu.BatchRunCivilizationRevival50YearsAndQuit",
+        "-executeMethod", "MagiSystemDecisionEngineMenu.BatchRunFromJobFileAndQuit",
         "-logFile", log_file,
         "-quit",
     ]
 
     success = run_step(
-        "2/3 Unity サイレント実行 & MAGI自動審議",
+        "2/3 Unity サイレント実行 & MAGI自動審議 (pipeline_job)",
         unity_cmd,
         cwd=project_root,
         log_file=log_file,
@@ -164,9 +183,13 @@ def main():
         )
         sys.exit(1)
 
+    eval_script = "tools/eval_verdandi_claude.py"
+    if not os.path.isfile(os.path.join(project_root, eval_script)):
+        eval_script = "Tools/eval_verdandi_claude.py"
+
     success = run_step(
         "3/3 Claude MAGI 評価 & Git 自動同期",
-        [sys.executable, "Tools/eval_verdandi_claude.py", candidates],
+        [sys.executable, eval_script, candidates],
         cwd=project_root,
     )
     if not success:

@@ -1255,5 +1255,35 @@ public static class MagiSystemDecisionEngineMenu
                 : $"<color=#FF8A80><b>【文明復興50年】FAIL</b></color>\n{result.message}");
         EditorApplication.Exit(result.success ? 0 : 1);
     }
+
+    [MenuItem("Tools/Procedural Map/Batch Run From Pipeline Job And Quit")]
+    [MenuItem("Tools/Procedural Map/Run From Pipeline Job (pipeline_job.json)")]
+    public static void RunFromPipelineJobFromMenu()
+    {
+        PipelineJobBatchResult result = TimelineGenerationLoopEngine.RunFromPipelineJob();
+        Debug.Log(
+            result.success
+                ? $"<color=#A5D6A7><b>{result.message}</b></color>"
+                : $"<color=#FF8A80><b>【PipelineJob】FAIL</b></color>\n{result.message}");
+        EditorUtility.DisplayDialog(
+            "Pipeline Job",
+            result.message,
+            result.success ? "OK" : "FAIL");
+    }
+
+    /// <summary>
+    /// Unity バッチ（ジョブ駆動）:
+    /// -executeMethod MagiSystemDecisionEngineMenu.BatchRunFromJobFileAndQuit
+    /// 事前にリポジトリ直下へ pipeline_job.json を書いておくこと。
+    /// </summary>
+    public static void BatchRunFromJobFileAndQuit()
+    {
+        PipelineJobBatchResult result = TimelineGenerationLoopEngine.RunFromPipelineJob();
+        Debug.Log(
+            result.success
+                ? $"<color=#A5D6A7><b>{result.message}</b></color>"
+                : $"<color=#FF8A80><b>【PipelineJob】FAIL</b></color>\n{result.message}");
+        EditorApplication.Exit(result.success ? 0 : 1);
+    }
 }
 #endif

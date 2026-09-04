@@ -165,6 +165,36 @@ public sealed class CivilizationRevivalBatchResult
     public string message = string.Empty;
 }
 
+/// <summary>pipeline_job.json（Python パイプライン連携）DTO。JsonUtility 互換。</summary>
+[Serializable]
+public sealed class PipelineJobDto
+{
+    public int schemaVersion = 1;
+    public string jobType = "magiChronicleLoop";
+    public int startTurn = 1001;
+    public int endTurn = 1050;
+    public int generationSpan = 50;
+    public int branchCount = 7;
+    public string commitPolicy = "skuldPruningMax";
+    public bool exportCandidates = true;
+    public string promptSummary = string.Empty;
+    public string preferThemesCsv = string.Empty;
+}
+
+/// <summary>pipeline_job.json 駆動バッチの実行結果。</summary>
+public sealed class PipelineJobBatchResult
+{
+    public bool success;
+    public string jobType = string.Empty;
+    public int startTurn;
+    public int endTurn;
+    public int generationsProcessed;
+    public string finalMainStoryBranchId = string.Empty;
+    public int finalTurn;
+    public string message = string.Empty;
+    public List<CivilizationRevivalBatchResult> segments = new List<CivilizationRevivalBatchResult>();
+}
+
 /// <summary>
 /// 第2世代 (T51〜100) の IF 分岐評価・確定と第3世代 (T101) への移行を一括 orchestrate します。
 /// </summary>
@@ -217,6 +247,7 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
     public static Gen5FinalizationResult LastGen5FinalizationResult { get; private set; }
     public static MagiChroniclePipelineResult LastMagiChroniclePipelineResult { get; private set; }
     public static CivilizationRevivalBatchResult LastCivilizationRevivalBatchResult { get; private set; }
+    public static PipelineJobBatchResult LastPipelineJobBatchResult { get; private set; }
     public static bool AwaitingManualBranchSelection { get; private set; }
     public static List<TimelineScriptEvaluationResult> PendingBranchRankings { get; private set; }
         = new List<TimelineScriptEvaluationResult>();
@@ -1563,6 +1594,138 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
     /// </summary>
     public static CivilizationRevivalBatchResult RunCivilizationRevival50YearsAndCommit()
     {
+        return RunMagiEraSegmentAndCommit(
+            CivilizationRevivalStartTurn,
+            CivilizationRevivalEndTurn,
+            branchCount: 7,
+            idTurnSuffix: CivilizationRevivalEndTurn,
+            exportCandidates: true);
+    }
+
+    /// <summary>
+    /// リポジトリ直下の pipeline_job.json を読み、jobType に応じて MAGI 連続進行／復興50年／検証を実行します。
+    /// </summary>
+    public static PipelineJobBatchResult RunFromPipelineJob()
+    {
+        PipelineJobBatchResult batch = new PipelineJobBatchResult();
+        try
+        {
+            PipelineJobDto job = LoadPipelineJobDto(out string jobPath);
+            batch.jobType = job.jobType ?? "magiChronicleLoop";
+            batch.startTurn = Mathf.Max(1, job.startTurn);
+            batch.endTurn = Mathf.Max(batch.startTurn, job.endTurn);
+
+            Debug.Log(
+                $"<color=#80DEEA><b>【PipelineJob】</b></color> path={jobPath} " +
+                $"type={batch.jobType} T{batch.startTurn}-T{batch.endTurn} " +
+                $"span={job.generationSpan} branches={job.branchCount}");
+
+            if (string.Equals(batch.jobType, "magiVerify", StringComparison.OrdinalIgnoreCase))
+            {
+                MagiSystemDecisionVerifyResult verify = MagiSystemDecisionEngine.RunVerification();
+                batch.success = verify.success;
+                batch.finalTurn = batch.endTurn;
+                batch.message = verify.message;
+                LastPipelineJobBatchResult = batch;
+                return batch;
+            }
+
+            if (string.Equals(batch.jobType, "civilizationRevival50", StringComparison.OrdinalIgnoreCase))
+            {
+                CivilizationRevivalBatchResult one = RunMagiEraSegmentAndCommit(
+                    Mathf.Max(batch.startTurn, CivilizationRevivalStartTurn),
+                    Mathf.Max(batch.endTurn, CivilizationRevivalEndTurn),
+                    Mathf.Clamp(job.branchCount, MinPostCanonBranchCount, MaxPostCanonBranchCount),
+                    idTurnSuffix: Mathf.Max(batch.endTurn, CivilizationRevivalEndTurn),
+                    exportCandidates: job.exportCandidates);
+                batch.segments.Add(one);
+                batch.generationsProcessed = 1;
+                batch.success = one.success;
+                batch.finalMainStoryBranchId = one.bestBranchId;
+                batch.finalTurn = one.nextTurn;
+                batch.message = one.message;
+                LastPipelineJobBatchResult = batch;
+                WritePipelineJobLog(batch);
+                return batch;
+            }
+
+            // magiChronicleLoop（デフォルト）: start〜end を generationSpan で連続合議・コミット
+            int span = Mathf.Max(1, job.generationSpan > 0 ? job.generationSpan : ChronicleGenerationSpan);
+            int branches = Mathf.Clamp(
+                job.branchCount > 0 ? job.branchCount : 7,
+                MinPostCanonBranchCount,
+                MaxPostCanonBranchCount);
+            int cursor = batch.startTurn;
+            int generation = 0;
+            StringBuilder log = new StringBuilder();
+            CivilizationRevivalBatchResult lastSeg = null;
+
+            while (cursor <= batch.endTurn)
+            {
+                generation++;
+                int segEnd = Mathf.Min(cursor + span - 1, batch.endTurn);
+                CivilizationRevivalBatchResult seg = RunMagiEraSegmentAndCommit(
+                    cursor,
+                    segEnd,
+                    branches,
+                    idTurnSuffix: segEnd,
+                    exportCandidates: job.exportCandidates && segEnd >= batch.endTurn);
+                batch.segments.Add(seg);
+                lastSeg = seg;
+                log.AppendLine(
+                    $"gen={generation} T{cursor}-T{segEnd} success={seg.success} " +
+                    $"main={seg.bestBranchId} score={seg.skuldPruningScore}");
+
+                if (!seg.success)
+                {
+                    batch.success = false;
+                    batch.generationsProcessed = generation;
+                    batch.finalTurn = segEnd;
+                    batch.finalMainStoryBranchId = seg.bestBranchId;
+                    batch.message =
+                        $"【PipelineJob連続進行】途中失敗 gen={generation} T{cursor}-{segEnd}: {seg.message}";
+                    Debug.LogWarning(batch.message);
+                    LastPipelineJobBatchResult = batch;
+                    WritePipelineJobLog(batch);
+                    return batch;
+                }
+
+                cursor = segEnd + 1;
+            }
+
+            batch.success = true;
+            batch.generationsProcessed = generation;
+            batch.finalMainStoryBranchId = lastSeg?.bestBranchId ?? string.Empty;
+            batch.finalTurn = lastSeg != null ? lastSeg.nextTurn : batch.endTurn + 1;
+            batch.message =
+                $"【PipelineJob連続進行】完走 type={batch.jobType} T{batch.startTurn}-T{batch.endTurn} " +
+                $"gens={generation} 最終正史=「{batch.finalMainStoryBranchId}」 ➔ T{batch.finalTurn}";
+            Debug.Log($"<color=#A5D6A7><b>{batch.message}</b></color>\n{log}");
+            WritePipelineJobLog(batch);
+            LastPipelineJobBatchResult = batch;
+            return batch;
+        }
+        catch (Exception exception)
+        {
+            batch.success = false;
+            batch.message = $"Safe-Fail: {exception.Message}";
+            Debug.LogWarning($"[TimelineGenerationLoopEngine] RunFromPipelineJob Safe-Fail: {exception.Message}");
+            LastPipelineJobBatchResult = batch;
+            WritePipelineJobLog(batch);
+            return batch;
+        }
+    }
+
+    /// <summary>
+    /// 任意区間の復興系 IF を量産し、MAGI（スクルド剪定）で正史コミット、翌ターンへ進めます。
+    /// </summary>
+    public static CivilizationRevivalBatchResult RunMagiEraSegmentAndCommit(
+        int startTurn,
+        int endTurn,
+        int branchCount,
+        int idTurnSuffix,
+        bool exportCandidates)
+    {
         CivilizationRevivalBatchResult result = new CivilizationRevivalBatchResult();
         try
         {
@@ -1579,27 +1742,41 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
             AwaitingManualBranchSelection = false;
             PendingBranchRankings = new List<TimelineScriptEvaluationResult>();
 
-            int startTurn = CivilizationRevivalStartTurn;
-            int endTurn = CivilizationRevivalEndTurn;
-            int nextTurn = CivilizationRevivalNextTurn;
+            if (endTurn < startTurn)
+            {
+                int swap = startTurn;
+                startTurn = endTurn;
+                endTurn = swap;
+            }
+
+            int nextTurn = endTurn + 1;
             result.startTurn = startTurn;
             result.endTurn = endTurn;
             result.nextTurn = nextTurn;
 
             timeMgr.SetYear(startTurn);
-            EnvironmentBiorhythmEngine.TryLogCivilizationRevivalTransition(startTurn);
+            if (startTurn >= CivilizationRevivalStartTurn)
+            {
+                EnvironmentBiorhythmEngine.TryLogCivilizationRevivalTransition(startTurn);
+            }
 
             string parentId = mgr.MainStoryBranchId;
             if (string.IsNullOrWhiteSpace(parentId) || HistoryBranchManager.IsCanonBranchKey(parentId))
             {
-                HistoryTimelineBranch anchor = BuildCivilizationRevivalAnchorBranch(startTurn - 1);
+                HistoryTimelineBranch anchor = BuildCivilizationRevivalAnchorBranch(Mathf.Max(1, startTurn - 1));
                 mgr.UpsertRegisteredBranchForVerification(anchor);
                 HistoryBranchManager.CommitBranchAsMainStory(anchor.branchId, 200, startTurn - 1);
                 parentId = anchor.branchId;
             }
 
+            int safeCount = Mathf.Clamp(branchCount, MinPostCanonBranchCount, MaxPostCanonBranchCount);
             List<HistoryTimelineBranch> candidates =
-                BuildCivilizationRevivalBranchBlueprints(parentId, startTurn, endTurn);
+                BuildCivilizationRevivalBranchBlueprints(parentId, startTurn, endTurn, idTurnSuffix);
+            if (candidates.Count > safeCount)
+            {
+                candidates = candidates.GetRange(0, safeCount);
+            }
+
             for (int i = 0; i < candidates.Count; i++)
             {
                 mgr.UpsertRegisteredBranchForVerification(candidates[i]);
@@ -1628,15 +1805,11 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
                 bestId = candidates[0].branchId;
             }
 
+            // 剪定理論最大化: 全候補を再スコアし最高を採用
+            bestId = PickSkuldPruningMaxBranch(candidates, endTurn, bestId, ref bestScore);
+
             HistoryTimelineBranch bestBranch = mgr.FindRegisteredBranchForVerification(bestId)
                                               ?? FindCandidateById(candidates, bestId);
-            if (bestBranch != null)
-            {
-                SkuldPossibilityAnalysis analysis =
-                    SkuldEvaluator.AnalyzePossibilityTree(bestBranch, endTurn);
-                bestScore = Mathf.Max(bestScore, analysis.totalScore);
-                bestScore = Mathf.Clamp(bestScore, 0, SkuldEvaluator.MaxPossibilityScore);
-            }
 
             bool alreadyCommitted =
                 deliberation.status == MagiDeliberationStatus.AllAgreed &&
@@ -1671,13 +1844,16 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
                 TurnTransitionEngine.AdvanceCivilizationRevivalYear(nextTurn);
             result.nextTurn = transition.newTurn > 0 ? transition.newTurn : nextTurn;
 
-            string exportPath;
-            result.candidatesExported =
-                MagiSystemDecisionEngine.ExportBranchCandidatesForPipeline(
-                    candidates,
-                    result.nextTurn,
-                    out exportPath);
-            result.candidatesPath = exportPath ?? string.Empty;
+            if (exportCandidates)
+            {
+                string exportPath;
+                result.candidatesExported =
+                    MagiSystemDecisionEngine.ExportBranchCandidatesForPipeline(
+                        candidates,
+                        result.nextTurn,
+                        out exportPath);
+                result.candidatesPath = exportPath ?? string.Empty;
+            }
 
             result.success = true;
             result.message =
@@ -1695,7 +1871,7 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
             result.success = false;
             result.message = $"Safe-Fail: {exception.Message}";
             Debug.LogWarning(
-                $"[TimelineGenerationLoopEngine] RunCivilizationRevival50YearsAndCommit Safe-Fail: {exception.Message}");
+                $"[TimelineGenerationLoopEngine] RunMagiEraSegmentAndCommit Safe-Fail: {exception.Message}");
             WriteCivilizationRevivalPipelineLog(result);
             LastCivilizationRevivalBatchResult = result;
             return result;
@@ -2308,53 +2484,55 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
     private static List<HistoryTimelineBranch> BuildCivilizationRevivalBranchBlueprints(
         string parentBranchId,
         int startTurn,
-        int endTurn)
+        int endTurn,
+        int idTurnSuffix = 0)
     {
         int nationId = MicroToMacroAggregator.DefaultNationId;
         string parent = parentBranchId ?? string.Empty;
-        int midA = startTurn + 14;
-        int midB = startTurn + 29;
+        int midA = startTurn + Mathf.Max(1, (endTurn - startTurn) / 3);
+        int midB = startTurn + Mathf.Max(2, (endTurn - startTurn) * 2 / 3);
+        string suf = idTurnSuffix > 0 ? $"_T{idTurnSuffix}" : string.Empty;
 
         return new List<HistoryTimelineBranch>
         {
             BuildRevivalBranch(
-                "ALT_REVIVAL_NEW_ARCANE_ACADEMIA", parent, "IF_Line: 新魔導学術",
+                "ALT_REVIVAL_NEW_ARCANE_ACADEMIA" + suf, parent, "IF_Line: 新魔導学術",
                 nationId, startTurn, midA, midB, endTurn,
                 "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
                 "HIST_NATION_001_GEO_TURN_001_ACADEMY_RIVALRY", "ALT_NATION_001_OUTCOME_ACADEMY_SCHISM",
                 1.16f, 0.08f, 0.88f, 1.20f),
             BuildRevivalBranch(
-                "ALT_REVIVAL_ANCIENT_BARRIER_DECODE", parent, "IF_Line: 古代結界陣解読",
+                "ALT_REVIVAL_ANCIENT_BARRIER_DECODE" + suf, parent, "IF_Line: 古代結界陣解読",
                 nationId, startTurn, midA, midB, endTurn,
                 "HIST_NATION_001_GEO_TURN_001_HERO", "ALT_NATION_001_OUTCOME_LOST_TECH_REVIVAL",
                 "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
                 1.12f, 0.12f, 0.90f, 1.15f),
             BuildRevivalBranch(
-                "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY", parent, "IF_Line: 街道開拓と魔獣の縄張り衝突",
+                "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY" + suf, parent, "IF_Line: 街道開拓と魔獣の縄張り衝突",
                 nationId, startTurn, midA, midB, endTurn,
                 "HIST_NATION_001_GEO_TURN_001_MONSTER_DEFENSE", "ALT_NATION_001_OUTCOME_MONSTER_DEFENSE",
                 "HIST_NATION_001_GEO_TURN_001_SUCCESSION", "ALT_NATION_001_OUTCOME_FRONTIER_EXPANSION",
                 1.08f, 0.04f, 1.05f, 1.25f),
             BuildRevivalBranch(
-                "ALT_REVIVAL_NEW_TRADE_SPHERE", parent, "IF_Line: 新交易圏形成",
+                "ALT_REVIVAL_NEW_TRADE_SPHERE" + suf, parent, "IF_Line: 新交易圏形成",
                 nationId, startTurn, midA, midB, endTurn,
                 "HIST_NATION_001_GEO_TURN_001_SUCCESSION", "ALT_NATION_001_OUTCOME_FRONTIER_EXPANSION",
                 "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
                 1.14f, 0.06f, 0.92f, 1.18f),
             BuildRevivalBranch(
-                "ALT_REVIVAL_SHARED_INFRASTRUCTURE", parent, "IF_Line: 復興インフラ共有",
+                "ALT_REVIVAL_SHARED_INFRASTRUCTURE" + suf, parent, "IF_Line: 復興インフラ共有",
                 nationId, startTurn, midA, midB, endTurn,
                 "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
                 "HIST_NATION_001_GEO_TURN_001_HERO", "ALT_NATION_001_OUTCOME_LOST_TECH_REVIVAL",
                 1.10f, 0.09f, 0.94f, 1.22f),
             BuildRevivalBranch(
-                "ALT_REVIVAL_ACADEMY_GUILD_UNION", parent, "IF_Line: 学術ギルド連合",
+                "ALT_REVIVAL_ACADEMY_GUILD_UNION" + suf, parent, "IF_Line: 学術ギルド連合",
                 nationId, startTurn, midA, midB, endTurn,
                 "HIST_NATION_001_GEO_TURN_001_ACADEMY_RIVALRY", "ALT_NATION_001_OUTCOME_ACADEMY_SCHISM",
                 "HIST_NATION_001_GEO_TURN_001_INNOVATION", "ALT_NATION_001_OUTCOME_INNOVATION",
                 1.13f, 0.07f, 0.91f, 1.28f),
             BuildRevivalBranch(
-                "ALT_REVIVAL_BEAST_COEXISTENCE_PACT", parent, "IF_Line: 魔獣共生条約",
+                "ALT_REVIVAL_BEAST_COEXISTENCE_PACT" + suf, parent, "IF_Line: 魔獣共生条約",
                 nationId, startTurn, midA, midB, endTurn,
                 "HIST_NATION_001_GEO_TURN_001_MONSTER_DEFENSE", "ALT_NATION_001_OUTCOME_MONSTER_DEFENSE",
                 "HIST_NATION_001_GEO_TURN_001_HERO", "ALT_NATION_001_OUTCOME_LOST_TECH_REVIVAL",
@@ -2486,6 +2664,201 @@ public class TimelineGenerationLoopEngine : MonoBehaviour
         {
             Debug.LogWarning(
                 $"[TimelineGenerationLoopEngine] 文明復興ログ書き出し Safe-Fail: {exception.Message}");
+        }
+    }
+
+    /// <summary>リポジトリ直下 → Unity プロジェクト直下の順で pipeline_job.json を読みます。</summary>
+    private static PipelineJobDto LoadPipelineJobDto(out string jobPath)
+    {
+        jobPath = string.Empty;
+        string unityProjectRoot = Directory.GetParent(Application.dataPath)?.FullName
+                                  ?? Application.dataPath;
+        string repoRoot = Directory.GetParent(unityProjectRoot)?.FullName ?? unityProjectRoot;
+
+        string[] candidates =
+        {
+            Path.Combine(repoRoot, "pipeline_job.json"),
+            Path.Combine(unityProjectRoot, "pipeline_job.json")
+        };
+
+        for (int i = 0; i < candidates.Length; i++)
+        {
+            string path = candidates[i];
+            if (!File.Exists(path))
+            {
+                continue;
+            }
+
+            try
+            {
+                string json = File.ReadAllText(path, Encoding.UTF8);
+                PipelineJobDto dto = JsonUtility.FromJson<PipelineJobDto>(json);
+                if (dto == null)
+                {
+                    continue;
+                }
+
+                jobPath = path;
+                if (string.IsNullOrWhiteSpace(dto.jobType))
+                {
+                    dto.jobType = "magiChronicleLoop";
+                }
+
+                if (dto.startTurn <= 0)
+                {
+                    dto.startTurn = CivilizationRevivalStartTurn;
+                }
+
+                if (dto.endTurn < dto.startTurn)
+                {
+                    dto.endTurn = Mathf.Max(dto.startTurn, CivilizationRevivalEndTurn);
+                }
+
+                if (dto.generationSpan <= 0)
+                {
+                    dto.generationSpan = ChronicleGenerationSpan;
+                }
+
+                if (dto.branchCount <= 0)
+                {
+                    dto.branchCount = 7;
+                }
+
+                return dto;
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning(
+                    $"[TimelineGenerationLoopEngine] pipeline_job.json 読取 Safe-Fail ({path}): {exception.Message}");
+            }
+        }
+
+        jobPath = "(default)";
+        Debug.LogWarning(
+            "[TimelineGenerationLoopEngine] pipeline_job.json 未検出 — 文明復興50年相当の既定ジョブを使用します。");
+        return new PipelineJobDto
+        {
+            schemaVersion = 1,
+            jobType = "civilizationRevival50",
+            startTurn = CivilizationRevivalStartTurn,
+            endTurn = CivilizationRevivalEndTurn,
+            generationSpan = 50,
+            branchCount = 7,
+            commitPolicy = "skuldPruningMax",
+            exportCandidates = true
+        };
+    }
+
+    /// <summary>スクルド剪定理論スコアが最大の枝を選びます（同点時は現状 bestId を維持）。</summary>
+    private static string PickSkuldPruningMaxBranch(
+        List<HistoryTimelineBranch> candidates,
+        int evaluationTurn,
+        string fallbackBranchId,
+        ref int bestScore)
+    {
+        if (candidates == null || candidates.Count == 0)
+        {
+            return fallbackBranchId ?? string.Empty;
+        }
+
+        string bestId = fallbackBranchId ?? string.Empty;
+        int maxScore = bestScore;
+        SkuldEvaluator skuld = new SkuldEvaluator();
+        HistoryTimelineBranch mainAnchor = HistoryBranchManager.EnsureInstance().CurrentActiveBranch;
+
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            HistoryTimelineBranch branch = candidates[i];
+            if (branch == null || string.IsNullOrWhiteSpace(branch.branchId))
+            {
+                continue;
+            }
+
+            TimelineScriptEvaluationResult script =
+                TimelineScriptEvaluator.EvaluateTimelineBranch(branch, evaluationTurn);
+            MagiUnitVote vote = skuld.ScoreBranch(branch, script, evaluationTurn, mainAnchor);
+            int score = vote != null ? vote.score : 0;
+            if (score > maxScore ||
+                (score == maxScore &&
+                 string.Equals(branch.branchId, fallbackBranchId, StringComparison.OrdinalIgnoreCase)))
+            {
+                maxScore = score;
+                bestId = branch.branchId;
+            }
+            else if (score == maxScore && string.IsNullOrWhiteSpace(bestId))
+            {
+                bestId = branch.branchId;
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(bestId))
+        {
+            bestId = candidates[0].branchId;
+            maxScore = Mathf.Max(0, maxScore);
+        }
+
+        bestScore = maxScore;
+        return bestId;
+    }
+
+    private static void WritePipelineJobLog(PipelineJobBatchResult batch)
+    {
+        if (batch == null)
+        {
+            return;
+        }
+
+        try
+        {
+            string unityProjectRoot = Directory.GetParent(Application.dataPath)?.FullName
+                                      ?? Application.dataPath;
+            string repoRoot = Directory.GetParent(unityProjectRoot)?.FullName ?? unityProjectRoot;
+            var sb = new StringBuilder();
+            sb.AppendLine($"{DateTime.Now:yyyy-MM-ddTHH:mm:ss} PipelineJob success={batch.success}");
+            sb.AppendLine(
+                $"type={batch.jobType} T{batch.startTurn}-T{batch.endTurn} gens={batch.generationsProcessed} " +
+                $"final={batch.finalMainStoryBranchId} nextTurn={batch.finalTurn}");
+            sb.AppendLine(batch.message ?? string.Empty);
+            if (batch.segments != null)
+            {
+                for (int i = 0; i < batch.segments.Count; i++)
+                {
+                    CivilizationRevivalBatchResult seg = batch.segments[i];
+                    if (seg == null)
+                    {
+                        continue;
+                    }
+
+                    sb.AppendLine(
+                        $"  seg[{i}] T{seg.startTurn}-{seg.endTurn} ok={seg.success} " +
+                        $"main={seg.bestBranchId} score={seg.skuldPruningScore}");
+                }
+            }
+
+            string line = sb.ToString();
+            string[] paths =
+            {
+                Path.Combine(repoRoot, "Logs", "pipeline_job_batch.log"),
+                Path.Combine(repoRoot, "Logs", "pipeline_execution.log"),
+                Path.Combine(unityProjectRoot, "Logs", "pipeline_execution.log")
+            };
+
+            for (int i = 0; i < paths.Length; i++)
+            {
+                string path = paths[i];
+                string dir = Path.GetDirectoryName(path);
+                if (!string.IsNullOrEmpty(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                File.AppendAllText(path, line + "\n", Encoding.UTF8);
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning(
+                $"[TimelineGenerationLoopEngine] PipelineJob ログ書き出し Safe-Fail: {exception.Message}");
         }
     }
 
