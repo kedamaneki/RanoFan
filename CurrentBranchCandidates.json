@@ -1,0 +1,17 @@
+﻿{
+  "evaluationTurn": 1051,
+  "branches": [
+    {
+      "branchId": "ALT_VERIFY_PRUNING_BEAST_CONVERGED",
+      "displayName": "IF_Line: 収束・魔獣災害ループ",
+      "parentBranchId": "ALT_VERIFY_PRUNING_PARENT",
+      "baseStartTurn": 1049
+    },
+    {
+      "branchId": "ALT_VERIFY_PRUNING_DIVERSE_POSSIBILITY",
+      "displayName": "IF_Line: 汎人類史・多枝開拓",
+      "parentBranchId": "ALT_VERIFY_PRUNING_PARENT",
+      "baseStartTurn": 1048
+    }
+  ]
+}

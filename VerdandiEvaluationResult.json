@@ -1,0 +1,17 @@
+```json
+{
+  "branchEvaluations": [
+    {
+      "branchId": "ALT_VERIFY_PRUNING_BEAST_CONVERGED",
+      "verdandiScore": -250,
+      "reasoning": "魔獣災害ループという構造は前線の過酷さを内包するが、『収束』という語が示す通り既視感の強い定型パターン化が進んでおり、人間ドラマの新規性に乏しくマンネリデバフを適用する。"
+    },
+    {
+      "branchId": "ALT_VERIFY_PRUNING_DIVERSE_POSSIBILITY",
+      "verdandiScore": 280,
+      "reasoning": "汎人類史規模での多枝開拓は、派閥間の思惑・禁忌領域への接触・未知の政治的抗争を生み出す土壌となり、波乱と人間ドラマの拡張性が非常に高い。"
+    }
+  ],
+  "topRecommendedBranchId": "ALT_VERIFY_PRUNING_DIVERSE_POSSIBILITY"
+}
+```

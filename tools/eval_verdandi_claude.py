@@ -103,12 +103,12 @@ def evaluate_branches(input_json_path):
     with open(input_json_path, "r", encoding="utf-8") as f:
         branch_data = f.read()
 
-    print("Querying Claude 3.5 Sonnet for MAGI-1 (Verdandi) evaluation...")
+    print("Querying Claude Sonnet 5 for MAGI-1 (Verdandi) evaluation...")
 
+    # claude-3-5-sonnet-20241022 は廃止済み（404）。現行 Sonnet は claude-sonnet-5
     response = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
+        model="claude-sonnet-5",
         max_tokens=1000,
-        temperature=0.3,
         system=VERDANDI_SYSTEM_PROMPT,
         messages=[
             {
@@ -118,7 +118,14 @@ def evaluate_branches(input_json_path):
         ],
     )
 
-    result_text = response.content[0].text.strip()
+    # adaptive thinking 等で content が複数ブロックになる場合に備える
+    text_parts = []
+    for block in response.content:
+        if getattr(block, "type", None) == "text" and getattr(block, "text", None):
+            text_parts.append(block.text)
+    result_text = "\n".join(text_parts).strip()
+    if not result_text:
+        raise RuntimeError(f"Claude 応答に text ブロックがありません: {response.content!r}")
 
     output_path = os.path.join(os.path.dirname(__file__), "..", "VerdandiEvaluationResult.json")
     with open(output_path, "w", encoding="utf-8") as f:
