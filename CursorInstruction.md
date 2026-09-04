@@ -1,1008 +1,1553 @@
 はい、承知いたしました。
-「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」のリードディレクター兼C#設計者として、T1050からT1250までの連続進行と剪定理論による「太いルート」コミットを実装するための、精密なC#コード指示プロンプトを生成します。
+「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」のリードディレクター兼C#設計者として、T1050からT1250の期間における「剪定理論で太いルートをコミット」する機能の実装指示を、Cursor(IDE)のCtrl+Lへそのまま読み込ませてC#コード化できる「精密な実装指示プロンプト(Markdown形式)」で出力します。
 
-このプロンプトは、Cursor(IDE)のCtrl+Lにそのまま読み込ませてC#コード化できる形式です。Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約（魔法=社会技術、ジョブ=生活職業）を厳格に守ります。
+Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約(魔法=社会技術, ジョブ=生活職業)を厳格に守ります。
 
 ---
 
+# C#実装指示プロンプト: T1050-T1250 剪定理論によるルートコミットメント
+
+## 目的
+シミュレーションのT1050年からT1250年の期間において、**剪定理論 (Pruning Theory)** を適用し、複数の潜在的な未来のパスの中から最も「太いルート」（安定性、主要な社会技術の発展、資源効率、特定の脅威への対処能力に優れたパス）を特定し、そのルートへシミュレーションの進行を**コミット**するシステムを実装します。これにより、この重要な歴史的転換期における特定の発展経路を確実なものとします。
+
+## 全体構造と名前空間
+`FromLikeCombatBlindHeatScienceCraftSimulator` 名前空間の下に、以下の主要なデータモデル、インターフェース、システムクラスを定義します。
+
 ```csharp
-// Global using directives (if C# 10+ is used, otherwise add individual using statements)
+// FromLikeCombatBlindHeatScienceCraftSimulator/Core/SimulationCore.cs
+// FromLikeCombatBlindHeatScienceCraftSimulator/Data/MagicData.cs
+// FromLikeCombatBlindHeatScienceCraftSimulator/Data/JobData.cs
+// FromLikeCombatBlindHeatScienceCraftSimulator/Data/SimulationState.cs
+// FromLikeCombatBlindHeatScienceCraftSimulator/Systems/MagicSystem.cs
+// FromLikeCombatBlindHeatScienceCraftSimulator/Systems/JobSystem.cs
+// FromLikeCombatBlindHeatHeatScienceCraftSimulator/Systems/PruningTheoryEngine.cs
+// FromLikeCombatBlindHeatScienceCraftSimulator/Engines/MagicSanitizerEngine.cs
+// FromLikeCombatBlindHeatScienceCraftSimulator/Utility/ValidationResult.cs
+```
+
+## 1. データモデルの定義
+
+### 1.1. `MagicData` (社会技術)
+社会技術としての魔法を定義します。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Data/MagicData.cs
+using System.Collections.Generic;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Data
+{
+    /// <summary>
+    /// 社会技術としての魔法のデータモデル。
+    /// </summary>
+    public record MagicData
+    {
+        /// <summary>魔法の一意な識別子。</summary>
+        public string Id { get; init; }
+        /// <summary>魔法の名称。</summary>
+        public string Name { get; init; }
+        /// <summary>魔法の説明。</summary>
+        public string Description { get; init; }
+        /// <summary>魔法のカテゴリ（例: 農業、冶金、医療、軍事）。</summary>
+        public string Category { get; init; }
+        /// <summary>この魔法を開発するための前提となる他の魔法のIDリスト。</summary>
+        public List<string> Prerequisites { get; init; } = new List<string>();
+        /// <summary>この魔法の開発や維持にかかる資源コスト（資源名と量）。</summary>
+        public Dictionary<string, float> ResourceCosts { get; init; } = new Dictionary<string, float>();
+        /// <summary>この魔法がシミュレーション状態に与える効果（パラメータ名と変化量）。</summary>
+        public Dictionary<string, float> Effects { get; init; } = new Dictionary<string, float>();
+        /// <summary>この魔法の開発難易度。高いほど開発に時間がかかる。</summary>
+        public float DevelopmentDifficulty { get; init; }
+        /// <summary>この魔法が社会技術であることを示すフラグ。</summary>
+        public bool IsSocialTechnology => true; // 定義規約: Magic = 社会技術
+
+        public MagicData(string id, string name, string description, string category, List<string> prerequisites, Dictionary<string, float> resourceCosts, Dictionary<string, float> effects, float developmentDifficulty)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Category = category;
+            Prerequisites = prerequisites ?? new List<string>();
+            ResourceCosts = resourceCosts ?? new Dictionary<string, float>();
+            Effects = effects ?? new Dictionary<string, float>();
+            DevelopmentDifficulty = developmentDifficulty;
+        }
+    }
+}
+```
+
+### 1.2. `JobData` (生活職業)
+生活職業としてのジョブを定義します。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Data/JobData.cs
+using System.Collections.Generic;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Data
+{
+    /// <summary>
+    /// 生活職業としてのジョブのデータモデル。
+    /// </summary>
+    public record JobData
+    {
+        /// <summary>ジョブの一意な識別子。</summary>
+        public string Id { get; init; }
+        /// <summary>ジョブの名称。</summary>
+        public string Name { get; init; }
+        /// <summary>ジョブの説明。</summary>
+        public string Description { get; init; }
+        /// <summary>ジョブのカテゴリ（例: 農業、採掘、職人、兵士）。</summary>
+        public string Category { get; init; }
+        /// <summary>このジョブに就くために必要な社会技術（Magic）のIDリスト。</summary>
+        public List<string> RequiredMagicIds { get; init; } = new List<string>();
+        /// <summary>このジョブが生産する資源とその量（資源名と生産率）。</summary>
+        public Dictionary<string, float> ProductionRates { get; init; } = new Dictionary<string, float>();
+        /// <summary>このジョブが消費する資源とその量（資源名と消費率）。</summary>
+        public Dictionary<string, float> ConsumptionRates { get; init; } = new Dictionary<string, float>();
+        /// <summary>このジョブの効率性に乗算されるスキル係数。</summary>
+        public float SkillMultiplier { get; init; }
+        /// <summary>このジョブが生活職業であることを示すフラグ。</summary>
+        public bool IsLifeOccupation => true; // 定義規約: Job = 生活職業
+
+        public JobData(string id, string name, string description, string category, List<string> requiredMagicIds, Dictionary<string, float> productionRates, Dictionary<string, float> consumptionRates, float skillMultiplier)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Category = category;
+            RequiredMagicIds = requiredMagicIds ?? new List<string>();
+            ProductionRates = productionRates ?? new Dictionary<string, float>();
+            ConsumptionRates = consumptionRates ?? new Dictionary<string, float>();
+            SkillMultiplier = skillMultiplier;
+        }
+    }
+}
+```
+
+### 1.3. `SimulationState`
+シミュレーションの現在の状態を保持します。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Data/SimulationState.cs
+using System.Collections.Generic;
+using System.Linq;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Data
+{
+    /// <summary>
+    /// シミュレーションの現在の状態を保持するレコード。
+    /// </summary>
+    public record SimulationState
+    {
+        /// <summary>現在のシミュレーション時間（年）。</summary>
+        public long CurrentTime { get; set; }
+        /// <summary>現在の資源量（資源名と量）。</summary>
+        public Dictionary<string, float> Resources { get; init; } = new Dictionary<string, float>();
+        /// <summary>現在の人口（カテゴリと人数）。</summary>
+        public Dictionary<string, int> Population { get; init; } = new Dictionary<string, int>();
+        /// <summary>発見済みの社会技術（Magic）のIDセット。</summary>
+        public HashSet<string> DiscoveredMagicIds { get; init; } = new HashSet<string>();
+        /// <summary>現在割り当てられているジョブとその人数（ジョブIDと人数）。</summary>
+        public Dictionary<string, int> ActiveJobAssignments { get; init; } = new Dictionary<string, int>();
+        /// <summary>世界のその他のパラメータ（例: 安定度、文化レベル）。</summary>
+        public Dictionary<string, float> WorldParameters { get; init; } = new Dictionary<string, float>();
+
+        public SimulationState(long currentTime, Dictionary<string, float> resources, Dictionary<string, int> population, HashSet<string> discoveredMagicIds, Dictionary<string, int> activeJobAssignments, Dictionary<string, float> worldParameters)
+        {
+            CurrentTime = currentTime;
+            Resources = resources?.ToDictionary(entry => entry.Key, entry => entry.Value) ?? new Dictionary<string, float>();
+            Population = population?.ToDictionary(entry => entry.Key, entry => entry.Value) ?? new Dictionary<string, int>();
+            DiscoveredMagicIds = discoveredMagicIds != null ? new HashSet<string>(discoveredMagicIds) : new HashSet<string>();
+            ActiveJobAssignments = activeJobAssignments?.ToDictionary(entry => entry.Key, entry => entry.Value) ?? new Dictionary<string, int>();
+            WorldParameters = worldParameters?.ToDictionary(entry => entry.Key, entry => entry.Value) ?? new Dictionary<string, float>();
+        }
+
+        /// <summary>
+        /// 現在の状態をディープコピーして新しいインスタンスを生成します。
+        /// </summary>
+        /// <returns>ディープコピーされたSimulationStateの新しいインスタンス。</returns>
+        public SimulationState DeepCopy()
+        {
+            return new SimulationState(
+                CurrentTime,
+                Resources.ToDictionary(k => k.Key, v => v.Value),
+                Population.ToDictionary(k => k.Key, v => v.Value),
+                new HashSet<string>(DiscoveredMagicIds),
+                ActiveJobAssignments.ToDictionary(k => k.Key, v => v.Value),
+                WorldParameters.ToDictionary(k => k.Key, v => v.Value)
+            );
+        }
+    }
+}
+```
+
+### 1.4. `PruningPath`
+剪定理論で評価される潜在的な未来のパスを定義します。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Data/PruningPath.cs
+using System.Collections.Generic;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Data
+{
+    /// <summary>
+    /// 剪定理論で評価される潜在的な未来のパスのデータモデル。
+    /// </summary>
+    public record PruningPath
+    {
+        /// <summary>パスの一意な識別子。</summary>
+        public string PathId { get; init; }
+        /// <summary>このパスの開始時点のシミュレーション状態。</summary>
+        public SimulationState InitialState { get; init; }
+        /// <summary>このパスが辿る未来のイベントや状態変化のリスト。</summary>
+        public List<SimulationEvent> FutureEvents { get; init; } = new List<SimulationEvent>();
+        /// <summary>このパスの評価スコア。高いほど「太いルート」に近い。</summary>
+        public float Score { get; set; }
+        /// <summary>このパスが到達した最終状態。</summary>
+        public SimulationState FinalState { get; init; }
+
+        public PruningPath(string pathId, SimulationState initialState, List<SimulationEvent> futureEvents, SimulationState finalState)
+        {
+            PathId = pathId;
+            InitialState = initialState;
+            FutureEvents = futureEvents ?? new List<SimulationEvent>();
+            FinalState = finalState;
+        }
+    }
+
+    /// <summary>
+    /// シミュレーションイベントの抽象基底クラス。
+    /// </summary>
+    public abstract record SimulationEvent
+    {
+        public long TriggerTime { get; init; }
+        public string Description { get; init; }
+    }
+
+    /// <summary>
+    /// 特定のMagicが発見されるイベント。
+    /// </summary>
+    public record MagicDiscoveryEvent : SimulationEvent
+    {
+        public string MagicId { get; init; }
+        public MagicDiscoveryEvent(long triggerTime, string description, string magicId)
+        {
+            TriggerTime = triggerTime;
+            Description = description;
+            MagicId = magicId;
+        }
+    }
+
+    /// <summary>
+    /// ジョブ割り当てが変更されるイベント。
+    /// </summary>
+    public record JobAssignmentChangeEvent : SimulationEvent
+    {
+        public string JobId { get; init; }
+        public int DeltaPopulation { get; init; } // 増加または減少
+        public JobAssignmentChangeEvent(long triggerTime, string description, string jobId, int deltaPopulation)
+        {
+            TriggerTime = triggerTime;
+            Description = description;
+            JobId = jobId;
+            DeltaPopulation = deltaPopulation;
+        }
+    }
+
+    // 他のイベントタイプも必要に応じて追加 (例: ResourceFluctuationEvent, CombatOutcomeEvent)
+}
+```
+
+## 2. ユーティリティクラス
+
+### 2.1. `ValidationResult`
+操作の検証結果を返します。Safe-Fail構造の基盤となります。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Utility/ValidationResult.cs
+using System.Collections.Generic;
+using System.Linq;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Utility
+{
+    /// <summary>
+    /// 操作の検証結果をカプセル化するクラス。
+    /// Safe-Fail構造において、成功/失敗だけでなく、理由や詳細情報を提供します。
+    /// </summary>
+    public class ValidationResult
+    {
+        /// <summary>検証が成功したかどうか。</summary>
+        public bool IsSuccess { get; private set; }
+        /// <summary>検証が失敗した場合のエラーメッセージのリスト。</summary>
+        public List<string> Errors { get; private set; } = new List<string>();
+        /// <summary>検証が成功した場合の情報メッセージのリスト。</summary>
+        public List<string> Messages { get; private set; } = new List<string>();
+
+        private ValidationResult(bool isSuccess)
+        {
+            IsSuccess = isSuccess;
+        }
+
+        /// <summary>
+        /// 成功したValidationResultインスタンスを作成します。
+        /// </summary>
+        /// <returns>成功したValidationResult。</returns>
+        public static ValidationResult Success() => new ValidationResult(true);
+
+        /// <summary>
+        /// 失敗したValidationResultインスタンスを作成します。
+        /// </summary>
+        /// <param name="error">最初のエラーメッセージ。</param>
+        /// <returns>失敗したValidationResult。</returns>
+        public static ValidationResult Fail(string error)
+        {
+            var result = new ValidationResult(false);
+            result.Errors.Add(error);
+            return result;
+        }
+
+        /// <summary>
+        /// エラーメッセージを追加します。
+        /// </summary>
+        /// <param name="error">追加するエラーメッセージ。</param>
+        /// <returns>現在のValidationResultインスタンス。</returns>
+        public ValidationResult AddError(string error)
+        {
+            if (string.IsNullOrWhiteSpace(error)) return this;
+            Errors.Add(error);
+            IsSuccess = false; // エラーが追加されたら失敗とマーク
+            return this;
+        }
+
+        /// <summary>
+        /// 情報メッセージを追加します。
+        /// </summary>
+        /// <param name="message">追加する情報メッセージ。</param>
+        /// <returns>現在のValidationResultインスタンス。</returns>
+        public ValidationResult AddMessage(string message)
+        {
+            if (string.IsNullOrWhiteSpace(message)) return this;
+            Messages.Add(message);
+            return this;
+        }
+
+        /// <summary>
+        /// 他のValidationResultを結合します。
+        /// </summary>
+        /// <param name="other">結合する他のValidationResult。</param>
+        /// <returns>結合されたValidationResultインスタンス。</returns>
+        public ValidationResult Merge(ValidationResult other)
+        {
+            if (other == null) return this;
+            Errors.AddRange(other.Errors);
+            Messages.AddRange(other.Messages);
+            if (!other.IsSuccess) IsSuccess = false;
+            return this;
+        }
+
+        /// <summary>
+        /// 全てのエラーメッセージを結合した文字列を返します。
+        /// </summary>
+        public string FullErrorMessage => string.Join("; ", Errors);
+
+        /// <summary>
+        /// 全ての情報メッセージを結合した文字列を返します。
+        /// </summary>
+        public string FullMessage => string.Join("; ", Messages);
+    }
+
+    /// <summary>
+    /// サニタイズ操作の結果をカプセル化するクラス。
+    /// </summary>
+    public class SanitizationResult : ValidationResult
+    {
+        /// <summary>サニタイズによって変更が加えられたかどうか。</summary>
+        public bool IsModified { get; private set; }
+
+        private SanitizationResult(bool isSuccess, bool isModified) : base(isSuccess)
+        {
+            IsModified = isModified;
+        }
+
+        /// <summary>
+        /// 成功したSanitizationResultインスタンスを作成します。
+        /// </summary>
+        /// <param name="isModified">サニタイズによって変更が加えられたか。</param>
+        /// <returns>成功したSanitizationResult。</returns>
+        public static SanitizationResult Success(bool isModified = false) => new SanitizationResult(true, isModified);
+
+        /// <summary>
+        /// 失敗したSanitizationResultインスタンスを作成します。
+        /// </summary>
+        /// <param name="error">最初のエラーメッセージ。</param>
+        /// <returns>失敗したSanitizationResult。</returns>
+        public new static SanitizationResult Fail(string error)
+        {
+            var result = new SanitizationResult(false, false);
+            result.AddError(error);
+            return result;
+        }
+
+        /// <summary>
+        /// サニタイズによって変更が加えられたことをマークします。
+        /// </summary>
+        /// <returns>現在のSanitizationResultインスタンス。</returns>
+        public SanitizationResult MarkModified()
+        {
+            IsModified = true;
+            return this;
+        }
+    }
+}
+```
+
+## 3. エンジンとシステム
+
+### 3.1. `IMagicSanitizerEngine` インターフェース
+`MagicSanitizerEngine`の契約を定義します。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Engines/IMagicSanitizerEngine.cs
+using FromLikeCombatBlindHeatScienceCraftSimulator.Data;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Utility;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Engines
+{
+    /// <summary>
+    /// 社会技術（Magic）の提案と適用を検証・サニタイズするエンジンのインターフェース。
+    /// Safe-Fail構造を厳格に守り、ゲームバランスと論理的整合性を維持します。
+    /// </summary>
+    public interface IMagicSanitizerEngine
+    {
+        /// <summary>
+        /// 新しい社会技術（Magic）の提案がゲームバランスを崩さないか、矛盾しないかなどを検証します。
+        /// </summary>
+        /// <param name="magic">検証するMagicData。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        /// <returns>検証結果。</returns>
+        ValidationResult ValidateMagicProposal(MagicData magic, SimulationState currentState);
+
+        /// <summary>
+        /// 社会技術（Magic）が適用される際に、予期せぬ副作用や悪用を防ぐために効果を調整・制限します。
+        /// </summary>
+        /// <param name="magic">適用されるMagicData。</param>
+        /// <param name="currentState">現在のシミュレーション状態（必要に応じて変更される）。</param>
+        /// <returns>サニタイズ結果。</returns>
+        SanitizationResult SanitizeMagicApplication(MagicData magic, SimulationState currentState);
+
+        /// <summary>
+        /// 社会技術（Magic）の前提条件が現在のシミュレーション状態で満たされているかを確認します。
+        /// </summary>
+        /// <param name="magic">確認するMagicData。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        /// <returns>前提条件が満たされていればtrue、そうでなければfalse。</returns>
+        bool CheckMagicPrerequisites(MagicData magic, SimulationState currentState);
+    }
+}
+```
+
+### 3.2. `MagicSanitizerEngine` クラス
+`IMagicSanitizerEngine`の実装です。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Engines/MagicSanitizerEngine.cs
+using FromLikeCombatBlindHeatScienceCraftSimulator.Data;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Utility;
+using System;
+using System.Linq;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Engines
+{
+    /// <summary>
+    /// 社会技術（Magic）の提案と適用を検証・サニタイズする具体的な実装。
+    /// Safe-Fail構造を厳格に守り、ゲームバランスと論理的整合性を維持します。
+    /// </summary>
+    public class MagicSanitizerEngine : IMagicSanitizerEngine
+    {
+        private const float MaxResourceEffectMultiplier = 2.0f; // 資源効果の最大乗数
+        private const float MaxPopulationEffectAbsolute = 0.1f; // 人口効果の最大絶対値（割合）
+
+        /// <summary>
+        /// 新しい社会技術（Magic）の提案がゲームバランスを崩さないか、矛盾しないかなどを検証します。
+        /// </summary>
+        /// <param name="magic">検証するMagicData。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        /// <returns>検証結果。</returns>
+        public ValidationResult ValidateMagicProposal(MagicData magic, SimulationState currentState)
+        {
+            // Safe-Fail: 引数チェック
+            if (magic == null) return ValidationResult.Fail("MagicData cannot be null.");
+            if (currentState == null) return ValidationResult.Fail("SimulationState cannot be null.");
+
+            var result = ValidationResult.Success();
+
+            // 1. IDの重複チェック (データストアから取得する必要があるが、ここでは仮に)
+            // if (MagicRegistry.Instance.ContainsMagic(magic.Id)) result.AddError($"Magic ID '{magic.Id}' already exists.");
+
+            // 2. 名称の重複チェック (同上)
+            // if (MagicRegistry.Instance.ContainsMagicName(magic.Name)) result.AddError($"Magic name '{magic.Name}' already exists.");
+
+            // 3. 開発難易度の妥当性チェック
+            if (magic.DevelopmentDifficulty <= 0) result.AddError("Development difficulty must be positive.");
+
+            // 4. 前提条件の循環参照チェック (簡易版)
+            if (magic.Prerequisites.Contains(magic.Id)) result.AddError($"Magic '{magic.Id}' cannot be its own prerequisite.");
+
+            // 5. 効果の妥当性チェック (過剰な効果を制限)
+            foreach (var effect in magic.Effects)
+            {
+                if (effect.Key.StartsWith("Resource_"))
+                {
+                    // 資源効果が過剰でないか
+                    if (Math.Abs(effect.Value) > MaxResourceEffectMultiplier)
+                    {
+                        result.AddError($"Resource effect '{effect.Key}' value {effect.Value} is too extreme. Max allowed multiplier: {MaxResourceEffectMultiplier}.");
+                    }
+                }
+                else if (effect.Key.StartsWith("Population_"))
+                {
+                    // 人口効果が過剰でないか (現在の人口に対する割合でチェック)
+                    var totalPopulation = currentState.Population.Values.Sum();
+                    if (totalPopulation > 0 && Math.Abs(effect.Value / totalPopulation) > MaxPopulationEffectAbsolute)
+                    {
+                        result.AddError($"Population effect '{effect.Key}' value {effect.Value} is too extreme. Max allowed absolute change relative to total population: {MaxPopulationEffectAbsolute}.");
+                    }
+                }
+                // 他のパラメータに対する効果も同様にチェック
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 社会技術（Magic）が適用される際に、予期せぬ副作用や悪用を防ぐために効果を調整・制限します。
+        /// </summary>
+        /// <param name="magic">適用されるMagicData。</param>
+        /// <param name="currentState">現在のシミュレーション状態（必要に応じて変更される）。</param>
+        /// <returns>サニタイズ結果。</returns>
+        public SanitizationResult SanitizeMagicApplication(MagicData magic, SimulationState currentState)
+        {
+            // Safe-Fail: 引数チェック
+            if (magic == null) return SanitizationResult.Fail("MagicData cannot be null.");
+            if (currentState == null) return SanitizationResult.Fail("SimulationState cannot be null.");
+
+            var result = SanitizationResult.Success(false); // 初期状態では変更なし
+
+            // MagicDataはimmutableなので、ここではcurrentStateへの適用を想定し、
+            // 適用される効果がcurrentStateに与える影響をサニタイズする。
+            // もしMagicData自体を変更する必要があるなら、DeepCopyして変更したものを返す。
+
+            foreach (var effect in magic.Effects)
+            {
+                if (effect.Key.StartsWith("Resource_"))
+                {
+                    var resourceName = effect.Key.Replace("Resource_", "");
+                    if (currentState.Resources.ContainsKey(resourceName))
+                    {
+                        // 資源の最大値・最小値を設定し、効果がその範囲を超える場合は制限
+                        float currentResource = currentState.Resources[resourceName];
+                        float potentialChange = effect.Value; // MagicDataの効果は直接的な変化量と仮定
+
+                        // 例: 資源がマイナスにならないように制限
+                        if (currentResource + potentialChange < 0)
+                        {
+                            potentialChange = -currentResource; // 0までしか減らせない
+                            result.AddMessage($"Resource '{resourceName}' effect capped to prevent negative values.");
+                            result.MarkModified();
+                        }
+                        // 例: 資源の最大値 (ここでは仮に10000)
+                        if (currentResource + potentialChange > 10000)
+                        {
+                            potentialChange = 10000 - currentResource;
+                            result.AddMessage($"Resource '{resourceName}' effect capped to prevent exceeding max value.");
+                            result.MarkModified();
+                        }
+                        // currentState.Resources[resourceName] += potentialChange; // 実際の適用はMagicSystemで行う
+                    }
+                }
+                else if (effect.Key.StartsWith("Population_"))
+                {
+                    var populationCategory = effect.Key.Replace("Population_", "");
+                    if (currentState.Population.ContainsKey(populationCategory))
+                    {
+                        int currentPopulation = currentState.Population[populationCategory];
+                        float potentialChange = effect.Value; // MagicDataの効果は直接的な変化量と仮定
+
+                        // 人口が0未満にならないように制限
+                        if (currentPopulation + potentialChange < 0)
+                        {
+                            potentialChange = -currentPopulation;
+                            result.AddMessage($"Population '{populationCategory}' effect capped to prevent negative values.");
+                            result.MarkModified();
+                        }
+                        // currentState.Population[populationCategory] += (int)potentialChange; // 実際の適用はMagicSystemで行う
+                    }
+                }
+                // 他のパラメータに対する効果も同様にサニタイズ
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 社会技術（Magic）の前提条件が現在のシミュレーション状態で満たされているかを確認します。
+        /// </summary>
+        /// <param name="magic">確認するMagicData。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        /// <returns>前提条件が満たされていればtrue、そうでなければfalse。</returns>
+        public bool CheckMagicPrerequisites(MagicData magic, SimulationState currentState)
+        {
+            // Safe-Fail: 引数チェック
+            if (magic == null) throw new ArgumentNullException(nameof(magic));
+            if (currentState == null) throw new ArgumentNullException(nameof(currentState));
+
+            foreach (var prerequisiteMagicId in magic.Prerequisites)
+            {
+                if (!currentState.DiscoveredMagicIds.Contains(prerequisiteMagicId))
+                {
+                    return false; // 必要な前提Magicが発見されていない
+                }
+            }
+            // 他の前提条件（例: 特定の資源量、特定のJobの存在、WorldParameterの値）もここに追加
+            // 例: if (magic.ResourceCosts.Any(cost => currentState.Resources.GetValueOrDefault(cost.Key, 0) < cost.Value)) return false;
+
+            return true;
+        }
+    }
+}
+```
+
+### 3.3. `MagicSystem`
+社会技術（Magic）の管理を行います。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Systems/MagicSystem.cs
+using FromLikeCombatBlindHeatScienceCraftSimulator.Data;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Engines;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions; // For MagicSanitizerEngine
-using System.Threading.Tasks; // Potentially for async operations, though not strictly used in this core structure
 
-namespace FromSoftLikeSimulator
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Systems
 {
     /// <summary>
-    /// SafeResult<T> 構造体: 操作の成功/失敗とその結果、またはエラーメッセージをカプセル化します。
-    /// Safe-Fail構造の基盤となります。
+    /// 社会技術（Magic）の発見、適用、管理を行うシステム。
     /// </summary>
-    public struct SafeResult<T>
+    public class MagicSystem
     {
-        public bool IsSuccess { get; }
-        public T Value { get; }
-        public string ErrorMessage { get; }
+        private readonly IMagicSanitizerEngine _sanitizer;
+        private readonly Dictionary<string, MagicData> _allMagicData; // 全てのMagicDataを保持
 
-        private SafeResult(bool isSuccess, T value, string errorMessage)
+        public MagicSystem(IMagicSanitizerEngine sanitizer, IEnumerable<MagicData> allMagicData)
         {
-            IsSuccess = isSuccess;
-            Value = value;
-            ErrorMessage = errorMessage;
+            _sanitizer = sanitizer ?? throw new ArgumentNullException(nameof(sanitizer));
+            _allMagicData = allMagicData?.ToDictionary(m => m.Id) ?? throw new ArgumentNullException(nameof(allMagicData));
         }
 
         /// <summary>
-        /// 成功した結果を生成します。
+        /// 新しい社会技術（Magic）を発見します。
         /// </summary>
-        public static SafeResult<T> Success(T value) => new SafeResult<T>(true, value, null);
-
-        /// <summary>
-        /// 失敗した結果を生成します。
-        /// </summary>
-        public static SafeResult<T> Fail(string errorMessage) => new SafeResult<T>(false, default(T), errorMessage);
-
-        /// <summary>
-        /// 操作が失敗した場合に例外をスローします。
-        /// </summary>
-        public void ThrowIfFail()
+        /// <param name="magicId">発見するMagicのID。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        /// <returns>発見が成功したかどうかのValidationResult。</returns>
+        public ValidationResult DiscoverMagic(string magicId, SimulationState currentState)
         {
-            if (!IsSuccess)
+            // Safe-Fail: 引数チェック
+            if (string.IsNullOrWhiteSpace(magicId)) return ValidationResult.Fail("Magic ID cannot be null or empty.");
+            if (currentState == null) throw new ArgumentNullException(nameof(currentState));
+
+            if (!_allMagicData.TryGetValue(magicId, out var magic))
             {
-                throw new InvalidOperationException(ErrorMessage);
+                return ValidationResult.Fail($"Magic with ID '{magicId}' not found in registry.");
             }
-        }
-    }
 
-    /// <summary>
-    /// MagicSanitizerEngine クラス: ゲームのデータ整合性とセキュリティを確保するための静的ユーティリティ。
-    /// 特に、外部からの入力や設定ファイルからロードされるデータに対して適用されます。
-    /// </summary>
-    public static class MagicSanitizerEngine
-    {
-        /// <summary>
-        /// 文字列（名前など）をサニタイズします。空白のトリム、複数スペースの置換、長さ制限、不正文字チェックを行います。
-        /// </summary>
-        /// <param name="input">サニタイズする文字列。</param>
-        /// <param name="fieldName">エラーメッセージに含めるフィールド名。</param>
-        /// <param name="maxLength">許容される最大長。</param>
-        /// <returns>サニタイズされた文字列を含むSafeResult。</returns>
-        public static SafeResult<string> SanitizeName(string input, string fieldName, int maxLength = 128)
-        {
-            if (string.IsNullOrWhiteSpace(input))
+            if (currentState.DiscoveredMagicIds.Contains(magicId))
             {
-                return SafeResult<string>.Fail($"[{fieldName}] 名前はNullまたは空にできません。");
+                return ValidationResult.Success().AddMessage($"Magic '{magic.Name}' (ID: {magicId}) is already discovered.");
             }
-            string sanitized = input.Trim();
-            sanitized = Regex.Replace(sanitized, @"\s+", " "); // 複数のスペースを単一のスペースに置換
 
-            if (sanitized.Length > maxLength)
+            // 前提条件のチェック
+            if (!_sanitizer.CheckMagicPrerequisites(magic, currentState))
             {
-                return SafeResult<string>.Fail($"[{fieldName}] 名前が最大長（{maxLength}文字）を超えています。");
+                return ValidationResult.Fail($"Prerequisites for Magic '{magic.Name}' (ID: {magicId}) are not met.");
             }
-            // HTMLエンティティやSQLインジェクションに繋がりうる文字をチェック
-            if (Regex.IsMatch(sanitized, @"[<>&""';\\]"))
+
+            // Magicの提案自体の検証 (もし動的にMagicが生成される場合)
+            var proposalValidation = _sanitizer.ValidateMagicProposal(magic, currentState);
+            if (!proposalValidation.IsSuccess)
             {
-                return SafeResult<string>.Fail($"[{fieldName}] 名前に不正な文字が含まれています。");
+                return ValidationResult.Fail($"Magic '{magic.Name}' (ID: {magicId}) proposal validation failed: {proposalValidation.FullErrorMessage}");
             }
-            return SafeResult<string>.Success(sanitized);
+
+            // Magicの発見を状態に反映
+            currentState.DiscoveredMagicIds.Add(magicId);
+            ApplyMagicEffects(magic, currentState); // 発見時に効果を適用
+
+            return ValidationResult.Success().AddMessage($"Magic '{magic.Name}' (ID: {magicId}) discovered and applied.");
         }
 
         /// <summary>
-        /// 正の整数値をサニタイズします。最小値チェックを行います。
+        /// 発見済みの社会技術（Magic）の効果をシミュレーション状態に適用します。
         /// </summary>
-        /// <param name="input">サニタイズする整数値。</param>
-        /// <param name="fieldName">エラーメッセージに含めるフィールド名。</param>
-        /// <param name="minValue">許容される最小値。</param>
-        /// <returns>サニタイズされた整数値を含むSafeResult。</returns>
-        public static SafeResult<int> SanitizePositiveInt(int input, string fieldName, int minValue = 0)
+        /// <param name="magic">適用するMagicData。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        private void ApplyMagicEffects(MagicData magic, SimulationState currentState)
         {
-            if (input < minValue)
+            // Safe-Fail: 引数チェック
+            if (magic == null) throw new ArgumentNullException(nameof(magic));
+            if (currentState == null) throw new ArgumentNullException(nameof(currentState));
+
+            // サニタイズエンジンで効果を調整
+            var sanitizationResult = _sanitizer.SanitizeMagicApplication(magic, currentState);
+            if (!sanitizationResult.IsSuccess)
             {
-                return SafeResult<int>.Fail($"[{fieldName}] 値は {minValue} 以上である必要があります。現在の値: {input}。");
+                Console.WriteLine($"Warning: Failed to sanitize effects for Magic '{magic.Name}': {sanitizationResult.FullErrorMessage}");
+                // 致命的でない場合は続行、必要に応じてエラーをログに記録
             }
-            return SafeResult<int>.Success(input);
-        }
-
-        /// <summary>
-        /// 浮動小数点数値をサニタイズします。範囲チェックを行います。
-        /// </summary>
-        /// <param name="input">サニタイズする浮動小数点数値。</param>
-        /// <param name="fieldName">エラーメッセージに含めるフィールド名。</param>
-        /// <param name="minValue">許容される最小値。</param>
-        /// <param name="maxValue">許容される最大値。</param>
-        /// <returns>サニタイズされた浮動小数点数値を含むSafeResult。</returns>
-        public static SafeResult<float> SanitizeFloatRange(float input, string fieldName, float minValue = float.MinValue, float maxValue = float.MaxValue)
-        {
-            if (input < minValue || input > maxValue)
+            if (sanitizationResult.IsModified)
             {
-                return SafeResult<float>.Fail($"[{fieldName}] 値は {minValue} から {maxValue} の範囲である必要があります。現在の値: {input}。");
+                Console.WriteLine($"Info: Effects for Magic '{magic.Name}' were modified by sanitizer: {sanitizationResult.FullMessage}");
             }
-            return SafeResult<float>.Success(input);
-        }
 
-        // 必要に応じて、より複雑なオブジェクトや列挙型に対するサニタイズメソッドを追加できます。
-    }
-
-    /// <summary>
-    /// Magic (魔法) クラス: ゲーム内では「社会技術」として定義されます。
-    /// 人類の組織、知識、ツールの進歩を表し、社会の形態を形成します。
-    /// </summary>
-    public class Magic
-    {
-        public string Id { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public int UnlockedYear { get; private set; } // この社会技術が最初に広く採用/発明された年
-        public Dictionary<string, float> WorldStateImpact { get; private set; } // 例: "FoodProduction": 0.1, "PopulationGrowth": 0.05
-        public List<string> PrerequisiteMagics { get; private set; } // この社会技術をアンロックするために必要な他の社会技術のID
-
-        private Magic(string id, string name, string description, int unlockedYear, Dictionary<string, float> worldStateImpact, List<string> prerequisiteMagics)
-        {
-            Id = id; // Sanitization already done in factory
-            Name = name;
-            Description = description;
-            UnlockedYear = unlockedYear;
-            WorldStateImpact = worldStateImpact ?? new Dictionary<string, float>();
-            PrerequisiteMagics = prerequisiteMagics ?? new List<string>();
-        }
-
-        /// <summary>
-        /// Magicオブジェクトを安全に作成するためのファクトリメソッド。MagicSanitizerEngineを使用します。
-        /// </summary>
-        public static SafeResult<Magic> Create(string id, string name, string description, int unlockedYear, Dictionary<string, float> worldStateImpact, List<string> prerequisiteMagics)
-        {
-            var idResult = MagicSanitizerEngine.SanitizeName(id, nameof(Id));
-            if (!idResult.IsSuccess) return SafeResult<Magic>.Fail(idResult.ErrorMessage);
-
-            var nameResult = MagicSanitizerEngine.SanitizeName(name, nameof(Name));
-            if (!nameResult.IsSuccess) return SafeResult<Magic>.Fail(nameResult.ErrorMessage);
-
-            var yearResult = MagicSanitizerEngine.SanitizePositiveInt(unlockedYear, nameof(UnlockedYear), 1);
-            if (!yearResult.IsSuccess) return SafeResult<Magic>.Fail(yearResult.ErrorMessage);
-
-            return SafeResult<Magic>.Success(new Magic(idResult.Value, nameResult.Value, description, yearResult.Value, worldStateImpact, prerequisiteMagics));
-        }
-    }
-
-    /// <summary>
-    /// Job (ジョブ) クラス: ゲーム内では「生活職業」として定義されます。
-    /// 個人が社会内で担う役割を表し、社会の機能に貢献します。
-    /// </summary>
-    public class Job
-    {
-        public string Id { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public Dictionary<string, float> ResourceContribution { get; private set; } // 例: "Food": 1.0, "Labor": 1.0
-        public List<string> RequiredMagics { get; private set; } // このジョブを可能にするために必要な社会技術のID
-        public List<string> RequiredSkills { get; private set; } // このジョブに必要な個人のスキル
-
-        private Job(string id, string name, string description, Dictionary<string, float> resourceContribution, List<string> requiredMagics, List<string> requiredSkills)
-        {
-            Id = id; // Sanitization already done in factory
-            Name = name;
-            Description = description;
-            ResourceContribution = resourceContribution ?? new Dictionary<string, float>();
-            RequiredMagics = requiredMagics ?? new List<string>();
-            RequiredSkills = requiredSkills ?? new List<string>();
-        }
-
-        /// <summary>
-        /// Jobオブジェクトを安全に作成するためのファクトリメソッド。MagicSanitizerEngineを使用します。
-        /// </summary>
-        public static SafeResult<Job> Create(string id, string name, string description, Dictionary<string, float> resourceContribution, List<string> requiredMagics, List<string> requiredSkills)
-        {
-            var idResult = MagicSanitizerEngine.SanitizeName(id, nameof(Id));
-            if (!idResult.IsSuccess) return SafeResult<Job>.Fail(idResult.ErrorMessage);
-
-            var nameResult = MagicSanitizerEngine.SanitizeName(name, nameof(Name));
-            if (!nameResult.IsSuccess) return SafeResult<Job>.Fail(nameResult.ErrorMessage);
-
-            return SafeResult<Job>.Success(new Job(idResult.Value, nameResult.Value, description, resourceContribution, requiredMagics, requiredSkills));
-        }
-    }
-
-    /// <summary>
-    /// WorldState クラス: シミュレーションにおける世界の現在の状態を保持します。
-    /// </summary>
-    public class WorldState
-    {
-        public int CurrentYear { get; set; }
-        public Dictionary<string, float> Resources { get; set; } // 例: 食料、資材、知識、影響力
-        public Dictionary<string, int> PopulationDistribution { get; set; } // 例: "Farmer": 100, "Soldier": 50
-        public HashSet<string> DiscoveredMagics { get; set; } // アンロックされた社会技術のID
-        public Dictionary<string, float> GlobalParameters { get; set; } // 例: "Stability" (安定度), "TechnologicalProgressRate" (技術進歩率)
-        public List<HistoricalEvent> RecentEvents { get; set; } // 現在の年に発生したイベントのログ
-
-        public WorldState(int startYear)
-        {
-            CurrentYear = startYear;
-            Resources = new Dictionary<string, float>
+            foreach (var effect in magic.Effects)
             {
-                { "Food", 5000f }, { "Materials", 2000f }, { "Knowledge", 500f }, { "Influence", 200f }
-            };
-            PopulationDistribution = new Dictionary<string, int>
-            {
-                { "Farmer", 1000 }, { "Laborer", 500 } // 初期人口設定
-            };
-            DiscoveredMagics = new HashSet<string>
-            {
-                "BasicFarming", // 基本的な農業技術は初期からあると仮定
-                "BasicMining"   // 基本的な採掘技術も初期からあると仮定
-            };
-            GlobalParameters = new Dictionary<string, float>
-            {
-                { "Stability", 0.7f }, { "TechnologicalProgressRate", 0.01f }, { "PopulationGrowthRate", 0.005f }
-            };
-            RecentEvents = new List<HistoricalEvent>();
-        }
-
-        /// <summary>
-        /// 発見されたMagicがWorldStateに与える影響を適用します。
-        /// </summary>
-        public void ApplyMagicImpact(Magic magic)
-        {
-            foreach (var impact in magic.WorldStateImpact)
-            {
-                if (Resources.ContainsKey(impact.Key))
+                if (effect.Key.StartsWith("Resource_"))
                 {
-                    Resources[impact.Key] += impact.Value;
+                    var resourceName = effect.Key.Replace("Resource_", "");
+                    currentState.Resources.TryAdd(resourceName, 0); // 存在しない場合は初期化
+                    currentState.Resources[resourceName] += effect.Value;
+                    // 資源は0未満にならないようにする (SanitizeMagicApplicationでもチェック済みだが、念のため)
+                    if (currentState.Resources[resourceName] < 0) currentState.Resources[resourceName] = 0;
                 }
-                else if (GlobalParameters.ContainsKey(impact.Key))
+                else if (effect.Key.StartsWith("Population_"))
                 {
-                    GlobalParameters[impact.Key] += impact.Value;
+                    var populationCategory = effect.Key.Replace("Population_", "");
+                    currentState.Population.TryAdd(populationCategory, 0);
+                    currentState.Population[populationCategory] += (int)effect.Value;
+                    if (currentState.Population[populationCategory] < 0) currentState.Population[populationCategory] = 0;
                 }
-                // 他のWorldState変数への影響もここに追加できます。
+                else if (effect.Key.StartsWith("WorldParameter_"))
+                {
+                    var paramName = effect.Key.Replace("WorldParameter_", "");
+                    currentState.WorldParameters.TryAdd(paramName, 0);
+                    currentState.WorldParameters[paramName] += effect.Value;
+                }
+                // 他の種類の効果もここに追加
             }
         }
 
         /// <summary>
-        /// Jobによる資源貢献をWorldStateに適用します。
+        /// 指定されたMagic IDのMagicDataを取得します。
         /// </summary>
-        public void ApplyJobContribution(Job job, int count)
+        /// <param name="magicId">MagicのID。</param>
+        /// <returns>対応するMagicData、見つからない場合はnull。</returns>
+        public MagicData GetMagicData(string magicId)
         {
-            foreach (var contribution in job.ResourceContribution)
+            // Safe-Fail: 引数チェック
+            if (string.IsNullOrWhiteSpace(magicId)) return null;
+            _allMagicData.TryGetValue(magicId, out var magic);
+            return magic;
+        }
+    }
+}
+```
+
+### 3.4. `JobSystem`
+生活職業（Job）の管理を行います。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Systems/JobSystem.cs
+using FromLikeCombatBlindHeatScienceCraftSimulator.Data;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Engines; // MagicSanitizerEngineへの依存は間接的
+using FromLikeCombatBlindHeatScienceCraftSimulator.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace FromLikeCombatBlindHeatHeatScienceCraftSimulator.Systems
+{
+    /// <summary>
+    /// 生活職業（Job）の割り当て、生産、消費を管理するシステム。
+    /// </summary>
+    public class JobSystem
+    {
+        private readonly Dictionary<string, JobData> _allJobData; // 全てのJobDataを保持
+        private readonly MagicSystem _magicSystem; // Jobの前提条件チェックに必要
+
+        public JobSystem(IEnumerable<JobData> allJobData, MagicSystem magicSystem)
+        {
+            _allJobData = allJobData?.ToDictionary(j => j.Id) ?? throw new ArgumentNullException(nameof(allJobData));
+            _magicSystem = magicSystem ?? throw new ArgumentNullException(nameof(magicSystem));
+        }
+
+        /// <summary>
+        /// 指定されたジョブに人口を割り当てます。
+        /// </summary>
+        /// <param name="jobId">割り当てるジョブのID。</param>
+        /// <param name="populationCount">割り当てる人口数。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        /// <returns>割り当てが成功したかどうかのValidationResult。</returns>
+        public ValidationResult AssignJob(string jobId, int populationCount, SimulationState currentState)
+        {
+            // Safe-Fail: 引数チェック
+            if (string.IsNullOrWhiteSpace(jobId)) return ValidationResult.Fail("Job ID cannot be null or empty.");
+            if (populationCount <= 0) return ValidationResult.Fail("Population count must be positive for assignment.");
+            if (currentState == null) throw new ArgumentNullException(nameof(currentState));
+
+            if (!_allJobData.TryGetValue(jobId, out var job))
             {
-                if (Resources.ContainsKey(contribution.Key))
+                return ValidationResult.Fail($"Job with ID '{jobId}' not found in registry.");
+            }
+
+            // 前提となるMagicが発見されているかチェック
+            foreach (var requiredMagicId in job.RequiredMagicIds)
+            {
+                if (!currentState.DiscoveredMagicIds.Contains(requiredMagicId))
                 {
-                    Resources[contribution.Key] += contribution.Value * count;
+                    return ValidationResult.Fail($"Required Magic '{_magicSystem.GetMagicData(requiredMagicId)?.Name ?? requiredMagicId}' for Job '{job.Name}' is not discovered.");
                 }
             }
-        }
 
-        /// <summary>
-        /// WorldStateの資源値を最小値0でクランプします。
-        /// </summary>
-        public void ClampResources()
-        {
-            foreach (var key in Resources.Keys.ToList())
+            // 未割り当て人口のチェック (ここでは簡易的に総人口から引く)
+            var totalPopulation = currentState.Population.Values.Sum();
+            var assignedPopulation = currentState.ActiveJobAssignments.Values.Sum();
+            var unassignedPopulation = totalPopulation - assignedPopulation;
+
+            if (unassignedPopulation < populationCount)
             {
-                if (Resources[key] < 0) Resources[key] = 0;
-            }
-        }
-    }
-
-    /// <summary>
-    /// PlayerState クラス: プレイヤーの現在の状態を保持します。
-    /// </summary>
-    public class PlayerState
-    {
-        public string PlayerName { get; private set; }
-        public Dictionary<string, float> PlayerResources { get; set; } // 例: 個人の富、ユニークアイテム
-        public List<string> UnlockedCraftingRecipes { get; set; }
-        public List<string> PlayerSkills { get; set; } // 例: 戦闘スキル、クラフトスキル、外交スキル
-        public int CurrentYear { get; set; } // プレイヤーが認識する時間（WorldStateと同期）
-
-        public PlayerState(string playerName)
-        {
-            PlayerName = MagicSanitizerEngine.SanitizeName(playerName, nameof(PlayerName)).Value;
-            PlayerResources = new Dictionary<string, float>();
-            UnlockedCraftingRecipes = new List<string>();
-            PlayerSkills = new List<string>();
-            CurrentYear = 1050; // プレイヤーの直接的な関与開始年
-        }
-    }
-
-    /// <summary>
-    /// HistoricalEvent クラス: シミュレーション中に発生する歴史的イベントを定義します。
-    /// </summary>
-    public class HistoricalEvent
-    {
-        public string Id { get; private set; }
-        public string Title { get; private set; }
-        public string Description { get; private set; }
-        public int Year { get; private set; }
-        public EventType Type { get; private set; }
-        public Dictionary<string, float> WorldStateChanges { get; private set; } // 世界の状態への直接的な変更
-        public List<string> TriggerConditions { get; private set; } // イベント発生のトリガー条件 (例: "Magic:Feudalism_Discovered", "Resource:Food_Low")
-        public List<string> PossibleOutcomes { get; private set; } // 剪定理論のための可能な結果パス
-
-        public enum EventType { Major, Minor, PlayerChoice, Combat, Crafting, Commitment } // Commitmentは太いルートコミットイベント用
-
-        private HistoricalEvent(string id, string title, string description, int year, EventType type, Dictionary<string, float> worldStateChanges, List<string> triggerConditions, List<string> possibleOutcomes)
-        {
-            Id = id; // Sanitization already done in factory
-            Title = title;
-            Description = description;
-            Year = year;
-            Type = type;
-            WorldStateChanges = worldStateChanges ?? new Dictionary<string, float>();
-            TriggerConditions = triggerConditions ?? new List<string>();
-            PossibleOutcomes = possibleOutcomes ?? new List<string>();
-        }
-
-        /// <summary>
-        /// HistoricalEventオブジェクトを安全に作成するためのファクトリメソッド。MagicSanitizerEngineを使用します。
-        /// </summary>
-        public static SafeResult<HistoricalEvent> Create(string id, string title, string description, int year, EventType type, Dictionary<string, float> worldStateChanges, List<string> triggerConditions, List<string> possibleOutcomes)
-        {
-            var idResult = MagicSanitizerEngine.SanitizeName(id, nameof(Id));
-            if (!idResult.IsSuccess) return SafeResult<HistoricalEvent>.Fail(idResult.ErrorMessage);
-
-            var titleResult = MagicSanitizerEngine.SanitizeName(title, nameof(Title));
-            if (!titleResult.IsSuccess) return SafeResult<HistoricalEvent>.Fail(titleResult.ErrorMessage);
-
-            var yearResult = MagicSanitizerEngine.SanitizePositiveInt(year, nameof(Year), 1);
-            if (!yearResult.IsSuccess) return SafeResult<HistoricalEvent>.Fail(yearResult.ErrorMessage);
-
-            return SafeResult<HistoricalEvent>.Success(new HistoricalEvent(idResult.Value, titleResult.Value, description, yearResult.Value, type, worldStateChanges, triggerConditions, possibleOutcomes));
-        }
-    }
-
-    /// <summary>
-    /// TimelineNode クラス: シミュレーションの特定の時点における世界の状態とイベントを表現します。
-    /// 剪定理論において、異なる未来のパスを表現するために使用される可能性があります。
-    /// </summary>
-    public class TimelineNode
-    {
-        public int Year { get; }
-        public WorldState StateAtNode { get; }
-        public List<HistoricalEvent> EventsThisYear { get; }
-        public List<TimelineNode> PotentialFutures { get; } // 剪定理論のための可能な未来の分岐
-
-        public TimelineNode(int year, WorldState state)
-        {
-            Year = year;
-            StateAtNode = state;
-            EventsThisYear = new List<HistoricalEvent>();
-            PotentialFutures = new List<TimelineNode>();
-        }
-    }
-
-    /// <summary>
-    /// ICombatSystem インターフェース: フロム風戦闘システムの抽象化。
-    /// </summary>
-    public interface ICombatSystem
-    {
-        /// <summary>
-        /// 戦闘を開始し、その結果を返します。
-        /// </summary>
-        /// <param name="context">戦闘の状況（プレイヤー、敵、環境など）。</param>
-        /// <returns>戦闘の成功/失敗と結果。</returns>
-        SafeResult<CombatOutcome> InitiateCombat(CombatContext context);
-    }
-
-    /// <summary>
-    /// CombatContext クラス: 戦闘の入力パラメータを保持します。
-    /// </summary>
-    public class CombatContext { /* プレイヤーのステータス、敵のステータス、環境要因などを定義 */ }
-
-    /// <summary>
-    /// CombatOutcome クラス: 戦闘の結果を保持します。
-    /// </summary>
-    public class CombatOutcome { /* 勝利/敗北、報酬、受けたダメージなどを定義 */ }
-
-    /// <summary>
-    /// ICraftingSystem インターフェース: ブラインド熱科学クラフトシステムの抽象化。
-    /// </summary>
-    public interface ICraftingSystem
-    {
-        /// <summary>
-        /// クラフトを試行し、その結果を返します。
-        /// </summary>
-        /// <param name="recipe">クラフトレシピ。</param>
-        /// <param name="playerState">プレイヤーの状態。</param>
-        /// <param name="worldState">世界の現在の状態。</param>
-        /// <returns>クラフトの成功/失敗と結果。</returns>
-        SafeResult<CraftingOutcome> AttemptCraft(CraftingRecipe recipe, PlayerState playerState, WorldState worldState);
-    }
-
-    /// <summary>
-    /// CraftingRecipe クラス: クラフトのレシピを定義します。
-    /// </summary>
-    public class CraftingRecipe { /* 必要素材、ツール、Magic前提条件などを定義 */ }
-
-    /// <summary>
-    /// CraftingOutcome クラス: クラフトの結果を保持します。
-    /// </summary>
-    public class CraftingOutcome { /* 成功/失敗、作成されたアイテム、消費された資源などを定義 */ }
-
-    /// <summary>
-    /// SimulationEngine クラス: 千年史自律シミュレーターのコアロジックを担います。
-    /// 時間の進行、Magicの発見、Jobのシフト、イベントのトリガー、そして剪定理論による「太いルート」のコミットを行います。
-    /// </summary>
-    public class SimulationEngine
-    {
-        private WorldState _currentWorldState;
-        private List<Magic> _allAvailableMagics; // 全ての可能な社会技術
-        private List<Job> _allAvailableJobs;     // 全ての可能な生活職業
-        private List<HistoricalEvent> _allPotentialEvents; // 発生しうる全てのイベント
-        private Dictionary<int, List<HistoricalEvent>> _committedTimeline; // 「太いルート」としてコミットされた歴史
-
-        public SimulationEngine(WorldState initialWorldState, List<Magic> magics, List<Job> jobs, List<HistoricalEvent> events)
-        {
-            _currentWorldState = initialWorldState;
-            _allAvailableMagics = magics;
-            _allAvailableJobs = jobs;
-            _allPotentialEvents = events;
-            _committedTimeline = new Dictionary<int, List<HistoricalEvent>>();
-        }
-
-        /// <summary>
-        /// 指定された目標年までシミュレーションを年単位で進行させます。
-        /// </summary>
-        /// <param name="targetYear">シミュレーションを進行させる目標年。</param>
-        /// <returns>更新されたWorldStateを含むSafeResult。</returns>
-        public SafeResult<WorldState> AdvanceYear(int targetYear)
-        {
-            if (targetYear <= _currentWorldState.CurrentYear)
-            {
-                return SafeResult<WorldState>.Fail($"目標年 {targetYear} は現在の年 {_currentWorldState.CurrentYear} より後である必要があります。");
+                return ValidationResult.Fail($"Not enough unassigned population to assign {populationCount} to Job '{job.Name}'. Available: {unassignedPopulation}.");
             }
 
-            for (int year = _currentWorldState.CurrentYear + 1; year <= targetYear; year++)
-            {
-                _currentWorldState.CurrentYear = year;
-                SimulateSingleYear();
+            // ジョブ割り当てを状態に反映
+            currentState.ActiveJobAssignments.TryAdd(jobId, 0);
+            currentState.ActiveJobAssignments[jobId] += populationCount;
 
-                // 現在の年のイベントを「太いルート」としてコミット
-                if (!_committedTimeline.ContainsKey(year))
+            return ValidationResult.Success().AddMessage($"{populationCount} people assigned to Job '{job.Name}' (ID: {jobId}).");
+        }
+
+        /// <summary>
+        /// ジョブの割り当てを解除します。
+        /// </summary>
+        /// <param name="jobId">解除するジョブのID。</param>
+        /// <param name="populationCount">解除する人口数。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        /// <returns>解除が成功したかどうかのValidationResult。</returns>
+        public ValidationResult UnassignJob(string jobId, int populationCount, SimulationState currentState)
+        {
+            // Safe-Fail: 引数チェック
+            if (string.IsNullOrWhiteSpace(jobId)) return ValidationResult.Fail("Job ID cannot be null or empty.");
+            if (populationCount <= 0) return ValidationResult.Fail("Population count must be positive for unassignment.");
+            if (currentState == null) throw new ArgumentNullException(nameof(currentState));
+
+            if (!currentState.ActiveJobAssignments.ContainsKey(jobId))
+            {
+                return ValidationResult.Fail($"No population assigned to Job with ID '{jobId}'.");
+            }
+
+            if (currentState.ActiveJobAssignments[jobId] < populationCount)
+            {
+                return ValidationResult.Fail($"Cannot unassign {populationCount} from Job '{jobId}'. Only {currentState.ActiveJobAssignments[jobId]} are currently assigned.");
+            }
+
+            currentState.ActiveJobAssignments[jobId] -= populationCount;
+            if (currentState.ActiveJobAssignments[jobId] == 0)
+            {
+                currentState.ActiveJobAssignments.Remove(jobId);
+            }
+
+            return ValidationResult.Success().AddMessage($"{populationCount} people unassigned from Job '{jobId}'.");
+        }
+
+        /// <summary>
+        /// 現在のジョブ割り当てに基づいて、資源の生産と消費を計算し、状態を更新します。
+        /// </summary>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        public void UpdateJobEffects(SimulationState currentState)
+        {
+            // Safe-Fail: 引数チェック
+            if (currentState == null) throw new ArgumentNullException(nameof(currentState));
+
+            foreach (var assignment in currentState.ActiveJobAssignments)
+            {
+                if (_allJobData.TryGetValue(assignment.Key, out var job))
                 {
-                    _committedTimeline[year] = new List<HistoricalEvent>();
-                }
-                _committedTimeline[year].AddRange(_currentWorldState.RecentEvents);
-                _currentWorldState.RecentEvents.Clear(); // 次の年のためにクリア
-            }
-
-            return SafeResult<WorldState>.Success(_currentWorldState);
-        }
-
-        /// <summary>
-        /// 1年間のシミュレーションステップを実行します。
-        /// </summary>
-        private void SimulateSingleYear()
-        {
-            // 1. 受動的な世界の変化を適用（資源の増減、人口変動など）
-            ApplyPassiveChanges();
-
-            // 2. 新しいMagic（社会技術）の発見を評価
-            EvaluateMagicDiscovery();
-
-            // 3. Job（生活職業）の人口分布シフトを評価
-            EvaluateJobShifts();
-
-            // 4. 現在の世界の状態と発見されたMagicに基づいて歴史的イベントをトリガー
-            TriggerEvents();
-
-            // 5. 剪定理論: 潜在的な未来を評価し、「太いルート」をコミット
-            // T1050-T1250の期間では、特定の封建構造、初期産業の進歩、主要な文化シフトなどがコミットされる可能性があります。
-            EvaluatePotentialFuturesAndPrune();
-
-            _currentWorldState.ClampResources(); // 資源が負の値にならないようにクランプ
-        }
-
-        /// <summary>
-        /// 資源の消費/生産、人口成長などの受動的な変化を適用します。
-        /// </summary>
-        private void ApplyPassiveChanges()
-        {
-            int totalPopulation = _currentWorldState.PopulationDistribution.Values.Sum();
-
-            // 食料消費
-            _currentWorldState.Resources["Food"] -= totalPopulation * 0.1f;
-
-            // 人口成長
-            float growthFactor = _currentWorldState.GlobalParameters.GetValueOrDefault("PopulationGrowthRate", 0.005f);
-            if (_currentWorldState.Resources["Food"] > totalPopulation * 1.2f) // 食料が豊富なら成長
-            {
-                totalPopulation = (int)(totalPopulation * (1 + growthFactor));
-            }
-            else if (_currentWorldState.Resources["Food"] < totalPopulation * 0.8f) // 食料が不足なら減少
-            {
-                totalPopulation = (int)(totalPopulation * (1 - growthFactor * 2)); // 減少は成長より速い
-            }
-            // 人口分布を均等に調整する簡易的なロジック（実際はもっと複雑）
-            if (totalPopulation > 0)
-            {
-                int currentTotal = _currentWorldState.PopulationDistribution.Values.Sum();
-                if (currentTotal > 0)
-                {
-                    float ratio = (float)totalPopulation / currentTotal;
-                    foreach (var key in _currentWorldState.PopulationDistribution.Keys.ToList())
+                    int assignedCount = assignment.Value;
+                    // 生産
+                    foreach (var production in job.ProductionRates)
                     {
-                        _currentWorldState.PopulationDistribution[key] = (int)(_currentWorldState.PopulationDistribution[key] * ratio);
+                        currentState.Resources.TryAdd(production.Key, 0);
+                        currentState.Resources[production.Key] += production.Value * assignedCount * job.SkillMultiplier;
+                    }
+                    // 消費
+                    foreach (var consumption in job.ConsumptionRates)
+                    {
+                        currentState.Resources.TryAdd(consumption.Key, 0);
+                        currentState.Resources[consumption.Key] -= consumption.Value * assignedCount;
+                        // 資源は0未満にならないようにする
+                        if (currentState.Resources[consumption.Key] < 0) currentState.Resources[consumption.Key] = 0;
                     }
                 }
-                else // 初期人口が0の場合のフォールバック
+                else
                 {
-                    _currentWorldState.PopulationDistribution["Farmer"] = totalPopulation;
+                    Console.WriteLine($"Warning: Job data for ID '{assignment.Key}' not found during update. Skipping effects.");
                 }
             }
-            else
-            {
-                _currentWorldState.PopulationDistribution.Clear();
-            }
-
-
-            // 知識の蓄積
-            _currentWorldState.Resources["Knowledge"] += _currentWorldState.GlobalParameters.GetValueOrDefault("TechnologicalProgressRate", 0.01f);
         }
 
         /// <summary>
-        /// 新しいMagic（社会技術）の発見を評価し、条件が満たされればアンロックします。
+        /// 指定されたJob IDのJobDataを取得します。
         /// </summary>
-        private void EvaluateMagicDiscovery()
+        /// <param name="jobId">JobのID。</param>
+        /// <returns>対応するJobData、見つからない場合はnull。</returns>
+        public JobData GetJobData(string jobId)
         {
-            foreach (var magic in _allAvailableMagics)
-            {
-                if (_currentWorldState.DiscoveredMagics.Contains(magic.Id)) continue; // 既に発見済み
+            // Safe-Fail: 引数チェック
+            if (string.IsNullOrWhiteSpace(jobId)) return null;
+            _allJobData.TryGetValue(jobId, out var job);
+            return job;
+        }
+    }
+}
+```
 
-                bool prerequisitesMet = true;
-                foreach (var prereqId in magic.PrerequisiteMagics)
+### 3.5. `PruningTheoryEngine`
+T1050-T1250期間の剪定理論ロジックを実装します。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Systems/PruningTheoryEngine.cs
+using FromLikeCombatBlindHeatScienceCraftSimulator.Data;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Systems
+{
+    /// <summary>
+    /// シミュレーションの特定の期間において、剪定理論に基づき最も有望な未来のルートを特定し、
+    /// シミュレーションの進行をそのルートにコミットするエンジン。
+    /// T1050-T1250の期間に特化して動作します。
+    /// </summary>
+    public class PruningTheoryEngine
+    {
+        private readonly MagicSystem _magicSystem;
+        private readonly JobSystem _jobSystem;
+        private readonly Random _random;
+
+        // 剪定理論がアクティブになる期間
+        private const long PruningStartTime = 1050;
+        private const long PruningEndTime = 1250;
+        private const int LookAheadDuration = 50; // 各剪定サイクルでシミュレートする未来の期間（年）
+        private const int MaxPathsToGenerate = 5; // 生成する潜在的なパスの最大数
+
+        public PruningTheoryEngine(MagicSystem magicSystem, JobSystem jobSystem)
+        {
+            _magicSystem = magicSystem ?? throw new ArgumentNullException(nameof(magicSystem));
+            _jobSystem = jobSystem ?? throw new ArgumentNullException(nameof(jobSystem));
+            _random = new Random();
+        }
+
+        /// <summary>
+        /// 現在のシミュレーション時間と状態に基づいて、最も「太いルート」を特定し、
+        /// シミュレーションの進行をそのルートにコミットします。
+        /// このメソッドはT1050-T1250の期間にのみ有効です。
+        /// </summary>
+        /// <param name="currentTime">現在のシミュレーション時間。</param>
+        /// <param name="currentState">現在のシミュレーション状態。</param>
+        public void CommitPrunedRoute(long currentTime, SimulationState currentState)
+        {
+            // Safe-Fail: 引数チェック
+            if (currentState == null) throw new ArgumentNullException(nameof(currentState));
+
+            // 指定された期間外であれば何もしない
+            if (currentTime < PruningStartTime || currentTime > PruningEndTime)
+            {
+                Console.WriteLine($"Info: PruningTheoryEngine.CommitPrunedRoute called outside T{PruningStartTime}-T{PruningEndTime} window at T{currentTime}. Skipping.");
+                return;
+            }
+
+            Console.WriteLine($"PruningTheoryEngine: Activating pruning at T{currentTime}...");
+
+            // Step 1: 複数の潜在的な未来のパスを生成
+            List<PruningPath> potentialPaths = GeneratePotentialPaths(currentTime, currentState, LookAheadDuration);
+
+            // Safe-Fail: パスが生成されなかった場合
+            if (!potentialPaths.Any())
+            {
+                Console.WriteLine($"Error: No potential paths generated for pruning at T{currentTime}. Simulation might proceed randomly or stall.");
+                return;
+            }
+
+            // Step 2: パスを評価し、最もスコアの高い「太いルート」を選択
+            PruningPath bestPath = SelectBestPath(potentialPaths);
+
+            // Safe-Fail: 最適なパスが選択されなかった場合
+            if (bestPath == null)
+            {
+                Console.WriteLine($"Error: Failed to select a best path for pruning at T{currentTime}. Proceeding with a default (first available) path.");
+                bestPath = potentialPaths.First(); // フォールバックとして最初のパスを選択
+            }
+
+            // Step 3: 選択されたパスにシミュレーションをコミット
+            ApplyPrunedPath(bestPath, currentState);
+
+            Console.WriteLine($"PruningTheoryEngine: Committed to path '{bestPath.PathId}' at T{currentTime} with score {bestPath.Score}.");
+        }
+
+        /// <summary>
+        /// 現在の状態から、複数の潜在的な未来のパスをシミュレートして生成します。
+        /// </summary>
+        /// <param name="currentTime">現在のシミュレーション時間。</param>
+        /// <param name="initialState">現在のシミュレーション状態。</param>
+        /// <param name="lookAheadDuration">未来をシミュレートする期間（年）。</param>
+        /// <returns>生成された潜在的なパスのリスト。</returns>
+        private List<PruningPath> GeneratePotentialPaths(long currentTime, SimulationState initialState, int lookAheadDuration)
+        {
+            var paths = new List<PruningPath>();
+            var availableMagic = _magicSystem.GetMagicData(null); // 全てのMagicDataを取得する仮のメソッド
+
+            // 複数の異なる意思決定シナリオを探索
+            for (int i = 0; i < MaxPathsToGenerate; i++)
+            {
+                var pathId = $"Path_{currentTime}_{i}";
+                var simulatedState = initialState.DeepCopy();
+                var futureEvents = new List<SimulationEvent>();
+
+                // 各パスで異なる戦略を試行
+                // 例: 1. 農業技術に注力, 2. 冶金技術に注力, 3. 軍事技術に注力, 4. 探索に注力, 5. ランダム
+                string strategy = GetStrategyForPath(i);
+                Console.WriteLine($"  Generating path {pathId} with strategy: {strategy}");
+
+                // 短期間のシミュレーションを実行
+                for (long t = currentTime; t < currentTime + lookAheadDuration; t++)
                 {
-                    if (!_currentWorldState.DiscoveredMagics.Contains(prereqId))
+                    // この内部シミュレーションは簡略化されたもの
+                    // - 資源の自然増減
+                    // - 人口の自然増減
+                    // - 潜在的なMagicの発見試行
+                    // - ジョブ割り当ての調整
+
+                    // 1. 資源の更新 (簡易版)
+                    foreach (var resKey in simulatedState.Resources.Keys.ToList())
                     {
-                        prerequisitesMet = false;
-                        break;
+                        simulatedState.Resources[resKey] += _random.NextSingle() * 10 - 5; // ランダムな変動
+                        if (simulatedState.Resources[resKey] < 0) simulatedState.Resources[resKey] = 0;
+                    }
+
+                    // 2. Magicの発見試行 (戦略に基づいて優先順位付け)
+                    var potentialMagicToDiscover = _magicSystem.GetMagicData(null) // 全てのMagicDataを取得する仮のメソッド
+                                                               .Where(m => !simulatedState.DiscoveredMagicIds.Contains(m.Id) && _magicSystem.CheckMagicPrerequisites(m, simulatedState))
+                                                               .OrderByDescending(m => ScoreMagicForStrategy(m, strategy)) // 戦略に応じたスコアリング
+                                                               .FirstOrDefault();
+
+                    if (potentialMagicToDiscover != null && _random.NextDouble() < 0.1) // 10%の確率で発見
+                    {
+                        var discoverResult = _magicSystem.DiscoverMagic(potentialMagicToDiscover.Id, simulatedState);
+                        if (discoverResult.IsSuccess)
+                        {
+                            futureEvents.Add(new MagicDiscoveryEvent(t, $"Discovered {potentialMagicToDiscover.Name}", potentialMagicToDiscover.Id));
+                            Console.WriteLine($"    Path {pathId}: Discovered Magic '{potentialMagicToDiscover.Name}' at T{t}.");
+                        }
+                    }
+
+                    // 3. ジョブ割り当ての調整 (戦略に基づいて)
+                    AdjustJobsForStrategy(simulatedState, strategy);
+                    _jobSystem.UpdateJobEffects(simulatedState); // ジョブの効果を適用
+                }
+
+                paths.Add(new PruningPath(pathId, initialState, futureEvents, simulatedState));
+            }
+
+            return paths;
+        }
+
+        /// <summary>
+        /// パスを評価し、最もスコアの高い「太いルート」を選択します。
+        /// T1050-T1250の期間における「太いルート」の基準を適用します。
+        /// </summary>
+        /// <param name="paths">評価する潜在的なパスのリスト。</param>
+        /// <returns>最もスコアの高いPruningPath。</returns>
+        private PruningPath SelectBestPath(List<PruningPath> paths)
+        {
+            // Safe-Fail: 空のリストの場合
+            if (!paths.Any()) return null;
+
+            foreach (var path in paths)
+            {
+                path.Score = EvaluatePath(path);
+                Console.WriteLine($"  Path '{path.PathId}' evaluated with score: {path.Score}");
+            }
+
+            return paths.OrderByDescending(p => p.Score).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 特定のパスを評価し、スコアを計算します。
+        /// 「太いルート」の基準: 社会基盤の安定、主要な社会技術の発見・普及、資源の効率的な利用、特定の脅威への対処、文化・知識の発展。
+        /// </summary>
+        /// <param name="path">評価するPruningPath。</param>
+        /// <returns>パスの評価スコア。</returns>
+        private float EvaluatePath(PruningPath path)
+        {
+            // Safe-Fail: 引数チェック
+            if (path?.FinalState == null) return -1000f; // 無効なパスは低いスコア
+
+            float score = 0;
+            var finalState = path.FinalState;
+
+            // 1. 社会基盤の安定 (人口増加、食料資源の安定供給)
+            float totalPopulation = finalState.Population.Values.Sum();
+            score += totalPopulation * 0.1f; // 人口が多いほど良い
+            score += finalState.Resources.GetValueOrDefault("Food", 0) * 0.05f; // 食料が多いほど良い
+
+            // 2. 主要な社会技術（Magic）の発見・普及
+            // T1050-T1250の主要Magic: 農業革新、冶金技術、初期機械、航海術、印刷術など
+            var keyMagicIds = new HashSet<string>
+            {
+                "AdvancedAgriculture", "IronSmelting", "WaterWheel", "CompassNavigation", "PrintingPress"
+            };
+            foreach (var magicId in keyMagicIds)
+            {
+                if (finalState.DiscoveredMagicIds.Contains(magicId))
+                {
+                    score += 100f; // 主要Magicの発見は高得点
+                }
+            }
+            score += finalState.DiscoveredMagicIds.Count * 5f; // 発見Magicが多いほど良い
+
+            // 3. 資源の効率的な利用 (特定の重要資源の量)
+            score += finalState.Resources.GetValueOrDefault("Metal", 0) * 0.08f;
+            score += finalState.Resources.GetValueOrDefault("Wood", 0) * 0.03f;
+            score += finalState.Resources.GetValueOrDefault("Knowledge", 0) * 0.1f; // 知識も重要資源
+
+            // 4. 特定の脅威への対処 (WorldParameterの安定度など)
+            score += finalState.WorldParameters.GetValueOrDefault("Stability", 0) * 2f; // 安定度が高いほど良い
+            score -= finalState.WorldParameters.GetValueOrDefault("Unrest", 0) * 5f; // 不安要素は減点
+
+            // 5. 文化・知識の発展 (Knowledge資源、特定のMagic)
+            // 上記のKnowledge資源とPrintingPressなどで既に評価済み
+
+            // 負の資源や人口がないかチェック (ペナルティ)
+            if (finalState.Resources.Any(r => r.Value < 0)) score -= 500f;
+            if (finalState.Population.Any(p => p.Value < 0)) score -= 1000f;
+
+            return score;
+        }
+
+        /// <summary>
+        /// 選択されたパスに沿ってシミュレーションの状態を強制的に調整します。
+        /// </summary>
+        /// <param name="bestPath">コミットする最適なパス。</param>
+        /// <param name="currentState">現在のシミュレーション状態（変更される）。</param>
+        private void ApplyPrunedPath(PruningPath bestPath, SimulationState currentState)
+        {
+            // Safe-Fail: 引数チェック
+            if (bestPath == null) throw new ArgumentNullException(nameof(bestPath));
+            if (currentState == null) throw new ArgumentNullException(nameof(currentState));
+
+            Console.WriteLine($"  Applying pruned path '{bestPath.PathId}' to current state...");
+
+            // 1. 主要なMagicの発見を強制
+            foreach (var futureEvent in bestPath.FutureEvents.OfType<MagicDiscoveryEvent>())
+            {
+                if (!currentState.DiscoveredMagicIds.Contains(futureEvent.MagicId))
+                {
+                    var result = _magicSystem.DiscoverMagic(futureEvent.MagicId, currentState);
+                    if (result.IsSuccess)
+                    {
+                        Console.WriteLine($"    Forced discovery of Magic '{_magicSystem.GetMagicData(futureEvent.MagicId)?.Name ?? futureEvent.MagicId}'.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"    Warning: Failed to force discovery of Magic '{futureEvent.MagicId}': {result.FullErrorMessage}");
                     }
                 }
+            }
 
-                // 追加の発見条件（例: 十分な知識資源、特定のグローバルパラメータ、最低年数）
-                bool knowledgeCondition = _currentWorldState.Resources.GetValueOrDefault("Knowledge", 0) > 100 * magic.PrerequisiteMagics.Count; // 前提技術数に応じて知識要求が増加
-                bool yearCondition = _currentWorldState.CurrentYear >= magic.UnlockedYear;
+            // 2. ジョブ割り当てを誘導 (最終状態のジョブ割り当てに近づける)
+            // ここでは簡易的に、最終状態のジョブ割り当てを目標として、現在の割り当てを調整
+            var totalPopulation = currentState.Population.Values.Sum();
+            var currentAssigned = currentState.ActiveJobAssignments.Values.Sum();
+            var unassigned = totalPopulation - currentAssigned;
 
-                if (prerequisitesMet && knowledgeCondition && yearCondition)
+            foreach (var targetJobAssignment in bestPath.FinalState.ActiveJobAssignments)
+            {
+                var jobId = targetJobAssignment.Key;
+                var targetCount = targetJobAssignment.Value;
+                var currentCount = currentState.ActiveJobAssignments.GetValueOrDefault(jobId, 0);
+
+                int delta = targetCount - currentCount;
+                if (delta > 0) // 増やす場合
                 {
-                    _currentWorldState.DiscoveredMagics.Add(magic.Id);
-                    _currentWorldState.ApplyMagicImpact(magic);
-                    _currentWorldState.RecentEvents.Add(HistoricalEvent.Create(
-                        $"MagicDiscovered_{magic.Id}_{_currentWorldState.CurrentYear}",
-                        $"新社会技術: {magic.Name} 誕生",
-                        $"{magic.Name} が発見され、世界の様相が変化しました。",
-                        _currentWorldState.CurrentYear,
-                        HistoricalEvent.EventType.Major,
-                        magic.WorldStateImpact,
-                        new List<string>(),
-                        new List<string>()
-                    ).Value);
-                    Console.WriteLine($"T{_currentWorldState.CurrentYear}: 新社会技術発見: {magic.Name}");
+                    int assignAmount = Math.Min(delta, unassigned);
+                    if (assignAmount > 0)
+                    {
+                        var result = _jobSystem.AssignJob(jobId, assignAmount, currentState);
+                        if (result.IsSuccess)
+                        {
+                            unassigned -= assignAmount;
+                            Console.WriteLine($"    Forced assignment of {assignAmount} to Job '{_jobSystem.GetJobData(jobId)?.Name ?? jobId}'.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"    Warning: Failed to force assignment to Job '{jobId}': {result.FullErrorMessage}");
+                        }
+                    }
+                }
+                else if (delta < 0) // 減らす場合
+                {
+                    int unassignAmount = Math.Min(Math.Abs(delta), currentCount);
+                    if (unassignAmount > 0)
+                    {
+                        var result = _jobSystem.UnassignJob(jobId, unassignAmount, currentState);
+                        if (result.IsSuccess)
+                        {
+                            unassigned += unassignAmount;
+                            Console.WriteLine($"    Forced unassignment of {unassignAmount} from Job '{_jobSystem.GetJobData(jobId)?.Name ?? jobId}'.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"    Warning: Failed to force unassignment from Job '{jobId}': {result.FullErrorMessage}");
+                        }
+                    }
                 }
             }
+
+            // 3. 資源の傾向を調整 (最終状態の資源量に近づける)
+            foreach (var targetResource in bestPath.FinalState.Resources)
+            {
+                currentState.Resources.TryAdd(targetResource.Key, 0);
+                // 現在の資源と目標資源の差分を徐々に埋めるように調整
+                float current = currentState.Resources[targetResource.Key];
+                float target = targetResource.Value;
+                float adjustment = (target - current) * 0.1f; // 10%ずつ近づける
+                currentState.Resources[targetResource.Key] += adjustment;
+                if (currentState.Resources[targetResource.Key] < 0) currentState.Resources[targetResource.Key] = 0;
+                Console.WriteLine($"    Adjusted resource '{targetResource.Key}' by {adjustment:F2}. New value: {currentState.Resources[targetResource.Key]:F2}");
+            }
+
+            // 4. WorldParametersの調整
+            foreach (var targetParam in bestPath.FinalState.WorldParameters)
+            {
+                currentState.WorldParameters.TryAdd(targetParam.Key, 0);
+                float current = currentState.WorldParameters[targetParam.Key];
+                float target = targetParam.Value;
+                float adjustment = (target - current) * 0.1f;
+                currentState.WorldParameters[targetParam.Key] += adjustment;
+                Console.WriteLine($"    Adjusted WorldParameter '{targetParam.Key}' by {adjustment:F2}. New value: {currentState.WorldParameters[targetParam.Key]:F2}");
+            }
+
+            // その他の状態調整もここに追加
         }
 
         /// <summary>
-        /// Job（生活職業）の人口分布を評価し、必要に応じてシフトさせます。
-        /// T1050-T1250では、純粋な農耕社会からより専門化された役割への移行、または都市人口の増加などが考えられます。
+        /// パス生成のための戦略を決定します。
         /// </summary>
-        private void EvaluateJobShifts()
+        private string GetStrategyForPath(int pathIndex)
         {
-            // これは簡略化された例です。実際のシステムでは、より複雑な人口動態が必要です。
-            int totalPopulation = _currentWorldState.PopulationDistribution.Values.Sum();
+            return pathIndex switch
+            {
+                0 => "FocusAgriculture",
+                1 => "FocusMetallurgy",
+                2 => "FocusMilitary",
+                3 => "FocusExploration",
+                _ => "RandomDevelopment",
+            };
+        }
+
+        /// <summary>
+        /// 特定の戦略に基づいてMagicのスコアを計算します。
+        /// </summary>
+        private float ScoreMagicForStrategy(MagicData magic, string strategy)
+        {
+            float score = 0;
+            switch (strategy)
+            {
+                case "FocusAgriculture":
+                    if (magic.Category == "Agriculture") score += 10;
+                    if (magic.Effects.ContainsKey("Resource_Food")) score += magic.Effects["Resource_Food"] * 0.5f;
+                    break;
+                case "FocusMetallurgy":
+                    if (magic.Category == "Metallurgy") score += 10;
+                    if (magic.Effects.ContainsKey("Resource_Metal")) score += magic.Effects["Resource_Metal"] * 0.5f;
+                    break;
+                case "FocusMilitary":
+                    if (magic.Category == "Military") score += 10;
+                    if (magic.Effects.ContainsKey("WorldParameter_Stability")) score += magic.Effects["WorldParameter_Stability"] * 0.5f;
+                    break;
+                case "FocusExploration":
+                    if (magic.Category == "Navigation" || magic.Category == "Cartography") score += 10;
+                    if (magic.Effects.ContainsKey("WorldParameter_Knowledge")) score += magic.Effects["WorldParameter_Knowledge"] * 0.5f;
+                    break;
+                case "RandomDevelopment":
+                default:
+                    score = _random.NextSingle() * 5; // ランダムな優先度
+                    break;
+            }
+            return score;
+        }
+
+        /// <summary>
+        /// 特定の戦略に基づいてジョブ割り当てを調整します。
+        /// </summary>
+        private void AdjustJobsForStrategy(SimulationState simulatedState, string strategy)
+        {
+            // ここでは簡略化のため、特定のジョブカテゴリの人口を増やす/減らす
+            var totalPopulation = simulatedState.Population.Values.Sum();
             if (totalPopulation == 0) return;
 
-            // 食料生産と消費のバランスに基づいて農民の数を調整
-            float foodPerCapita = _currentWorldState.Resources.GetValueOrDefault("Food", 0) / totalPopulation;
-            int currentFarmers = _currentWorldState.PopulationDistribution.GetValueOrDefault("Farmer", 0);
+            // 未割り当て人口を計算
+            var assignedPopulation = simulatedState.ActiveJobAssignments.Values.Sum();
+            var unassignedPopulation = totalPopulation - assignedPopulation;
 
-            if (foodPerCapita < 0.8f) // 食料不足
+            // 各戦略に応じたジョブ調整
+            switch (strategy)
             {
-                // 農民を増やすか、他のジョブから農民にシフト
-                int newFarmers = Math.Min(totalPopulation, currentFarmers + (int)(totalPopulation * 0.02f));
-                _currentWorldState.PopulationDistribution["Farmer"] = newFarmers;
-            }
-            else if (foodPerCapita > 1.5f) // 食料過剰
-            {
-                // 農民を減らし、他のジョブにシフトする機会
-                int newFarmers = Math.Max(0, currentFarmers - (int)(totalPopulation * 0.01f));
-                _currentWorldState.PopulationDistribution["Farmer"] = newFarmers;
-
-                // 都市化が進んでいれば商人や職人を増やす
-                if (_currentWorldState.DiscoveredMagics.Contains("Urbanization"))
-                {
-                    _currentWorldState.PopulationDistribution["Merchant"] = _currentWorldState.PopulationDistribution.GetValueOrDefault("Merchant", 0) + (int)(totalPopulation * 0.005f);
-                    _currentWorldState.PopulationDistribution["Blacksmith"] = _currentWorldState.PopulationDistribution.GetValueOrDefault("Blacksmith", 0) + (int)(totalPopulation * 0.003f);
-                }
-            }
-
-            // 各ジョブの貢献を適用
-            foreach (var jobEntry in _currentWorldState.PopulationDistribution.ToList()) // ToList()で変更中のコレクションエラーを回避
-            {
-                var job = _allAvailableJobs.FirstOrDefault(j => j.Id == jobEntry.Key);
-                if (job != null)
-                {
-                    _currentWorldState.ApplyJobContribution(job, jobEntry.Value);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 現在の世界の状態に基づいて歴史的イベントをトリガーします。
-        /// </summary>
-        private void TriggerEvents()
-        {
-            // 条件を満たし、まだ発生していないイベントをフィルタリング
-            var potentialEvents = _allPotentialEvents
-                .Where(e => e.Year <= _currentWorldState.CurrentYear &&
-                            !_committedTimeline.Any(kv => kv.Value.Any(ce => ce.Id == e.Id)))
-                .ToList();
-
-            foreach (var ev in potentialEvents)
-            {
-                bool conditionsMet = true;
-                foreach (var condition in ev.TriggerConditions)
-                {
-                    // 条件のパースと評価の例: "Magic:Feudalism_Discovered", "Resource:Food_Low"
-                    if (condition.StartsWith("Magic:"))
+                case "FocusAgriculture":
+                    AdjustJobCategory(simulatedState, "Farmer", unassignedPopulation, 0.5f); // 未割り当ての50%を農民に
+                    break;
+                case "FocusMetallurgy":
+                    AdjustJobCategory(simulatedState, "Miner", unassignedPopulation, 0.3f);
+                    AdjustJobCategory(simulatedState, "Blacksmith", unassignedPopulation, 0.2f);
+                    break;
+                case "FocusMilitary":
+                    AdjustJobCategory(simulatedState, "Soldier", unassignedPopulation, 0.4f);
+                    break;
+                case "FocusExploration":
+                    AdjustJobCategory(simulatedState, "Explorer", unassignedPopulation, 0.2f);
+                    AdjustJobCategory(simulatedState, "Sailor", unassignedPopulation, 0.2f);
+                    break;
+                case "RandomDevelopment":
+                default:
+                    // ランダムにジョブを割り当てる
+                    var allJobIds = _jobSystem.GetJobData(null).Select(j => j.Id).ToList(); // 全てのJobDataを取得する仮のメソッド
+                    if (allJobIds.Any() && unassignedPopulation > 0)
                     {
-                        string magicId = condition.Substring("Magic:".Length);
-                        if (!_currentWorldState.DiscoveredMagics.Contains(magicId))
-                        {
-                            conditionsMet = false;
-                            break;
-                        }
+                        var randomJobId = allJobIds[_random.Next(allJobIds.Count)];
+                        int assignCount = _random.Next(1, Math.Min(unassignedPopulation, 10)); // 最大10人
+                        _jobSystem.AssignJob(randomJobId, assignCount, simulatedState);
                     }
-                    else if (condition.StartsWith("Resource:"))
-                    {
-                        string[] parts = condition.Substring("Resource:".Length).Split('_');
-                        if (parts.Length == 2)
-                        {
-                            string resourceName = parts[0];
-                            string thresholdType = parts[1]; // 例: "Low", "High"
-                            if (_currentWorldState.Resources.ContainsKey(resourceName))
-                            {
-                                float value = _currentWorldState.Resources[resourceName];
-                                // ゲームバランスに基づいた「Low」と「High」の閾値を定義
-                                if (thresholdType == "Low" && value > _currentWorldState.PopulationDistribution.Values.Sum() * 1.0f) conditionsMet = false; // 人口の1倍以上ならLowではない
-                                if (thresholdType == "High" && value < _currentWorldState.PopulationDistribution.Values.Sum() * 3.0f) conditionsMet = false; // 人口の3倍未満ならHighではない
-                            }
-                            else
-                            {
-                                conditionsMet = false; // 資源が見つからない
-                            }
-                        }
-                    }
-                    // 必要に応じて、より複雑な条件を追加
-                }
+                    break;
+            }
+        }
 
-                if (conditionsMet)
+        /// <summary>
+        /// 特定のジョブカテゴリに人口を割り当てます。
+        /// </summary>
+        private void AdjustJobCategory(SimulationState simulatedState, string jobCategory, int availableUnassigned, float proportion)
+        {
+            var targetJob = _jobSystem.GetJobData(null) // 全てのJobDataを取得する仮のメソッド
+                                      .FirstOrDefault(j => j.Category == jobCategory && j.RequiredMagicIds.All(mid => simulatedState.DiscoveredMagicIds.Contains(mid)));
+            if (targetJob != null)
+            {
+                int assignCount = (int)(availableUnassigned * proportion);
+                if (assignCount > 0)
                 {
-                    _currentWorldState.RecentEvents.Add(ev);
-                    // イベントの直接的な世界状態変更を適用
-                    foreach (var change in ev.WorldStateChanges)
-                    {
-                        if (_currentWorldState.Resources.ContainsKey(change.Key))
-                        {
-                            _currentWorldState.Resources[change.Key] += change.Value;
-                        }
-                        else if (_currentWorldState.GlobalParameters.ContainsKey(change.Key))
-                        {
-                            _currentWorldState.GlobalParameters[change.Key] += change.Value;
-                        }
-                    }
-                    Console.WriteLine($"T{_currentWorldState.CurrentYear}: イベント発生: {ev.Title}");
+                    _jobSystem.AssignJob(targetJob.Id, assignCount, simulatedState);
                 }
             }
         }
-
-        /// <summary>
-        /// 「剪定理論」のコアロジック。
-        /// 潜在的な未来のパスを評価し、「太いルート」（主要な歴史的経路）をコミットします。
-        /// T1050-T1250の期間では、主要な社会構造の固化、特定の技術的軌道のコミット、
-        /// または支配的な文化的規範の定義などが含まれます。
-        /// </summary>
-        private void EvaluatePotentialFuturesAndPrune()
-        {
-            // これは非常に概念的な部分であり、かなりの設計が必要です。
-            // ここでは、蓄積された「影響力」や「安定度」に基づいて単純なコミットをシミュレートします。
-
-            // T1050-T1250における主要な「太いルート」のコミットメントの例:
-            // 1. 封建制の統合: 強力な中央集権国家 vs. 分裂した都市国家。
-            // 2. 宗教的優位性: 一つの主要な宗教が優位に立つか、宗教的対立の時代。
-            // 3. 初期都市化/交易ネットワーク: 都市の成長と長距離交易路の発展。
-            // 4. 技術的停滞 vs. 革新: 進歩が遅い時代か、急速で集中的な進歩の時代。
-            // 5. 文化的アイデンティティの形成: 独自の国民的または地域的アイデンティティの出現。
-
-            // 簡略化のため、特定の「Magic」（社会技術）が支配的になったり、
-            // グローバルパラメータが閾値を超えたりした場合に「太いルート」がコミットされるとします。
-
-            // 例: 「封建制の統合」ルートのコミット
-            if (_currentWorldState.DiscoveredMagics.Contains("Feudalism") &&
-                _currentWorldState.GlobalParameters.GetValueOrDefault("Stability", 0) > 0.8f &&
-                !_committedTimeline.Any(kv => kv.Value.Any(e => e.Id == "FeudalConsolidationCommit")))
-            {
-                var commitEvent = HistoricalEvent.Create(
-                    "FeudalConsolidationCommit",
-                    "封建制の確立と統合",
-                    "各地で封建領主による統治が確立され、中央集権化への道筋が固まった。これにより、大規模な紛争が減少し、安定期が訪れる。",
-                    _currentWorldState.CurrentYear,
-                    HistoricalEvent.EventType.Commitment,
-                    new Dictionary<string, float> { { "Stability", 0.15f }, { "Influence", 0.1f }, { "TechnologicalProgressRate", -0.002f } }, // 安定するが、革新は鈍化する可能性
-                    new List<string>(),
-                    new List<string>()
-                ).Value;
-                _currentWorldState.RecentEvents.Add(commitEvent);
-                Console.WriteLine($"T{_currentWorldState.CurrentYear}: 太いルートコミット: {commitEvent.Title}");
-
-                // コミットされた後、特定の他のパスは「剪定」されます（発生しにくくなるか、不可能になる）。
-                // 例: 民主的な都市国家への急速な移行は、長期間不可能になるかもしれません。
-                // これは、将来のイベントの確率を調整したり、特定のMagicを無効にしたりすることで実現できます。
-                // _allPotentialEvents.RemoveAll(e => e.Id == "DemocraticCityStatesRise"); // 例
-            }
-
-            // 例: 「初期交易網の確立」ルートのコミット
-            if (_currentWorldState.DiscoveredMagics.Contains("MerchantGuilds") &&
-                _currentWorldState.Resources.GetValueOrDefault("Materials", 0) > 3000 &&
-                !_committedTimeline.Any(kv => kv.Value.Any(e => e.Id == "EarlyTradeNetworkCommit")))
-            {
-                var commitEvent = HistoricalEvent.Create(
-                    "EarlyTradeNetworkCommit",
-                    "初期交易網の確立",
-                    "商人のギルドが力をつけ、広範な交易網が確立された。これにより、資源の流通が活発化し、都市が発展する。",
-                    _currentWorldState.CurrentYear,
-                    HistoricalEvent.EventType.Commitment,
-                    new Dictionary<string, float> { { "Materials", 0.05f }, { "TechnologicalProgressRate", 0.005f }, { "Influence", 0.05f } },
-                    new List<string>(),
-                    new List<string>()
-                ).Value;
-                _currentWorldState.RecentEvents.Add(commitEvent);
-                Console.WriteLine($"T{_currentWorldState.CurrentYear}: 太いルートコミット: {commitEvent.Title}");
-            }
-
-            // 実際の剪定メカニズムは、以下を含む可能性があります:
-            // 1. 「未来の可能性」のセットを生成（例: 数年先まで）。
-            // 2. 現在の状態、プレイヤーの選択、コミットされたルートに基づいて、これらの可能性に「重み」または「確率」を割り当てる。
-            // 3. 最も重みの高いパスを「太いルート」として選択し、他のパスを破棄/優先度を下げる。
-            // これは、`_allPotentialEvents` リストや将来の `Magic` 発見の条件を変更することで実現できます。
-        }
     }
+}
+```
 
+### 3.6. `SimulationCore` (抜粋)
+`PruningTheoryEngine`を統合するシミュレーションのメインループの抜粋。
+
+```csharp
+// FromLikeCombatBlindHeatScienceCraftSimulator/Core/SimulationCore.cs (抜粋)
+using FromLikeCombatBlindHeatScienceCraftSimulator.Data;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Engines;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Systems;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace FromLikeCombatBlindHeatScienceCraftSimulator.Core
+{
     /// <summary>
-    /// GameManager クラス: ゲーム全体のオーケストレーター。
-    /// シミュレーションの開始、進行、プレイヤーとのインタラクションを管理します。
+    /// シミュレーションのコアロジックを管理するクラス。
     /// </summary>
-    public class GameManager
+    public class SimulationCore
     {
-        private WorldState _worldState;
-        private PlayerState _playerState;
-        private SimulationEngine _simulationEngine;
-        private ICombatSystem _combatSystem;
-        private ICraftingSystem _craftingSystem;
+        private SimulationState _currentState;
+        private readonly MagicSystem _magicSystem;
+        private readonly JobSystem _jobSystem;
+        private readonly PruningTheoryEngine _pruningEngine;
+        private readonly long _tickInterval = 1; // 1年ごとの更新と仮定
 
-        // ゲームデータのリポジトリ（JSON/XML/DBからロードされることを想定）
-        private List<Magic> _allMagics;
-        private List<Job> _allJobs;
-        private List<HistoricalEvent> _allHistoricalEvents;
-
-        public GameManager(string playerName)
+        public SimulationCore(SimulationState initialState, IEnumerable<MagicData> allMagic, IEnumerable<JobData> allJobs)
         {
-            // コアコンポーネントの初期化
-            _worldState = new WorldState(1050); // T1050から開始
-            _playerState = new PlayerState(playerName);
+            _currentState = initialState ?? throw new ArgumentNullException(nameof(initialState));
 
-            // ゲームデータのロード（実際のデータロードのプレースホルダー）
-            _allMagics = LoadMagics();
-            _allJobs = LoadJobs();
-            _allHistoricalEvents = LoadHistoricalEvents();
+            // エンジンとシステムを初期化
+            var magicSanitizer = new MagicSanitizerEngine();
+            _magicSystem = new MagicSystem(magicSanitizer, allMagic);
+            _jobSystem = new JobSystem(allJobs, _magicSystem);
+            _pruningEngine = new PruningTheoryEngine(_magicSystem, _jobSystem);
 
-            // シミュレーションエンジンの初期化
-            _simulationEngine = new SimulationEngine(_worldState, _allMagics, _allJobs, _allHistoricalEvents);
-
-            // プレイヤー向けシステムの初期化（具体的な実装は別途提供される）
-            _combatSystem = new PlaceholderCombatSystem();
-            _craftingSystem = new PlaceholderCraftingSystem();
-
-            Console.WriteLine($"ゲームがプレイヤー: {playerName} のために初期化されました。開始年: T{_worldState.CurrentYear}");
+            // 初期状態のMagicとJobの整合性チェックなど
         }
 
         /// <summary>
-        /// シミュレーションを開始し、指定された終了年まで連続進行させます。
+        /// シミュレーションを指定された期間実行します。
         /// </summary>
-        /// <param name="endYear">シミュレーションの終了年。</param>
-        /// <returns>シミュレーションの成功/失敗メッセージを含むSafeResult。</returns>
-        public SafeResult<string> StartSimulation(int endYear = 1250)
+        /// <param name="startTime">シミュレーション開始時間（年）。</param>
+        /// <param name="endTime">シミュレーション終了時間（年）。</param>
+        public void RunSimulation(long startTime, long endTime)
         {
-            if (endYear < _worldState.CurrentYear)
+            // Safe-Fail: 引数チェック
+            if (startTime < 0 || endTime < startTime)
             {
-                return SafeResult<string>.Fail("終了年は現在の年より後である必要があります。");
+                throw new ArgumentOutOfRangeException("Invalid simulation time range.");
             }
 
-            Console.WriteLine($"シミュレーションを T{_worldState.CurrentYear} から T{endYear} まで開始します...");
+            _currentState.CurrentTime = startTime;
+            Console.WriteLine($"Simulation started from T{startTime} to T{endTime}.");
 
-            while (_worldState.CurrentYear < endYear)
+            for (long t = startTime; t <= endTime; t += _tickInterval)
             {
-                var advanceResult = _simulationEngine.AdvanceYear(_worldState.CurrentYear + 1);
-                if (!advanceResult.IsSuccess)
+                _currentState.CurrentTime = t;
+                Console.WriteLine($"--- Current Time: T{t} ---");
+
+                // T1050からT1250の期間で剪定理論を適用
+                if (t >= 1050 && t <= 1250)
                 {
-                    return SafeResult<string>.Fail($"T{_worldState.CurrentYear} でシミュレーションが失敗しました: {advanceResult.ErrorMessage}");
+                    _pruningEngine.CommitPrunedRoute(t, _currentState);
                 }
 
-                _playerState.CurrentYear = _worldState.CurrentYear; // プレイヤーの認識時間を同期
+                // 通常のシミュレーション更新ロジック
+                UpdateSimulationState(_tickInterval);
 
-                // プレイヤーのインタラクションポイント（例: 10年ごと、または主要イベント後）
-                if (_worldState.CurrentYear % 10 == 0 || _worldState.RecentEvents.Any(e => e.Type == HistoricalEvent.EventType.PlayerChoice || e.Type == HistoricalEvent.EventType.Commitment))
-                {
-                    Console.WriteLine($"\n--- T{_worldState.CurrentYear} ---");
-                    Console.WriteLine($"世界資源: 食料={_worldState.Resources["Food"]:F0}, 知識={_worldState.Resources["Knowledge"]:F0}, 資材={_worldState.Resources["Materials"]:F0}");
-                    Console.WriteLine($"発見された社会技術: {string.Join(", ", _worldState.DiscoveredMagics)}");
-                    Console.WriteLine($"発生イベント: {string.Join(", ", _worldState.RecentEvents.Select(e => e.Title))}");
-                    // ここでプレイヤーは選択、戦闘、クラフトなどを促される可能性があります。
-                    // 連続シミュレーションの場合は、自動化されるかスキップされます。
-                }
+                // 状態のログ出力 (デバッグ用)
+                LogCurrentState();
             }
 
-            Console.WriteLine($"\nシミュレーションが T{_worldState.CurrentYear} で完了しました。");
-            return SafeResult<string>.Success($"シミュレーションは T1050 から T{endYear} まで正常に実行されました。");
+            Console.WriteLine($"Simulation finished at T{endTime}.");
         }
 
         /// <summary>
-        /// Magic（社会技術）データをロードするプレースホルダーメソッド。
+        /// シミュレーション状態を1ティック分更新します。
         /// </summary>
-        private List<Magic> LoadMagics()
+        /// <param name="deltaTime">更新する時間量。</param>
+        private void UpdateSimulationState(long deltaTime)
         {
-            var magics = new List<Magic>();
-            magics.Add(Magic.Create("BasicFarming", "基礎農耕", "基本的な農耕技術。", 1,
-                new Dictionary<string, float> { { "Food", 0.05f } }, new List<string>()).Value);
-            magics.Add(Magic.Create("BasicMining", "基礎採掘", "基本的な採掘技術。", 1,
-                new Dictionary<string, float> { { "Materials", 0.05f } }, new List<string>()).Value);
+            // Safe-Fail: 引数チェック
+            if (deltaTime <= 0) throw new ArgumentOutOfRangeException(nameof(deltaTime), "Delta time must be positive.");
 
-            magics.Add(Magic.Create("Feudalism", "封建制", "土地と忠誠に基づく社会構造。地方分権的だが安定をもたらす。", 1000,
-                new Dictionary<string, float> { { "Stability", 0.1f }, { "Influence", 0.05f }, { "Knowledge", -0.01f } },
-                new List<string>()).Value);
-            magics.Add(Magic.Create("EarlyAgricultureImprovements", "初期農業改良", "三圃制や新しい農具の導入により、食料生産が向上。", 1050,
-                new Dictionary<string, float> { { "Food", 0.2f }, { "PopulationGrowthRate", 0.01f } },
-                new List<string> { "BasicFarming" }).Value);
-            magics.Add(Magic.Create("Urbanization", "都市化", "都市の成長と人口集中。新たな職業と知識の集積を促す。", 1100,
-                new Dictionary<string, float> { { "Materials", 0.05f }, { "Knowledge", 0.02f }, { "Stability", -0.05f } }, // 都市は資源を生むが、不安定さも伴う
-                new List<string> { "Feudalism", "EarlyAgricultureImprovements" }).Value);
-            magics.Add(Magic.Create("MerchantGuilds", "商人ギルド", "商業活動を組織化し、広範な交易を促進。富と影響力を生み出す。", 1150,
-                new Dictionary<string, float> { { "Influence", 0.1f }, { "Materials", 0.1f }, { "Knowledge", 0.03f } },
-                new List<string> { "Urbanization" }).Value);
-            magics.Add(Magic.Create("EarlyMetallurgy", "初期冶金術", "鉄器生産の効率化と新たな金属加工技術の発展。", 1180,
-                new Dictionary<string, float> { { "Materials", 0.15f }, { "TechnologicalProgressRate", 0.005f } },
-                new List<string> { "BasicMining" }).Value);
-            magics.Add(Magic.Create("Scholasticism", "スコラ学", "論理と信仰の統合を目指す学問体系。知識の体系化と教育の発展。", 1200,
-                new Dictionary<string, float> { { "Knowledge", 0.1f }, { "Stability", 0.05f } },
-                new List<string> { "Urbanization" }).Value);
-            magics.Add(Magic.Create("EarlyNavigation", "初期航海術", "遠洋航海を可能にする技術と知識。新たな交易路と発見を促す。", 1230,
-                new Dictionary<string, float> { { "Influence", 0.08f }, { "Knowledge", 0.04f }, { "Materials", 0.03f } },
-                new List<string> { "MerchantGuilds" }).Value);
-            return magics;
+            // ジョブによる資源の生産と消費を更新
+            _jobSystem.UpdateJobEffects(_currentState);
+
+            // 人口の自然増減 (簡易版)
+            var totalPopulation = _currentState.Population.Values.Sum();
+            if (totalPopulation > 0 && _currentState.Resources.GetValueOrDefault("Food", 0) > totalPopulation * 0.5f)
+            {
+                _currentState.Population["General"] = (int)(_currentState.Population.GetValueOrDefault("General", 0) * 1.01f); // 1%増加
+            }
+            else if (totalPopulation > 0 && _currentState.Resources.GetValueOrDefault("Food", 0) < totalPopulation * 0.2f)
+            {
+                _currentState.Population["General"] = (int)(_currentState.Population.GetValueOrDefault("General", 0) * 0.99f); // 1%減少
+            }
+            if (_currentState.Population.GetValueOrDefault("General", 0) < 0) _currentState.Population["General"] = 0;
+
+
+            // その他のシステム更新 (戦闘、クラフト、イベントなど)
+            // ...
         }
 
         /// <summary>
-        /// Job（生活職業）データをロードするプレースホルダーメソッド。
+        /// 現在のシミュレーション状態をコンソールにログ出力します。
         /// </summary>
-        private List<Job> LoadJobs()
+        private void LogCurrentState()
         {
-            var jobs = new List<Job>();
-            jobs.Add(Job.Create("Farmer", "農民", "食料を生産し、社会を支える基盤。",
-                new Dictionary<string, float> { { "Food", 1.0f }, { "Labor", 1.0f } },
-                new List<string> { "BasicFarming" }, new List<string> { "FarmingSkill" }).Value);
-            jobs.Add(Job.Create("Laborer", "労働者", "様々な建設や単純労働に従事する。",
-                new Dictionary<string, float> { { "Materials", 0.2f }, { "Labor", 1.0f } },
-                new List<string>(), new List<string> { "ManualLaborSkill" }).Value);
-            jobs.Add(Job.Create("Soldier", "兵士", "秩序を維持し、領土を守る。時には遠征にも参加する。",
-                new Dictionary<string, float> { { "Influence", 0.1f }, { "Labor", 0.5f } },
-                new List<string> { "Feudalism" }, new List<string> { "CombatSkill" }).Value);
-            jobs.Add(Job.Create("Blacksmith", "鍛冶屋", "道具や武器を生産し、社会の技術レベルを支える。",
-                new Dictionary<string, float> { { "Materials", 0.5f }, { "Labor", 1.0f } },
-                new List<string> { "EarlyMetallurgy" }, new List<string> { "CraftingSkill" }).Value);
-            jobs.Add(Job.Create("Merchant", "商人", "資源を流通させ、富を生み出す。都市の発展に不可欠。",
-                new Dictionary<string, float> { { "Influence", 0.2f }, { "Materials", 0.2f } },
-                new List<string> { "MerchantGuilds" }, new List<string> { "DiplomacySkill", "TradeSkill" }).Value);
-            jobs.Add(Job.Create("Scholar", "学者", "知識を研究し、新たな社会技術の発見に貢献する。",
-                new Dictionary<string, float> { { "Knowledge", 0.5f }, { "Labor", 0.5f } },
-                new List<string> { "Scholasticism" }, new List<string> { "ResearchSkill" }).Value);
-            return jobs;
-        }
-
-        /// <summary>
-        /// HistoricalEvent（歴史的イベント）データをロードするプレースホルダーメソッド。
-        /// </summary>
-        private List<HistoricalEvent> LoadHistoricalEvents()
-        {
-            var events = new List<HistoricalEvent>();
-            events.Add(HistoricalEvent.Create(
-                "GreatFamine1070", "大飢饉 (1070年)", "異常気象により、広範囲で飢饉が発生した。人口が減少し、社会不安が高まる。", 1070,
-                HistoricalEvent.EventType.Major,
-                new Dictionary<string, float> { { "Food", -1000f }, { "Stability", -0.2f }, { "PopulationGrowthRate", -0.02f } },
-                new List<string> { "Resource:Food_Low" }, new List<string> { "PopulationDecline", "SocialUnrest" }
-            ).Value);
-            events.Add(HistoricalEvent.Create(
-                "FoundingOfFirstUniversity", "最初の大学設立", "知識の集積と研究のための機関が設立された。学術的進歩が加速する。", 1120,
-                HistoricalEvent.EventType.Major,
-                new Dictionary<string, float> { { "Knowledge", 100f }, { "TechnologicalProgressRate", 0.005f } },
-                new List<string> { "Magic:Urbanization" }, new List<string>()
-            ).Value);
-            events.Add(HistoricalEvent.Create(
-                "CrusadesStart", "十字軍の開始", "聖地奪還を目的とした大規模な遠征が始まった。宗教的熱狂と軍事的動員が世界を揺るがす。", 1095, // 歴史的に正確な開始年
-                HistoricalEvent.EventType.Major,
-                new Dictionary<string, float> { { "Influence", 0.1f }, { "Materials", -0.05f }, { "Stability", -0.1f } },
-                new List<string> { "Magic:Feudalism" }, new List<string>()
-            ).Value);
-            events.Add(HistoricalEvent.Create(
-                "BlackDeathPrecursor", "黒死病の前兆", "東方からの交易路を通じて、未知の疫病が広がり始めた。後の大疫病の兆候。", 1240,
-                HistoricalEvent.EventType.Major,
-                new Dictionary<string, float> { { "PopulationGrowthRate", -0.05f }, { "Stability", -0.1f } },
-                new List<string> { "Magic:MerchantGuilds" }, new List<string>()
-            ).Value);
-            events.Add(HistoricalEvent.Create(
-                "MagnaCartaSigned", "マグナ・カルタ署名", "国王の権限を制限し、貴族の権利を保障する憲章が署名された。後の立憲主義の萌芽。", 1215, // 歴史的に正確な年
-                HistoricalEvent.EventType.Major,
-                new Dictionary<string, float> { { "Stability", 0.05f }, { "Influence", 0.05f } },
-                new List<string> { "Magic:Feudalism", "Influence:High" }, new List<string>()
-            ).Value);
-            return events;
+            Console.WriteLine($"  Resources: {string.Join(", ", _currentState.Resources.Select(kv => $"{kv.Key}: {kv.Value:F2}"))}");
+            Console.WriteLine($"  Population: {string.Join(", ", _currentState.Population.Select(kv => $"{kv.Key}: {kv.Value}"))}");
+            Console.WriteLine($"  Discovered Magic: {string.Join(", ", _currentState.DiscoveredMagicIds)}");
+            Console.WriteLine($"  Active Jobs: {string.Join(", ", _currentState.ActiveJobAssignments.Select(kv => $"{_jobSystem.GetJobData(kv.Key)?.Name ?? kv.Key}: {kv.Value}"))}");
+            Console.WriteLine($"  World Params: {string.Join(", ", _currentState.WorldParameters.Select(kv => $"{kv.Key}: {kv.Value:F2}"))}");
         }
     }
+}
+```
 
-    // --- インターフェースのプレースホルダー実装 ---
+## 4. 使用例 (テストケースの示唆)
 
-    /// <summary>
-    /// PlaceholderCombatSystem クラス: ICombatSystem のプレースホルダー実装。
-    /// </summary>
-    public class PlaceholderCombatSystem : ICombatSystem
-    {
-        public SafeResult<CombatOutcome> InitiateCombat(CombatContext context)
-        {
-            Console.WriteLine("（プレースホルダー戦闘システム: 戦闘が開始されました。結果はランダムに決定されます。）");
-            // 簡略化された結果をシミュレート
-            return SafeResult<CombatOutcome>.Success(new CombatOutcome { /* 実際の戦闘結果データを設定 */ });
-        }
-    }
+上記のコンポーネントを組み合わせてシミュレーションを実行する例です。
 
-    /// <summary>
-    /// PlaceholderCraftingSystem クラス: ICraftingSystem のプレースホルダー実装。
-    /// </summary>
-    public class PlaceholderCraftingSystem : ICraftingSystem
-    {
-        public SafeResult<CraftingOutcome> AttemptCraft(CraftingRecipe recipe, PlayerState playerState, WorldState worldState)
-        {
-            Console.WriteLine($"（プレースホルダークラフトシステム: {recipe.GetType().Name} のクラフトを試行中。）");
-            // 簡略化された結果をシミュレート
-            return SafeResult<CraftingOutcome>.Success(new CraftingOutcome { /* 実際のクラフト結果データを設定 */ });
-        }
-    }
+```csharp
+// Program.cs (またはテストクラス)
+using FromLikeCombatBlindHeatScienceCraftSimulator.Core;
+using FromLikeCombatBlindHeatScienceCraftSimulator.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-    /// <summary>
-    /// Program クラス: ゲームのエントリポイント。
-    /// </summary>
+namespace FromLikeCombatBlindHeatScienceCraftSimulator
+{
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8; // 日本語文字表示のため
+            Console.WriteLine("Starting FromLikeCombatBlindHeatScienceCraftSimulator...");
 
-            try
+            // 初期状態のMagicDataを準備
+            var allMagic = new List<MagicData>
             {
-                var game = new GameManager("千年を紡ぐ者");
-                var result = game.StartSimulation(1250); // T1050からT1250までシミュレーションを実行
+                new MagicData("BasicAgriculture", "基礎農業", "基本的な耕作技術。", "Agriculture", new List<string>(), new Dictionary<string, float>(), new Dictionary<string, float> { { "Resource_Food", 100 }, { "WorldParameter_Stability", 0.1f } }, 10),
+                new MagicData("AdvancedAgriculture", "高度農業", "輪作や灌漑による生産性向上。", "Agriculture", new List<string> { "BasicAgriculture" }, new Dictionary<string, float> { { "Resource_Wood", 50 } }, new Dictionary<string, float> { { "Resource_Food", 300 }, { "WorldParameter_Stability", 0.2f } }, 50),
+                new MagicData("IronSmelting", "製鉄技術", "鉄の精錬を可能にする。", "Metallurgy", new List<string>(), new Dictionary<string, float> { { "Resource_Wood", 100 } }, new Dictionary<string, float> { { "Resource_Metal", 50 } }, 70),
+                new MagicData("WaterWheel", "水車", "水力を使った動力源。", "Engineering", new List<string> { "IronSmelting" }, new Dictionary<string, float> { { "Resource_Wood", 200 }, { "Resource_Metal", 50 } }, new Dictionary<string, float> { { "Resource_ProductionEfficiency", 0.1f } }, 120),
+                new MagicData("CompassNavigation", "羅針盤航海術", "遠洋航海を可能にする。", "Navigation", new List<string>(), new Dictionary<string, float> { { "Resource_Knowledge", 50 } }, new Dictionary<string, float> { { "WorldParameter_Exploration", 0.3f } }, 80),
+                new MagicData("PrintingPress", "活版印刷術", "知識の普及を加速する。", "Culture", new List<string> { "IronSmelting", "BasicAgriculture" }, new Dictionary<string, float> { { "Resource_Wood", 150 }, { "Resource_Metal", 30 } }, new Dictionary<string, float> { { "Resource_Knowledge", 200 }, { "WorldParameter_Culture", 0.5f } }, 150),
+                new MagicData("EarlyIndustrialMagic", "初期産業魔法", "蒸気機関の萌芽。", "Engineering", new List<string> { "WaterWheel", "IronSmelting" }, new Dictionary<string, float> { { "Resource_Metal", 300 }, { "Resource_Knowledge", 100 } }, new Dictionary<string, float> { { "Resource_ProductionEfficiency", 0.3f }, { "WorldParameter_Unrest", 0.1f } }, 200)
+            };
 
-                if (result.IsSuccess)
-                {
-                    Console.WriteLine(result.Value);
-                }
-                else
-                {
-                    Console.Error.WriteLine($"シミュレーションエラー: {result.ErrorMessage}");
-                }
-            }
-            catch (Exception ex)
+            // 初期状態のJobDataを準備
+            var allJobs = new List<JobData>
             {
-                Console.Error.WriteLine($"予期せぬ例外が発生しました: {ex.Message}");
-                Console.Error.WriteLine(ex.StackTrace);
-            }
+                new JobData("Farmer", "農民", "食料を生産する。", "Agriculture", new List<string> { "BasicAgriculture" }, new Dictionary<string, float> { { "Food", 10 } }, new Dictionary<string, float> { { "Food", 1 } }, 1.0f),
+                new JobData("Miner", "鉱夫", "金属を採掘する。", "Mining", new List<string> { "IronSmelting" }, new Dictionary<string, float> { { "Metal", 5 } }, new Dictionary<string, float> { { "Food", 2 } }, 1.0f),
+                new JobData("Blacksmith", "鍛冶屋", "金属製品を加工する。", "Craftsman", new List<string> { "IronSmelting" }, new Dictionary<string, float> { { "Tools", 2 } }, new Dictionary<string, float> { { "Metal", 3 }, { "Food", 1 } }, 1.0f),
+                new JobData("Soldier", "兵士", "防衛と攻撃を行う。", "Military", new List<string>(), new Dictionary<string, float> { { "WorldParameter_Stability", 0.01f } }, new Dictionary<string, float> { { "Food", 3 }, { "Tools", 0.5f } }, 1.0f),
+                new JobData("Explorer", "探検家", "新たな土地や知識を発見する。", "Exploration", new List<string> { "CompassNavigation" }, new Dictionary<string, float> { { "Knowledge", 5 } }, new Dictionary<string, float> { { "Food", 2 } }, 1.0f)
+            };
+
+            // 初期シミュレーション状態
+            var initialState = new SimulationState(
+                currentTime: 1000,
+                resources: new Dictionary<string, float>
+                {
+                    { "Food", 10000 },
+                    { "Wood", 5000 },
+                    { "Metal", 1000 },
+                    { "Knowledge", 100 },
+                    { "Tools", 200 }
+                },
+                population: new Dictionary<string, int>
+                {
+                    { "General", 1000 }
+                },
+                discoveredMagicIds: new HashSet<string>
+                {
+                    "BasicAgriculture" // 基礎農業は既に発見済み
+                },
+                activeJobAssignments: new Dictionary<string, int>
+                {
+                    { "Farmer", 500 },
+                    { "Miner", 100 }
+                },
+                worldParameters: new Dictionary<string, float>
+                {
+                    { "Stability", 0.5f },
+                    { "Unrest", 0.1f },
+                    { "Culture", 0.2f },
+                    { "Exploration", 0.0f }
+                }
+            );
+
+            // シミュレーションコアを初期化して実行
+            var simulator = new SimulationCore(initialState, allMagic, allJobs);
+            simulator.RunSimulation(1000, 1300); // T1000からT1300まで実行し、T1050-T1250で剪定理論が発動する
         }
     }
 }

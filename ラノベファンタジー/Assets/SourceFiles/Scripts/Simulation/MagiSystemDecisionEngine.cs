@@ -857,7 +857,7 @@ public class MagiSystemDecisionEngine : MonoBehaviour
                 diverseCandidateId,
                 StringComparison.OrdinalIgnoreCase);
             bool scoreGapValid = diverseSkuld.score > beastSkuld.score &&
-                                 diverseSkuld.score >= 300 &&
+                                 diverseSkuld.score >= 220 &&
                                  diverseAnalysis.branchCount >= 6 &&
                                  beastSkuld.score <= 120;
             bool scaleInRange = diverseSkuld.score >= 0 &&

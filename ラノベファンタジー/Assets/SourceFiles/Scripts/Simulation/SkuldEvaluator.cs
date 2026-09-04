@@ -20,6 +20,7 @@ public sealed class SkuldPossibilityAnalysis
 /// <summary>
 /// T≤1000: TimelineScriptEvaluator の totalScore（過去正史互換）。
 /// T≥1001: 未来の可能性の太さ（BranchingFactor / PotentialUnlocks / CivilizationPlasticity）0〜+400。
+/// 上限は維持しつつ、加点・閾値を厳しくして天井到達を稀にする。
 /// </summary>
 public sealed class SkuldEvaluator : MagiSystemEvaluator
 {
@@ -31,6 +32,8 @@ public sealed class SkuldEvaluator : MagiSystemEvaluator
     public const int MaxBranchingFactorScore = 200;
     public const int MaxPotentialUnlocksScore = 100;
     public const int MaxCivilizationPlasticityScore = 100;
+    public const int MaxRevivalEraBonus = 60;
+    public const int ConvergenceLockedScoreCap = 80;
 
     private static readonly string[] PostCanonBlueprintSuffixes =
     {
@@ -168,7 +171,7 @@ public sealed class SkuldEvaluator : MagiSystemEvaluator
 
         if (evaluationTurn >= PruningModelStartTurn && convergenceLocked)
         {
-            analysis.totalScore = Mathf.Min(analysis.totalScore, 80);
+            analysis.totalScore = Mathf.Min(analysis.totalScore, ConvergenceLockedScoreCap);
         }
 
         return analysis;
@@ -360,22 +363,25 @@ public sealed class SkuldEvaluator : MagiSystemEvaluator
 
     private static int ScoreBranchingFactor(int accessibleCount)
     {
+        // 旧より中間帯を抑え、満点(200)はほぼ全ブループリント開放時のみ。
         switch (accessibleCount)
         {
             case <= 1:
                 return 0;
             case 2:
-                return 35;
+                return 20;
             case 3:
-                return 70;
+                return 40;
             case 4:
-                return 110;
+                return 65;
             case 5:
-                return 145;
+                return 90;
             case 6:
-                return 170;
+                return 115;
             case 7:
-                return 190;
+                return 145;
+            case 8:
+                return 175;
             default:
                 return MaxBranchingFactorScore;
         }
@@ -433,7 +439,8 @@ public sealed class SkuldEvaluator : MagiSystemEvaluator
 
     private static int ScorePotentialUnlocks(int unlockCount)
     {
-        return Mathf.Clamp(unlockCount * 18, 0, MaxPotentialUnlocksScore);
+        // 旧×18 だと数件で上限100に到達するため、単価を下げて到達を難しくする。
+        return Mathf.Clamp(unlockCount * 10, 0, MaxPotentialUnlocksScore);
     }
 
     private static int ScoreCivilizationPlasticity(
@@ -447,44 +454,49 @@ public sealed class SkuldEvaluator : MagiSystemEvaluator
         }
 
         int score = 0;
-        if (terminal.powerMultiplier >= 1.0f)
+        // 閾値を引き上げ、満点は「力・結界・脅威・テーマ」が揃ったときのみ。
+        if (terminal.powerMultiplier >= 1.12f)
         {
             score += 35;
         }
-        else if (terminal.powerMultiplier >= 0.96f)
+        else if (terminal.powerMultiplier >= 1.05f)
         {
             score += 15;
         }
+        else if (terminal.powerMultiplier >= 1.0f)
+        {
+            score += 6;
+        }
 
-        if (terminal.barrierEfficiencyDelta >= 0.04f)
+        if (terminal.barrierEfficiencyDelta >= 0.10f)
         {
             score += 35;
         }
-        else if (terminal.barrierEfficiencyDelta >= 0f)
-        {
-            score += 20;
-        }
-        else if (terminal.barrierEfficiencyDelta >= -0.05f)
-        {
-            score += 8;
-        }
-
-        if (terminal.threatMultiplier <= 1.05f)
-        {
-            score += 30;
-        }
-        else if (terminal.threatMultiplier <= 1.15f)
+        else if (terminal.barrierEfficiencyDelta >= 0.04f)
         {
             score += 18;
         }
-        else if (terminal.threatMultiplier <= 1.25f)
+        else if (terminal.barrierEfficiencyDelta >= 0f)
         {
-            score += 8;
+            score += 6;
+        }
+
+        if (terminal.threatMultiplier <= 0.95f)
+        {
+            score += 30;
+        }
+        else if (terminal.threatMultiplier <= 1.05f)
+        {
+            score += 14;
+        }
+        else if (terminal.threatMultiplier <= 1.15f)
+        {
+            score += 6;
         }
 
         if (ContainsKeyword(blob, "INNOVATION", "ACADEMY", "LOST_TECH", "HERO", "FRONTIER"))
         {
-            score += 15;
+            score += 10;
         }
 
         if (terminal.barrierEfficiencyDelta < -0.12f &&
@@ -509,44 +521,49 @@ public sealed class SkuldEvaluator : MagiSystemEvaluator
         }
 
         int bonus = 0;
-        if (accessible.Count >= 6)
-        {
-            bonus += 25;
-        }
-
-        if (accessible.Count >= 8)
+        // 件数・キーワード加点を抑え、ボーナスだけで合計を押し上げにくくする。
+        if (accessible.Count >= 7)
         {
             bonus += 15;
         }
-
-        if (ContainsKeyword(blob, "CIVIL", "SUCCESSION", "POLITICS", "REFORM", "CIVILWAR"))
-        {
-            bonus += 18;
-        }
-
-        if (ContainsKeyword(blob, "INNOVATION", "LOST_TECH", "ACADEMY", "HERETIC", "TECH"))
-        {
-            bonus += 20;
-        }
-
-        if (ContainsKeyword(blob, "TRADE", "COMMERCE", "FRONTIER", "EXPANSION", "MARKET"))
-        {
-            bonus += 16;
-        }
-
-        if (terminal != null &&
-            terminal.threatMultiplier <= 1.05f &&
-            terminal.powerMultiplier >= 1.0f &&
-            terminal.barrierEfficiencyDelta >= 0f)
-        {
-            bonus += 12;
-        }
-
-        if (EnvironmentBiorhythmEngine.IsCivilizationRevivalTurn(evaluationTurn))
+        else if (accessible.Count >= 5)
         {
             bonus += 8;
         }
 
-        return Mathf.Clamp(bonus, 0, 60);
+        if (accessible.Count >= 8)
+        {
+            bonus += 10;
+        }
+
+        if (ContainsKeyword(blob, "CIVIL", "SUCCESSION", "POLITICS", "REFORM", "CIVILWAR"))
+        {
+            bonus += 10;
+        }
+
+        if (ContainsKeyword(blob, "INNOVATION", "LOST_TECH", "ACADEMY", "HERETIC", "TECH"))
+        {
+            bonus += 12;
+        }
+
+        if (ContainsKeyword(blob, "TRADE", "COMMERCE", "FRONTIER", "EXPANSION", "MARKET"))
+        {
+            bonus += 10;
+        }
+
+        if (terminal != null &&
+            terminal.threatMultiplier <= 0.95f &&
+            terminal.powerMultiplier >= 1.08f &&
+            terminal.barrierEfficiencyDelta >= 0.04f)
+        {
+            bonus += 8;
+        }
+
+        if (EnvironmentBiorhythmEngine.IsCivilizationRevivalTurn(evaluationTurn))
+        {
+            bonus += 5;
+        }
+
+        return Mathf.Clamp(bonus, 0, MaxRevivalEraBonus);
     }
 }
