@@ -1,1 +1,0 @@
-﻿PASS phase=24 villagers=6 Food 64.3 / Timber 62.9 / Ore 20.5 / ManaCrystal 0.0

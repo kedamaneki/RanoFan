@@ -4,7 +4,12 @@ import subprocess
 from google import genai
 from google.genai import types
 
-# .env ファイルから API キーを簡易読み込み
+# Windowsコンソールでの文字コード(CP932)エラー防止対策
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
+# .env ファイルから API キーを読み込み
 env_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(env_path):
     with open(env_path, 'r', encoding='utf-8') as f:
@@ -22,7 +27,7 @@ client = genai.Client(api_key=api_key)
 # プロンプトの取得（引数または対話入力）
 prompt = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else input("Geminiへの指示を入力してください: ")
 
-print("Gemini 2.5 flash で設計書・C#指示を生成中...")
+print("Gemini 2.5 Flash で設計書・C#指示を生成中...")
 
 system_instruction = """
 あなたは「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」のリードディレクター兼C#設計者です。
@@ -32,14 +37,15 @@ Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約(魔法=社会�
 
 def auto_git_commit(commit_message):
     try:
-        # プロジェクトルートの絶対パスを取得
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-        print(f"📦 Git への自動コミットおよびプッシュを実行中... (対象: {project_root})")
+        print(f"[Git] 自動コミットおよびプッシュを実行中... (対象: {project_root})")
         
-        # 1. 変更の追加
-        subprocess.run(["git", "add", "."], check=True, cwd=project_root)
-        
-        # 2. 変更があるか確認（UTF-8指定・デコードエラー自動置換で保護）
+        # Git 処理を実行。エラーが発生しても例外で落とさずスキップする
+        add_res = subprocess.run(["git", "add", "."], cwd=project_root, capture_output=True, text=True, encoding='utf-8', errors='replace')
+        if add_res.returncode != 0:
+            print(f"[Git Warning] git add に失敗したため、Git コミットをスキップします: {add_res.stderr.strip()}")
+            return
+
         result = subprocess.run(
             ["git", "status", "--porcelain"], 
             capture_output=True, 
@@ -50,16 +56,16 @@ def auto_git_commit(commit_message):
         )
         
         if not result.stdout or not result.stdout.strip():
-            print("ℹ️ 変更がないため Git コミットをスキップしました。")
+            print("[Git] 変更がないため Git コミットをスキップしました。")
             return
             
-        # 3. コミット＆プッシュ実行
         subprocess.run(["git", "commit", "-m", commit_message], check=True, cwd=project_root)
         subprocess.run(["git", "push", "origin", "main"], check=True, cwd=project_root)
-        print("✅ Git への自動コミットおよびプッシュが完了しました！")
+        print("[Git] 自動コミットおよびプッシュが完了しました！")
     except Exception as e:
-        print(f"⚠️ Git 自動処理中にエラーが発生しました: {e}")
+        print(f"[Git Warning] Git 処理を安全にスキップしました: {e}")
 
+# Gemini 2.5 Flash API 呼び出し
 response = client.models.generate_content(
     model='gemini-2.5-flash',
     contents=prompt,
@@ -74,8 +80,8 @@ output_path = os.path.join(os.path.dirname(__file__), '..', 'CursorInstruction.m
 with open(output_path, 'w', encoding='utf-8') as f:
     f.write(response.text)
 
-print(f"✅ 生成完了: {output_path} に書き出しました！")
+print(f"[Success] 生成完了: {output_path} に書き出しました！")
 
-# 🎯 生成完了後に Git 自動実行
+# 生成完了後に Git 自動実行
 prompt_summary = prompt[:30] if 'prompt' in locals() else "instruction update"
 auto_git_commit(f"auto: generated CursorInstruction via Gemini API ({prompt_summary})")

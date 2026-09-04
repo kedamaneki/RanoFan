@@ -1,4 +1,0 @@
-﻿2026-08-31T14:40:15.3764584Z success=True
-gen4: success=True gen3=ALT_NATION_001_TURN_111_DEMON_FRONT score=379 turn=T150->T151 era=Late gen4=T151-T200 generated=5 evaluated=18 hero=ミサ
-checks: commit=True score=True turn=True gen=True eval=True awaiting=True possess=True parent=True
-main=ALT_NATION_001_TURN_111_DEMON_FRONT gen3Score=379 top=ALT_NATION_001_TURN_159_WIDE_ALLIANCE topScore=388 hero=ミサ job=JOB_ACADEMY_SCHOLAR

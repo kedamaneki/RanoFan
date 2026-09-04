@@ -1,1 +1,0 @@
-﻿PASS map=True active=Dormant activeOk=True dormantPhase=17 dormantOk=True advance=[phase 17->18 season Dormant->Dormant threat=1.49 barrier=0.99 markers=10 ugui=False populator=yes] ugui=False markers=10

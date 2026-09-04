@@ -1,7 +1,0 @@
-﻿2026-08-31T01:07:15.6440906Z success=True
-canon-mode: power=1000.0 barrier=0.950 pass=True
-register: success=True branch=ALT_NATION_001_TURN_005_HERO flag=ALT_NATION_001_OUTCOME_T005_HERO
-delta T4=1000.0 T5(same)=1000.0 T6 power=1100.0 barrier=1.000 threat=1.08 flag=True pass=True
-macro-apply: power=1100.0 barrier=1.000 pass=True
-survival-override: False→True pass=True
-timeline-select: canon@1000 altA@1100 altB@1150 pass=True

@@ -1,7 +1,0 @@
-﻿2026-08-31T20:44:34.5814594Z success=True
-disagreed: status=Disagreed awaiting=True pass=True
-safeFail: status=Disagreed fallback=True awaiting=True pass=True
-allAgreed: status=AllAgreed commit=True main=ALT_NATION_001_TURN_015_CIVILWAR pass=True
-staleness: streak=3 status=Disagreed verdandi=ALT_VERIFY_STALENESS_CIVILWAR(400) skuld=ALT_VERIFY_BEAST_GEN4_BEAST_CATASTROPHE beastVerdandi=-266 scaleOk=True pass=True
-skuldPruning: turn=1051 beast=8(0枝) diverse=400(6枝) pick=ALT_VERIFY_PRUNING_DIVERSE_POSSIBILITY model=BranchingFactor pass=True
-units: verdandi=ヴェルダンディ urd=ウルズ skuld=スクルド pass=True

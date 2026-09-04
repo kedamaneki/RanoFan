@@ -170,7 +170,7 @@ public class EnvironmentManager : MonoBehaviour
 
             // HistoryFlag に記録
             HistoryFlagRegistry.EnsureWired();
-            HistoryFlagRegistry.TryUnlock("ENV_TRANSFORMATION_T1001");
+            HistoryFlagRegistry.Unlock("ENV_TRANSFORMATION_T1001");
 
             Debug.Log(
                 $"<color=#80DEEA><b>{LogTag}</b></color> " +

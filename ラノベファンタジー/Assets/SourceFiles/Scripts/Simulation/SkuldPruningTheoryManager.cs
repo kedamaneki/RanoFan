@@ -278,7 +278,7 @@ public class SkuldPruningTheoryManager : MonoBehaviour
         // 現時点では HistoryFlagRegistry に剪定フラグを記録
         string flagId = $"PRUNE_RECIPE_{rule.TargetId}_{rule.Effect}";
         HistoryFlagRegistry.EnsureWired();
-        HistoryFlagRegistry.TryUnlock(flagId);
+        HistoryFlagRegistry.Unlock(flagId);
         Debug.Log(
             $"[SkuldPruningTheoryManager] クラフトレシピ剪定を記録: {rule.TargetId} → {rule.Effect} (flag={flagId})");
     }
@@ -289,7 +289,7 @@ public class SkuldPruningTheoryManager : MonoBehaviour
         // 現時点では HistoryFlagRegistry に記録
         string flagId = $"PRUNE_RESOURCE_{rule.TargetId}_{rule.Effect}";
         HistoryFlagRegistry.EnsureWired();
-        HistoryFlagRegistry.TryUnlock(flagId);
+        HistoryFlagRegistry.Unlock(flagId);
         Debug.Log(
             $"[SkuldPruningTheoryManager] 資源ノード剪定を記録: {rule.TargetId} → {rule.Effect} (flag={flagId})");
     }

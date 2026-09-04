@@ -978,7 +978,7 @@ public class MagicSanitizerEngine : MonoBehaviour
 
         // HistoryFlagRegistry に解禁フラグを記録
         HistoryFlagRegistry.EnsureWired();
-        HistoryFlagRegistry.TryUnlock($"MAGIC_INTRODUCE_{magicId}");
+        HistoryFlagRegistry.Unlock($"MAGIC_INTRODUCE_{magicId}");
 
         MasterDataManager master = MasterDataManager.EnsureInstance();
         if (master == null)

@@ -1,2 +1,0 @@
-﻿FAIL
-phase=24 森林 69.4→69.4 野生 126→124 魔力 74.0→74.0 変異累計 0 変異材×1.71 誘引 0 縄張り 0 forestΔ=False wildΔ=True manaΔ=False mutatedTimber=True fruit=True conflict=False

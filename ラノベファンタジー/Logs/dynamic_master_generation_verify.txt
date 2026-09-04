@@ -1,8 +1,0 @@
-﻿2026-08-30T10:51:20.2373404Z success=True
-innovation: magic=MAGIC_DYN_FORGE_SPIRIT job=JOB_HIGH_SMITH pass=True (魔導 MAGIC_DYN_FORGE_SPIRIT (登録=True fb=False) / 職 JOB_HIGH_SMITH (登録=True fb=False) / 検証)
-barrier: magic=MAGIC_DYN_BARRIER_SEAL job=JOB_BARRIER_REPAIRER pass=True (魔導 MAGIC_DYN_BARRIER_SEAL (登録=True fb=False) / 職 JOB_BARRIER_REPAIRER (登録=True fb=False) / 検証)
-hero: magic=MAGIC_DYN_BARRIER_RESTORE job=JOB_CRYSTAL_TENDER pass=True (魔導 MAGIC_DYN_BARRIER_RESTORE (登録=True fb=False) / 職 JOB_CRYSTAL_TENDER (登録=True fb=False) / 検証)
-civil: magic=MAGIC_DYN_FOOD_RATION job=JOB_REBEL_LEADER pass=True (魔導 MAGIC_DYN_FOOD_RATION (登録=True fb=False) / 職 JOB_REBEL_LEADER (登録=True fb=False) / 検証)
-academy: magic=MAGIC_DYN_ACADEMY_SYNTHESIS job=JOB_ACADEMY_SCHOLAR pass=True (魔導 MAGIC_DYN_ACADEMY_SYNTHESIS (登録=True fb=False) / 職 JOB_ACADEMY_SCHOLAR (登録=True fb=False) / 検証)
-pipeline-clamp: value=3.00 area=15.0 mp=10 pass=True
-clamp: value=3.00 area=15.0 mp=10 pass=True

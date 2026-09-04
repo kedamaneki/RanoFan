@@ -1,9 +1,0 @@
-﻿2026-08-31T20:41:30.2889520Z success=True
-colossus: deployed=50 expected=50 pass=True
-observation: flag=HIST_NATION_001_GEO_TURN_120_OBSERVED_COLOSSUS unlocked=True pass=True
-routine: T120 routines=50 reactions=0
-civilization: bound=2 tick=2 arcana=True orthodoxy=True pass=True
-lostTech: lost=0 arcanaLost=True ERA_ANCIENT=True pass=True
-peakLostTech: T400 lost=2 arcanaLost=True pass=True
-revivalPhase: T800=PeakCatastrophe T1001=Dormant T1200=Dormant beast×0.32 mana=40.0 ecology=bio=Dormant mana=40.0 target=40.0 friction=0.88 encounters=2 purged=4 pass=True skuld=diverse=400(6枝) converged=8(0枝) pass=True pass=True
-expand: success=True colossus=50 heretic=2 obs=1 civilized=2 lost=2

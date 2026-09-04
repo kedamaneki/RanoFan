@@ -1,4 +1,0 @@
-﻿2026-08-30T23:11:14.0321492Z success=False
-turn88-proxy: count=1 fallback=True pass=True
-turn1: count=1 fallback=False pass=True
-hero-stats: 最西端の統合王国周辺の結界守 Job=JOB_BARRIER_REPAIRER Trait=Cautious HP100 STR31 DEF6 STA150 MP160/160 Karma8 pass=False

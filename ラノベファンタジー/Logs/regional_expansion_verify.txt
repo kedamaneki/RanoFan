@@ -1,1 +1,0 @@
-﻿init=True phase=24 trades=0 064Barrier=100.0% threatBonus=0.0

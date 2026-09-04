@@ -1,1 +1,0 @@
-﻿nations=35 LOD0=3 LOD1=32 trades=163 writeback=35/35 phase=24

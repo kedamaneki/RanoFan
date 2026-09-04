@@ -1,1 +1,0 @@
-﻿PASS phase=24 Wood 43.6 / Food 88.6 / Ore 16.0 / ManaCrystal 0.2 barrier=100.0 dropped=False tech=1.00

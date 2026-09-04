@@ -1,4 +1,0 @@
-﻿2026-08-31T14:07:42.8617116Z success=True
-manual: success=True manual=ALT_NATION_001_TURN_058_ARCANE_REVIVAL score=379 turn=T100 main=ALT_NATION_001_TURN_058_ARCANE_REVIVAL hero=結界再建の守護者 evaluated=8
-checks: commit=True score=True notAuto1st=True turn=True possess=True job=True hp=True mp=True
-main=ALT_NATION_001_TURN_058_ARCANE_REVIVAL score=379 hero=結界再建の守護者 job=JOB_BARRIER_REPAIRER

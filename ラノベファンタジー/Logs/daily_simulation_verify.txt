@@ -1,4 +1,0 @@
-﻿2026-08-30T10:51:08.1763894Z success=True
-day1: 1日目: 結界杭のエネルギーが1%低下 pass=True
-inject: restore=20.0 threat-0.34 pass=True
-day2: threat=2.78 barrier=38.8 pass=True
