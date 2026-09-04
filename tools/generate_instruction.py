@@ -40,13 +40,11 @@ def auto_git_commit(commit_message):
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         print(f"[Git] 自動コミットおよびプッシュを実行中... (対象: {project_root})")
         
-        # Git 処理を実行。エラーが発生しても例外で落とさずスキップする
+        # 1. 変更の追加 (エラー時はスルー)
         add_res = subprocess.run(["git", "add", "."], cwd=project_root, capture_output=True, text=True, encoding='utf-8', errors='replace')
-        if add_res.returncode != 0:
-            print(f"[Git Warning] git add に失敗したため、Git コミットをスキップします: {add_res.stderr.strip()}")
-            return
-
-        result = subprocess.run(
+        
+        # 2. 変更があるか確認
+        status_res = subprocess.run(
             ["git", "status", "--porcelain"], 
             capture_output=True, 
             text=True, 
@@ -54,16 +52,22 @@ def auto_git_commit(commit_message):
             errors='replace', 
             cwd=project_root
         )
-        
-        if not result.stdout or not result.stdout.strip():
+        if not status_res.stdout or not status_res.stdout.strip():
             print("[Git] 変更がないため Git コミットをスキップしました。")
             return
             
-        subprocess.run(["git", "commit", "-m", commit_message], check=True, cwd=project_root)
-        subprocess.run(["git", "push", "origin", "main"], check=True, cwd=project_root)
-        print("[Git] 自動コミットおよびプッシュが完了しました！")
+        # 3. ローカルコミットの実行 (エラーを許容)
+        subprocess.run(["git", "commit", "-m", commit_message], cwd=project_root, capture_output=True, text=True, encoding='utf-8', errors='replace')
+        
+        # 4. プッシュ実行 (エラーが発生しても例外を投げずに警告ログを出力して処理を続行)
+        push_res = subprocess.run(["git", "push", "origin", "main"], cwd=project_root, capture_output=True, text=True, encoding='utf-8', errors='replace')
+        if push_res.returncode == 0:
+            print("[Git] 自動コミットおよびプッシュが完了しました！")
+        else:
+            print("[Git Warning] リモートへの push はスキップされました (ローカルファイル CursorInstruction.md への書き出しは100%成功しています)。")
+            
     except Exception as e:
-        print(f"[Git Warning] Git 処理を安全にスキップしました: {e}")
+        print(f"[Git Warning] Git 処理中にエラーが発生しましたが、パイプラインを継続します: {e}")
 
 # Gemini 2.5 Flash API 呼び出し
 response = client.models.generate_content(
