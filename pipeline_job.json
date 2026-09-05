@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "jobType": "magiChronicleLoop",
-  "startTurn": 1051,
-  "endTurn": 1250,
-  "generationSpan": 50,
+  "startTurn": 1001,
+  "endTurn": 2000,
+  "generationSpan": 3000,
   "branchCount": 7,
   "commitPolicy": "skuldPruningMax",
   "preferThemes": [
@@ -12,6 +12,6 @@
     "復興"
   ],
   "exportCandidates": true,
-  "promptSummary": "T1050から1250まで連続進行 剪定理論で太いルートをコミット",
+  "promptSummary": "ターン1001からターン3000までの2000年間（第21〜60世代）を不遇枝エネルギー蓄積モデルを適用して連続自律進行させ、3000年史の正史を完成させよ",
   "preferThemesCsv": "学術,街道開拓,復興"
 }
