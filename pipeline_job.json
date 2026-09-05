@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "jobType": "civilizationRevival50",
+  "jobType": "magiChronicleLoop",
   "startTurn": 1001,
   "endTurn": 3000,
   "generationSpan": 50,
@@ -12,6 +12,6 @@
     "復興"
   ],
   "exportCandidates": true,
-  "promptSummary": "不遇枝エネルギー蓄積モデルを適用して連続自律進行せよ",
+  "promptSummary": "不遇枝エネルギー蓄積で連続自律進行",
   "preferThemesCsv": "学術,街道開拓,復興"
 }

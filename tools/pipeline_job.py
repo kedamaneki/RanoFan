@@ -237,6 +237,15 @@ def apply_cli_overrides(job: dict[str, Any], args: argparse.Namespace) -> dict[s
         out["generationSpan"] = int(args.span)
     if getattr(args, "branches", None) is not None:
         out["branchCount"] = int(args.branches)
+
+    # CLI で範囲を広げた場合、短区間用の civilizationRevival50 のまま残ると
+    # generationSpan を無視して一括1セグメントになるため、長区間は連続ループへ切替。
+    if getattr(args, "job_type", None) is None:
+        total = int(out["endTurn"]) - int(out["startTurn"]) + 1
+        if total > 55 or int(out["endTurn"]) > 1051:
+            out["jobType"] = "magiChronicleLoop"
+            if int(out.get("generationSpan") or 0) < 10 or int(out["generationSpan"]) >= total:
+                out["generationSpan"] = 50
     return out
 
 

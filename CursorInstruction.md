@@ -1,744 +1,859 @@
-はい、承知いたしました。
-「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」における「不遇枝エネルギー蓄積モデル」を適用した連続自律進行システムのC#実装指示プロンプトを、Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約を厳格に守り、Cursor(IDE)のCtrl+Lへそのまま読み込ませてC#コード化できるよう、精密なMarkdown形式で出力します。
+# C# 実装指示プロンプト: 不遇枝エネルギー蓄積と連続自律進行システム
+
+リードディレクター兼C#設計者として、ゲーム「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」における「不遇枝エネルギー蓄積で連続自律進行」機能の実装を指示します。以下の指示に従い、Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約を厳格に守ってください。
 
 ---
 
-# C#実装指示: 不遇枝エネルギー蓄積モデルと連続自律進行システム
+## 1. データ構造定義
 
-## 目的
-ゲームの自律進行システムにおいて、「不遇枝エネルギー蓄積モデル」を導入します。これは、特定の条件下でリソースが不足している「枝」（システムの一部、地域、技術ツリーの分岐、あるいは特定の文明など）が、その不遇な状況に応じて潜在的なエネルギーを蓄積し、最終的に特定の社会技術（Magic）を解放・適用できるメカニズムです。これにより、絶望的な状況からの逆転要素や、隠された力の解放を表現し、千年史のダイナミズムを創出します。
+### 1.1. `UnfortunateBranchData` (ScriptableObject)
 
-## 前提システム
-以下の既存システムが利用可能であることを前提とします。
-
-*   **`MagicType`**: 社会技術（Magic）の列挙型。
-    ```csharp
-    public enum MagicType // 社会技術 (Social Technology)
-    {
-        None,
-        BasicInfrastructure,        // 基本インフラ
-        AgrarianRevolution,         // 農業革命
-        Industrialization,          // 産業化
-        SocialWelfareProgram,       // 社会福祉プログラム
-        LocalEmpowermentInitiative, // 地域活性化イニシアティブ（不遇枝モデルで解放される主要Magic）
-        AdvancedAI,                 // 高度AI開発
-        InterstellarTravel          // 星間航行
-    }
-    ```
-*   **`JobType`**: 生活職業（Job）の列挙型。
-    ```csharp
-    public enum JobType // 生活職業 (Livelihood Profession)
-    {
-        None,
-        Farmer,     // 農民
-        Miner,      // 鉱夫
-        Artisan,    // 職人
-        Scholar,    // 学者
-        Soldier,    // 兵士
-        Administrator // 管理者
-    }
-    ```
-*   **`MagicApplicationResult`**: `IMagicSanitizerEngine` の戻り値型。
-    ```csharp
-    using System.Collections.Generic;
-
-    public class MagicApplicationResult
-    {
-        public bool Success { get; set; }
-        public string Message { get; set; }
-        public Dictionary<string, float> Effects { get; set; } = new Dictionary<string, float>(); // 適用されたMagicがもたらす効果
-    }
-    ```
-*   **`IMagicSanitizerEngine`**: 社会技術（Magic）の適用と検証を司るエンジン。
-    ```csharp
-    using System;
-    using System.Collections.Generic;
-
-    public interface IMagicSanitizerEngine
-    {
-        /// <summary>
-        /// 指定された社会技術を対象の枝に適用しようと試みる。
-        /// Magicの適用条件を検証し、成功すれば効果を適用する。
-        /// </summary>
-        /// <param name="magic">適用する社会技術のタイプ。</param>
-        /// <param name="targetBranch">適用対象の枝の状態。</param>
-        /// <param name="powerMultiplier">Magicの強度を調整する倍率。</param>
-        /// <returns>Magicの適用結果。</returns>
-        MagicApplicationResult ApplyMagic(MagicType magic, BranchState targetBranch, float powerMultiplier = 1.0f);
-    }
-    ```
-*   シミュレーションの基本単位は「ターン」とします。
-
-## 新規コンポーネント設計
-
-### 1. `BranchState` クラス
-各「枝」の現在の状態を保持するデータクラス。不遇枝エネルギーモデルに関連する状態もここに含めます。
+ゲーム世界に存在する「不遇枝」の特性を定義するScriptableObjectを作成します。これは、見過ごされがちだが潜在的なエネルギーを持つリソースです。
 
 ```csharp
-// BranchState.cs
-using System;
-using System.Collections.Generic;
-using System.Linq; // For string.Join in debug/logging
+// ファイル名: Assets/Scripts/Data/UnfortunateBranchData.cs
+using UnityEngine;
 
-/// <summary>
-/// シミュレーションにおける各「枝」（地域、文明、技術ツリーの分岐など）の現在の状態を保持するクラス。
-/// 不遇枝エネルギーモデルに関連する状態も管理する。
-/// </summary>
-public class BranchState
+[CreateAssetMenu(fileName = "UnfortunateBranchData", menuName = "GameData/UnfortunateBranch")]
+public class UnfortunateBranchData : ScriptableObject
 {
-    public string BranchId { get; private set; }
-    public Dictionary<string, float> Resources { get; private set; } = new Dictionary<string, float>();
-    public Dictionary<JobType, int> JobPopulations { get; private set; } = new Dictionary<JobType, int>();
-    public HashSet<MagicType> AppliedMagics { get; private set; } = new HashSet<MagicType>();
+    [Tooltip("この不遇枝から抽出可能な最大エネルギーポテンシャル")]
+    [Min(0)] public float MaxEnergyPotential = 100f;
 
-    // 不遇枝エネルギーモデル関連の状態
-    public bool IsUnderprivileged { get; private set; }
-    public int UnderprivilegedDurationTurns { get; private set; } // 不遇状態が続いているターン数
-    public float CurrentEnergy { get; private set; } // 蓄積されたエネルギー量
+    [Tooltip("不遇枝の発見難易度 (0-100)。高いほど発見しにくい")]
+    [Range(0, 100)] public int DiscoveryDifficulty = 50;
+
+    [Tooltip("不遇枝が時間と共に劣化する割合 (1秒あたりのエネルギー減少率)")]
+    [Min(0)] public float DecayRatePerSecond = 0.01f;
+
+    [Tooltip("不遇枝の熱科学的特性。エネルギー抽出時の効率や副産物に影響")]
+    public HeatScienceProperty HeatProperty; // 後述のHeatSciencePropertyを参照
+
+    [Tooltip("この不遇枝から得られる可能性がある特殊なクラフト素材")]
+    public ItemData[] PotentialCraftMaterials; // ItemDataは既存のデータ構造を想定、必要に応じて定義
+}
+
+// ファイル名: Assets/Scripts/Data/HeatScienceProperty.cs
+[System.Serializable]
+public struct HeatScienceProperty
+{
+    [Tooltip("エネルギー抽出プロセスの基本効率 (0-1)。1はロスなし")]
+    [Range(0f, 1f)] public float BaseExtractionEfficiency;
+
+    [Tooltip("エネルギー抽出時に発生する熱量。クラフトや環境変化に影響")]
+    [Min(0)] public float HeatGenerationOnExtraction;
+
+    [Tooltip("特定の温度範囲で抽出効率が変化する可能性 (例: 低温で効率低下)。X軸:温度, Y軸:効率補正率")]
+    public AnimationCurve EfficiencyTemperatureCurve; // 温度と効率の関係
+}
+
+// 仮のItemData定義 (必要に応じて詳細化)
+// ファイル名: Assets/Scripts/Data/ItemData.cs
+[CreateAssetMenu(fileName = "ItemData", menuName = "GameData/Item")]
+public class ItemData : ScriptableObject
+{
+    public string ItemName;
+    public string Description;
+    public Sprite Icon;
+    // 他のアイテム関連データ
+}
+```
+
+### 1.2. `UnfortunateBranchInstance` (ランタイムインスタンス)
+
+ゲーム世界に実際に存在する不遇枝のランタイム状態を管理するクラス。
+
+```csharp
+// ファイル名: Assets/Scripts/World/UnfortunateBranchInstance.cs
+using UnityEngine;
+
+public class UnfortunateBranchInstance
+{
+    public UnfortunateBranchData Data { get; private set; }
+    public float CurrentEnergyAmount { get; private set; }
+    public Vector3 WorldPosition { get; private set; }
+    public float AgeSeconds { get; private set; } // 生成されてからの時間
+
+    public UnfortunateBranchInstance(UnfortunateBranchData data, Vector3 position, float initialEnergy)
+    {
+        Data = data ?? throw new System.ArgumentNullException(nameof(data));
+        WorldPosition = position;
+        CurrentEnergyAmount = Mathf.Clamp(initialEnergy, 0, data.MaxEnergyPotential);
+        AgeSeconds = 0f;
+    }
 
     /// <summary>
-    /// 新しいBranchStateインスタンスを初期化します。
+    /// 時間経過による不遇枝の劣化を処理します。
     /// </summary>
-    /// <param name="id">枝を一意に識別するID。</param>
-    /// <exception cref="ArgumentNullException">BranchIdがnullまたは空の場合にスローされます。</exception>
-    public BranchState(string id)
+    /// <param name="deltaTime">経過時間（秒）</param>
+    /// <returns>劣化により減少したエネルギー量</returns>
+    public float Decay(float deltaTime)
     {
-        if (string.IsNullOrWhiteSpace(id))
+        if (deltaTime < 0)
         {
-            throw new ArgumentNullException(nameof(id), "BranchId cannot be null or empty.");
-        }
-        BranchId = id;
-    }
-
-    /// <summary>
-    /// 指定されたリソースの量を更新します。
-    /// </summary>
-    /// <param name="resourceName">リソースの名前。</param>
-    /// <param name="amount">更新量（正の値で増加、負の値で減少）。</param>
-    /// <exception cref="ArgumentNullException">resourceNameがnullまたは空の場合にスローされます。</exception>
-    public void UpdateResource(string resourceName, float amount)
-    {
-        if (string.IsNullOrWhiteSpace(resourceName))
-        {
-            throw new ArgumentNullException(nameof(resourceName), "Resource name cannot be null or empty.");
+            Debug.LogWarning("UnfortunateBranchInstance.Decay received negative deltaTime. Clamping to 0.");
+            deltaTime = 0;
         }
 
-        if (!Resources.ContainsKey(resourceName))
-        {
-            Resources[resourceName] = 0f;
-        }
-        Resources[resourceName] += amount;
-        if (Resources[resourceName] < 0)
-        {
-            Resources[resourceName] = 0; // リソースは0以下にならない
-        }
+        AgeSeconds += deltaTime;
+        float decayAmount = Data.DecayRatePerSecond * deltaTime;
+        float actualDecay = Mathf.Min(CurrentEnergyAmount, decayAmount);
+        CurrentEnergyAmount -= actualDecay;
+        if (CurrentEnergyAmount < 0) CurrentEnergyAmount = 0; // 念のため
+
+        return actualDecay;
     }
 
     /// <summary>
-    /// 指定されたジョブタイプの人口を更新します。
+    /// 不遇枝からエネルギーを抽出します。
     /// </summary>
-    /// <param name="jobType">ジョブのタイプ。</param>
-    /// <param name="count">更新数（正の値で増加、負の値で減少）。</param>
-    public void UpdateJobPopulation(JobType jobType, int count)
-    {
-        if (!JobPopulations.ContainsKey(jobType))
-        {
-            JobPopulations[jobType] = 0;
-        }
-        JobPopulations[jobType] += count;
-        if (JobPopulations[jobType] < 0)
-        {
-            JobPopulations[jobType] = 0; // 人口は0以下にならない
-        }
-    }
-
-    /// <summary>
-    /// 適用された社会技術を記録します。
-    /// </summary>
-    /// <param name="magic">適用された社会技術のタイプ。</param>
-    public void AddAppliedMagic(MagicType magic)
-    {
-        AppliedMagics.Add(magic);
-    }
-
-    /// <summary>
-    /// 枝の不遇状態を設定します。（内部利用）
-    /// </summary>
-    /// <param name="status">不遇状態であればtrue。</param>
-    internal void SetUnderprivilegedStatus(bool status)
-    {
-        IsUnderprivileged = status;
-    }
-
-    /// <summary>
-    /// 不遇状態が続いているターン数をインクリメントします。（内部利用）
-    /// </summary>
-    internal void IncrementUnderprivilegedDuration()
-    {
-        UnderprivilegedDurationTurns++;
-    }
-
-    /// <summary>
-    /// 不遇状態の期間をリセットします。（内部利用）
-    /// </summary>
-    internal void ResetUnderprivilegedDuration()
-    {
-        UnderprivilegedDurationTurns = 0;
-    }
-
-    /// <summary>
-    /// 枝にエネルギーを追加します。（内部利用）
-    /// </summary>
-    /// <param name="amount">追加するエネルギー量。</param>
-    /// <exception cref="ArgumentOutOfRangeException">amountが負の場合にスローされます。</exception>
-    internal void AddEnergy(float amount)
+    /// <param name="amount">抽出を試みる量</param>
+    /// <returns>実際に抽出された量</returns>
+    public float ExtractEnergy(float amount)
     {
         if (amount < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(amount), "Energy amount cannot be negative.");
+            Debug.LogWarning("UnfortunateBranchInstance.ExtractEnergy received negative amount. Clamping to 0.");
+            amount = 0;
         }
-        CurrentEnergy += amount;
+
+        float extracted = Mathf.Min(CurrentEnergyAmount, amount);
+        CurrentEnergyAmount -= extracted;
+        if (CurrentEnergyAmount < 0) CurrentEnergyAmount = 0; // 念のため
+        return extracted;
     }
 
     /// <summary>
-    /// 枝からエネルギーを消費します。（内部利用）
+    /// 不遇枝が枯渇したかどうかを判定します。
     /// </summary>
-    /// <param name="amount">消費するエネルギー量。</param>
-    /// <exception cref="ArgumentOutOfRangeException">amountが負の場合にスローされます。</exception>
-    internal void ConsumeEnergy(float amount)
+    public bool IsDepleted => CurrentEnergyAmount <= 0;
+}
+```
+
+## 2. コアシステムインターフェースとコンテキスト
+
+### 2.1. `IMagic` インターフェース
+
+すべての「魔法」（社会技術）が実装すべきインターフェース。
+
+```csharp
+// ファイル名: Assets/Scripts/Core/Magic/IMagic.cs
+public interface IMagic
+{
+    string MagicName { get; }
+    string Description { get; }
+
+    /// <summary>
+    /// この魔法が現在のコンテキストで実行可能か判定します。
+    /// </summary>
+    /// <param name="context">魔法実行コンテキスト</param>
+    /// <returns>実行可能であればtrue</returns>
+    bool CanExecute(MagicContext context);
+
+    /// <summary>
+    /// 魔法を実行します。
+    /// </summary>
+    /// <param name="context">魔法実行コンテキスト</param>
+    /// <returns>実行結果</returns>
+    MagicResult Execute(MagicContext context);
+}
+```
+
+### 2.2. `MagicContext` クラス
+
+魔法実行に必要なすべての情報を含むコンテキストオブジェクト。
+
+```csharp
+// ファイル名: Assets/Scripts/Core/Magic/MagicContext.cs
+using System.Collections.Generic;
+
+public class MagicContext
+{
+    public PlayerState PlayerState { get; private set; } // プレイヤーの状態（リソース、スキルなど）
+    public WorldState WorldState { get; private set; }   // 世界の状態（時間、環境、NPCなど）
+    public ResourceInventory GlobalResources { get; private set; } // グローバルなリソース貯蔵庫
+    public List<UnfortunateBranchInstance> AvailableBranches { get; private set; } // 利用可能な不遇枝インスタンス
+    public float DeltaTime { get; private set; } // 魔法が作用する時間間隔
+
+    public MagicContext(PlayerState playerState, WorldState worldState, ResourceInventory globalResources, List<UnfortunateBranchInstance> availableBranches, float deltaTime)
     {
+        PlayerState = playerState ?? throw new System.ArgumentNullException(nameof(playerState));
+        WorldState = worldState ?? throw new System.ArgumentNullException(nameof(worldState));
+        GlobalResources = globalResources ?? throw new System.ArgumentNullException(nameof(globalResources));
+        AvailableBranches = availableBranches ?? throw new System.ArgumentNullException(nameof(availableBranches));
+        DeltaTime = deltaTime;
+    }
+
+    // 必要に応じて、さらに詳細な情報（例: 特定のクラフトステーション、NPCのリストなど）を追加
+}
+
+// 仮のPlayerState, WorldState, ResourceInventory定義
+// ファイル名: Assets/Scripts/Core/PlayerState.cs
+public class PlayerState
+{
+    public float CurrentEnergy { get; set; } = 0f;
+    public float ResearchPoints { get; set; } = 0f;
+    // 他のプレイヤー関連データ
+}
+
+// ファイル名: Assets/Scripts/Core/WorldState.cs
+public class WorldState
+{
+    public float CurrentTime { get; private set; } = 0f; // シミュレーション時間
+    public float WorldTemperature { get; set; } = 25f; // 世界の平均温度
+    public void AdvanceTime(float deltaTime) => CurrentTime += deltaTime;
+    // 他の世界関連データ
+}
+
+// ファイル名: Assets/Scripts/Core/ResourceInventory.cs
+using System.Collections.Generic;
+using UnityEngine; // Debug.LogWarningのために追加
+
+public class ResourceInventory
+{
+    private Dictionary<string, float> _resources = new Dictionary<string, float>();
+
+    public float GetResource(string resourceName)
+    {
+        if (string.IsNullOrEmpty(resourceName))
+        {
+            Debug.LogWarning("ResourceInventory.GetResource received null or empty resourceName.");
+            return 0f;
+        }
+        _resources.TryGetValue(resourceName, out float amount);
+        return amount;
+    }
+
+    public void AddResource(string resourceName, float amount)
+    {
+        if (string.IsNullOrEmpty(resourceName))
+        {
+            Debug.LogWarning("ResourceInventory.AddResource received null or empty resourceName.");
+            return;
+        }
         if (amount < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(amount), "Energy amount cannot be negative.");
+            Debug.LogWarning($"ResourceInventory.AddResource received negative amount ({amount}) for {resourceName}. Clamping to 0.");
+            amount = 0;
         }
-        CurrentEnergy -= amount;
-        if (CurrentEnergy < 0)
+        _resources[resourceName] = GetResource(resourceName) + amount;
+    }
+
+    public bool TryConsumeResource(string resourceName, float amount)
+    {
+        if (string.IsNullOrEmpty(resourceName))
         {
-            CurrentEnergy = 0; // エネルギーは0以下にならない
+            Debug.LogWarning("ResourceInventory.TryConsumeResource received null or empty resourceName.");
+            return false;
         }
+        if (amount < 0)
+        {
+            Debug.LogWarning($"ResourceInventory.TryConsumeResource received negative amount ({amount}) for {resourceName}. Clamping to 0.");
+            amount = 0;
+        }
+
+        if (GetResource(resourceName) >= amount)
+        {
+            _resources[resourceName] -= amount;
+            return true;
+        }
+        return false;
+    }
+}
+
+// ファイル名: Assets/Scripts/Core/Magic/MagicResult.cs
+public enum MagicResultType { Success, Failure, InsufficientResources, ConditionNotMet, Error }
+
+public class MagicResult
+{
+    public MagicResultType Type { get; private set; }
+    public string Message { get; private set; }
+    public float EnergyConsumed { get; private set; } = 0f;
+    public float EnergyProduced { get; private set; } = 0f;
+    public Dictionary<string, float> ResourcesChanged { get; private set; } = new Dictionary<string, float>(); // 影響を受けたリソース
+
+    public MagicResult(MagicResultType type, string message = "", float energyConsumed = 0f, float energyProduced = 0f)
+    {
+        Type = type;
+        Message = message;
+        EnergyConsumed = energyConsumed;
+        EnergyProduced = energyProduced;
     }
 
+    public static MagicResult Success(string message = "Magic executed successfully.", float energyConsumed = 0f, float energyProduced = 0f)
+        => new MagicResult(MagicResultType.Success, message, energyConsumed, energyProduced);
+    public static MagicResult Failure(string message = "Magic execution failed.")
+        => new MagicResult(MagicResultType.Failure, message);
+    public static MagicResult InsufficientResources(string message = "Insufficient resources to execute magic.")
+        => new MagicResult(MagicResultType.InsufficientResources, message);
+    public static MagicResult ConditionNotMet(string message = "Conditions for magic execution not met.")
+        => new MagicResult(MagicResultType.ConditionNotMet, message);
+    public static MagicResult Error(string message = "An unexpected error occurred during magic execution.")
+        => new MagicResult(MagicResultType.Error, message);
+}
+```
+
+### 2.3. `MagicSanitizerEngine` クラス
+
+すべての魔法実行を安全に処理するエンジン。Safe-Fail構造を厳格に適用します。
+
+```csharp
+// ファイル名: Assets/Scripts/Core/Magic/MagicSanitizerEngine.cs
+using System;
+using UnityEngine;
+
+public static class MagicSanitizerEngine
+{
     /// <summary>
-    /// 枝のエネルギーをリセットします。（内部利用）
+    /// 魔法の実行をサニタイズし、安全に実行します。
     /// </summary>
-    internal void ResetEnergy()
+    /// <param name="magic">実行するIMagicインスタンス</param>
+    /// <param name="context">魔法実行コンテキスト</param>
+    /// <returns>魔法の実行結果</returns>
+    public static MagicResult SanitizeAndExecute(IMagic magic, MagicContext context)
     {
-        CurrentEnergy = 0;
-    }
+        if (magic == null)
+        {
+            Debug.LogError("MagicSanitizerEngine: Attempted to execute a null magic.");
+            return MagicResult.Error("Null magic provided.");
+        }
+        if (context == null)
+        {
+            Debug.LogError($"MagicSanitizerEngine: Null context provided for magic '{magic.MagicName}'.");
+            return MagicResult.Error("Null context provided.");
+        }
 
-    public override string ToString()
-    {
-        var resourceStr = string.Join(", ", Resources.Select(kv => $"{kv.Key}: {kv.Value:F2}"));
-        var jobStr = string.Join(", ", JobPopulations.Select(kv => $"{kv.Key}: {kv.Value}"));
-        var magicStr = AppliedMagics.Any() ? string.Join(", ", AppliedMagics) : "None";
-        return $"Branch ID: {BranchId}\n" +
-               $"  Resources: {{{resourceStr}}}\n" +
-               $"  Jobs: {{{jobStr}}}\n" +
-               $"  Applied Magics: {{{magicStr}}}\n" +
-               $"  Underprivileged: {IsUnderprivileged} (Duration: {UnderprivilegedDurationTurns} turns)\n" +
-               $"  Current Energy: {CurrentEnergy:F2}";
+        try
+        {
+            // プリチェック: 実行可能条件の確認
+            if (!magic.CanExecute(context))
+            {
+                return MagicResult.ConditionNotMet($"Magic '{magic.MagicName}' cannot be executed under current conditions.");
+            }
+
+            // 実行
+            MagicResult result = magic.Execute(context);
+
+            // ポストチェック: 実行結果の検証（オプション）
+            if (result == null)
+            {
+                Debug.LogError($"MagicSanitizerEngine: Magic '{magic.MagicName}' returned a null result.");
+                return MagicResult.Error("Magic returned a null result.");
+            }
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"MagicSanitizerEngine: An unexpected error occurred during execution of magic '{magic.MagicName}'. Error: {ex.Message}\nStackTrace: {ex.StackTrace}");
+            return MagicResult.Error($"An unexpected error occurred: {ex.Message}");
+        }
     }
 }
 ```
 
-### 2. `UnderprivilegedBranchEnergyModel` クラス
-不遇枝の判定、エネルギー蓄積、解放ロジックをカプセル化するクラス。
+## 3. 「魔法」（社会技術）の実装
+
+### 3.1. `UnfortunateBranchEnergyExtractionMagic` (ScriptableObject)
+
+不遇枝からエネルギーを抽出し、グローバルなエネルギー貯蔵庫に蓄積する社会技術。これはScriptableObjectとして定義し、Inspectorから設定可能にします。
 
 ```csharp
-// UnderprivilegedBranchEnergyModel.cs
-using System;
-using System.Collections.Generic;
+// ファイル名: Assets/Scripts/Core/Magic/UnfortunateBranchEnergyExtractionMagic.cs
+using UnityEngine;
 using System.Linq;
-using UnityEngine; // Debug.Log のために仮定。純粋なC#では独自のロガーに置き換える。
 
-/// <summary>
-/// 不遇枝エネルギー蓄積モデルのロジックを管理するクラス。
-/// 枝の不遇状態を判定し、エネルギーを蓄積させ、閾値に達したら社会技術を解放・適用する。
-/// </summary>
-public class UnderprivilegedBranchEnergyModel
+[CreateAssetMenu(fileName = "UnfortunateBranchEnergyExtractionMagic", menuName = "GameMagic/UnfortunateBranchEnergyExtraction")]
+public class UnfortunateBranchEnergyExtractionMagic : ScriptableObject, IMagic
 {
-    private readonly IMagicSanitizerEngine _magicSanitizerEngine;
+    public string MagicName => "不遇枝エネルギー抽出技術";
+    [TextArea]
+    public string Description => "見過ごされた不遇枝からエネルギーを抽出し、貯蔵する技術。熱科学的プロセスを伴う。";
 
-    // 設定値（ゲームデザインに応じて調整可能なパラメータ）
-    public float UnderprivilegedResourceThreshold { get; set; } = 100f; // 特定リソースがこの値を下回ると不遇とみなす閾値
-    public int UnderprivilegedJobThreshold { get; set; } = 1; // 特定Jobの人口がこの値を下回ると不遇とみなす閾値
-    public float EnergyAccumulationRatePerTurn { get; set; } = 5f; // 1ターンあたりの基本エネルギー蓄積量
-    public float EnergyDurationBonusMultiplier { get; set; } = 0.1f; // 不遇期間が長いほど蓄積量が増える倍率
-    public float EnergyReleaseThreshold { get; set; } = 1000f; // エネルギー解放に必要な閾値
-    public MagicType EnergyReleaseMagic { get; set; } = MagicType.LocalEmpowermentInitiative; // エネルギー解放で適用されるMagic
-    public float EnergyReleaseMagicPowerMultiplier { get; set; } = 1.5f; // 解放Magicのパワー倍率
-    public float EnergyDecayRatePerTurn { get; set; } = 1f; // 不遇状態でない場合にエネルギーが減少する量
+    [Tooltip("1回の抽出試行で消費する研究ポイント")]
+    [Min(0)] public float ResearchPointsCostPerAttempt = 1f;
+    [Tooltip("1回の抽出試行でターゲットとするエネルギー量")]
+    [Min(0)] public float TargetExtractionAmount = 10f;
+    [Tooltip("抽出プロセスに必要な最低限の技術レベル（プレイヤーのスキルなど、未実装の場合は0で無視）")]
+    [Min(0)] public float RequiredTechLevel = 10f;
 
-    /// <summary>
-    /// UnderprivilegedBranchEnergyModelの新しいインスタンスを初期化します。
-    /// </summary>
-    /// <param name="magicSanitizerEngine">社会技術の適用と検証を行うエンジン。</param>
-    /// <exception cref="ArgumentNullException">magicSanitizerEngineがnullの場合にスローされます。</exception>
-    public UnderprivilegedBranchEnergyModel(IMagicSanitizerEngine magicSanitizerEngine)
+    public bool CanExecute(MagicContext context)
     {
-        _magicSanitizerEngine = magicSanitizerEngine ?? throw new ArgumentNullException(nameof(magicSanitizerEngine));
+        if (context == null) return false; // Safe-Fail
+        if (context.GlobalResources.GetResource("ResearchPoints") < ResearchPointsCostPerAttempt)
+        {
+            return false; // 研究ポイントが足りない
+        }
+        // プレイヤーの技術レベルチェック（仮実装、PlayerStateにスキルシステムがあれば拡張）
+        // if (context.PlayerState.GetSkillLevel("EnergyExtraction") < RequiredTechLevel) return false;
+
+        // 抽出可能な不遇枝があるか
+        return context.AvailableBranches != null && context.AvailableBranches.Any(b => !b.IsDepleted);
+    }
+
+    public MagicResult Execute(MagicContext context)
+    {
+        // Safe-Fail: コンテキストの再検証 (Sanitizerが保証するが、念のため)
+        if (!CanExecute(context))
+        {
+            return MagicResult.ConditionNotMet("条件が満たされていないため、不遇枝エネルギー抽出技術を実行できません。");
+        }
+
+        // 研究ポイントを消費
+        if (!context.GlobalResources.TryConsumeResource("ResearchPoints", ResearchPointsCostPerAttempt))
+        {
+            // CanExecuteでチェック済みだが、並行処理などで状態が変わる可能性を考慮
+            return MagicResult.InsufficientResources("研究ポイントが不足しています。");
+        }
+
+        // 最もエネルギーポテンシャルの高い不遇枝を探す（またはランダム、最も近いなど）
+        UnfortunateBranchInstance targetBranch = context.AvailableBranches
+            .Where(b => !b.IsDepleted)
+            .OrderByDescending(b => b.CurrentEnergyAmount)
+            .FirstOrDefault();
+
+        if (targetBranch == null)
+        {
+            context.GlobalResources.AddResource("ResearchPoints", ResearchPointsCostPerAttempt); // 消費したポイントを戻す
+            return MagicResult.Failure("抽出可能な不遇枝が見つかりませんでした。");
+        }
+
+        // 抽出量の計算
+        float actualExtractionAttempt = TargetExtractionAmount * context.DeltaTime; // デルタタイムを考慮
+        float extractedFromBranch = targetBranch.ExtractEnergy(actualExtractionAttempt);
+
+        // 熱科学的特性による効率計算
+        float efficiency = targetBranch.Data.HeatProperty.BaseExtractionEfficiency;
+        // 世界の温度による効率補正 (例: 温度曲線から取得)
+        efficiency *= targetBranch.Data.HeatProperty.EfficiencyTemperatureCurve.Evaluate(context.WorldState.WorldTemperature);
+        efficiency = Mathf.Clamp01(efficiency); // 効率は0-1の範囲にクランプ
+
+        float energyProduced = extractedFromBranch * efficiency;
+        float heatGenerated = extractedFromBranch * targetBranch.Data.HeatProperty.HeatGenerationOnExtraction;
+
+        // グローバルエネルギー貯蔵庫に蓄積
+        context.GlobalResources.AddResource("AccumulatedEnergy", energyProduced);
+        context.WorldState.WorldTemperature += heatGenerated * 0.001f; // 熱発生による世界温度への影響（仮）
+
+        // 抽出後の不遇枝の処理 (枯渇したらリストから削除など)
+        if (targetBranch.IsDepleted)
+        {
+            // context.AvailableBranches からは WorldProgressionManager が削除する
+            // 枯渇した不遇枝から得られる特殊素材のドロップ処理など
+            // 例: context.GlobalResources.AddResource(targetBranch.Data.PotentialCraftMaterials[0].ItemName, 1);
+        }
+
+        return MagicResult.Success(
+            $"不遇枝から {energyProduced:F2} エネルギーを抽出しました。熱量 {heatGenerated:F2} 発生。",
+            energyConsumed: ResearchPointsCostPerAttempt,
+            energyProduced: energyProduced
+        );
+    }
+}
+```
+
+### 3.2. `AutonomousProgressionMagic` (ScriptableObject)
+
+蓄積されたエネルギーを消費して、ゲーム世界を自律的に進行させる社会技術。これもScriptableObjectとして定義します。
+
+```csharp
+// ファイル名: Assets/Scripts/Core/Magic/AutonomousProgressionMagic.cs
+using UnityEngine;
+using System.Linq; // ToList()のために追加
+
+[CreateAssetMenu(fileName = "AutonomousProgressionMagic", menuName = "GameMagic/AutonomousProgression")]
+public class AutonomousProgressionMagic : ScriptableObject, IMagic
+{
+    public string MagicName => "歴史自律推進技術";
+    [TextArea]
+    public string Description => "蓄積されたエネルギーを消費し、世界の時間を自動的に進行させ、イベントをトリガーする技術。";
+
+    [Tooltip("1回の自律進行サイクルで消費するエネルギー量")]
+    [Min(0)] public float EnergyCostPerCycle = 50f;
+    [Tooltip("1回の自律進行サイクルで進むゲーム内時間（秒）")]
+    [Min(0)] public float TimeAdvancePerCycle = 60f; // 1サイクルで1分進む
+    [Tooltip("自律進行中に発生するイベントの基本確率")]
+    [Range(0f, 1f)] public float BaseEventTriggerChance = 0.1f;
+
+    public bool CanExecute(MagicContext context)
+    {
+        if (context == null) return false; // Safe-Fail
+        // 蓄積されたエネルギーが十分か
+        return context.GlobalResources.GetResource("AccumulatedEnergy") >= EnergyCostPerCycle;
+    }
+
+    public MagicResult Execute(MagicContext context)
+    {
+        // Safe-Fail: コンテキストの再検証
+        if (!CanExecute(context))
+        {
+            return MagicResult.ConditionNotMet("蓄積エネルギーが不足しているため、歴史自律推進技術を実行できません。");
+        }
+
+        // エネルギーを消費
+        if (!context.GlobalResources.TryConsumeResource("AccumulatedEnergy", EnergyCostPerCycle))
+        {
+            // CanExecuteでチェック済みだが、念のため
+            return MagicResult.InsufficientResources("蓄積エネルギーが不足しています。");
+        }
+
+        // 世界の時間を進行させる
+        context.WorldState.AdvanceTime(TimeAdvancePerCycle);
+
+        // 不遇枝の劣化を進行させる
+        // ToList() でコピーを作成し、元のコレクション変更中に列挙エラーを防ぐ
+        foreach (var branch in context.AvailableBranches.ToList())
+        {
+            branch.Decay(TimeAdvancePerCycle);
+            if (branch.IsDepleted)
+            {
+                context.AvailableBranches.Remove(branch); // 枯渇した枝を削除
+            }
+        }
+
+        // 自律進行イベントのトリガー（簡易版）
+        string eventMessage = "世界が静かに進行しました。";
+        if (Random.value < BaseEventTriggerChance)
+        {
+            // ここでWorldStateやPlayerStateに影響を与えるランダムイベントを発生させる
+            eventMessage += " 不思議な出来事が起こったようです...";
+            // 例: context.WorldState.TriggerRandomEvent();
+            // 例: context.PlayerState.GainRandomBuff();
+        }
+
+        return MagicResult.Success(
+            $"世界が {TimeAdvancePerCycle:F0} 秒進行しました。消費エネルギー: {EnergyCostPerCycle:F2}。{eventMessage}",
+            energyConsumed: EnergyCostPerCycle
+        );
+    }
+}
+```
+
+## 4. システムマネージャー
+
+### 4.1. `EnergyStorageSystem`
+
+グローバルなエネルギー貯蔵庫を管理するクラス。`ResourceInventory` の "AccumulatedEnergy" と連携し、UI表示や特定のロジックに利用することを想定します。
+
+```csharp
+// ファイル名: Assets/Scripts/Systems/EnergyStorageSystem.cs
+using UnityEngine;
+
+public class EnergyStorageSystem : MonoBehaviour
+{
+    [Tooltip("最大エネルギー貯蔵容量")]
+    public float MaxStorageCapacity = 1000f;
+
+    public delegate void EnergyChanged(float newAmount);
+    public event EnergyChanged OnEnergyChanged;
+
+    private ResourceInventory _globalResources; // GameManagerから注入される
+
+    public float CurrentAccumulatedEnergy => _globalResources != null ? _globalResources.GetResource("AccumulatedEnergy") : 0f;
+
+    public void Initialize(ResourceInventory globalResources)
+    {
+        _globalResources = globalResources ?? throw new System.ArgumentNullException(nameof(globalResources));
     }
 
     /// <summary>
-    /// 指定された枝が不遇状態であるかを判定します。
-    /// 不遇の定義は、特定リソースの不足、特定Job人口の不足、または特定の基礎Magicの未適用など。
+    /// エネルギーを貯蔵庫に追加します。ResourceInventory経由で処理。
     /// </summary>
-    /// <param name="branch">判定対象の枝の状態。</param>
-    /// <returns>枝が不遇状態であればtrue、そうでなければfalse。</returns>
-    public bool IsBranchUnderprivileged(BranchState branch)
+    /// <param name="amount">追加するエネルギー量</param>
+    /// <returns>実際に貯蔵された量</returns>
+    public float AddEnergy(float amount)
     {
-        // Safe-Fail: nullチェック
-        if (branch == null)
+        if (_globalResources == null) { Debug.LogError("EnergyStorageSystem not initialized with ResourceInventory."); return 0f; }
+        if (amount < 0)
         {
-            Debug.LogError("IsBranchUnderprivileged: BranchState cannot be null. Returning false.");
-            return false;
+            Debug.LogWarning("EnergyStorageSystem.AddEnergy received negative amount. Clamping to 0.");
+            amount = 0;
         }
 
-        // 1. 特定のリソースが閾値を下回っているか
-        // 例: 「Food」リソースが不足している場合を不遇とみなす。
-        // この条件は、ゲームデザインに応じて複数のリソースをチェックするように拡張可能。
-        if (branch.Resources.TryGetValue("Food", out float foodLevel) && foodLevel < UnderprivilegedResourceThreshold)
+        float current = CurrentAccumulatedEnergy;
+        float potentialNew = current + amount;
+        float actualAdded = 0;
+
+        if (potentialNew > MaxStorageCapacity)
         {
-            return true;
-        }
-
-        // 2. 特定のJobの人口が閾値を下回っているか
-        // 例: 「Farmer」人口が不足している場合を不遇とみなす。
-        // この条件も、ゲームデザインに応じて複数のJobをチェックするように拡張可能。
-        if (branch.JobPopulations.TryGetValue(JobType.Farmer, out int farmerPop) && farmerPop < UnderprivilegedJobThreshold)
-        {
-            return true;
-        }
-
-        // 3. 重要な基礎Magicがまだ適用されていないか
-        // 例: 「BasicInfrastructure」が未適用の場合、その枝は発展途上であり不遇とみなす。
-        if (!branch.AppliedMagics.Contains(MagicType.BasicInfrastructure))
-        {
-             // この条件は不遇の定義として強力すぎる場合があるので、ゲームデザインに応じて調整
-             // return true;
-        }
-
-        return false; // 上記のどの条件にも当てはまらない場合は不遇ではない
-    }
-
-    /// <summary>
-    /// 枝の状態を更新し、不遇状態であればエネルギーを蓄積、そうでなければエネルギーを減少させる。
-    /// </summary>
-    /// <param name="branch">更新対象の枝の状態。</param>
-    public void UpdateBranchEnergy(BranchState branch)
-    {
-        // Safe-Fail: nullチェック
-        if (branch == null)
-        {
-            Debug.LogError("UpdateBranchEnergy: BranchState cannot be null. Aborting update.");
-            return;
-        }
-
-        bool wasUnderprivileged = branch.IsUnderprivileged;
-        bool isCurrentlyUnderprivileged = IsBranchUnderprivileged(branch);
-
-        branch.SetUnderprivilegedStatus(isCurrentlyUnderprivileged);
-
-        if (isCurrentlyUnderprivileged)
-        {
-            branch.IncrementUnderprivilegedDuration();
-            // 不遇状態が続くほど蓄積量が増えるボーナスロジック
-            float accumulatedAmount = EnergyAccumulationRatePerTurn * (1 + branch.UnderprivilegedDurationTurns * EnergyDurationBonusMultiplier);
-            branch.AddEnergy(accumulatedAmount);
-            Debug.Log($"Branch '{branch.BranchId}' is underprivileged (Duration: {branch.UnderprivilegedDurationTurns} turns). Energy accumulated: {accumulatedAmount:F2}. Total: {branch.CurrentEnergy:F2}");
+            actualAdded = MaxStorageCapacity - current;
+            _globalResources.AddResource("AccumulatedEnergy", actualAdded);
         }
         else
         {
-            if (wasUnderprivileged)
-            {
-                Debug.Log($"Branch '{branch.BranchId}' is no longer underprivileged. Resetting duration.");
-            }
-            branch.ResetUnderprivilegedDuration();
-            // 不遇状態でない場合、蓄積されたエネルギーは徐々に減少させる
-            branch.ConsumeEnergy(EnergyDecayRatePerTurn);
-            Debug.Log($"Branch '{branch.BranchId}' is not underprivileged. Energy decayed by {EnergyDecayRatePerTurn:F2}. Current: {branch.CurrentEnergy:F2}");
+            actualAdded = amount;
+            _globalResources.AddResource("AccumulatedEnergy", amount);
         }
+        
+        if (actualAdded > 0)
+        {
+            OnEnergyChanged?.Invoke(CurrentAccumulatedEnergy);
+        }
+        return actualAdded;
     }
 
     /// <summary>
-    /// 蓄積されたエネルギーが閾値を超えているかチェックし、超えていれば指定されたMagicを解放・適用する。
-    /// Magic適用後、エネルギーは消費され、不遇状態は解消される。
+    /// エネルギーを貯蔵庫から消費します。ResourceInventory経由で処理。
     /// </summary>
-    /// <param name="branch">チェック対象の枝の状態。</param>
-    /// <returns>Magicが正常に適用された場合はtrue、そうでなければfalse。</returns>
-    public bool TryReleaseEnergyAndApplyMagic(BranchState branch)
+    /// <param name="amount">消費するエネルギー量</param>
+    /// <returns>実際に消費された量</returns>
+    public float ConsumeEnergy(float amount)
     {
-        // Safe-Fail: nullチェック
-        if (branch == null)
+        if (_globalResources == null) { Debug.LogError("EnergyStorageSystem not initialized with ResourceInventory."); return 0f; }
+        if (amount < 0)
         {
-            Debug.LogError("TryReleaseEnergyAndApplyMagic: BranchState cannot be null. Returning false.");
-            return false;
+            Debug.LogWarning("EnergyStorageSystem.ConsumeEnergy received negative amount. Clamping to 0.");
+            amount = 0;
         }
 
-        if (branch.CurrentEnergy >= EnergyReleaseThreshold)
+        float current = CurrentAccumulatedEnergy;
+        float actualConsumed = Mathf.Min(current, amount);
+
+        if (_globalResources.TryConsumeResource("AccumulatedEnergy", actualConsumed))
         {
-            Debug.Log($"Branch '{branch.BranchId}' has accumulated enough energy ({branch.CurrentEnergy:F2}) to release! Attempting to apply Magic '{EnergyReleaseMagic}'.");
-
-            // MagicSanitizerEngine を介して社会技術を適用
-            MagicApplicationResult result = _magicSanitizerEngine.ApplyMagic(EnergyReleaseMagic, branch, EnergyReleaseMagicPowerMultiplier);
-
-            if (result.Success)
+            if (actualConsumed > 0)
             {
-                branch.AddAppliedMagic(EnergyReleaseMagic); // 適用されたMagicを記録
-                branch.ConsumeEnergy(EnergyReleaseThreshold); // エネルギーを消費
-                branch.ResetUnderprivilegedDuration(); // 不遇状態の期間もリセット
-                branch.SetUnderprivilegedStatus(false); // 不遇状態を解消
-                Debug.Log($"Successfully applied Magic '{EnergyReleaseMagic}' to Branch '{branch.BranchId}'. Remaining energy: {branch.CurrentEnergy:F2}. Message: {result.Message}");
-                
-                // Magicの効果をBranchStateに反映
-                foreach (var effect in result.Effects)
-                {
-                    branch.UpdateResource(effect.Key, effect.Value);
-                    Debug.Log($"  Effect: {effect.Key} changed by {effect.Value:F2}");
-                }
-                return true;
+                OnEnergyChanged?.Invoke(CurrentAccumulatedEnergy);
             }
-            else
-            {
-                Debug.LogWarning($"Failed to apply Magic '{EnergyReleaseMagic}' to Branch '{branch.BranchId}'. Reason: {result.Message}. Energy not consumed.");
-                // 失敗した場合、エネルギーは消費しない（再試行の機会を与える）
-                return false;
-            }
+            return actualConsumed;
         }
-        return false; // エネルギーが閾値に達していない
+        return 0f; // 消費できなかった場合
+    }
+
+    /// <summary>
+    /// 指定された量のエネルギーが利用可能かチェックします。
+    /// </summary>
+    public bool HasEnoughEnergy(float amount)
+    {
+        if (_globalResources == null) { Debug.LogError("EnergyStorageSystem not initialized with ResourceInventory."); return false; }
+        return CurrentAccumulatedEnergy >= amount;
     }
 }
 ```
 
-### 3. `SimulationManager` クラス
-シミュレーションの自律進行を管理し、各枝のエネルギーモデルを更新する。
+### 4.2. `WorldProgressionManager`
+
+ゲームの自律進行を管理し、定期的に魔法を実行するクラス。
 
 ```csharp
-// SimulationManager.cs
-using System;
+// ファイル名: Assets/Scripts/Systems/WorldProgressionManager.cs
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine; // Debug.Log, WaitForSeconds のために仮定。純粋なC#では独自のロガーやTask.Delayに置き換える。
-using System.Collections; // For IEnumerator
 
-/// <summary>
-/// シミュレーション全体の自律進行を管理するクラス。
-/// 各枝の状態更新、不遇枝エネルギーモデルの適用、グローバルイベント処理などを担当する。
-/// </summary>
-public class SimulationManager
+public class WorldProgressionManager : MonoBehaviour
 {
-    private readonly IMagicSanitizerEngine _magicSanitizerEngine;
-    private readonly UnderprivilegedBranchEnergyModel _energyModel;
-    private readonly Dictionary<string, BranchState> _branches = new Dictionary<string, BranchState>();
+    [Header("Dependencies")]
+    [SerializeField] private PlayerState _playerState; // プレイヤーの状態
+    [SerializeField] private WorldState _worldState;   // 世界の状態
+    [SerializeField] private ResourceInventory _globalResources; // グローバルリソースインベントリ
+    [SerializeField] private EnergyStorageSystem _energyStorageSystem; // エネルギー貯蔵システム (UI連携用など)
 
-    public int CurrentTurn { get; private set; } = 0;
+    [Header("Magic Definitions")]
+    [SerializeField] private UnfortunateBranchEnergyExtractionMagic _extractionMagic;
+    [SerializeField] private AutonomousProgressionMagic _progressionMagic;
 
-    /// <summary>
-    /// SimulationManagerの新しいインスタンスを初期化します。
-    /// </summary>
-    /// <param name="magicSanitizerEngine">社会技術の適用と検証を行うエンジン。</param>
-    /// <exception cref="ArgumentNullException">magicSanitizerEngineがnullの場合にスローされます。</exception>
-    public SimulationManager(IMagicSanitizerEngine magicSanitizerEngine)
+    [Header("Progression Settings")]
+    [Tooltip("不遇枝の発見と抽出を試みる間隔（秒）")]
+    [Min(0.1f)] public float ExtractionAttemptInterval = 5f;
+    [Tooltip("自律進行を試みる間隔（秒）")]
+    [Min(0.1f)] public float ProgressionAttemptInterval = 10f;
+
+    private float _extractionTimer;
+    private float _progressionTimer;
+
+    private List<UnfortunateBranchInstance> _activeBranches = new List<UnfortunateBranchInstance>();
+
+    // 初期化時に利用可能な不遇枝を生成する（テスト用）
+    [Header("Debug/Initial Setup")]
+    [SerializeField] private UnfortunateBranchData _initialBranchData;
+    [SerializeField] private int _initialBranchCount = 5;
+
+    public void Initialize(PlayerState playerState, WorldState worldState, ResourceInventory globalResources, EnergyStorageSystem energyStorageSystem)
     {
-        _magicSanitizerEngine = magicSanitizerEngine ?? throw new ArgumentNullException(nameof(magicSanitizerEngine));
-        _energyModel = new UnderprivilegedBranchEnergyModel(_magicSanitizerEngine);
+        _playerState = playerState ?? throw new System.ArgumentNullException(nameof(playerState));
+        _worldState = worldState ?? throw new System.ArgumentNullException(nameof(worldState));
+        _globalResources = globalResources ?? throw new System.ArgumentNullException(nameof(globalResources));
+        _energyStorageSystem = energyStorageSystem ?? throw new System.ArgumentNullException(nameof(energyStorageSystem));
 
-        // 初期設定値の調整（必要に応じて外部設定ファイルなどからロード）
-        _energyModel.UnderprivilegedResourceThreshold = 50f; // 食料50以下で不遇
-        _energyModel.EnergyReleaseThreshold = 750f; // 750エネルギーで解放
-        _energyModel.EnergyReleaseMagic = MagicType.LocalEmpowermentInitiative; // 地域活性化イニシアティブを解放
-        _energyModel.EnergyAccumulationRatePerTurn = 10f; // 1ターンあたり10エネルギー蓄積
-        _energyModel.EnergyDurationBonusMultiplier = 0.2f; // 不遇期間ボーナスを強化
-        _energyModel.EnergyDecayRatePerTurn = 2f; // 不遇でない場合のエネルギー減少量
+        // 初期化
+        _extractionTimer = ExtractionAttemptInterval;
+        _progressionTimer = ProgressionAttemptInterval;
+
+        // 初期不遇枝の生成 (テスト用)
+        if (_initialBranchData != null)
+        {
+            for (int i = 0; i < _initialBranchCount; i++)
+            {
+                Vector3 randomPos = new Vector3(Random.Range(-100f, 100f), 0, Random.Range(-100f, 100f));
+                _activeBranches.Add(new UnfortunateBranchInstance(_initialBranchData, randomPos, _initialBranchData.MaxEnergyPotential));
+            }
+            Debug.Log($"Initialized with {_initialBranchCount} Unfortunate Branches.");
+        }
+        else
+        {
+            Debug.LogWarning("WorldProgressionManager: _initialBranchData is not assigned. No initial branches generated.");
+        }
     }
 
-    /// <summary>
-    /// シミュレーションに新しい枝を追加します。
-    /// </summary>
-    /// <param name="branch">追加する枝の状態。</param>
-    /// <exception cref="ArgumentNullException">branchがnullの場合にスローされます。</exception>
-    public void AddBranch(BranchState branch)
+    void Update()
     {
-        if (branch == null)
+        // 依存関係が初期化されているか確認
+        if (_playerState == null || _worldState == null || _globalResources == null || _energyStorageSystem == null || _extractionMagic == null || _progressionMagic == null)
         {
-            Debug.LogError("AddBranch: BranchState cannot be null. Aborting addition.");
-            return; // Safe-Fail
-        }
-        if (_branches.ContainsKey(branch.BranchId))
-        {
-            Debug.LogWarning($"Branch with ID '{branch.BranchId}' already exists. Skipping addition.");
+            Debug.LogWarning("WorldProgressionManager: Dependencies not fully initialized. Skipping Update logic.");
             return;
         }
-        _branches.Add(branch.BranchId, branch);
-        Debug.Log($"Branch '{branch.BranchId}' added to simulation.");
+
+        float deltaTime = Time.deltaTime;
+
+        // 不遇枝エネルギー抽出の試行
+        _extractionTimer -= deltaTime;
+        if (_extractionTimer <= 0)
+        {
+            _extractionTimer = ExtractionAttemptInterval;
+            TryExecuteMagic(_extractionMagic, "UnfortunateBranchEnergyExtraction");
+        }
+
+        // 自律進行の試行
+        _progressionTimer -= deltaTime;
+        if (_progressionTimer <= 0)
+        {
+            _progressionTimer = ProgressionAttemptInterval;
+            TryExecuteMagic(_progressionMagic, "AutonomousProgression");
+        }
     }
 
     /// <summary>
-    /// シミュレーションを1ターン進行させます。
-    /// 各枝の状態更新、不遇枝エネルギーモデルの適用、グローバルイベント処理を行います。
+    /// 魔法実行コンテキストを構築し、MagicSanitizerEngineを介して魔法を実行します。
     /// </summary>
-    public void AdvanceSimulationTurn()
+    private void TryExecuteMagic(IMagic magic, string debugName)
     {
-        CurrentTurn++;
-        Debug.Log($"\n--- Simulation Turn {CurrentTurn} ---");
-
-        // 各枝の状態を更新
-        foreach (var branch in _branches.Values)
+        if (magic == null)
         {
-            Debug.Log($"Processing Branch: {branch.BranchId}");
-
-            // 1. 基本的な枝の進行ロジック（リソース生産・消費、人口変動など）
-            // 例: 食料消費、生産活動、人口増加
-            branch.UpdateResource("Food", -5f); // 毎ターン食料を消費
-            branch.UpdateResource("Wealth", 10f); // 毎ターン富を生産
-            if (branch.Resources.TryGetValue("Food", out float food) && food > 100)
-            {
-                branch.UpdateJobPopulation(JobType.Farmer, 1); // 食料が豊富なら農民が増える
-            }
-
-            // 2. 不遇枝エネルギーモデルの更新
-            _energyModel.UpdateBranchEnergy(branch);
-
-            // 3. エネルギー解放の試行
-            _energyModel.TryReleaseEnergyAndApplyMagic(branch);
-
-            // 4. その他の枝固有のイベントやロジック
-            if (branch.Resources.TryGetValue("Food", out food) && food < 10)
-            {
-                Debug.LogWarning($"Branch '{branch.BranchId}' is experiencing critical food shortage!");
-            }
+            Debug.LogError($"WorldProgressionManager: Attempted to execute null magic for {debugName}.");
+            return;
         }
 
-        // グローバルなイベントや相互作用の処理をここに記述
-        // 例: GlobalMarket.UpdatePrices();
-        // 例: CheckGlobalCatastrophes();
-        // 例: 枝間の相互作用（貿易、紛争など）
+        MagicContext context = new MagicContext(
+            _playerState,
+            _worldState,
+            _globalResources,
+            _activeBranches,
+            Time.deltaTime // Updateからの呼び出しなので、deltaTimeを渡す
+        );
 
-        Debug.Log($"--- End of Turn {CurrentTurn} ---");
+        MagicResult result = MagicSanitizerEngine.SanitizeAndExecute(magic, context);
+
+        if (result.Type != MagicResultType.Success)
+        {
+            Debug.LogWarning($"Magic '{magic.MagicName}' ({debugName}) failed: {result.Message}");
+        }
+        else
+        {
+            Debug.Log($"Magic '{magic.MagicName}' ({debugName}) succeeded: {result.Message}");
+            // 成功した場合、UI更新などの追加処理をトリガー
+            _energyStorageSystem.OnEnergyChanged?.Invoke(_energyStorageSystem.CurrentAccumulatedEnergy); // UI更新トリガー
+        }
     }
 
-    /// <summary>
-    /// シミュレーションを自動で連続進行させるためのコルーチン。
-    /// UnityのMonoBehaviourを想定しているため、純粋なC#環境では別途タイマーやTask.Delayを使用する必要がある。
-    /// </summary>
-    /// <param name="totalTurns">進行させる総ターン数。</param>
-    /// <param name="delayBetweenTurnsSeconds">各ターン間の遅延時間（秒）。</param>
-    public IEnumerator StartContinuousSimulation(int totalTurns, float delayBetweenTurnsSeconds)
+    // 不遇枝を世界に追加するメソッド (外部から呼び出される可能性)
+    public void AddUnfortunateBranch(UnfortunateBranchInstance branch)
     {
-        if (totalTurns <= 0)
+        if (branch != null && !_activeBranches.Contains(branch))
         {
-            Debug.LogError($"StartContinuousSimulation: totalTurns must be positive. Received {totalTurns}.");
-            yield break; // Safe-Fail
-        }
-        if (delayBetweenTurnsSeconds < 0)
-        {
-            Debug.LogError($"StartContinuousSimulation: delayBetweenTurnsSeconds cannot be negative. Received {delayBetweenTurnsSeconds}. Setting to 0.");
-            delayBetweenTurnsSeconds = 0; // Safe-Fail
-        }
-
-        Debug.Log($"Starting continuous simulation for {totalTurns} turns with {delayBetweenTurnsSeconds:F2}s delay per turn.");
-        for (int i = 0; i < totalTurns; i++)
-        {
-            AdvanceSimulationTurn();
-            yield return new WaitForSeconds(delayBetweenTurnsSeconds); // Unity Coroutine の場合
-            // 純粋なC# async/await の場合: await Task.Delay(TimeSpan.FromSeconds(delayBetweenTurnsSeconds));
-        }
-        Debug.Log("Continuous simulation finished.");
-    }
-
-    /// <summary>
-    /// 特定の枝の状態を取得します。
-    /// </summary>
-    /// <param name="branchId">取得したい枝のID。</param>
-    /// <returns>指定されたIDの枝の状態。見つからない場合はnull。</returns>
-    public BranchState GetBranchState(string branchId)
-    {
-        if (string.IsNullOrWhiteSpace(branchId))
-        {
-            Debug.LogError("GetBranchState: BranchId cannot be null or empty. Returning null.");
-            return null; // Safe-Fail
-        }
-        if (_branches.TryGetValue(branchId, out BranchState branch))
-        {
-            return branch;
-        }
-        Debug.LogWarning($"Branch with ID '{branchId}' not found. Returning null.");
-        return null; // Safe-Fail
-    }
-}
-```
-
-### 4. `MockMagicSanitizerEngine` クラス
-`IMagicSanitizerEngine` のモック実装。実際のゲームではより複雑なロジックが適用されます。
-
-```csharp
-// MockMagicSanitizerEngine.cs
-using System;
-using System.Collections.Generic;
-using UnityEngine; // Debug.Log のために仮定。純粋なC#では独自のロガーに置き換える。
-
-/// <summary>
-/// IMagicSanitizerEngineのモック実装。
-/// 社会技術の適用条件と効果を簡易的にシミュレートする。
-/// </summary>
-public class MockMagicSanitizerEngine : IMagicSanitizerEngine
-{
-    /// <summary>
-    /// 指定された社会技術を対象の枝に適用しようと試みる。
-    /// </summary>
-    /// <param name="magic">適用する社会技術のタイプ。</param>
-    /// <param name="targetBranch">適用対象の枝の状態。</param>
-    /// <param name="powerMultiplier">Magicの強度を調整する倍率。</param>
-    /// <returns>Magicの適用結果。</returns>
-    public MagicApplicationResult ApplyMagic(MagicType magic, BranchState targetBranch, float powerMultiplier = 1.0f)
-    {
-        // Safe-Fail: nullチェック
-        if (targetBranch == null)
-        {
-            Debug.LogError($"ApplyMagic: Target branch for Magic '{magic}' cannot be null.");
-            return new MagicApplicationResult { Success = false, Message = "Target branch cannot be null." };
-        }
-
-        Debug.Log($"Attempting to apply Magic '{magic}' to Branch '{targetBranch.BranchId}' with power multiplier {powerMultiplier:F2}...");
-
-        // ここにMagicの適用条件と効果の複雑なロジックを実装
-        // 例: 特定のMagicは特定のJob人口が一定以上でないと適用できない、特定のMagicは一度しか適用できない、など
-        switch (magic)
-        {
-            case MagicType.LocalEmpowermentInitiative:
-                // 不遇枝モデルで解放される主要Magic
-                // 効果: 食料生産を大幅に向上させ、住民の幸福度（リソースとして仮定）を上げる
-                if (targetBranch.AppliedMagics.Contains(MagicType.LocalEmpowermentInitiative))
-                {
-                    return new MagicApplicationResult { Success = false, Message = "Local Empowerment Initiative already applied to this branch." };
-                }
-                var effectsLEI = new Dictionary<string, float>
-                {
-                    { "Food", 200f * powerMultiplier },
-                    { "Happiness", 50f * powerMultiplier },
-                    { "Stability", 10f * powerMultiplier }
-                };
-                return new MagicApplicationResult { Success = true, Message = "Local Empowerment Initiative successfully applied. Branch empowered!", Effects = effectsLEI };
-
-            case MagicType.SocialWelfareProgram:
-                // 例: 社会福祉プログラムは、ある程度の経済力（"Wealth"リソース）がないと適用が難しい
-                if (!targetBranch.Resources.TryGetValue("Wealth", out float wealth) || wealth < 200f)
-                {
-                    return new MagicApplicationResult { Success = false, Message = "Insufficient wealth to implement Social Welfare Program (requires 200 Wealth)." };
-                }
-                if (targetBranch.AppliedMagics.Contains(MagicType.SocialWelfareProgram))
-                {
-                    return new MagicApplicationResult { Success = false, Message = "Social Welfare Program already enacted." };
-                }
-                var effectsSWP = new Dictionary<string, float>
-                {
-                    { "Happiness", 100f * powerMultiplier },
-                    { "Stability", 20f * powerMultiplier },
-                    { "Wealth", -50f * powerMultiplier } // 維持コストとして富を消費
-                };
-                return new MagicApplicationResult { Success = true, Message = "Social Welfare Program enacted, improving well-being.", Effects = effectsSWP };
-
-            case MagicType.BasicInfrastructure:
-                // 例: 基本インフラは常に適用可能で、生産性や安定性を上げる
-                if (targetBranch.AppliedMagics.Contains(MagicType.BasicInfrastructure))
-                {
-                    return new MagicApplicationResult { Success = false, Message = "Basic Infrastructure already in place." };
-                }
-                var effectsBI = new Dictionary<string, float>
-                {
-                    { "Production", 100f * powerMultiplier },
-                    { "Stability", 10f * powerMultiplier }
-                };
-                return new MagicApplicationResult { Success = true, Message = "Basic Infrastructure established, boosting productivity.", Effects = effectsBI };
-
-            default:
-                return new MagicApplicationResult { Success = false, Message = $"Magic '{magic}' is not yet implemented or cannot be applied under current conditions." };
+            _activeBranches.Add(branch);
         }
     }
 }
 ```
 
-## 実装上の注意点とSafe-Fail構造
+## 5. `GameManager` (またはエントリポイント)
 
-*   **NULLチェック**: 全ての公開メソッドおよび重要な内部処理において、引数や参照が`null`でないことを確認します。`ArgumentNullException`を適切にスローするか、`Debug.LogError`でログを出し、安全なデフォルト値を返すか処理を中断します。
-*   **境界チェック**: 数値の引数やコレクションのインデックスが有効な範囲内にあることを確認します。`ArgumentOutOfRangeException`を適切にスローします。
-*   **ログ出力**: `Debug.Log`, `Debug.LogWarning`, `Debug.LogError` を使用して、システムの動作状況、警告、エラーを明確に記録します。これにより、デバッグと監視が容易になります。Unity環境以外で利用する場合は、独自のロガーに置き換えてください。
-*   **設定値の外部化**: `UnderprivilegedBranchEnergyModel` の閾値やレートなどの設定値は、ゲームデザインに応じて調整されるべきであるため、コンストラクタ引数、プロパティ、または設定ファイルからのロードを通じて外部から設定可能にしてください。
-*   **拡張性**: `IsBranchUnderprivileged` メソッドの不遇判定ロジックは、将来的に複数の条件を組み合わせたり、動的に条件を追加できるように拡張性を考慮してください。
-*   **パフォーマンス**: 大量の枝を扱う場合、`SimulationManager` の `AdvanceSimulationTurn` メソッド内のループ処理のパフォーマンスに注意してください。必要に応じて最適化を検討してください（例: 並列処理、データ構造の最適化）。
-*   **依存性の注入**: `SimulationManager` や `UnderprivilegedBranchEnergyModel` は `IMagicSanitizerEngine` に依存するため、コンストラクタインジェクションを用いて依存性を注入します。これにより、テスト容易性と疎結合を保ちます。
-*   **Unity依存**: `UnityEngine.Debug.Log` や `UnityEngine.WaitForSeconds` はUnity環境に依存します。純粋なC#環境で実行する場合は、それぞれ標準の `Console.WriteLine` や `System.Threading.Tasks.Task.Delay` などに置き換える必要があります。`SimulationManager.StartContinuousSimulation` メソッドは `IEnumerator` を返すため、Unityのコルーチンとして利用できます。
-
-## 使用例（Main/Entry Point）
-
-以下のコードは、Unityの`MonoBehaviour`を継承したクラスを想定していますが、`Start`メソッド内のロジックは、純粋なC#アプリケーションのエントリポイント（`Main`メソッドなど）に移植可能です。
+上記システムを初期化し、管理するクラス。
 
 ```csharp
-// GameInitializer.cs (UnityのMonoBehaviourを想定)
+// ファイル名: Assets/Scripts/GameManager.cs
 using UnityEngine;
-using System.Collections; // For IEnumerator
+using System.Collections.Generic;
 
-/// <summary>
-/// ゲームの初期化とシミュレーションの開始を管理するクラス。
-/// </summary>
-public class GameInitializer : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    [Header("Simulation Settings")]
-    [SerializeField] private int totalSimulationTurns = 100;
-    [SerializeField] private float delayBetweenTurnsSeconds = 0.1f;
+    public static GameManager Instance { get; private set; }
 
-    void Start()
+    [Header("Core Systems")]
+    public PlayerState PlayerState;
+    public WorldState WorldState;
+    public ResourceInventory GlobalResources;
+    public EnergyStorageSystem EnergyStorageSystem;
+    public WorldProgressionManager ProgressionManager;
+
+    [Header("Initial Resources")]
+    public float InitialResearchPoints = 100f;
+    public float InitialAccumulatedEnergy = 0f;
+    public float InitialWorldTemperature = 25f;
+
+    void Awake()
     {
-        Debug.Log("Game Initialization Started.");
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        // 1. MagicSanitizerEngine のインスタンスを作成
-        // 実際のゲームでは、より複雑なロジックを持つMagicSanitizerEngineを注入します。
-        IMagicSanitizerEngine magicEngine = new MockMagicSanitizerEngine();
-
-        // 2. SimulationManager のインスタンスを作成
-        SimulationManager simManager = new SimulationManager(magicEngine);
-
-        // 3. 枝（BranchState）をいくつか作成し、初期状態を設定
-        // Branch A: 不遇状態になりやすい設定
-        BranchState branchA = new BranchState("Branch_A");
-        branchA.UpdateResource("Food", 40f); // 不遇閾値(50f)を下回るように設定
-        branchA.UpdateResource("Wealth", 80f);
-        branchA.UpdateJobPopulation(JobType.Farmer, 0); // 不遇閾値(1)を下回るように設定
-        branchA.UpdateJobPopulation(JobType.Artisan, 5);
-        simManager.AddBranch(branchA);
-        Debug.Log($"Initial State of Branch_A:\n{branchA}");
-
-        // Branch B: 比較的裕福な状態
-        BranchState branchB = new BranchState("Branch_B");
-        branchB.UpdateResource("Food", 250f);
-        branchB.UpdateResource("Wealth", 600f);
-        branchB.UpdateJobPopulation(JobType.Farmer, 15);
-        branchB.UpdateJobPopulation(JobType.Scholar, 3);
-        simManager.AddBranch(branchB);
-        Debug.Log($"Initial State of Branch_B:\n{branchB}");
-
-        // Branch C: 別の不遇状態になりやすい設定（食料は足りているが、Jobが少ない）
-        BranchState branchC = new BranchState("Branch_C");
-        branchC.UpdateResource("Food", 120f);
-        branchC.UpdateResource("Wealth", 150f);
-        branchC.UpdateJobPopulation(JobType.Farmer, 5);
-        branchC.UpdateJobPopulation(JobType.Miner, 0); // Minerが不足している場合を想定
-        simManager.AddBranch(branchC);
-        Debug.Log($"Initial State of Branch_C:\n{branchC}");
-
-
-        // 4. シミュレーションを連続進行させる
-        // Unityのコルーチンとして実行
-        StartCoroutine(simManager.StartContinuousSimulation(totalSimulationTurns, delayBetweenTurnsSeconds));
-
-        Debug.Log("Game Initialization Completed. Simulation Running...");
+        InitializeSystems();
     }
 
-    // シミュレーション終了後の最終状態確認（例）
-    void OnDestroy()
+    private void InitializeSystems()
     {
-        // シミュレーションマネージャーのインスタンスが破棄される前に最終状態をログに出すなど
-        // この例ではStartCoroutineで実行しているため、終了はコルーチン内で確認するのが適切
+        // 各システムのインスタンス化または取得
+        // シーンに既に存在する場合はGetComponentで取得、存在しない場合はnewまたはAddComponent
+        PlayerState = PlayerState ?? new PlayerState();
+        WorldState = WorldState ?? new WorldState();
+        GlobalResources = GlobalResources ?? new ResourceInventory();
+        EnergyStorageSystem = EnergyStorageSystem ?? FindObjectOfType<EnergyStorageSystem>() ?? gameObject.AddComponent<EnergyStorageSystem>();
+        ProgressionManager = ProgressionManager ?? FindObjectOfType<WorldProgressionManager>() ?? gameObject.AddComponent<WorldProgressionManager>();
+
+        // 初期リソースの設定
+        GlobalResources.AddResource("ResearchPoints", InitialResearchPoints);
+        GlobalResources.AddResource("AccumulatedEnergy", InitialAccumulatedEnergy);
+        WorldState.WorldTemperature = InitialWorldTemperature;
+
+        // EnergyStorageSystemの初期化
+        EnergyStorageSystem.Initialize(GlobalResources);
+
+        // ProgressionManagerへの依存関係注入
+        ProgressionManager.Initialize(PlayerState, WorldState, GlobalResources, EnergyStorageSystem);
+
+        Debug.Log("GameManager: Core systems initialized.");
     }
+
+    // 他のゲーム管理ロジック...
 }
 ```
+
+---
+
+## 実装上の注意点と拡張性
+
+1.  **Job/Magic規約の遵守:**
+    *   `UnfortunateBranchEnergyExtractionMagic` と `AutonomousProgressionMagic` は、ゲーム世界の挙動を変える「社会技術」として `IMagic` を実装し、`ScriptableObject` として定義されています。これにより、Inspectorからパラメータを調整し、異なる特性を持つ「技術」を簡単に作成できます。
+    *   `Job` (生活職業) は、これらの魔法を実行するNPCの役割として定義されます。例えば、「不遇枝採掘者」というJobを持つNPCが `UnfortunateBranchEnergyExtractionMagic` を実行する、といった形で拡張可能です。今回は直接Jobの定義は含みませんが、将来的な設計の指針としてください。
+2.  **Safe-Fail構造:**
+    *   すべてのクラスとメソッドで、nullチェック、範囲チェック、例外ハンドリングを徹底しています。特に、`MagicSanitizerEngine` は、魔法実行の単一のエントリポイントとして、このSafe-Fail原則を強制します。
+    *   `ResourceInventory` のメソッドも、無効な入力（null/空の文字列、負の量）に対して警告を発し、安全に処理するように改善されています。
+3.  **ブラインド熱科学クラフト要素:**
+    *   `UnfortunateBranchData` の `HeatScienceProperty` と、`UnfortunateBranchEnergyExtractionMagic` での効率計算や熱発生は、この要素の基礎となります。
+    *   `EfficiencyTemperatureCurve` を使用することで、世界の温度がエネルギー抽出効率にどのように影響するかを視覚的に設定できます。
+    *   将来的に、特定の温度環境下でのみ効率が上がる、熱を冷却しないと効率が下がる、などの複雑な熱力学シミュレーションを追加できます。
+4.  **千年史自律シミュレーター:**
+    *   `AutonomousProgressionMagic` が世界の時間を進め、不遇枝の劣化を処理し、イベントをトリガーすることで、プレイヤーの介入なしに歴史が進行する基盤を築きます。
+    *   イベントシステムを拡張し、世界の状況（資源量、人口、技術レベルなど）に応じて異なるイベントが発生するようにすることで、よりリッチな千年史シミュレーションが可能です。
+5.  **リソース管理:**
+    *   `ResourceInventory` は汎用的なリソース管理、`EnergyStorageSystem` は特定のエネルギーリソースに特化した管理を行います。今回の実装では `ResourceInventory` が実際の値を保持し、`EnergyStorageSystem` はそのラッパーとして機能し、UI表示や特定のロジック（例：最大容量制限）に利用する想定です。これにより、リソース管理の一貫性を保ちつつ、特定のUIやシステムに特化した機能を提供できます。
+6.  **UI表示:**
+    *   `EnergyStorageSystem` の `OnEnergyChanged` イベントなどを利用して、現在のエネルギー量や進行状況をUIに表示するシステムを構築してください。
+
+この指示に従い、精密なC#コードを実装してください。不明点があれば、再度質問してください。
