@@ -4,44 +4,44 @@
     {
       "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T3000",
       "displayName": "IF_Line: 新魔導学術",
-      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
-      "baseStartTurn": 1001
+      "parentBranchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2950",
+      "baseStartTurn": 2951
     },
     {
       "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T3000",
       "displayName": "IF_Line: 古代結界陣解読",
-      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
-      "baseStartTurn": 1001
+      "parentBranchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2950",
+      "baseStartTurn": 2951
     },
     {
       "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T3000",
       "displayName": "IF_Line: 街道開拓と魔獣の縄張り衝突",
-      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
-      "baseStartTurn": 1001
+      "parentBranchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2950",
+      "baseStartTurn": 2951
     },
     {
       "branchId": "ALT_REVIVAL_NEW_TRADE_SPHERE_T3000",
       "displayName": "IF_Line: 新交易圏形成",
-      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
-      "baseStartTurn": 1001
+      "parentBranchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2950",
+      "baseStartTurn": 2951
     },
     {
       "branchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T3000",
       "displayName": "IF_Line: 復興インフラ共有",
-      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
-      "baseStartTurn": 1001
+      "parentBranchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2950",
+      "baseStartTurn": 2951
     },
     {
       "branchId": "ALT_REVIVAL_ACADEMY_GUILD_UNION_T3000",
       "displayName": "IF_Line: 学術ギルド連合",
-      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
-      "baseStartTurn": 1001
+      "parentBranchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2950",
+      "baseStartTurn": 2951
     },
     {
       "branchId": "ALT_REVIVAL_BEAST_COEXISTENCE_PACT_T3000",
       "displayName": "IF_Line: 魔獣共生条約",
-      "parentBranchId": "ALT_REVIVAL_ANCHOR_T1000",
-      "baseStartTurn": 1001
+      "parentBranchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2950",
+      "baseStartTurn": 2951
     }
   ]
 }

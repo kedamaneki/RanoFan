@@ -1,15 +1,40 @@
-```json
 {
   "branchEvaluations": [
     {
       "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T3000",
-      "verdandiScore": -50,
-      "reasoning": "魔導学術という響きに禁忌解禁の余地はあるが、学術発展の枠に留まれば波乱に乏しい。踏み込み不足。"
+      "verdandiScore": -150,
+      "reasoning": "新学術体制という響きはあるが、禁忌に踏み込まぬ穏健な学園運営では波乱が薄く、マンネリ化の兆候が見える。"
     },
     {
       "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T3000",
       "verdandiScore": 180,
-      "reasoning": "古代結界陣という禁忌領域への接触はロマンと危険性を孕み、封印された災厄の目覚めなど波乱の火種として高く評価する。"
+      "reasoning": "古代結界の解読は禁忌魔導への接近を示唆し、未知の力を巡る人間の欲望と危機が渦巻く可能性を秘める。"
     },
     {
-      "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERR
+      "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T3000",
+      "verdandiScore": 250,
+      "reasoning": "魔獣の縄張りと人間の開拓が衝突する前線防衛戦は、過酷なドラマと犠牲を生む高波乱展開である。"
+    },
+    {
+      "branchId": "ALT_REVIVAL_NEW_TRADE_SPHERE_T3000",
+      "verdandiScore": -250,
+      "reasoning": "交易圏の平和的形成は経済的発展に留まり、争いも異端要素もなく退屈な安定路線に過ぎない。"
+    },
+    {
+      "branchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T3000",
+      "verdandiScore": -320,
+      "reasoning": "インフラ共有という協調路線は極めて平和で、人間ドラマの起伏が皆無に等しくマンネリの極致である。"
+    },
+    {
+      "branchId": "ALT_REVIVAL_ACADEMY_GUILD_UNION_T3000",
+      "verdandiScore": -100,
+      "reasoning": "ギルド間の連合は派閥抗争の萌芽を含むが、表面上は協調的で波乱の火種としては弱い。"
+    },
+    {
+      "branchId": "ALT_REVIVAL_BEAST_COEXISTENCE_PACT_T3000",
+      "verdandiScore": -200,
+      "reasoning": "魔獣との共生条約締結は融和路線であり、対立や禁忌要素が排除された穏健すぎる展開である。"
+    }
+  ],
+  "topRecommendedBranchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T3000"
+}
