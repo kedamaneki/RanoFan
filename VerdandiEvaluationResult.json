@@ -1,14 +1,15 @@
+```json
 {
   "branchEvaluations": [
     {
-      "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T2000",
-      "verdandiScore": 20,
-      "reasoning": "学術発展路線は堅実だが波乱に乏しく、禁忌魔導への踏み込みが見えない限り凡庸な展開に留まる。"
+      "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T3000",
+      "verdandiScore": -50,
+      "reasoning": "魔導学術という響きに禁忌解禁の余地はあるが、学術発展の枠に留まれば波乱に乏しい。踏み込み不足。"
     },
     {
-      "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2000",
-      "verdandiScore": 320,
-      "reasoning": "古代結界陣という禁忌領域への解読は封印されし異端魔導の解禁に直結し、人智を超えた災厄招来のロマンが濃厚。"
+      "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T3000",
+      "verdandiScore": 180,
+      "reasoning": "古代結界陣という禁忌領域への接触はロマンと危険性を孕み、封印された災厄の目覚めなど波乱の火種として高く評価する。"
     },
     {
-      "branchId": "ALT_REVIVAL_ROAD_A
+      "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERR
