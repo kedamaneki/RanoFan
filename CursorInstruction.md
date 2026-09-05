@@ -1,723 +1,499 @@
 はい、承知いたしました。
-「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」のリードディレクターとして、ターン1001からターン3000までの2000年間（第21〜60世代）を「不遇枝エネルギー蓄積モデル」を適用して連続自律進行させ、3000年史の正史を完成させるためのC#実装指示を生成します。
+リードディレクター兼C#設計者として、ご指示いただいた「ターン1001からターン3000までの2000年間（第21〜60世代）を不遇枝エネルギー蓄積モデルを適用して連続自律進行させ、3000年史の正史を完成させる」ための精密なC#実装指示プロンプトをMarkdown形式で出力します。
 
-以下のコードは、Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約を厳格に守り、Cursor(IDE)のCtrl+Lへそのまま読み込ませてC#コード化できる形式です。
+このコードは、Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約（魔法=社会技術, ジョブ=生活職業）を厳格に守り、Cursor(IDE)のCtrl+Lへそのまま読み込ませてC#コード化できる形式です。
 
 ---
 
 ```csharp
-// ファイル名: SimulationCore.cs (またはプロジェクトの適切な場所に配置)
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FromLikeCombatSimulator
+namespace FromLikeSimulator
 {
     /// <summary>
-    /// Safe-Fail構造を担う静的ヘルパークラス。
-    /// 予期せぬエラーが発生した場合でもシミュレーションが完全に停止せず、
-    /// 問題をログに記録し、可能な限りフォールバック処理を試みます。
+    /// シミュレーションの世界の状態を保持するクラス。
+    /// 各ターン、各世代における世界の状況、資源、技術、イベントなどを記録します。
     /// </summary>
-    public static class SafeFailMechanism
+    public class WorldState
     {
-        /// <summary>
-        /// 指定されたアクションを安全に実行し、例外が発生した場合はログを記録し、フォールバック処理を試みます。
-        /// </summary>
-        /// <param name="action">実行するアクション。</param>
-        /// <param name="context">アクションのコンテキスト（ログ用）。</param>
-        /// <param name="fallbackAction">例外発生時に実行するフォールバックアクション（オプション）。</param>
-        /// <returns>アクションが成功した場合はtrue、失敗した場合はfalse。</returns>
-        public static bool ExecuteSafely(Action action, string context, Action fallbackAction = null)
-        {
-            try
-            {
-                action?.Invoke();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine($"[SAFE-FAIL] Critical error during {context}: {ex.Message}");
-                Console.Error.WriteLine(ex.StackTrace);
-                fallbackAction?.Invoke();
-                return false;
-            }
-        }
+        public long CurrentTurn { get; set; }
+        public int CurrentGeneration { get; set; }
+        public double UnfavoredBranchEnergyAccumulated { get; set; } // 不遇枝エネルギー蓄積量
+        public Dictionary<string, double> Resources { get; set; } // 世界の主要資源
+        public List<SocialTechnology> ActiveSocialTechnologies { get; set; } // 魔法 = 社会技術
+        public List<LifeOccupation> ActiveLifeOccupations { get; set; } // ジョブ = 生活職業
+        public List<string> GenerationEvents { get; set; } // 現在の世代で発生した主要イベントのログ
+        public List<string> HistoricalRecords { get; set; } // 3000年史の正史を構成する記録
 
-        /// <summary>
-        /// 指定された関数を安全に実行し、例外が発生した場合はログを記録し、デフォルト値を返します。
-        /// </summary>
-        /// <typeparam name="T">関数の戻り値の型。</typeparam>
-        /// <param name="func">実行する関数。</param>
-        /// <param name="context">関数のコンテキスト（ログ用）。</param>
-        /// <param name="defaultValue">例外発生時に返すデフォルト値。</param>
-        /// <returns>関数の結果、または例外発生時のデフォルト値。</returns>
-        public static T ExecuteSafely<T>(Func<T> func, string context, T defaultValue = default(T))
+        public WorldState()
         {
-            try
-            {
-                return func != null ? func.Invoke() : defaultValue;
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine($"[SAFE-FAIL] Critical error during {context}: {ex.Message}");
-                Console.Error.WriteLine(ex.StackTrace);
-                return defaultValue;
-            }
+            Resources = new Dictionary<string, double>();
+            ActiveSocialTechnologies = new List<SocialTechnology>();
+            ActiveLifeOccupations = new List<LifeOccupation>();
+            GenerationEvents = new List<string>();
+            HistoricalRecords = new List<string>();
         }
     }
 
     /// <summary>
-    /// MagicSanitizerEngine: 魔法（社会技術）の適用前にその安全性と整合性を検証するエンジン。
-    /// シミュレーションの安定性を保ちつつ、技術の導入を制御します。
+    /// MagicSanitizerEngine: シミュレーション状態の整合性を保ち、予期せぬ値を修正するエンジン。
+    /// Safe-Fail構造の一部として機能し、シミュレーションの安定性を確保します。
     /// </summary>
     public static class MagicSanitizerEngine
     {
         /// <summary>
-        /// 魔法（社会技術）が現在のワールドステートに安全に適用可能か検証します。
+        /// 指定されたWorldStateオブジェクトをサニタイズし、整合性を保ちます。
         /// </summary>
-        /// <param name="magic">検証する魔法。</param>
-        /// <param name="state">現在のワールドステート。</param>
-        /// <param name="targetEntity">魔法の対象となるエンティティ（オプション）。</param>
-        /// <returns>魔法が安全に適用可能であればtrue、そうでなければfalse。</returns>
-        public static bool Sanitize(Magic magic, WorldState state, Entity targetEntity = null)
+        /// <param name="state">サニタイズするWorldStateオブジェクト。</param>
+        /// <returns>サニタイズされたWorldStateオブジェクト。</returns>
+        public static WorldState Sanitize(WorldState state)
         {
-            if (magic == null)
-            {
-                Console.WriteLine("[MagicSanitizer] Warning: Attempted to sanitize a null magic object.");
-                return false;
-            }
+            // [Safe-Fail構造] 状態の整合性チェックと修正ロジック
             if (state == null)
             {
-                Console.WriteLine($"[MagicSanitizer] Warning: Attempted to sanitize magic '{magic.Name}' with a null WorldState.");
-                return false;
+                Console.Error.WriteLine("[MagicSanitizerEngine] ERROR: Attempted to sanitize a null WorldState. Returning default.");
+                return new WorldState(); // デフォルト状態を返すか、例外をスロー
             }
 
-            // 1. 魔法の適用条件チェック（例: リソース要件、前提技術、倫理的制約など）
-            // 実際のゲームでは、MagicクラスにSanitizationRulesのようなプロパティを持たせることで、
-            // より複雑なルールを定義できます。
-
-            // 例: 特定の魔法は特定の世代以降でしか使えない
-            if (magic.MinGenerationRequired > state.CurrentGeneration)
+            // 不遇枝エネルギーは負にならない
+            if (state.UnfavoredBranchEnergyAccumulated < 0)
             {
-                Console.WriteLine($"[MagicSanitizer] Denied '{magic.Name}': Requires Generation {magic.MinGenerationRequired}, current is {state.CurrentGeneration}.");
-                return false;
+                Console.WriteLine($"[MagicSanitizerEngine] WARNING: UnfavoredBranchEnergy was {state.UnfavoredBranchEnergyAccumulated:F2}. Corrected to 0.");
+                state.UnfavoredBranchEnergyAccumulated = 0;
             }
 
-            // 例: ターゲットエンティティが存在する場合、そのエンティティが魔法の対象として適切か
-            if (targetEntity != null && !magic.CanApplyTo(targetEntity))
+            // 資源は負にならない
+            foreach (var key in state.Resources.Keys.ToList()) // ToList() でコピーして列挙中に変更可能にする
             {
-                Console.WriteLine($"[MagicSanitizer] Denied '{magic.Name}': Cannot apply to entity '{targetEntity.Name}'.");
-                return false;
-            }
-
-            // 例: 魔法がワールドステートに破壊的な影響を与えないか（シミュレーションの安定性維持）
-            // 不遇枝エネルギーが低い状態での破壊的魔法は、社会の不安定化を招くため危険と判断する。
-            if (magic.IsPotentiallyDestructive && state.UnfavoredBranchEnergy < WorldState.UNFAVORED_ENERGY_THRESHOLD / 2)
-            {
-                Console.WriteLine($"[MagicSanitizer] Warning: Potentially destructive magic '{magic.Name}' detected. Unfavored energy is low. Proceed with caution.");
-                // ここでユーザーへの警告や、適用の一時停止などの処理を挟むことも可能
-                // 今回は警告のみで進行を許可するが、厳格なゲームではここでfalseを返す。
-            }
-
-            Console.WriteLine($"[MagicSanitizer] Magic '{magic.Name}' (ID: {magic.ID}) deemed safe for application.");
-            return true; // 現時点では安全と判断
-        }
-    }
-
-    /// <summary>
-    /// シミュレーション内の個体やグループを表す基底クラス。
-    /// </summary>
-    public class Entity
-    {
-        public Guid ID { get; } = Guid.NewGuid();
-        public string Name { get; set; }
-        public int Generation { get; set; } // 所属世代
-        public double Energy { get; set; } // 生命力、活動力など
-        public double Resources { get; set; } // 資源量
-        public Job CurrentJob { get; set; } // 現在の生活職業
-        public List<Magic> AppliedMagics { get; } = new List<Magic>(); // 適用されている社会技術
-        public bool IsUnfavored { get; set; } // 不遇枝モデルの対象かどうか
-
-        public Entity(string name, int generation, bool isUnfavored = false)
-        {
-            Name = name;
-            Generation = generation;
-            Energy = 100.0; // 初期エネルギー
-            Resources = 50.0; // 初期資源
-            IsUnfavored = isUnfavored;
-        }
-
-        /// <summary>
-        /// 現在の職業の効果を適用します。
-        /// </summary>
-        /// <param name="state">現在のワールドステート。</param>
-        public void ApplyJobEffect(WorldState state)
-        {
-            if (CurrentJob != null)
-            {
-                SafeFailMechanism.ExecuteSafely(() => CurrentJob.ApplyJobEffect(state, this), $"applying job effect for {Name}");
-            }
-        }
-
-        public void ConsumeEnergy(double amount)
-        {
-            Energy = Math.Max(0, Energy - amount);
-        }
-
-        public void GainEnergy(double amount)
-        {
-            Energy += amount;
-        }
-
-        public void GainResources(double amount)
-        {
-            Resources += amount;
-        }
-
-        public void LoseResources(double amount)
-        {
-            Resources = Math.Max(0, Resources - amount);
-        }
-    }
-
-    /// <summary>
-    /// Magic: 社会技術を表すクラス。
-    /// </summary>
-    public class Magic
-    {
-        public Guid ID { get; } = Guid.NewGuid();
-        public string Name { get; set; }
-        public string EffectDescription { get; set; }
-        public double CostResources { get; set; } // 適用に必要なリソース
-        public int MinGenerationRequired { get; set; } // 適用に必要な最低世代
-        public bool IsPotentiallyDestructive { get; set; } = false; // 破壊的な影響を持つ可能性のある魔法か
-
-        public Magic(string name, string description, double cost, int minGen = 1, bool isDestructive = false)
-        {
-            Name = name;
-            EffectDescription = description;
-            CostResources = cost;
-            MinGenerationRequired = minGen;
-            IsPotentiallyDestructive = isDestructive;
-        }
-
-        /// <summary>
-        /// この魔法が指定されたエンティティに適用可能かチェックします。
-        /// </summary>
-        /// <param name="entity">対象エンティティ。</param>
-        /// <returns>適用可能であればtrue。</returns>
-        public virtual bool CanApplyTo(Entity entity)
-        {
-            // デフォルトでは全てのエンティティに適用可能とする。
-            // 特定の魔法は特定の特性を持つエンティティにのみ適用可能とするロジックをここに記述。
-            return true;
-        }
-
-        /// <summary>
-        /// 魔法の効果をワールドステートと対象エンティティに適用します。
-        /// </summary>
-        /// <param name="state">現在のワールドステート。</param>
-        /// <param name="targetEntity">魔法の対象となるエンティティ。</param>
-        public virtual void ApplyEffect(WorldState state, Entity targetEntity)
-        {
-            // 汎用的な効果（例: リソース消費）
-            if (targetEntity != null)
-            {
-                targetEntity.LoseResources(CostResources);
-                targetEntity.AppliedMagics.Add(this);
-            }
-            Console.WriteLine($"[Magic Applied] '{Name}' applied to '{targetEntity?.Name ?? "World"}'. Effect: {EffectDescription}");
-            // ここに具体的な魔法の効果ロジックを記述
-        }
-    }
-
-    /// <summary>
-    /// Job: 生活職業を表すクラス。
-    /// </summary>
-    public class Job
-    {
-        public Guid ID { get; } = Guid.NewGuid();
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public double ResourceGenerationRate { get; set; } // ターンあたりの資源生成量
-        public double EnergyConsumptionRate { get; set; } // ターンあたりのエネルギー消費量
-
-        public Job(string name, string description, double genRate, double energyConRate)
-        {
-            Name = name;
-            Description = description;
-            ResourceGenerationRate = genRate;
-            EnergyConsumptionRate = energyConRate;
-        }
-
-        /// <summary>
-        /// 職業の効果をワーカーエンティティに適用します。
-        /// </summary>
-        /// <param name="state">現在のワールドステート。</param>
-        /// <param name="worker">この職業を持つエンティティ。</param>
-        public virtual void ApplyJobEffect(WorldState state, Entity worker)
-        {
-            worker.GainResources(ResourceGenerationRate);
-            worker.ConsumeEnergy(EnergyConsumptionRate);
-            //Console.WriteLine($"  Entity '{worker.Name}' ({worker.CurrentJob.Name}) gained {ResourceGenerationRate:F1} resources, consumed {EnergyConsumptionRate:F1} energy. (R:{worker.Resources:F1}, E:{worker.Energy:F1})");
-        }
-    }
-
-    /// <summary>
-    /// シミュレーションの現在の状態を保持するクラス。
-    /// </summary>
-    public class WorldState
-    {
-        public int CurrentTurn { get; set; }
-        public int CurrentGeneration { get; set; }
-        public List<Entity> Entities { get; } = new List<Entity>();
-        public List<Magic> AvailableMagics { get; } = new List<Magic>(); // 発見済みの社会技術
-        public List<Job> AvailableJobs { get; } = new List<Job>(); // 利用可能な生活職業
-        public double UnfavoredBranchEnergy { get; set; } = 0.0; // 不遇枝エネルギー蓄積量
-        public const double UNFAVORED_ENERGY_THRESHOLD = 500.0; // 不遇枝イベント発生閾値
-        public const int TURNS_PER_GENERATION = 50; // 1世代あたりのターン数
-
-        public WorldState(int startTurn = 1)
-        {
-            CurrentTurn = startTurn;
-            CurrentGeneration = (startTurn - 1) / TURNS_PER_GENERATION + 1;
-            InitializeDefaultJobs();
-            InitializeDefaultMagics();
-            InitializeEntities();
-        }
-
-        private void InitializeDefaultJobs()
-        {
-            AvailableJobs.Add(new Job("Gatherer", "Collects basic resources.", 5.0, 2.0));
-            AvailableJobs.Add(new Job("Crafter", "Processes resources into goods.", 8.0, 3.0));
-            AvailableJobs.Add(new Job("Warrior", "Protects the community.", 3.0, 4.0));
-            AvailableJobs.Add(new Job("Scholar", "Researches new knowledge.", 1.0, 1.0)); // 資源生成は低いが、マジック発見に寄与する想定
-        }
-
-        private void InitializeDefaultMagics()
-        {
-            AvailableMagics.Add(new Magic("Basic Tool Crafting", "Enables crafting of simple tools.", 10.0));
-            AvailableMagics.Add(new Magic("Communal Farming", "Increases food production efficiency.", 20.0, 2));
-            AvailableMagics.Add(new Magic("Basic Defense Structure", "Provides basic protection.", 15.0, 3));
-        }
-
-        private void InitializeEntities()
-        {
-            // 初期エンティティの生成例
-            // ターン1001から開始する場合、第21世代のエンティティを生成
-            Entities.Add(new Entity("Aeliana", CurrentGeneration, false) { CurrentJob = AvailableJobs.First(j => j.Name == "Gatherer") });
-            Entities.Add(new Entity("Borin", CurrentGeneration, true) { CurrentJob = AvailableJobs.First(j => j.Name == "Crafter") }); // 不遇枝の例
-            Entities.Add(new Entity("Caelen", CurrentGeneration, false) { CurrentJob = AvailableJobs.First(j => j.Name == "Warrior") });
-            Entities.Add(new Entity("Dara", CurrentGeneration, true) { CurrentJob = AvailableJobs.First(j => j.Name == "Gatherer") }); // 不遇枝の例
-            Entities.Add(new Entity("Elara", CurrentGeneration, false) { CurrentJob = AvailableJobs.First(j => j.Name == "Scholar") });
-        }
-    }
-
-    /// <summary>
-    /// シミュレーションの歴史を記録するクラス。
-    /// 各ターンの重要なイベントやワールドステートのスナップショットを保存し、正史を構築します。
-    /// </summary>
-    public class SimulationHistory
-    {
-        public List<ChronicleEntry> ChronicleEntries { get; } = new List<ChronicleEntry>();
-
-        /// <summary>
-        /// 現在のターンの状態とイベントを歴史に記録します。
-        /// </summary>
-        /// <param name="turn">現在のターン。</param>
-        /// <param name="generation">現在の世代。</param>
-        /// <param name="state">現在のワールドステート。</param>
-        /// <param name="eventLog">このターンで発生した主要なイベントのログ。</param>
-        public void RecordTurn(int turn, int generation, WorldState state, string eventLog)
-        {
-            var entry = new ChronicleEntry
-            {
-                Turn = turn,
-                Generation = generation,
-                EventLog = eventLog,
-                // ワールドステートの重要な情報のみをスナップショットとして記録
-                EntityStates = state.Entities.Select(e => new EntitySnapshot(e)).ToList(),
-                UnfavoredBranchEnergy = state.UnfavoredBranchEnergy,
-                PopulationCount = state.Entities.Count
-            };
-            ChronicleEntries.Add(entry);
-            //Console.WriteLine($"[HISTORY] Turn {turn}, Gen {generation}: {eventLog}"); // 詳細ログは必要に応じて有効化
-        }
-
-        /// <summary>
-        /// 歴史のエントリを表す内部クラス。
-        /// </summary>
-        public class ChronicleEntry
-        {
-            public int Turn { get; set; }
-            public int Generation { get; set; }
-            public string EventLog { get; set; }
-            public List<EntitySnapshot> EntityStates { get; set; }
-            public double UnfavoredBranchEnergy { get; set; }
-            public int PopulationCount { get; set; }
-        }
-
-        /// <summary>
-        /// エンティティの特定の時点での状態を記録するためのスナップショットクラス。
-        /// </summary>
-        public class EntitySnapshot
-        {
-            public Guid ID { get; set; }
-            public string Name { get; set; }
-            public int Generation { get; set; }
-            public double Energy { get; set; }
-            public double Resources { get; set; }
-            public string CurrentJobName { get; set; }
-            public bool IsUnfavored { get; set; }
-            public List<string> AppliedMagicNames { get; set; }
-
-            public EntitySnapshot(Entity entity)
-            {
-                ID = entity.ID;
-                Name = entity.Name;
-                Generation = entity.Generation;
-                Energy = entity.Energy;
-                Resources = entity.Resources;
-                CurrentJobName = entity.CurrentJob?.Name ?? "None";
-                IsUnfavored = entity.IsUnfavored;
-                AppliedMagicNames = entity.AppliedMagics.Select(m => m.Name).ToList();
-            }
-        }
-
-        /// <summary>
-        /// 記録された歴史をコンソールに出力します。
-        /// </summary>
-        public void PrintChronicle()
-        {
-            Console.WriteLine("\n--- 3000 Year Chronicle (Excerpt) ---");
-            // 全てのログを出力すると膨大になるため、主要なイベントや節目のみ出力
-            foreach (var entry in ChronicleEntries)
-            {
-                if (entry.EventLog.Contains("[UNFAVORED EVENT]") || entry.EventLog.Contains("[MAGIC DISCOVERY]") ||
-                    entry.EventLog.Contains("new entities born") || entry.EventLog.Contains("perished") ||
-                    entry.Turn % 100 == 0 || entry.Turn == 1001 || entry.Turn == 3000)
+                if (state.Resources[key] < 0)
                 {
-                    Console.WriteLine($"Turn {entry.Turn} (Gen {entry.Generation}, Pop: {entry.PopulationCount}, Unfavored E: {entry.UnfavoredBranchEnergy:F0}): {entry.EventLog}");
+                    Console.WriteLine($"[MagicSanitizerEngine] WARNING: Resource '{key}' was {state.Resources[key]:F2}. Corrected to 0.");
+                    state.Resources[key] = 0;
                 }
             }
-            Console.WriteLine("-------------------------------------\n");
+
+            // アクティブな社会技術や生活職業リストにnullがないことを確認
+            state.ActiveSocialTechnologies.RemoveAll(t => t == null);
+            state.ActiveLifeOccupations.RemoveAll(j => j == null);
+
+            // 世代がターン数と矛盾しないかチェック (簡易的なもの)
+            int expectedGeneration = (int)Math.Ceiling((double)state.CurrentTurn / HistoricalSimulator.TurnsPerGeneration);
+            if (state.CurrentGeneration != expectedGeneration && state.CurrentTurn > 0)
+            {
+                Console.WriteLine($"[MagicSanitizerEngine] WARNING: Generation mismatch. Turn {state.CurrentTurn} suggests Gen {expectedGeneration}, but state is Gen {state.CurrentGeneration}. Correcting.");
+                state.CurrentGeneration = expectedGeneration;
+            }
+
+            return state;
         }
     }
 
     /// <summary>
-    /// シミュレーションのメインロジックを管理するクラス。
+    /// 魔法 = 社会技術 (Social Technology) の定義。
+    /// 世界に永続的な影響を与える技術的・社会的な進歩を表します。
     /// </summary>
-    public class SimulationCore
+    public class SocialTechnology
+    {
+        public string Name { get; set; }
+        public double ImpactFactor { get; set; } // 世界への影響度 (例: 資源生産効率、安定性)
+        public bool IsDiscovered { get; set; } // 発見済みかどうか
+        public string Description { get; set; }
+
+        public SocialTechnology(string name, double impactFactor, bool isDiscovered = false, string description = "")
+        {
+            Name = name;
+            ImpactFactor = impactFactor;
+            IsDiscovered = isDiscovered;
+            Description = description;
+        }
+    }
+
+    /// <summary>
+    /// ジョブ = 生活職業 (Life Occupation) の定義。
+    /// シミュレーション内の住民が従事する具体的な職業活動を表します。
+    /// </summary>
+    public class LifeOccupation
+    {
+        public string Name { get; set; }
+        public double Productivity { get; set; } // 資源生産やサービス提供の効率
+        public int PopulationEngaged { get; set; } // その職業に従事する人口 (簡易モデル)
+        public string Description { get; set; }
+
+        public LifeOccupation(string name, double productivity, int populationEngaged = 100, string description = "")
+        {
+            Name = name;
+            Productivity = productivity;
+            PopulationEngaged = populationEngaged;
+            Description = description;
+        }
+    }
+
+    /// <summary>
+    /// 千年史自律シミュレーターのコアロジックを実装するクラス。
+    /// ターンベースで世界の状態を進行させ、不遇枝エネルギーモデルを適用し、正史を記録します。
+    /// </summary>
+    public class HistoricalSimulator
     {
         private WorldState _worldState;
-        private SimulationHistory _history;
-        private Random _random = new Random();
+        public const int TurnsPerGeneration = 50; // 1世代あたりのターン数
+        private Random _random;
 
-        public SimulationCore(int startTurn = 1)
+        /// <summary>
+        /// シミュレーターの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="initialState">シミュレーションの初期状態。</param>
+        public HistoricalSimulator(WorldState initialState)
         {
-            _worldState = new WorldState(startTurn);
-            _history = new SimulationHistory();
-            Console.WriteLine($"Simulation initialized. Starting at Turn {startTurn}, Generation {_worldState.CurrentGeneration}.");
+            _worldState = initialState ?? throw new ArgumentNullException(nameof(initialState));
+            _random = new Random();
+            // 初期状態のサニタイズを必ず実行
+            _worldState = MagicSanitizerEngine.Sanitize(_worldState);
+            Console.WriteLine($"[Simulator Init] Initialized at Turn {_worldState.CurrentTurn}, Gen {_worldState.CurrentGeneration}.");
         }
 
         /// <summary>
-        /// 指定されたターン範囲でシミュレーションを連続自律進行させます。
+        /// 指定されたターン範囲でシミュレーションを実行します。
         /// </summary>
-        /// <param name="startTurn">シミュレーションを開始するターン。</param>
-        /// <param name="endTurn">シミュレーションを終了するターン。</param>
-        public void RunSimulation(int startTurn, int endTurn)
+        /// <param name="startTurn">シミュレーションを開始するターン数。</param>
+        /// <param name="endTurn">シミュレーションを終了するターン数。</param>
+        /// <returns>シミュレーション中に記録された正史のリスト。</returns>
+        public List<string> RunSimulation(long startTurn, long endTurn)
         {
-            // 初期ターンが指定された開始ターンと異なる場合、ワールドステートを調整
-            if (_worldState.CurrentTurn < startTurn)
+            Console.WriteLine($"\n--- [SIMULATION START] Running from Turn {startTurn} to {endTurn} (Generations {Math.Ceiling((double)startTurn / TurnsPerGeneration)} to {Math.Ceiling((double)endTurn / TurnsPerGeneration)}) ---");
+
+            for (long currentTurn = startTurn; currentTurn <= endTurn; currentTurn++)
             {
-                Console.WriteLine($"Adjusting simulation to start from Turn {startTurn}. Current state is Turn {_worldState.CurrentTurn}.");
-                _worldState.CurrentTurn = startTurn;
-                _worldState.CurrentGeneration = (startTurn - 1) / WorldState.TURNS_PER_GENERATION + 1;
-            }
-
-            Console.WriteLine($"Starting continuous autonomous simulation from Turn {startTurn} to {endTurn}...");
-
-            for (int turn = startTurn; turn <= endTurn; turn++)
-            {
-                _worldState.CurrentTurn = turn; // ターンを明示的に設定
-                _worldState.CurrentGeneration = (turn - 1) / WorldState.TURNS_PER_GENERATION + 1;
-
-                string turnLog = $"Turn {turn} (Gen {_worldState.CurrentGeneration}) processed.";
-                bool success = SafeFailMechanism.ExecuteSafely(() =>
+                try
                 {
-                    ProcessTurn(turn);
-                }, $"processing turn {turn}", () =>
-                {
-                    turnLog = $"Turn {turn} (Gen {_worldState.CurrentGeneration}) failed to process completely. Attempting recovery...";
-                    // 失敗時のフォールバック処理（例: シミュレーションの一時停止、エラー状態の記録、状態のロールバック）
-                    // ここでは簡単なログ記録と、次のターンへの進行を試みる。
-                });
+                    _worldState.CurrentTurn = currentTurn;
+                    _worldState.CurrentGeneration = (int)Math.Ceiling((double)currentTurn / TurnsPerGeneration);
 
-                _history.RecordTurn(turn, _worldState.CurrentGeneration, _worldState, turnLog);
+                    // [Safe-Fail構造] ターン開始前の状態チェックとサニタイズ
+                    _worldState = MagicSanitizerEngine.Sanitize(_worldState);
 
-                // 進行状況の表示
-                if (turn % 100 == 0 || turn == endTurn || turn == startTurn)
-                {
-                    Console.WriteLine($"--- Simulation Progress: Turn {turn}/{endTurn} (Gen {_worldState.CurrentGeneration}, Pop: {_worldState.Entities.Count}, Unfavored E: {_worldState.UnfavoredBranchEnergy:F0}) ---");
-                }
-            }
+                    // ターン処理の実行
+                    ProcessTurn(currentTurn);
 
-            Console.WriteLine($"Simulation completed for turns {startTurn} to {endTurn}.");
-            _history.PrintChronicle(); // 最終的な正史を出力
-        }
-
-        /// <summary>
-        /// 各ターンのシミュレーションロジックを実行します。
-        /// </summary>
-        /// <param name="currentTurn">現在のターン。</param>
-        private void ProcessTurn(int currentTurn)
-        {
-            // 1. エンティティの行動と状態更新
-            // ToList()でコレクションのコピーを作成し、ループ中に要素が削除されても安全にする
-            foreach (var entity in _worldState.Entities.ToList())
-            {
-                SafeFailMechanism.ExecuteSafely(() =>
-                {
-                    entity.ApplyJobEffect(_worldState); // 職業の効果を適用
-                    entity.ConsumeEnergy(1.0 + (_random.NextDouble() * 0.5)); // 基本的なエネルギー消費にランダム要素
-
-                    // エネルギーが尽きたエンティティの処理
-                    if (entity.Energy <= 0)
+                    // 世代の変わり目処理
+                    if (currentTurn % TurnsPerGeneration == 0)
                     {
-                        Console.WriteLine($"  Entity '{entity.Name}' (Gen {entity.Generation}) ran out of energy and perished.");
-                        _worldState.Entities.Remove(entity);
-                        _history.RecordTurn(currentTurn, _worldState.CurrentGeneration, _worldState, $"Entity '{entity.Name}' perished.");
+                        ProcessGenerationEnd(_worldState.CurrentGeneration);
                     }
-                    else if (entity.Resources < 0) // リソースがマイナスになった場合もペナルティ
-                    {
-                        entity.Energy -= 5.0; // エネルギーをさらに消費
-                        Console.WriteLine($"  Entity '{entity.Name}' (Gen {entity.Generation}) has negative resources, losing energy.");
-                    }
-                }, $"entity action for {entity.Name} in turn {currentTurn}");
-            }
 
-            // 2. 不遇枝エネルギー蓄積モデルの適用
-            ApplyUnfavoredBranchEnergyAccumulationModel(currentTurn);
-
-            // 3. 新しいエンティティの誕生（世代交代のシミュレーション）
-            // 世代の終わり、または人口が減りすぎた場合に新しいエンティティを生成
-            if ((currentTurn % WorldState.TURNS_PER_GENERATION == 0 && _worldState.Entities.Any()) || _worldState.Entities.Count < 5)
-            {
-                int nextGeneration = _worldState.CurrentGeneration + 1;
-                int newEntitiesCount = Math.Max(1, _worldState.Entities.Count / 2); // 現在の半数程度を新規生成
-                if (_worldState.Entities.Count < 5) newEntitiesCount = Math.Max(newEntitiesCount, 3); // 最低3体は生成
-
-                for (int i = 0; i < newEntitiesCount; i++)
-                {
-                    bool isUnfavored = (_random.Next(10) < 3); // 約30%が不遇枝として生まれる例
-                    string newName = $"Newborn_{nextGeneration}_{_random.Next(1000)}";
-                    Entity newEntity = new Entity(newName, nextGeneration, isUnfavored);
-                    newEntity.CurrentJob = _worldState.AvailableJobs[_random.Next(_worldState.AvailableJobs.Count)]; // ランダムにジョブ割り当て
-                    _worldState.Entities.Add(newEntity);
-                    _history.RecordTurn(currentTurn, _worldState.CurrentGeneration, _worldState, $"New entity '{newName}' (Gen {nextGeneration}, Unfavored: {isUnfavored}) born.");
+                    // [Safe-Fail構造] ターン終了後の状態チェックとサニタイズ
+                    _worldState = MagicSanitizerEngine.Sanitize(_worldState);
                 }
-                Console.WriteLine($"--- Generation {_worldState.CurrentGeneration} ends. {newEntitiesCount} new entities born for Gen {nextGeneration}. ---");
-            }
-
-            // 4. マジック（社会技術）の発見と適用（簡易版）
-            // 不遇枝エネルギーが閾値を超えた場合に新しいマジックが発見される可能性
-            if (_worldState.UnfavoredBranchEnergy >= WorldState.UNFAVORED_ENERGY_THRESHOLD)
-            {
-                TriggerUnfavoredBranchEvent(currentTurn);
-                _worldState.UnfavoredBranchEnergy = 0; // イベント後リセット
-            }
-
-            // 既存のマジックをランダムなエンティティに適用する例
-            if (_worldState.AvailableMagics.Any() && _worldState.Entities.Any() && _random.Next(100) < 10) // 各ターン10%の確率で適用を試みる
-            {
-                var randomMagic = _worldState.AvailableMagics[_random.Next(_worldState.AvailableMagics.Count)];
-                var randomEntity = _worldState.Entities[_random.Next(_worldState.Entities.Count)];
-                ApplyMagic(randomMagic, randomEntity);
-            }
-        }
-
-        /// <summary>
-        /// 不遇枝エネルギー蓄積モデルを適用します。
-        /// 不遇なエンティティの存在がエネルギーを蓄積し、閾値を超えるとイベントをトリガーします。
-        /// </summary>
-        /// <param name="currentTurn">現在のターン。</param>
-        private void ApplyUnfavoredBranchEnergyAccumulationModel(int currentTurn)
-        {
-            SafeFailMechanism.ExecuteSafely(() =>
-            {
-                var unfavoredEntities = _worldState.Entities.Where(e => e.IsUnfavored).ToList();
-                if (unfavoredEntities.Any())
+                catch (Exception ex)
                 {
-                    // 不遇なエンティティの数や状態に応じてエネルギーを蓄積
-                    // エネルギーが低いほど、リソースが少ないほど、蓄積が加速する
-                    double accumulationRate = unfavoredEntities.Count * 0.5;
-                    accumulationRate += unfavoredEntities.Sum(e => Math.Max(0, 100 - e.Energy) * 0.1); // エネルギーが低いほど
-                    accumulationRate += unfavoredEntities.Sum(e => Math.Max(0, 50 - e.Resources) * 0.2); // リソースが低いほど
-
-                    _worldState.UnfavoredBranchEnergy += accumulationRate;
-                    //Console.WriteLine($"  Unfavored Branch Energy: {_worldState.UnfavoredBranchEnergy:F2} (Accumulated: {accumulationRate:F2})");
-
-                    if (_worldState.UnfavoredBranchEnergy >= WorldState.UNFAVORED_ENERGY_THRESHOLD)
-                    {
-                        Console.WriteLine($"[UNFAVORED EVENT] Unfavored Branch Energy reached threshold ({_worldState.UnfavoredBranchEnergy:F2}) at Turn {currentTurn}!");
-                        TriggerUnfavoredBranchEvent(currentTurn);
-                        _worldState.UnfavoredBranchEnergy = 0; // イベント後リセット
-                    }
-                }
-            }, $"applying unfavored branch energy model in turn {currentTurn}");
-        }
-
-        /// <summary>
-        /// 不遇枝エネルギーが閾値を超えた際に発生するイベントを処理します。
-        /// </summary>
-        /// <param name="currentTurn">現在のターン。</param>
-        private void TriggerUnfavoredBranchEvent(int currentTurn)
-        {
-            // 不遇枝イベントの具体的なロジック
-            // 例: 新しい魔法の発見、既存のジョブの変革、不遇なエンティティの強化、社会構造の変化など
-            string eventDescription = "A significant shift occurred due to accumulated grievances.";
-
-            int eventType = _random.Next(4); // 0: 新しい魔法発見, 1: ジョブ変革, 2: 不遇エンティティ強化, 3: 社会構造変化
-
-            switch (eventType)
-            {
-                case 0:
-                    DiscoverNewMagic();
-                    eventDescription = "Accumulated Unfavored Energy led to the discovery of a revolutionary new Magic!";
+                    // [Safe-Fail構造] 例外発生時の処理
+                    string errorMessage = $"[ERROR] Turn {currentTurn} failed: {ex.Message}. StackTrace: {ex.StackTrace}. State might be corrupted. Attempting graceful shutdown.";
+                    Console.Error.WriteLine(errorMessage);
+                    _worldState.HistoricalRecords.Add(errorMessage);
+                    // 致命的なエラーの場合はシミュレーションを中断
                     break;
-                case 1:
-                    TransformRandomJob();
-                    eventDescription = "A long-standing Job was fundamentally transformed by the Unfavored Branch's influence!";
-                    break;
-                case 2:
-                    EmpowerUnfavoredEntities();
-                    eventDescription = "The Unfavored Branch gained strength, empowering its members!";
-                    break;
-                case 3:
-                    ShiftSocialStructure();
-                    eventDescription = "The social structure underwent a significant shift, altering the balance of power!";
-                    break;
-            }
-
-            _history.RecordTurn(currentTurn, _worldState.CurrentGeneration, _worldState, $"[UNFAVORED EVENT] {eventDescription}");
-        }
-
-        /// <summary>
-        /// 新しい魔法を発見し、利用可能な魔法リストに追加します。
-        /// </summary>
-        private void DiscoverNewMagic()
-        {
-            string newMagicName = $"Advanced Tech {_random.Next(1000, 9999)}";
-            string newMagicDesc = $"A breakthrough technology from Generation {_worldState.CurrentGeneration}.";
-            double cost = _random.Next(30, 100);
-            int minGen = _worldState.CurrentGeneration;
-            bool isDestructive = _random.Next(10) == 0; // 10%の確率で破壊的
-
-            Magic newMagic = new Magic(newMagicName, newMagicDesc, cost, minGen, isDestructive);
-            _worldState.AvailableMagics.Add(newMagic);
-            Console.WriteLine($"[MAGIC DISCOVERY] A new Magic '{newMagic.Name}' was discovered!");
-            _history.RecordTurn(_worldState.CurrentTurn, _worldState.CurrentGeneration, _worldState, $"New Magic '{newMagic.Name}' discovered.");
-        }
-
-        /// <summary>
-        /// ランダムなジョブを変革します。
-        /// </summary>
-        private void TransformRandomJob()
-        {
-            if (!_worldState.AvailableJobs.Any()) return;
-
-            var jobToTransform = _worldState.AvailableJobs[_random.Next(_worldState.AvailableJobs.Count)];
-            jobToTransform.ResourceGenerationRate *= (1.0 + _random.NextDouble() * 0.5); // 効率アップ
-            jobToTransform.EnergyConsumptionRate *= (0.5 + _random.NextDouble() * 0.5); // 消費ダウン
-            jobToTransform.Name = $"Reformed {jobToTransform.Name}";
-            jobToTransform.Description += " (Transformed by Unfavored Influence)";
-            Console.WriteLine($"[JOB TRANSFORMATION] Job '{jobToTransform.Name}' was reformed!");
-            _history.RecordTurn(_worldState.CurrentTurn, _worldState.CurrentGeneration, _worldState, $"Job '{jobToTransform.Name}' transformed.");
-        }
-
-        /// <summary>
-        /// 不遇なエンティティを強化します。
-        /// </summary>
-        private void EmpowerUnfavoredEntities()
-        {
-            foreach (var entity in _worldState.Entities.Where(e => e.IsUnfavored))
-            {
-                entity.GainEnergy(50.0 + _random.NextDouble() * 50);
-                entity.GainResources(20.0 + _random.NextDouble() * 30);
-                Console.WriteLine($"  Entity '{entity.Name}' (Unfavored) gained significant energy and resources!");
-            }
-            _history.RecordTurn(_worldState.CurrentTurn, _worldState.CurrentGeneration, _worldState, "Unfavored entities received a surge of power!");
-        }
-
-        /// <summary>
-        /// 社会構造を変化させます。例として、不遇枝の割合を変化させます。
-        /// </summary>
-        private void ShiftSocialStructure()
-        {
-            // 不遇枝の割合をランダムに変化させる
-            foreach (var entity in _worldState.Entities)
-            {
-                if (_random.Next(10) < 2) // 20%の確率で状態が変化
-                {
-                    entity.IsUnfavored = !entity.IsUnfavored;
-                    Console.WriteLine($"  Entity '{entity.Name}' status changed to {(entity.IsUnfavored ? "Unfavored" : "Favored")}.");
                 }
             }
-            _history.RecordTurn(_worldState.CurrentTurn, _worldState.CurrentGeneration, _worldState, "Social structure shifted, altering favored/unfavored status.");
+
+            Console.WriteLine($"--- [SIMULATION END] Reached Turn {endTurn}. Final Generation: {_worldState.CurrentGeneration}. ---");
+            return _worldState.HistoricalRecords;
         }
 
         /// <summary>
-        /// 魔法（社会技術）を適用します。MagicSanitizerEngineによる検証を必ず行います。
+        /// シミュレーションの1ターン分の処理を実行します。
         /// </summary>
-        /// <param name="magic">適用する魔法。</param>
-        /// <param name="targetEntity">魔法の対象となるエンティティ。</param>
-        private void ApplyMagic(Magic magic, Entity targetEntity)
+        /// <param name="turn">現在のターン数。</param>
+        private void ProcessTurn(long turn)
         {
-            if (magic == null || targetEntity == null) return;
+            // 1. 不遇枝エネルギー蓄積モデルの適用
+            double energyChange = CalculateUnfavoredBranchEnergyChange(_worldState);
+            _worldState.UnfavoredBranchEnergyAccumulated += energyChange;
 
-            bool success = SafeFailMechanism.ExecuteSafely(() =>
+            // 不遇枝エネルギーが閾値を超えたらイベント発生
+            const double unfavoredEnergyThreshold = 150.0; // 仮の閾値
+            if (_worldState.UnfavoredBranchEnergyAccumulated >= unfavoredEnergyThreshold)
             {
-                if (MagicSanitizerEngine.Sanitize(magic, _worldState, targetEntity))
+                TriggerUnfavoredBranchEvent();
+                _worldState.UnfavoredBranchEnergyAccumulated = 0; // イベント発生でリセット
+            }
+
+            // 2. 世界の状態更新（資源、人口、技術進歩など）
+            UpdateWorldState(turn);
+
+            // 3. ジョブ（生活職業）の活動による影響
+            foreach (var job in _worldState.ActiveLifeOccupations)
+            {
+                PerformJobActivity(job);
+            }
+
+            // 4. 魔法（社会技術）の影響
+            foreach (var magic in _worldState.ActiveSocialTechnologies)
+            {
+                ApplySocialTechnologyEffect(magic);
+            }
+
+            // 簡易ログ (詳細デバッグ用)
+            // Console.WriteLine($"Turn {turn}: Gen {_worldState.CurrentGeneration}, Energy={_worldState.UnfavoredBranchEnergyAccumulated:F2}, Food={_worldState.Resources.GetValueOrDefault("Food", 0):F2}");
+        }
+
+        /// <summary>
+        /// 不遇枝エネルギーの蓄積量を計算します。
+        /// 世界の「不遇」な状態に応じてエネルギーが蓄積されます。
+        /// </summary>
+        /// <param name="state">現在の世界の状態。</param>
+        /// <returns>このターンで蓄積される不遇枝エネルギー量。</returns>
+        private double CalculateUnfavoredBranchEnergyChange(WorldState state)
+        {
+            double energyAccumulation = 0.05; // ベースの蓄積量
+
+            // 例: 食料資源が少ないと蓄積加速
+            if (state.Resources.ContainsKey("Food") && state.Resources["Food"] < 100.0)
+            {
+                energyAccumulation += 0.2 + (100.0 - state.Resources["Food"]) * 0.01; // 不足分に応じて加速
+            }
+            // 例: 特定の重要な社会技術が未発見だと蓄積加速
+            if (!state.ActiveSocialTechnologies.Any(t => t.Name == "AdvancedAgriculture" && t.IsDiscovered))
+            {
+                energyAccumulation += 0.1;
+            }
+            if (!state.ActiveSocialTechnologies.Any(t => t.Name == "StableGovernance" && t.IsDiscovered))
+            {
+                energyAccumulation += 0.15;
+            }
+            // 例: 資源の多様性が低いと蓄積加速
+            if (state.Resources.Count < 3)
+            {
+                energyAccumulation += 0.05;
+            }
+
+            // ランダムな変動要素
+            energyAccumulation += (_random.NextDouble() - 0.5) * 0.1; // -0.05 から +0.05 の範囲で変動
+
+            return Math.Max(0, energyAccumulation); // 負の値にならないようにする
+        }
+
+        /// <summary>
+        /// 不遇枝エネルギーが閾値を超えた際に発生するイベントをトリガーします。
+        /// これは、社会技術の発見、危機、変革など、シミュレーションの転換点となり得ます。
+        /// </summary>
+        private void TriggerUnfavoredBranchEvent()
+        {
+            string eventDescription = $"[EVENT] Turn {_worldState.CurrentTurn} (Gen {_worldState.CurrentGeneration}): Unfavored Branch Energy triggered a major event!";
+            _worldState.GenerationEvents.Add(eventDescription);
+            _worldState.HistoricalRecords.Add(eventDescription);
+            Console.WriteLine(eventDescription);
+
+            // イベントの種類をランダムに決定
+            double eventRoll = _random.NextDouble();
+
+            if (eventRoll < 0.4) // 40%の確率で新しい社会技術の発見
+            {
+                string techName = $"Innovation_Gen{_worldState.CurrentGeneration}_{Guid.NewGuid().ToString().Substring(0, 6)}";
+                double impact = 1.0 + _random.NextDouble() * 0.5; // 影響度をランダムに決定
+                var newTech = new SocialTechnology(techName, impact, true, "Emergence from accumulated societal pressure.");
+                _worldState.ActiveSocialTechnologies.Add(newTech);
+                string techDiscovery = $"[TECH DISCOVERY] Turn {_worldState.CurrentTurn}: A new Social Technology '{newTech.Name}' (Magic) was discovered, impacting the world with factor {newTech.ImpactFactor:F2}.";
+                _worldState.GenerationEvents.Add(techDiscovery);
+                _worldState.HistoricalRecords.Add(techDiscovery);
+                Console.WriteLine(techDiscovery);
+            }
+            else if (eventRoll < 0.7) // 30%の確率で社会危機または変革
+            {
+                string crisisEvent = $"[CRISIS/CHANGE] Turn {_worldState.CurrentTurn}: A significant societal crisis or transformation occurred. Resources may fluctuate wildly.";
+                _worldState.GenerationEvents.Add(crisisEvent);
+                _worldState.HistoricalRecords.Add(crisisEvent);
+                Console.WriteLine(crisisEvent);
+                // 危機の影響をシミュレート (例: 資源の急減、人口減少)
+                if (_worldState.Resources.ContainsKey("Food")) _worldState.Resources["Food"] *= (_random.NextDouble() * 0.5 + 0.2); // 20-70%に減少
+                if (_worldState.Resources.ContainsKey("Materials")) _worldState.Resources["Materials"] *= (_random.NextDouble() * 0.5 + 0.2);
+            }
+            else // 30%の確率で新たな生活職業の出現または既存職業の進化
+            {
+                string jobName = $"NewOccupation_Gen{_worldState.CurrentGeneration}_{Guid.NewGuid().ToString().Substring(0, 6)}";
+                double productivity = 0.8 + _random.NextDouble() * 1.2;
+                var newJob = new LifeOccupation(jobName, productivity, _random.Next(50, 200), "A new way of life emerged from necessity.");
+                _worldState.ActiveLifeOccupations.Add(newJob);
+                string jobEmergence = $"[JOB EMERGENCE] Turn {_worldState.CurrentTurn}: A new Life Occupation '{newJob.Name}' (Job) emerged, with productivity {newJob.Productivity:F2}.";
+                _worldState.GenerationEvents.Add(jobEmergence);
+                _worldState.HistoricalRecords.Add(jobEmergence);
+                Console.WriteLine(jobEmergence);
+            }
+        }
+
+        /// <summary>
+        /// 世界の状態を更新します（資源の消費と生産、人口変動など）。
+        /// </summary>
+        /// <param name="turn">現在のターン数。</param>
+        private void UpdateWorldState(long turn)
+        {
+            // 資源の基本的な変動
+            if (!_worldState.Resources.ContainsKey("Food")) _worldState.Resources["Food"] = 500.0;
+            if (!_worldState.Resources.ContainsKey("Materials")) _worldState.Resources["Materials"] = 200.0;
+
+            // 食料の消費と生産
+            double foodConsumption = _worldState.ActiveLifeOccupations.Sum(j => j.PopulationEngaged * 0.1); // 人口に応じた消費
+            double foodProduction = _worldState.ActiveLifeOccupations.Where(j => j.Name.Contains("Farmer") || j.Name.Contains("Gatherer")).Sum(j => j.Productivity * j.PopulationEngaged * 0.05);
+            _worldState.Resources["Food"] += foodProduction - foodConsumption + (_random.NextDouble() - 0.5) * 5.0; // ランダムな変動も加える
+
+            // 材料の消費と生産
+            double materialConsumption = _worldState.ActiveLifeOccupations.Sum(j => j.PopulationEngaged * 0.05);
+            double materialProduction = _worldState.ActiveLifeOccupations.Where(j => j.Name.Contains("Miner") || j.Name.Contains("Crafter")).Sum(j => j.Productivity * j.PopulationEngaged * 0.03);
+            _worldState.Resources["Materials"] += materialProduction - materialConsumption + (_random.NextDouble() - 0.5) * 3.0;
+
+            // 人口の簡易的な変動 (食料状況に依存)
+            double populationGrowthFactor = 0.001;
+            if (_worldState.Resources["Food"] < 50) populationGrowthFactor = -0.005; // 食料不足で人口減少
+            else if (_worldState.Resources["Food"] > 200) populationGrowthFactor = 0.002; // 食料豊富で人口増加
+
+            foreach (var job in _worldState.ActiveLifeOccupations)
+            {
+                job.PopulationEngaged = Math.Max(1, (int)(job.PopulationEngaged * (1 + populationGrowthFactor + (_random.NextDouble() - 0.5) * 0.001)));
+            }
+        }
+
+        /// <summary>
+        /// ジョブ（生活職業）が世界に与える影響をシミュレートします。
+        /// </summary>
+        /// <param name="job">影響を与える生活職業。</param>
+        private void PerformJobActivity(LifeOccupation job)
+        {
+            // ここではUpdateWorldState内でまとめて処理しているため、個別の影響は簡易的に。
+            // より複雑なシミュレーションでは、ここで個々の職業が資源や社会に与える影響を詳細に記述します。
+            // 例: 兵士のジョブは紛争確率に影響、学者のジョブは技術発見確率に影響など。
+        }
+
+        /// <summary>
+        /// 魔法（社会技術）が世界に与える影響をシミュレートします。
+        /// </summary>
+        /// <param name="magic">影響を与える社会技術。</param>
+        private void ApplySocialTechnologyEffect(SocialTechnology magic)
+        {
+            // 社会技術が資源生産効率や安定性などに与える影響
+            if (magic.IsDiscovered)
+            {
+                if (magic.Name.Contains("Agriculture") && _worldState.Resources.ContainsKey("Food"))
                 {
-                    if (targetEntity.Resources >= magic.CostResources)
-                    {
-                        magic.ApplyEffect(_worldState, targetEntity);
-                        _history.RecordTurn(_worldState.CurrentTurn, _worldState.CurrentGeneration, _worldState,
-                            $"Magic '{magic.Name}' applied to '{targetEntity.Name}'.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"[MAGIC FAILED] '{magic.Name}' could not be applied to '{targetEntity.Name}': Insufficient resources.");
-                    }
+                    _worldState.Resources["Food"] += magic.ImpactFactor * 0.5 * _worldState.ActiveLifeOccupations.Where(j => j.Name.Contains("Farmer")).Sum(j => j.PopulationEngaged);
                 }
-                else
+                if (magic.Name.Contains("ToolMaking") && _worldState.Resources.ContainsKey("Materials"))
                 {
-                    Console.WriteLine($"[MAGIC FAILED] '{magic.Name}' could not be applied to '{targetEntity.Name}': Sanitization failed.");
+                    _worldState.Resources["Materials"] += magic.ImpactFactor * 0.3 * _worldState.ActiveLifeOccupations.Where(j => j.Name.Contains("Crafter")).Sum(j => j.PopulationEngaged);
                 }
-            }, $"applying magic {magic.Name} to {targetEntity.Name}");
+                // 他の社会技術の影響...
+            }
+        }
+
+        /// <summary>
+        /// 世代の終わりに実行される処理。
+        /// 世代ごとの要約を正史に記録し、次の世代の準備を行います。
+        /// </summary>
+        /// <param name="generation">終了する世代の番号。</param>
+        private void ProcessGenerationEnd(int generation)
+        {
+            string genSummary = $"\n--- GENERATION {generation} END (Turn {_worldState.CurrentTurn}) ---";
+            _worldState.HistoricalRecords.Add(genSummary);
+            Console.WriteLine(genSummary);
+
+            // 世代ごとの主要イベントを正史に記録
+            if (_worldState.GenerationEvents.Any())
+            {
+                _worldState.HistoricalRecords.Add($"  [Generation {generation} Events]:");
+                _worldState.HistoricalRecords.AddRange(_worldState.GenerationEvents.Select(e => $"    - {e}"));
+            }
+            _worldState.GenerationEvents.Clear(); // 次の世代のためにクリア
+
+            // 世代間の状態要約を正史に記録
+            string genProgression = $"  - World State Summary: Food={_worldState.Resources.GetValueOrDefault("Food", 0):F2}, Materials={_worldState.Resources.GetValueOrDefault("Materials", 0):F2}, UnfavoredEnergy={_worldState.UnfavoredBranchEnergyAccumulated:F2}";
+            _worldState.HistoricalRecords.Add(genProgression);
+            Console.WriteLine(genProgression);
+
+            string techSummary = $"  - Active Social Technologies (Magic): {string.Join(", ", _worldState.ActiveSocialTechnologies.Select(t => t.Name))}";
+            _worldState.HistoricalRecords.Add(techSummary);
+            Console.WriteLine(techSummary);
+
+            string jobSummary = $"  - Active Life Occupations (Jobs): {string.Join(", ", _worldState.ActiveLifeOccupations.Select(j => $"{j.Name} ({j.PopulationEngaged} engaged)"))}";
+            _worldState.HistoricalRecords.Add(jobSummary);
+            Console.WriteLine(jobSummary);
+
+            // 世代間の状態遷移やリセット、新たな挑戦の準備など
+            // 例: 特定の資源の枯渇、新たな技術ツリーのアンロック、新たなジョブの出現確率調整
+        }
+
+        /// <summary>
+        /// シミュレーションの全歴史記録を取得します。
+        /// </summary>
+        /// <returns>正史のリスト。</returns>
+        public List<string> GetFullHistory()
+        {
+            return _worldState.HistoricalRecords;
         }
     }
 
-    // メインエントリポイントの例 (Program.cs などに配置)
-    /*
+    /// <summary>
+    /// シミュレーションのエントリポイントとなるプログラムクラス。
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8; // コンソール出力の文字化け対策
+
+            // 初期状態のセットアップ
+            WorldState initialState = new WorldState
+            {
+                CurrentTurn = 1000, // シミュレーション開始前の最終ターン
+                CurrentGeneration = 20, // シミュレーション開始前の最終世代
+                UnfavoredBranchEnergyAccumulated = 0.0,
+                Resources = new Dictionary<string, double>
+                {
+                    { "Food", 500.0 },
+                    { "Materials", 200.0 }
+                },
+                ActiveSocialTechnologies = new List<SocialTechnology>
+                {
+                    new SocialTechnology("BasicAgriculture", 1.0, true, "Fundamental farming techniques."),
+                    new SocialTechnology("SimpleToolMaking", 0.8, true, "Crafting basic tools for survival."),
+                    new SocialTechnology("CommunityBuilding", 1.2, true, "Early forms of social organization.")
+                },
+                ActiveLifeOccupations = new List<LifeOccupation>
+                {
+                    new LifeOccupation("Farmer", 1.5, 500, "Cultivates crops for sustenance."),
+                    new LifeOccupation("Gatherer", 1.0, 300, "Collects wild resources."),
+                    new LifeOccupation("Crafter", 1.2, 150, "Produces tools and basic goods.")
+                },
+                // HistoricalRecordsはシミュレーターが進行中に蓄積するため、ここでは空で良い
+                HistoricalRecords = new List<string>
+                {
+                    "--- ANCIENT HISTORY (Turns 1-1000, Generations 1-20) ---",
+                    "The dawn of civilization. Early settlements formed, basic agriculture developed.",
+                    "Numerous small conflicts and periods of peace. Foundations of society laid.",
+                    "-----------------------------------------------------"
+                }
+            };
+
+            HistoricalSimulator simulator = new HistoricalSimulator(initialState);
+
             // ターン1001からターン3000までの2000年間（第21〜60世代）をシミュレーション
-            // WorldState.TURNS_PER_GENERATION = 50 と仮定
-            // ターン1001は (1001-1)/50 + 1 = 20 + 1 = 第21世代
-            // ターン3000は (3000-1)/50 + 1 = 59 + 1 = 第60世代
-            
-            Console.OutputEncoding = Encoding.UTF8; // コンソール出力の文字化け防止
-            
-            SimulationCore simulator = new SimulationCore(1001); // ターン1001から開始
-            simulator.RunSimulation(1001, 3000); // ターン1001からターン3000まで実行
+            long startTurn = 1001;
+            long endTurn = 3000;
+
+            List<string> finalHistory = simulator.RunSimulation(startTurn, endTurn);
+
+            Console.WriteLine("\n\n--- 3000 YEAR HISTORY: THE GRAND CHRONICLE (Excerpt of Last 50 Records) ---");
+            // 全ての記録を表示すると膨大になるため、最後の50件を表示
+            foreach (var record in finalHistory.Skip(Math.Max(0, finalHistory.Count - 50)))
+            {
+                Console.WriteLine(record);
+            }
+            Console.WriteLine($"\nTotal historical records generated: {finalHistory.Count}");
+            Console.WriteLine("--- END OF CHRONICLE ---");
+
+            // 必要であれば、全歴史をファイルに保存するなどの処理を追加
+            // File.WriteAllLines("3000_year_history.txt", finalHistory);
         }
     }
-    */
 }
 ```
