@@ -1,499 +1,744 @@
 はい、承知いたしました。
-リードディレクター兼C#設計者として、ご指示いただいた「ターン1001からターン3000までの2000年間（第21〜60世代）を不遇枝エネルギー蓄積モデルを適用して連続自律進行させ、3000年史の正史を完成させる」ための精密なC#実装指示プロンプトをMarkdown形式で出力します。
-
-このコードは、Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約（魔法=社会技術, ジョブ=生活職業）を厳格に守り、Cursor(IDE)のCtrl+Lへそのまま読み込ませてC#コード化できる形式です。
+「フロム風戦闘×ブラインド熱科学クラフト×千年史自律シミュレーター」における「不遇枝エネルギー蓄積モデル」を適用した連続自律進行システムのC#実装指示プロンプトを、Safe-Fail構造、MagicSanitizerEngine、Job/Magicの定義規約を厳格に守り、Cursor(IDE)のCtrl+Lへそのまま読み込ませてC#コード化できるよう、精密なMarkdown形式で出力します。
 
 ---
 
+# C#実装指示: 不遇枝エネルギー蓄積モデルと連続自律進行システム
+
+## 目的
+ゲームの自律進行システムにおいて、「不遇枝エネルギー蓄積モデル」を導入します。これは、特定の条件下でリソースが不足している「枝」（システムの一部、地域、技術ツリーの分岐、あるいは特定の文明など）が、その不遇な状況に応じて潜在的なエネルギーを蓄積し、最終的に特定の社会技術（Magic）を解放・適用できるメカニズムです。これにより、絶望的な状況からの逆転要素や、隠された力の解放を表現し、千年史のダイナミズムを創出します。
+
+## 前提システム
+以下の既存システムが利用可能であることを前提とします。
+
+*   **`MagicType`**: 社会技術（Magic）の列挙型。
+    ```csharp
+    public enum MagicType // 社会技術 (Social Technology)
+    {
+        None,
+        BasicInfrastructure,        // 基本インフラ
+        AgrarianRevolution,         // 農業革命
+        Industrialization,          // 産業化
+        SocialWelfareProgram,       // 社会福祉プログラム
+        LocalEmpowermentInitiative, // 地域活性化イニシアティブ（不遇枝モデルで解放される主要Magic）
+        AdvancedAI,                 // 高度AI開発
+        InterstellarTravel          // 星間航行
+    }
+    ```
+*   **`JobType`**: 生活職業（Job）の列挙型。
+    ```csharp
+    public enum JobType // 生活職業 (Livelihood Profession)
+    {
+        None,
+        Farmer,     // 農民
+        Miner,      // 鉱夫
+        Artisan,    // 職人
+        Scholar,    // 学者
+        Soldier,    // 兵士
+        Administrator // 管理者
+    }
+    ```
+*   **`MagicApplicationResult`**: `IMagicSanitizerEngine` の戻り値型。
+    ```csharp
+    using System.Collections.Generic;
+
+    public class MagicApplicationResult
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public Dictionary<string, float> Effects { get; set; } = new Dictionary<string, float>(); // 適用されたMagicがもたらす効果
+    }
+    ```
+*   **`IMagicSanitizerEngine`**: 社会技術（Magic）の適用と検証を司るエンジン。
+    ```csharp
+    using System;
+    using System.Collections.Generic;
+
+    public interface IMagicSanitizerEngine
+    {
+        /// <summary>
+        /// 指定された社会技術を対象の枝に適用しようと試みる。
+        /// Magicの適用条件を検証し、成功すれば効果を適用する。
+        /// </summary>
+        /// <param name="magic">適用する社会技術のタイプ。</param>
+        /// <param name="targetBranch">適用対象の枝の状態。</param>
+        /// <param name="powerMultiplier">Magicの強度を調整する倍率。</param>
+        /// <returns>Magicの適用結果。</returns>
+        MagicApplicationResult ApplyMagic(MagicType magic, BranchState targetBranch, float powerMultiplier = 1.0f);
+    }
+    ```
+*   シミュレーションの基本単位は「ターン」とします。
+
+## 新規コンポーネント設計
+
+### 1. `BranchState` クラス
+各「枝」の現在の状態を保持するデータクラス。不遇枝エネルギーモデルに関連する状態もここに含めます。
+
 ```csharp
+// BranchState.cs
+using System;
+using System.Collections.Generic;
+using System.Linq; // For string.Join in debug/logging
+
+/// <summary>
+/// シミュレーションにおける各「枝」（地域、文明、技術ツリーの分岐など）の現在の状態を保持するクラス。
+/// 不遇枝エネルギーモデルに関連する状態も管理する。
+/// </summary>
+public class BranchState
+{
+    public string BranchId { get; private set; }
+    public Dictionary<string, float> Resources { get; private set; } = new Dictionary<string, float>();
+    public Dictionary<JobType, int> JobPopulations { get; private set; } = new Dictionary<JobType, int>();
+    public HashSet<MagicType> AppliedMagics { get; private set; } = new HashSet<MagicType>();
+
+    // 不遇枝エネルギーモデル関連の状態
+    public bool IsUnderprivileged { get; private set; }
+    public int UnderprivilegedDurationTurns { get; private set; } // 不遇状態が続いているターン数
+    public float CurrentEnergy { get; private set; } // 蓄積されたエネルギー量
+
+    /// <summary>
+    /// 新しいBranchStateインスタンスを初期化します。
+    /// </summary>
+    /// <param name="id">枝を一意に識別するID。</param>
+    /// <exception cref="ArgumentNullException">BranchIdがnullまたは空の場合にスローされます。</exception>
+    public BranchState(string id)
+    {
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            throw new ArgumentNullException(nameof(id), "BranchId cannot be null or empty.");
+        }
+        BranchId = id;
+    }
+
+    /// <summary>
+    /// 指定されたリソースの量を更新します。
+    /// </summary>
+    /// <param name="resourceName">リソースの名前。</param>
+    /// <param name="amount">更新量（正の値で増加、負の値で減少）。</param>
+    /// <exception cref="ArgumentNullException">resourceNameがnullまたは空の場合にスローされます。</exception>
+    public void UpdateResource(string resourceName, float amount)
+    {
+        if (string.IsNullOrWhiteSpace(resourceName))
+        {
+            throw new ArgumentNullException(nameof(resourceName), "Resource name cannot be null or empty.");
+        }
+
+        if (!Resources.ContainsKey(resourceName))
+        {
+            Resources[resourceName] = 0f;
+        }
+        Resources[resourceName] += amount;
+        if (Resources[resourceName] < 0)
+        {
+            Resources[resourceName] = 0; // リソースは0以下にならない
+        }
+    }
+
+    /// <summary>
+    /// 指定されたジョブタイプの人口を更新します。
+    /// </summary>
+    /// <param name="jobType">ジョブのタイプ。</param>
+    /// <param name="count">更新数（正の値で増加、負の値で減少）。</param>
+    public void UpdateJobPopulation(JobType jobType, int count)
+    {
+        if (!JobPopulations.ContainsKey(jobType))
+        {
+            JobPopulations[jobType] = 0;
+        }
+        JobPopulations[jobType] += count;
+        if (JobPopulations[jobType] < 0)
+        {
+            JobPopulations[jobType] = 0; // 人口は0以下にならない
+        }
+    }
+
+    /// <summary>
+    /// 適用された社会技術を記録します。
+    /// </summary>
+    /// <param name="magic">適用された社会技術のタイプ。</param>
+    public void AddAppliedMagic(MagicType magic)
+    {
+        AppliedMagics.Add(magic);
+    }
+
+    /// <summary>
+    /// 枝の不遇状態を設定します。（内部利用）
+    /// </summary>
+    /// <param name="status">不遇状態であればtrue。</param>
+    internal void SetUnderprivilegedStatus(bool status)
+    {
+        IsUnderprivileged = status;
+    }
+
+    /// <summary>
+    /// 不遇状態が続いているターン数をインクリメントします。（内部利用）
+    /// </summary>
+    internal void IncrementUnderprivilegedDuration()
+    {
+        UnderprivilegedDurationTurns++;
+    }
+
+    /// <summary>
+    /// 不遇状態の期間をリセットします。（内部利用）
+    /// </summary>
+    internal void ResetUnderprivilegedDuration()
+    {
+        UnderprivilegedDurationTurns = 0;
+    }
+
+    /// <summary>
+    /// 枝にエネルギーを追加します。（内部利用）
+    /// </summary>
+    /// <param name="amount">追加するエネルギー量。</param>
+    /// <exception cref="ArgumentOutOfRangeException">amountが負の場合にスローされます。</exception>
+    internal void AddEnergy(float amount)
+    {
+        if (amount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount), "Energy amount cannot be negative.");
+        }
+        CurrentEnergy += amount;
+    }
+
+    /// <summary>
+    /// 枝からエネルギーを消費します。（内部利用）
+    /// </summary>
+    /// <param name="amount">消費するエネルギー量。</param>
+    /// <exception cref="ArgumentOutOfRangeException">amountが負の場合にスローされます。</exception>
+    internal void ConsumeEnergy(float amount)
+    {
+        if (amount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount), "Energy amount cannot be negative.");
+        }
+        CurrentEnergy -= amount;
+        if (CurrentEnergy < 0)
+        {
+            CurrentEnergy = 0; // エネルギーは0以下にならない
+        }
+    }
+
+    /// <summary>
+    /// 枝のエネルギーをリセットします。（内部利用）
+    /// </summary>
+    internal void ResetEnergy()
+    {
+        CurrentEnergy = 0;
+    }
+
+    public override string ToString()
+    {
+        var resourceStr = string.Join(", ", Resources.Select(kv => $"{kv.Key}: {kv.Value:F2}"));
+        var jobStr = string.Join(", ", JobPopulations.Select(kv => $"{kv.Key}: {kv.Value}"));
+        var magicStr = AppliedMagics.Any() ? string.Join(", ", AppliedMagics) : "None";
+        return $"Branch ID: {BranchId}\n" +
+               $"  Resources: {{{resourceStr}}}\n" +
+               $"  Jobs: {{{jobStr}}}\n" +
+               $"  Applied Magics: {{{magicStr}}}\n" +
+               $"  Underprivileged: {IsUnderprivileged} (Duration: {UnderprivilegedDurationTurns} turns)\n" +
+               $"  Current Energy: {CurrentEnergy:F2}";
+    }
+}
+```
+
+### 2. `UnderprivilegedBranchEnergyModel` クラス
+不遇枝の判定、エネルギー蓄積、解放ロジックをカプセル化するクラス。
+
+```csharp
+// UnderprivilegedBranchEnergyModel.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine; // Debug.Log のために仮定。純粋なC#では独自のロガーに置き換える。
 
-namespace FromLikeSimulator
+/// <summary>
+/// 不遇枝エネルギー蓄積モデルのロジックを管理するクラス。
+/// 枝の不遇状態を判定し、エネルギーを蓄積させ、閾値に達したら社会技術を解放・適用する。
+/// </summary>
+public class UnderprivilegedBranchEnergyModel
+{
+    private readonly IMagicSanitizerEngine _magicSanitizerEngine;
+
+    // 設定値（ゲームデザインに応じて調整可能なパラメータ）
+    public float UnderprivilegedResourceThreshold { get; set; } = 100f; // 特定リソースがこの値を下回ると不遇とみなす閾値
+    public int UnderprivilegedJobThreshold { get; set; } = 1; // 特定Jobの人口がこの値を下回ると不遇とみなす閾値
+    public float EnergyAccumulationRatePerTurn { get; set; } = 5f; // 1ターンあたりの基本エネルギー蓄積量
+    public float EnergyDurationBonusMultiplier { get; set; } = 0.1f; // 不遇期間が長いほど蓄積量が増える倍率
+    public float EnergyReleaseThreshold { get; set; } = 1000f; // エネルギー解放に必要な閾値
+    public MagicType EnergyReleaseMagic { get; set; } = MagicType.LocalEmpowermentInitiative; // エネルギー解放で適用されるMagic
+    public float EnergyReleaseMagicPowerMultiplier { get; set; } = 1.5f; // 解放Magicのパワー倍率
+    public float EnergyDecayRatePerTurn { get; set; } = 1f; // 不遇状態でない場合にエネルギーが減少する量
+
+    /// <summary>
+    /// UnderprivilegedBranchEnergyModelの新しいインスタンスを初期化します。
+    /// </summary>
+    /// <param name="magicSanitizerEngine">社会技術の適用と検証を行うエンジン。</param>
+    /// <exception cref="ArgumentNullException">magicSanitizerEngineがnullの場合にスローされます。</exception>
+    public UnderprivilegedBranchEnergyModel(IMagicSanitizerEngine magicSanitizerEngine)
+    {
+        _magicSanitizerEngine = magicSanitizerEngine ?? throw new ArgumentNullException(nameof(magicSanitizerEngine));
+    }
+
+    /// <summary>
+    /// 指定された枝が不遇状態であるかを判定します。
+    /// 不遇の定義は、特定リソースの不足、特定Job人口の不足、または特定の基礎Magicの未適用など。
+    /// </summary>
+    /// <param name="branch">判定対象の枝の状態。</param>
+    /// <returns>枝が不遇状態であればtrue、そうでなければfalse。</returns>
+    public bool IsBranchUnderprivileged(BranchState branch)
+    {
+        // Safe-Fail: nullチェック
+        if (branch == null)
+        {
+            Debug.LogError("IsBranchUnderprivileged: BranchState cannot be null. Returning false.");
+            return false;
+        }
+
+        // 1. 特定のリソースが閾値を下回っているか
+        // 例: 「Food」リソースが不足している場合を不遇とみなす。
+        // この条件は、ゲームデザインに応じて複数のリソースをチェックするように拡張可能。
+        if (branch.Resources.TryGetValue("Food", out float foodLevel) && foodLevel < UnderprivilegedResourceThreshold)
+        {
+            return true;
+        }
+
+        // 2. 特定のJobの人口が閾値を下回っているか
+        // 例: 「Farmer」人口が不足している場合を不遇とみなす。
+        // この条件も、ゲームデザインに応じて複数のJobをチェックするように拡張可能。
+        if (branch.JobPopulations.TryGetValue(JobType.Farmer, out int farmerPop) && farmerPop < UnderprivilegedJobThreshold)
+        {
+            return true;
+        }
+
+        // 3. 重要な基礎Magicがまだ適用されていないか
+        // 例: 「BasicInfrastructure」が未適用の場合、その枝は発展途上であり不遇とみなす。
+        if (!branch.AppliedMagics.Contains(MagicType.BasicInfrastructure))
+        {
+             // この条件は不遇の定義として強力すぎる場合があるので、ゲームデザインに応じて調整
+             // return true;
+        }
+
+        return false; // 上記のどの条件にも当てはまらない場合は不遇ではない
+    }
+
+    /// <summary>
+    /// 枝の状態を更新し、不遇状態であればエネルギーを蓄積、そうでなければエネルギーを減少させる。
+    /// </summary>
+    /// <param name="branch">更新対象の枝の状態。</param>
+    public void UpdateBranchEnergy(BranchState branch)
+    {
+        // Safe-Fail: nullチェック
+        if (branch == null)
+        {
+            Debug.LogError("UpdateBranchEnergy: BranchState cannot be null. Aborting update.");
+            return;
+        }
+
+        bool wasUnderprivileged = branch.IsUnderprivileged;
+        bool isCurrentlyUnderprivileged = IsBranchUnderprivileged(branch);
+
+        branch.SetUnderprivilegedStatus(isCurrentlyUnderprivileged);
+
+        if (isCurrentlyUnderprivileged)
+        {
+            branch.IncrementUnderprivilegedDuration();
+            // 不遇状態が続くほど蓄積量が増えるボーナスロジック
+            float accumulatedAmount = EnergyAccumulationRatePerTurn * (1 + branch.UnderprivilegedDurationTurns * EnergyDurationBonusMultiplier);
+            branch.AddEnergy(accumulatedAmount);
+            Debug.Log($"Branch '{branch.BranchId}' is underprivileged (Duration: {branch.UnderprivilegedDurationTurns} turns). Energy accumulated: {accumulatedAmount:F2}. Total: {branch.CurrentEnergy:F2}");
+        }
+        else
+        {
+            if (wasUnderprivileged)
+            {
+                Debug.Log($"Branch '{branch.BranchId}' is no longer underprivileged. Resetting duration.");
+            }
+            branch.ResetUnderprivilegedDuration();
+            // 不遇状態でない場合、蓄積されたエネルギーは徐々に減少させる
+            branch.ConsumeEnergy(EnergyDecayRatePerTurn);
+            Debug.Log($"Branch '{branch.BranchId}' is not underprivileged. Energy decayed by {EnergyDecayRatePerTurn:F2}. Current: {branch.CurrentEnergy:F2}");
+        }
+    }
+
+    /// <summary>
+    /// 蓄積されたエネルギーが閾値を超えているかチェックし、超えていれば指定されたMagicを解放・適用する。
+    /// Magic適用後、エネルギーは消費され、不遇状態は解消される。
+    /// </summary>
+    /// <param name="branch">チェック対象の枝の状態。</param>
+    /// <returns>Magicが正常に適用された場合はtrue、そうでなければfalse。</returns>
+    public bool TryReleaseEnergyAndApplyMagic(BranchState branch)
+    {
+        // Safe-Fail: nullチェック
+        if (branch == null)
+        {
+            Debug.LogError("TryReleaseEnergyAndApplyMagic: BranchState cannot be null. Returning false.");
+            return false;
+        }
+
+        if (branch.CurrentEnergy >= EnergyReleaseThreshold)
+        {
+            Debug.Log($"Branch '{branch.BranchId}' has accumulated enough energy ({branch.CurrentEnergy:F2}) to release! Attempting to apply Magic '{EnergyReleaseMagic}'.");
+
+            // MagicSanitizerEngine を介して社会技術を適用
+            MagicApplicationResult result = _magicSanitizerEngine.ApplyMagic(EnergyReleaseMagic, branch, EnergyReleaseMagicPowerMultiplier);
+
+            if (result.Success)
+            {
+                branch.AddAppliedMagic(EnergyReleaseMagic); // 適用されたMagicを記録
+                branch.ConsumeEnergy(EnergyReleaseThreshold); // エネルギーを消費
+                branch.ResetUnderprivilegedDuration(); // 不遇状態の期間もリセット
+                branch.SetUnderprivilegedStatus(false); // 不遇状態を解消
+                Debug.Log($"Successfully applied Magic '{EnergyReleaseMagic}' to Branch '{branch.BranchId}'. Remaining energy: {branch.CurrentEnergy:F2}. Message: {result.Message}");
+                
+                // Magicの効果をBranchStateに反映
+                foreach (var effect in result.Effects)
+                {
+                    branch.UpdateResource(effect.Key, effect.Value);
+                    Debug.Log($"  Effect: {effect.Key} changed by {effect.Value:F2}");
+                }
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning($"Failed to apply Magic '{EnergyReleaseMagic}' to Branch '{branch.BranchId}'. Reason: {result.Message}. Energy not consumed.");
+                // 失敗した場合、エネルギーは消費しない（再試行の機会を与える）
+                return false;
+            }
+        }
+        return false; // エネルギーが閾値に達していない
+    }
+}
+```
+
+### 3. `SimulationManager` クラス
+シミュレーションの自律進行を管理し、各枝のエネルギーモデルを更新する。
+
+```csharp
+// SimulationManager.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine; // Debug.Log, WaitForSeconds のために仮定。純粋なC#では独自のロガーやTask.Delayに置き換える。
+using System.Collections; // For IEnumerator
+
+/// <summary>
+/// シミュレーション全体の自律進行を管理するクラス。
+/// 各枝の状態更新、不遇枝エネルギーモデルの適用、グローバルイベント処理などを担当する。
+/// </summary>
+public class SimulationManager
+{
+    private readonly IMagicSanitizerEngine _magicSanitizerEngine;
+    private readonly UnderprivilegedBranchEnergyModel _energyModel;
+    private readonly Dictionary<string, BranchState> _branches = new Dictionary<string, BranchState>();
+
+    public int CurrentTurn { get; private set; } = 0;
+
+    /// <summary>
+    /// SimulationManagerの新しいインスタンスを初期化します。
+    /// </summary>
+    /// <param name="magicSanitizerEngine">社会技術の適用と検証を行うエンジン。</param>
+    /// <exception cref="ArgumentNullException">magicSanitizerEngineがnullの場合にスローされます。</exception>
+    public SimulationManager(IMagicSanitizerEngine magicSanitizerEngine)
+    {
+        _magicSanitizerEngine = magicSanitizerEngine ?? throw new ArgumentNullException(nameof(magicSanitizerEngine));
+        _energyModel = new UnderprivilegedBranchEnergyModel(_magicSanitizerEngine);
+
+        // 初期設定値の調整（必要に応じて外部設定ファイルなどからロード）
+        _energyModel.UnderprivilegedResourceThreshold = 50f; // 食料50以下で不遇
+        _energyModel.EnergyReleaseThreshold = 750f; // 750エネルギーで解放
+        _energyModel.EnergyReleaseMagic = MagicType.LocalEmpowermentInitiative; // 地域活性化イニシアティブを解放
+        _energyModel.EnergyAccumulationRatePerTurn = 10f; // 1ターンあたり10エネルギー蓄積
+        _energyModel.EnergyDurationBonusMultiplier = 0.2f; // 不遇期間ボーナスを強化
+        _energyModel.EnergyDecayRatePerTurn = 2f; // 不遇でない場合のエネルギー減少量
+    }
+
+    /// <summary>
+    /// シミュレーションに新しい枝を追加します。
+    /// </summary>
+    /// <param name="branch">追加する枝の状態。</param>
+    /// <exception cref="ArgumentNullException">branchがnullの場合にスローされます。</exception>
+    public void AddBranch(BranchState branch)
+    {
+        if (branch == null)
+        {
+            Debug.LogError("AddBranch: BranchState cannot be null. Aborting addition.");
+            return; // Safe-Fail
+        }
+        if (_branches.ContainsKey(branch.BranchId))
+        {
+            Debug.LogWarning($"Branch with ID '{branch.BranchId}' already exists. Skipping addition.");
+            return;
+        }
+        _branches.Add(branch.BranchId, branch);
+        Debug.Log($"Branch '{branch.BranchId}' added to simulation.");
+    }
+
+    /// <summary>
+    /// シミュレーションを1ターン進行させます。
+    /// 各枝の状態更新、不遇枝エネルギーモデルの適用、グローバルイベント処理を行います。
+    /// </summary>
+    public void AdvanceSimulationTurn()
+    {
+        CurrentTurn++;
+        Debug.Log($"\n--- Simulation Turn {CurrentTurn} ---");
+
+        // 各枝の状態を更新
+        foreach (var branch in _branches.Values)
+        {
+            Debug.Log($"Processing Branch: {branch.BranchId}");
+
+            // 1. 基本的な枝の進行ロジック（リソース生産・消費、人口変動など）
+            // 例: 食料消費、生産活動、人口増加
+            branch.UpdateResource("Food", -5f); // 毎ターン食料を消費
+            branch.UpdateResource("Wealth", 10f); // 毎ターン富を生産
+            if (branch.Resources.TryGetValue("Food", out float food) && food > 100)
+            {
+                branch.UpdateJobPopulation(JobType.Farmer, 1); // 食料が豊富なら農民が増える
+            }
+
+            // 2. 不遇枝エネルギーモデルの更新
+            _energyModel.UpdateBranchEnergy(branch);
+
+            // 3. エネルギー解放の試行
+            _energyModel.TryReleaseEnergyAndApplyMagic(branch);
+
+            // 4. その他の枝固有のイベントやロジック
+            if (branch.Resources.TryGetValue("Food", out food) && food < 10)
+            {
+                Debug.LogWarning($"Branch '{branch.BranchId}' is experiencing critical food shortage!");
+            }
+        }
+
+        // グローバルなイベントや相互作用の処理をここに記述
+        // 例: GlobalMarket.UpdatePrices();
+        // 例: CheckGlobalCatastrophes();
+        // 例: 枝間の相互作用（貿易、紛争など）
+
+        Debug.Log($"--- End of Turn {CurrentTurn} ---");
+    }
+
+    /// <summary>
+    /// シミュレーションを自動で連続進行させるためのコルーチン。
+    /// UnityのMonoBehaviourを想定しているため、純粋なC#環境では別途タイマーやTask.Delayを使用する必要がある。
+    /// </summary>
+    /// <param name="totalTurns">進行させる総ターン数。</param>
+    /// <param name="delayBetweenTurnsSeconds">各ターン間の遅延時間（秒）。</param>
+    public IEnumerator StartContinuousSimulation(int totalTurns, float delayBetweenTurnsSeconds)
+    {
+        if (totalTurns <= 0)
+        {
+            Debug.LogError($"StartContinuousSimulation: totalTurns must be positive. Received {totalTurns}.");
+            yield break; // Safe-Fail
+        }
+        if (delayBetweenTurnsSeconds < 0)
+        {
+            Debug.LogError($"StartContinuousSimulation: delayBetweenTurnsSeconds cannot be negative. Received {delayBetweenTurnsSeconds}. Setting to 0.");
+            delayBetweenTurnsSeconds = 0; // Safe-Fail
+        }
+
+        Debug.Log($"Starting continuous simulation for {totalTurns} turns with {delayBetweenTurnsSeconds:F2}s delay per turn.");
+        for (int i = 0; i < totalTurns; i++)
+        {
+            AdvanceSimulationTurn();
+            yield return new WaitForSeconds(delayBetweenTurnsSeconds); // Unity Coroutine の場合
+            // 純粋なC# async/await の場合: await Task.Delay(TimeSpan.FromSeconds(delayBetweenTurnsSeconds));
+        }
+        Debug.Log("Continuous simulation finished.");
+    }
+
+    /// <summary>
+    /// 特定の枝の状態を取得します。
+    /// </summary>
+    /// <param name="branchId">取得したい枝のID。</param>
+    /// <returns>指定されたIDの枝の状態。見つからない場合はnull。</returns>
+    public BranchState GetBranchState(string branchId)
+    {
+        if (string.IsNullOrWhiteSpace(branchId))
+        {
+            Debug.LogError("GetBranchState: BranchId cannot be null or empty. Returning null.");
+            return null; // Safe-Fail
+        }
+        if (_branches.TryGetValue(branchId, out BranchState branch))
+        {
+            return branch;
+        }
+        Debug.LogWarning($"Branch with ID '{branchId}' not found. Returning null.");
+        return null; // Safe-Fail
+    }
+}
+```
+
+### 4. `MockMagicSanitizerEngine` クラス
+`IMagicSanitizerEngine` のモック実装。実際のゲームではより複雑なロジックが適用されます。
+
+```csharp
+// MockMagicSanitizerEngine.cs
+using System;
+using System.Collections.Generic;
+using UnityEngine; // Debug.Log のために仮定。純粋なC#では独自のロガーに置き換える。
+
+/// <summary>
+/// IMagicSanitizerEngineのモック実装。
+/// 社会技術の適用条件と効果を簡易的にシミュレートする。
+/// </summary>
+public class MockMagicSanitizerEngine : IMagicSanitizerEngine
 {
     /// <summary>
-    /// シミュレーションの世界の状態を保持するクラス。
-    /// 各ターン、各世代における世界の状況、資源、技術、イベントなどを記録します。
+    /// 指定された社会技術を対象の枝に適用しようと試みる。
     /// </summary>
-    public class WorldState
+    /// <param name="magic">適用する社会技術のタイプ。</param>
+    /// <param name="targetBranch">適用対象の枝の状態。</param>
+    /// <param name="powerMultiplier">Magicの強度を調整する倍率。</param>
+    /// <returns>Magicの適用結果。</returns>
+    public MagicApplicationResult ApplyMagic(MagicType magic, BranchState targetBranch, float powerMultiplier = 1.0f)
     {
-        public long CurrentTurn { get; set; }
-        public int CurrentGeneration { get; set; }
-        public double UnfavoredBranchEnergyAccumulated { get; set; } // 不遇枝エネルギー蓄積量
-        public Dictionary<string, double> Resources { get; set; } // 世界の主要資源
-        public List<SocialTechnology> ActiveSocialTechnologies { get; set; } // 魔法 = 社会技術
-        public List<LifeOccupation> ActiveLifeOccupations { get; set; } // ジョブ = 生活職業
-        public List<string> GenerationEvents { get; set; } // 現在の世代で発生した主要イベントのログ
-        public List<string> HistoricalRecords { get; set; } // 3000年史の正史を構成する記録
-
-        public WorldState()
+        // Safe-Fail: nullチェック
+        if (targetBranch == null)
         {
-            Resources = new Dictionary<string, double>();
-            ActiveSocialTechnologies = new List<SocialTechnology>();
-            ActiveLifeOccupations = new List<LifeOccupation>();
-            GenerationEvents = new List<string>();
-            HistoricalRecords = new List<string>();
+            Debug.LogError($"ApplyMagic: Target branch for Magic '{magic}' cannot be null.");
+            return new MagicApplicationResult { Success = false, Message = "Target branch cannot be null." };
+        }
+
+        Debug.Log($"Attempting to apply Magic '{magic}' to Branch '{targetBranch.BranchId}' with power multiplier {powerMultiplier:F2}...");
+
+        // ここにMagicの適用条件と効果の複雑なロジックを実装
+        // 例: 特定のMagicは特定のJob人口が一定以上でないと適用できない、特定のMagicは一度しか適用できない、など
+        switch (magic)
+        {
+            case MagicType.LocalEmpowermentInitiative:
+                // 不遇枝モデルで解放される主要Magic
+                // 効果: 食料生産を大幅に向上させ、住民の幸福度（リソースとして仮定）を上げる
+                if (targetBranch.AppliedMagics.Contains(MagicType.LocalEmpowermentInitiative))
+                {
+                    return new MagicApplicationResult { Success = false, Message = "Local Empowerment Initiative already applied to this branch." };
+                }
+                var effectsLEI = new Dictionary<string, float>
+                {
+                    { "Food", 200f * powerMultiplier },
+                    { "Happiness", 50f * powerMultiplier },
+                    { "Stability", 10f * powerMultiplier }
+                };
+                return new MagicApplicationResult { Success = true, Message = "Local Empowerment Initiative successfully applied. Branch empowered!", Effects = effectsLEI };
+
+            case MagicType.SocialWelfareProgram:
+                // 例: 社会福祉プログラムは、ある程度の経済力（"Wealth"リソース）がないと適用が難しい
+                if (!targetBranch.Resources.TryGetValue("Wealth", out float wealth) || wealth < 200f)
+                {
+                    return new MagicApplicationResult { Success = false, Message = "Insufficient wealth to implement Social Welfare Program (requires 200 Wealth)." };
+                }
+                if (targetBranch.AppliedMagics.Contains(MagicType.SocialWelfareProgram))
+                {
+                    return new MagicApplicationResult { Success = false, Message = "Social Welfare Program already enacted." };
+                }
+                var effectsSWP = new Dictionary<string, float>
+                {
+                    { "Happiness", 100f * powerMultiplier },
+                    { "Stability", 20f * powerMultiplier },
+                    { "Wealth", -50f * powerMultiplier } // 維持コストとして富を消費
+                };
+                return new MagicApplicationResult { Success = true, Message = "Social Welfare Program enacted, improving well-being.", Effects = effectsSWP };
+
+            case MagicType.BasicInfrastructure:
+                // 例: 基本インフラは常に適用可能で、生産性や安定性を上げる
+                if (targetBranch.AppliedMagics.Contains(MagicType.BasicInfrastructure))
+                {
+                    return new MagicApplicationResult { Success = false, Message = "Basic Infrastructure already in place." };
+                }
+                var effectsBI = new Dictionary<string, float>
+                {
+                    { "Production", 100f * powerMultiplier },
+                    { "Stability", 10f * powerMultiplier }
+                };
+                return new MagicApplicationResult { Success = true, Message = "Basic Infrastructure established, boosting productivity.", Effects = effectsBI };
+
+            default:
+                return new MagicApplicationResult { Success = false, Message = $"Magic '{magic}' is not yet implemented or cannot be applied under current conditions." };
         }
     }
+}
+```
 
-    /// <summary>
-    /// MagicSanitizerEngine: シミュレーション状態の整合性を保ち、予期せぬ値を修正するエンジン。
-    /// Safe-Fail構造の一部として機能し、シミュレーションの安定性を確保します。
-    /// </summary>
-    public static class MagicSanitizerEngine
+## 実装上の注意点とSafe-Fail構造
+
+*   **NULLチェック**: 全ての公開メソッドおよび重要な内部処理において、引数や参照が`null`でないことを確認します。`ArgumentNullException`を適切にスローするか、`Debug.LogError`でログを出し、安全なデフォルト値を返すか処理を中断します。
+*   **境界チェック**: 数値の引数やコレクションのインデックスが有効な範囲内にあることを確認します。`ArgumentOutOfRangeException`を適切にスローします。
+*   **ログ出力**: `Debug.Log`, `Debug.LogWarning`, `Debug.LogError` を使用して、システムの動作状況、警告、エラーを明確に記録します。これにより、デバッグと監視が容易になります。Unity環境以外で利用する場合は、独自のロガーに置き換えてください。
+*   **設定値の外部化**: `UnderprivilegedBranchEnergyModel` の閾値やレートなどの設定値は、ゲームデザインに応じて調整されるべきであるため、コンストラクタ引数、プロパティ、または設定ファイルからのロードを通じて外部から設定可能にしてください。
+*   **拡張性**: `IsBranchUnderprivileged` メソッドの不遇判定ロジックは、将来的に複数の条件を組み合わせたり、動的に条件を追加できるように拡張性を考慮してください。
+*   **パフォーマンス**: 大量の枝を扱う場合、`SimulationManager` の `AdvanceSimulationTurn` メソッド内のループ処理のパフォーマンスに注意してください。必要に応じて最適化を検討してください（例: 並列処理、データ構造の最適化）。
+*   **依存性の注入**: `SimulationManager` や `UnderprivilegedBranchEnergyModel` は `IMagicSanitizerEngine` に依存するため、コンストラクタインジェクションを用いて依存性を注入します。これにより、テスト容易性と疎結合を保ちます。
+*   **Unity依存**: `UnityEngine.Debug.Log` や `UnityEngine.WaitForSeconds` はUnity環境に依存します。純粋なC#環境で実行する場合は、それぞれ標準の `Console.WriteLine` や `System.Threading.Tasks.Task.Delay` などに置き換える必要があります。`SimulationManager.StartContinuousSimulation` メソッドは `IEnumerator` を返すため、Unityのコルーチンとして利用できます。
+
+## 使用例（Main/Entry Point）
+
+以下のコードは、Unityの`MonoBehaviour`を継承したクラスを想定していますが、`Start`メソッド内のロジックは、純粋なC#アプリケーションのエントリポイント（`Main`メソッドなど）に移植可能です。
+
+```csharp
+// GameInitializer.cs (UnityのMonoBehaviourを想定)
+using UnityEngine;
+using System.Collections; // For IEnumerator
+
+/// <summary>
+/// ゲームの初期化とシミュレーションの開始を管理するクラス。
+/// </summary>
+public class GameInitializer : MonoBehaviour
+{
+    [Header("Simulation Settings")]
+    [SerializeField] private int totalSimulationTurns = 100;
+    [SerializeField] private float delayBetweenTurnsSeconds = 0.1f;
+
+    void Start()
     {
-        /// <summary>
-        /// 指定されたWorldStateオブジェクトをサニタイズし、整合性を保ちます。
-        /// </summary>
-        /// <param name="state">サニタイズするWorldStateオブジェクト。</param>
-        /// <returns>サニタイズされたWorldStateオブジェクト。</returns>
-        public static WorldState Sanitize(WorldState state)
-        {
-            // [Safe-Fail構造] 状態の整合性チェックと修正ロジック
-            if (state == null)
-            {
-                Console.Error.WriteLine("[MagicSanitizerEngine] ERROR: Attempted to sanitize a null WorldState. Returning default.");
-                return new WorldState(); // デフォルト状態を返すか、例外をスロー
-            }
+        Debug.Log("Game Initialization Started.");
 
-            // 不遇枝エネルギーは負にならない
-            if (state.UnfavoredBranchEnergyAccumulated < 0)
-            {
-                Console.WriteLine($"[MagicSanitizerEngine] WARNING: UnfavoredBranchEnergy was {state.UnfavoredBranchEnergyAccumulated:F2}. Corrected to 0.");
-                state.UnfavoredBranchEnergyAccumulated = 0;
-            }
+        // 1. MagicSanitizerEngine のインスタンスを作成
+        // 実際のゲームでは、より複雑なロジックを持つMagicSanitizerEngineを注入します。
+        IMagicSanitizerEngine magicEngine = new MockMagicSanitizerEngine();
 
-            // 資源は負にならない
-            foreach (var key in state.Resources.Keys.ToList()) // ToList() でコピーして列挙中に変更可能にする
-            {
-                if (state.Resources[key] < 0)
-                {
-                    Console.WriteLine($"[MagicSanitizerEngine] WARNING: Resource '{key}' was {state.Resources[key]:F2}. Corrected to 0.");
-                    state.Resources[key] = 0;
-                }
-            }
+        // 2. SimulationManager のインスタンスを作成
+        SimulationManager simManager = new SimulationManager(magicEngine);
 
-            // アクティブな社会技術や生活職業リストにnullがないことを確認
-            state.ActiveSocialTechnologies.RemoveAll(t => t == null);
-            state.ActiveLifeOccupations.RemoveAll(j => j == null);
+        // 3. 枝（BranchState）をいくつか作成し、初期状態を設定
+        // Branch A: 不遇状態になりやすい設定
+        BranchState branchA = new BranchState("Branch_A");
+        branchA.UpdateResource("Food", 40f); // 不遇閾値(50f)を下回るように設定
+        branchA.UpdateResource("Wealth", 80f);
+        branchA.UpdateJobPopulation(JobType.Farmer, 0); // 不遇閾値(1)を下回るように設定
+        branchA.UpdateJobPopulation(JobType.Artisan, 5);
+        simManager.AddBranch(branchA);
+        Debug.Log($"Initial State of Branch_A:\n{branchA}");
 
-            // 世代がターン数と矛盾しないかチェック (簡易的なもの)
-            int expectedGeneration = (int)Math.Ceiling((double)state.CurrentTurn / HistoricalSimulator.TurnsPerGeneration);
-            if (state.CurrentGeneration != expectedGeneration && state.CurrentTurn > 0)
-            {
-                Console.WriteLine($"[MagicSanitizerEngine] WARNING: Generation mismatch. Turn {state.CurrentTurn} suggests Gen {expectedGeneration}, but state is Gen {state.CurrentGeneration}. Correcting.");
-                state.CurrentGeneration = expectedGeneration;
-            }
+        // Branch B: 比較的裕福な状態
+        BranchState branchB = new BranchState("Branch_B");
+        branchB.UpdateResource("Food", 250f);
+        branchB.UpdateResource("Wealth", 600f);
+        branchB.UpdateJobPopulation(JobType.Farmer, 15);
+        branchB.UpdateJobPopulation(JobType.Scholar, 3);
+        simManager.AddBranch(branchB);
+        Debug.Log($"Initial State of Branch_B:\n{branchB}");
 
-            return state;
-        }
+        // Branch C: 別の不遇状態になりやすい設定（食料は足りているが、Jobが少ない）
+        BranchState branchC = new BranchState("Branch_C");
+        branchC.UpdateResource("Food", 120f);
+        branchC.UpdateResource("Wealth", 150f);
+        branchC.UpdateJobPopulation(JobType.Farmer, 5);
+        branchC.UpdateJobPopulation(JobType.Miner, 0); // Minerが不足している場合を想定
+        simManager.AddBranch(branchC);
+        Debug.Log($"Initial State of Branch_C:\n{branchC}");
+
+
+        // 4. シミュレーションを連続進行させる
+        // Unityのコルーチンとして実行
+        StartCoroutine(simManager.StartContinuousSimulation(totalSimulationTurns, delayBetweenTurnsSeconds));
+
+        Debug.Log("Game Initialization Completed. Simulation Running...");
     }
 
-    /// <summary>
-    /// 魔法 = 社会技術 (Social Technology) の定義。
-    /// 世界に永続的な影響を与える技術的・社会的な進歩を表します。
-    /// </summary>
-    public class SocialTechnology
+    // シミュレーション終了後の最終状態確認（例）
+    void OnDestroy()
     {
-        public string Name { get; set; }
-        public double ImpactFactor { get; set; } // 世界への影響度 (例: 資源生産効率、安定性)
-        public bool IsDiscovered { get; set; } // 発見済みかどうか
-        public string Description { get; set; }
-
-        public SocialTechnology(string name, double impactFactor, bool isDiscovered = false, string description = "")
-        {
-            Name = name;
-            ImpactFactor = impactFactor;
-            IsDiscovered = isDiscovered;
-            Description = description;
-        }
-    }
-
-    /// <summary>
-    /// ジョブ = 生活職業 (Life Occupation) の定義。
-    /// シミュレーション内の住民が従事する具体的な職業活動を表します。
-    /// </summary>
-    public class LifeOccupation
-    {
-        public string Name { get; set; }
-        public double Productivity { get; set; } // 資源生産やサービス提供の効率
-        public int PopulationEngaged { get; set; } // その職業に従事する人口 (簡易モデル)
-        public string Description { get; set; }
-
-        public LifeOccupation(string name, double productivity, int populationEngaged = 100, string description = "")
-        {
-            Name = name;
-            Productivity = productivity;
-            PopulationEngaged = populationEngaged;
-            Description = description;
-        }
-    }
-
-    /// <summary>
-    /// 千年史自律シミュレーターのコアロジックを実装するクラス。
-    /// ターンベースで世界の状態を進行させ、不遇枝エネルギーモデルを適用し、正史を記録します。
-    /// </summary>
-    public class HistoricalSimulator
-    {
-        private WorldState _worldState;
-        public const int TurnsPerGeneration = 50; // 1世代あたりのターン数
-        private Random _random;
-
-        /// <summary>
-        /// シミュレーターの新しいインスタンスを初期化します。
-        /// </summary>
-        /// <param name="initialState">シミュレーションの初期状態。</param>
-        public HistoricalSimulator(WorldState initialState)
-        {
-            _worldState = initialState ?? throw new ArgumentNullException(nameof(initialState));
-            _random = new Random();
-            // 初期状態のサニタイズを必ず実行
-            _worldState = MagicSanitizerEngine.Sanitize(_worldState);
-            Console.WriteLine($"[Simulator Init] Initialized at Turn {_worldState.CurrentTurn}, Gen {_worldState.CurrentGeneration}.");
-        }
-
-        /// <summary>
-        /// 指定されたターン範囲でシミュレーションを実行します。
-        /// </summary>
-        /// <param name="startTurn">シミュレーションを開始するターン数。</param>
-        /// <param name="endTurn">シミュレーションを終了するターン数。</param>
-        /// <returns>シミュレーション中に記録された正史のリスト。</returns>
-        public List<string> RunSimulation(long startTurn, long endTurn)
-        {
-            Console.WriteLine($"\n--- [SIMULATION START] Running from Turn {startTurn} to {endTurn} (Generations {Math.Ceiling((double)startTurn / TurnsPerGeneration)} to {Math.Ceiling((double)endTurn / TurnsPerGeneration)}) ---");
-
-            for (long currentTurn = startTurn; currentTurn <= endTurn; currentTurn++)
-            {
-                try
-                {
-                    _worldState.CurrentTurn = currentTurn;
-                    _worldState.CurrentGeneration = (int)Math.Ceiling((double)currentTurn / TurnsPerGeneration);
-
-                    // [Safe-Fail構造] ターン開始前の状態チェックとサニタイズ
-                    _worldState = MagicSanitizerEngine.Sanitize(_worldState);
-
-                    // ターン処理の実行
-                    ProcessTurn(currentTurn);
-
-                    // 世代の変わり目処理
-                    if (currentTurn % TurnsPerGeneration == 0)
-                    {
-                        ProcessGenerationEnd(_worldState.CurrentGeneration);
-                    }
-
-                    // [Safe-Fail構造] ターン終了後の状態チェックとサニタイズ
-                    _worldState = MagicSanitizerEngine.Sanitize(_worldState);
-                }
-                catch (Exception ex)
-                {
-                    // [Safe-Fail構造] 例外発生時の処理
-                    string errorMessage = $"[ERROR] Turn {currentTurn} failed: {ex.Message}. StackTrace: {ex.StackTrace}. State might be corrupted. Attempting graceful shutdown.";
-                    Console.Error.WriteLine(errorMessage);
-                    _worldState.HistoricalRecords.Add(errorMessage);
-                    // 致命的なエラーの場合はシミュレーションを中断
-                    break;
-                }
-            }
-
-            Console.WriteLine($"--- [SIMULATION END] Reached Turn {endTurn}. Final Generation: {_worldState.CurrentGeneration}. ---");
-            return _worldState.HistoricalRecords;
-        }
-
-        /// <summary>
-        /// シミュレーションの1ターン分の処理を実行します。
-        /// </summary>
-        /// <param name="turn">現在のターン数。</param>
-        private void ProcessTurn(long turn)
-        {
-            // 1. 不遇枝エネルギー蓄積モデルの適用
-            double energyChange = CalculateUnfavoredBranchEnergyChange(_worldState);
-            _worldState.UnfavoredBranchEnergyAccumulated += energyChange;
-
-            // 不遇枝エネルギーが閾値を超えたらイベント発生
-            const double unfavoredEnergyThreshold = 150.0; // 仮の閾値
-            if (_worldState.UnfavoredBranchEnergyAccumulated >= unfavoredEnergyThreshold)
-            {
-                TriggerUnfavoredBranchEvent();
-                _worldState.UnfavoredBranchEnergyAccumulated = 0; // イベント発生でリセット
-            }
-
-            // 2. 世界の状態更新（資源、人口、技術進歩など）
-            UpdateWorldState(turn);
-
-            // 3. ジョブ（生活職業）の活動による影響
-            foreach (var job in _worldState.ActiveLifeOccupations)
-            {
-                PerformJobActivity(job);
-            }
-
-            // 4. 魔法（社会技術）の影響
-            foreach (var magic in _worldState.ActiveSocialTechnologies)
-            {
-                ApplySocialTechnologyEffect(magic);
-            }
-
-            // 簡易ログ (詳細デバッグ用)
-            // Console.WriteLine($"Turn {turn}: Gen {_worldState.CurrentGeneration}, Energy={_worldState.UnfavoredBranchEnergyAccumulated:F2}, Food={_worldState.Resources.GetValueOrDefault("Food", 0):F2}");
-        }
-
-        /// <summary>
-        /// 不遇枝エネルギーの蓄積量を計算します。
-        /// 世界の「不遇」な状態に応じてエネルギーが蓄積されます。
-        /// </summary>
-        /// <param name="state">現在の世界の状態。</param>
-        /// <returns>このターンで蓄積される不遇枝エネルギー量。</returns>
-        private double CalculateUnfavoredBranchEnergyChange(WorldState state)
-        {
-            double energyAccumulation = 0.05; // ベースの蓄積量
-
-            // 例: 食料資源が少ないと蓄積加速
-            if (state.Resources.ContainsKey("Food") && state.Resources["Food"] < 100.0)
-            {
-                energyAccumulation += 0.2 + (100.0 - state.Resources["Food"]) * 0.01; // 不足分に応じて加速
-            }
-            // 例: 特定の重要な社会技術が未発見だと蓄積加速
-            if (!state.ActiveSocialTechnologies.Any(t => t.Name == "AdvancedAgriculture" && t.IsDiscovered))
-            {
-                energyAccumulation += 0.1;
-            }
-            if (!state.ActiveSocialTechnologies.Any(t => t.Name == "StableGovernance" && t.IsDiscovered))
-            {
-                energyAccumulation += 0.15;
-            }
-            // 例: 資源の多様性が低いと蓄積加速
-            if (state.Resources.Count < 3)
-            {
-                energyAccumulation += 0.05;
-            }
-
-            // ランダムな変動要素
-            energyAccumulation += (_random.NextDouble() - 0.5) * 0.1; // -0.05 から +0.05 の範囲で変動
-
-            return Math.Max(0, energyAccumulation); // 負の値にならないようにする
-        }
-
-        /// <summary>
-        /// 不遇枝エネルギーが閾値を超えた際に発生するイベントをトリガーします。
-        /// これは、社会技術の発見、危機、変革など、シミュレーションの転換点となり得ます。
-        /// </summary>
-        private void TriggerUnfavoredBranchEvent()
-        {
-            string eventDescription = $"[EVENT] Turn {_worldState.CurrentTurn} (Gen {_worldState.CurrentGeneration}): Unfavored Branch Energy triggered a major event!";
-            _worldState.GenerationEvents.Add(eventDescription);
-            _worldState.HistoricalRecords.Add(eventDescription);
-            Console.WriteLine(eventDescription);
-
-            // イベントの種類をランダムに決定
-            double eventRoll = _random.NextDouble();
-
-            if (eventRoll < 0.4) // 40%の確率で新しい社会技術の発見
-            {
-                string techName = $"Innovation_Gen{_worldState.CurrentGeneration}_{Guid.NewGuid().ToString().Substring(0, 6)}";
-                double impact = 1.0 + _random.NextDouble() * 0.5; // 影響度をランダムに決定
-                var newTech = new SocialTechnology(techName, impact, true, "Emergence from accumulated societal pressure.");
-                _worldState.ActiveSocialTechnologies.Add(newTech);
-                string techDiscovery = $"[TECH DISCOVERY] Turn {_worldState.CurrentTurn}: A new Social Technology '{newTech.Name}' (Magic) was discovered, impacting the world with factor {newTech.ImpactFactor:F2}.";
-                _worldState.GenerationEvents.Add(techDiscovery);
-                _worldState.HistoricalRecords.Add(techDiscovery);
-                Console.WriteLine(techDiscovery);
-            }
-            else if (eventRoll < 0.7) // 30%の確率で社会危機または変革
-            {
-                string crisisEvent = $"[CRISIS/CHANGE] Turn {_worldState.CurrentTurn}: A significant societal crisis or transformation occurred. Resources may fluctuate wildly.";
-                _worldState.GenerationEvents.Add(crisisEvent);
-                _worldState.HistoricalRecords.Add(crisisEvent);
-                Console.WriteLine(crisisEvent);
-                // 危機の影響をシミュレート (例: 資源の急減、人口減少)
-                if (_worldState.Resources.ContainsKey("Food")) _worldState.Resources["Food"] *= (_random.NextDouble() * 0.5 + 0.2); // 20-70%に減少
-                if (_worldState.Resources.ContainsKey("Materials")) _worldState.Resources["Materials"] *= (_random.NextDouble() * 0.5 + 0.2);
-            }
-            else // 30%の確率で新たな生活職業の出現または既存職業の進化
-            {
-                string jobName = $"NewOccupation_Gen{_worldState.CurrentGeneration}_{Guid.NewGuid().ToString().Substring(0, 6)}";
-                double productivity = 0.8 + _random.NextDouble() * 1.2;
-                var newJob = new LifeOccupation(jobName, productivity, _random.Next(50, 200), "A new way of life emerged from necessity.");
-                _worldState.ActiveLifeOccupations.Add(newJob);
-                string jobEmergence = $"[JOB EMERGENCE] Turn {_worldState.CurrentTurn}: A new Life Occupation '{newJob.Name}' (Job) emerged, with productivity {newJob.Productivity:F2}.";
-                _worldState.GenerationEvents.Add(jobEmergence);
-                _worldState.HistoricalRecords.Add(jobEmergence);
-                Console.WriteLine(jobEmergence);
-            }
-        }
-
-        /// <summary>
-        /// 世界の状態を更新します（資源の消費と生産、人口変動など）。
-        /// </summary>
-        /// <param name="turn">現在のターン数。</param>
-        private void UpdateWorldState(long turn)
-        {
-            // 資源の基本的な変動
-            if (!_worldState.Resources.ContainsKey("Food")) _worldState.Resources["Food"] = 500.0;
-            if (!_worldState.Resources.ContainsKey("Materials")) _worldState.Resources["Materials"] = 200.0;
-
-            // 食料の消費と生産
-            double foodConsumption = _worldState.ActiveLifeOccupations.Sum(j => j.PopulationEngaged * 0.1); // 人口に応じた消費
-            double foodProduction = _worldState.ActiveLifeOccupations.Where(j => j.Name.Contains("Farmer") || j.Name.Contains("Gatherer")).Sum(j => j.Productivity * j.PopulationEngaged * 0.05);
-            _worldState.Resources["Food"] += foodProduction - foodConsumption + (_random.NextDouble() - 0.5) * 5.0; // ランダムな変動も加える
-
-            // 材料の消費と生産
-            double materialConsumption = _worldState.ActiveLifeOccupations.Sum(j => j.PopulationEngaged * 0.05);
-            double materialProduction = _worldState.ActiveLifeOccupations.Where(j => j.Name.Contains("Miner") || j.Name.Contains("Crafter")).Sum(j => j.Productivity * j.PopulationEngaged * 0.03);
-            _worldState.Resources["Materials"] += materialProduction - materialConsumption + (_random.NextDouble() - 0.5) * 3.0;
-
-            // 人口の簡易的な変動 (食料状況に依存)
-            double populationGrowthFactor = 0.001;
-            if (_worldState.Resources["Food"] < 50) populationGrowthFactor = -0.005; // 食料不足で人口減少
-            else if (_worldState.Resources["Food"] > 200) populationGrowthFactor = 0.002; // 食料豊富で人口増加
-
-            foreach (var job in _worldState.ActiveLifeOccupations)
-            {
-                job.PopulationEngaged = Math.Max(1, (int)(job.PopulationEngaged * (1 + populationGrowthFactor + (_random.NextDouble() - 0.5) * 0.001)));
-            }
-        }
-
-        /// <summary>
-        /// ジョブ（生活職業）が世界に与える影響をシミュレートします。
-        /// </summary>
-        /// <param name="job">影響を与える生活職業。</param>
-        private void PerformJobActivity(LifeOccupation job)
-        {
-            // ここではUpdateWorldState内でまとめて処理しているため、個別の影響は簡易的に。
-            // より複雑なシミュレーションでは、ここで個々の職業が資源や社会に与える影響を詳細に記述します。
-            // 例: 兵士のジョブは紛争確率に影響、学者のジョブは技術発見確率に影響など。
-        }
-
-        /// <summary>
-        /// 魔法（社会技術）が世界に与える影響をシミュレートします。
-        /// </summary>
-        /// <param name="magic">影響を与える社会技術。</param>
-        private void ApplySocialTechnologyEffect(SocialTechnology magic)
-        {
-            // 社会技術が資源生産効率や安定性などに与える影響
-            if (magic.IsDiscovered)
-            {
-                if (magic.Name.Contains("Agriculture") && _worldState.Resources.ContainsKey("Food"))
-                {
-                    _worldState.Resources["Food"] += magic.ImpactFactor * 0.5 * _worldState.ActiveLifeOccupations.Where(j => j.Name.Contains("Farmer")).Sum(j => j.PopulationEngaged);
-                }
-                if (magic.Name.Contains("ToolMaking") && _worldState.Resources.ContainsKey("Materials"))
-                {
-                    _worldState.Resources["Materials"] += magic.ImpactFactor * 0.3 * _worldState.ActiveLifeOccupations.Where(j => j.Name.Contains("Crafter")).Sum(j => j.PopulationEngaged);
-                }
-                // 他の社会技術の影響...
-            }
-        }
-
-        /// <summary>
-        /// 世代の終わりに実行される処理。
-        /// 世代ごとの要約を正史に記録し、次の世代の準備を行います。
-        /// </summary>
-        /// <param name="generation">終了する世代の番号。</param>
-        private void ProcessGenerationEnd(int generation)
-        {
-            string genSummary = $"\n--- GENERATION {generation} END (Turn {_worldState.CurrentTurn}) ---";
-            _worldState.HistoricalRecords.Add(genSummary);
-            Console.WriteLine(genSummary);
-
-            // 世代ごとの主要イベントを正史に記録
-            if (_worldState.GenerationEvents.Any())
-            {
-                _worldState.HistoricalRecords.Add($"  [Generation {generation} Events]:");
-                _worldState.HistoricalRecords.AddRange(_worldState.GenerationEvents.Select(e => $"    - {e}"));
-            }
-            _worldState.GenerationEvents.Clear(); // 次の世代のためにクリア
-
-            // 世代間の状態要約を正史に記録
-            string genProgression = $"  - World State Summary: Food={_worldState.Resources.GetValueOrDefault("Food", 0):F2}, Materials={_worldState.Resources.GetValueOrDefault("Materials", 0):F2}, UnfavoredEnergy={_worldState.UnfavoredBranchEnergyAccumulated:F2}";
-            _worldState.HistoricalRecords.Add(genProgression);
-            Console.WriteLine(genProgression);
-
-            string techSummary = $"  - Active Social Technologies (Magic): {string.Join(", ", _worldState.ActiveSocialTechnologies.Select(t => t.Name))}";
-            _worldState.HistoricalRecords.Add(techSummary);
-            Console.WriteLine(techSummary);
-
-            string jobSummary = $"  - Active Life Occupations (Jobs): {string.Join(", ", _worldState.ActiveLifeOccupations.Select(j => $"{j.Name} ({j.PopulationEngaged} engaged)"))}";
-            _worldState.HistoricalRecords.Add(jobSummary);
-            Console.WriteLine(jobSummary);
-
-            // 世代間の状態遷移やリセット、新たな挑戦の準備など
-            // 例: 特定の資源の枯渇、新たな技術ツリーのアンロック、新たなジョブの出現確率調整
-        }
-
-        /// <summary>
-        /// シミュレーションの全歴史記録を取得します。
-        /// </summary>
-        /// <returns>正史のリスト。</returns>
-        public List<string> GetFullHistory()
-        {
-            return _worldState.HistoricalRecords;
-        }
-    }
-
-    /// <summary>
-    /// シミュレーションのエントリポイントとなるプログラムクラス。
-    /// </summary>
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            Console.OutputEncoding = Encoding.UTF8; // コンソール出力の文字化け対策
-
-            // 初期状態のセットアップ
-            WorldState initialState = new WorldState
-            {
-                CurrentTurn = 1000, // シミュレーション開始前の最終ターン
-                CurrentGeneration = 20, // シミュレーション開始前の最終世代
-                UnfavoredBranchEnergyAccumulated = 0.0,
-                Resources = new Dictionary<string, double>
-                {
-                    { "Food", 500.0 },
-                    { "Materials", 200.0 }
-                },
-                ActiveSocialTechnologies = new List<SocialTechnology>
-                {
-                    new SocialTechnology("BasicAgriculture", 1.0, true, "Fundamental farming techniques."),
-                    new SocialTechnology("SimpleToolMaking", 0.8, true, "Crafting basic tools for survival."),
-                    new SocialTechnology("CommunityBuilding", 1.2, true, "Early forms of social organization.")
-                },
-                ActiveLifeOccupations = new List<LifeOccupation>
-                {
-                    new LifeOccupation("Farmer", 1.5, 500, "Cultivates crops for sustenance."),
-                    new LifeOccupation("Gatherer", 1.0, 300, "Collects wild resources."),
-                    new LifeOccupation("Crafter", 1.2, 150, "Produces tools and basic goods.")
-                },
-                // HistoricalRecordsはシミュレーターが進行中に蓄積するため、ここでは空で良い
-                HistoricalRecords = new List<string>
-                {
-                    "--- ANCIENT HISTORY (Turns 1-1000, Generations 1-20) ---",
-                    "The dawn of civilization. Early settlements formed, basic agriculture developed.",
-                    "Numerous small conflicts and periods of peace. Foundations of society laid.",
-                    "-----------------------------------------------------"
-                }
-            };
-
-            HistoricalSimulator simulator = new HistoricalSimulator(initialState);
-
-            // ターン1001からターン3000までの2000年間（第21〜60世代）をシミュレーション
-            long startTurn = 1001;
-            long endTurn = 3000;
-
-            List<string> finalHistory = simulator.RunSimulation(startTurn, endTurn);
-
-            Console.WriteLine("\n\n--- 3000 YEAR HISTORY: THE GRAND CHRONICLE (Excerpt of Last 50 Records) ---");
-            // 全ての記録を表示すると膨大になるため、最後の50件を表示
-            foreach (var record in finalHistory.Skip(Math.Max(0, finalHistory.Count - 50)))
-            {
-                Console.WriteLine(record);
-            }
-            Console.WriteLine($"\nTotal historical records generated: {finalHistory.Count}");
-            Console.WriteLine("--- END OF CHRONICLE ---");
-
-            // 必要であれば、全歴史をファイルに保存するなどの処理を追加
-            // File.WriteAllLines("3000_year_history.txt", finalHistory);
-        }
+        // シミュレーションマネージャーのインスタンスが破棄される前に最終状態をログに出すなど
+        // この例ではStartCoroutineで実行しているため、終了はコルーチン内で確認するのが適切
     }
 }
 ```
