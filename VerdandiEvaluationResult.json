@@ -1,42 +1,14 @@
-```json
 {
   "branchEvaluations": [
     {
-      "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T1250",
-      "verdandiScore": -220,
-      "reasoning": "学術発展という穏健な展開で人間ドラマの波乱に乏しく、マンネリ感が強い。"
+      "branchId": "ALT_REVIVAL_NEW_ARCANE_ACADEMIA_T2000",
+      "verdandiScore": 20,
+      "reasoning": "学術発展路線は堅実だが波乱に乏しく、禁忌魔導への踏み込みが見えない限り凡庸な展開に留まる。"
     },
     {
-      "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T1250",
-      "verdandiScore": 180,
-      "reasoning": "古代結界の解読は禁忌魔導に触れる可能性を秘め、封印された災厄復活のロマンと波乱の芽がある。"
+      "branchId": "ALT_REVIVAL_ANCIENT_BARRIER_DECODE_T2000",
+      "verdandiScore": 320,
+      "reasoning": "古代結界陣という禁忌領域への解読は封印されし異端魔導の解禁に直結し、人智を超えた災厄招来のロマンが濃厚。"
     },
     {
-      "branchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T1250",
-      "verdandiScore": 260,
-      "reasoning": "魔獣との縄張り衝突は前線防衛戦の緊張感を生み、人間対自然の過酷なドラマが期待できる。"
-    },
-    {
-      "branchId": "ALT_REVIVAL_NEW_TRADE_SPHERE_T1250",
-      "verdandiScore": -260,
-      "reasoning": "商業的発展のみで争いの火種が薄く、平和的展開としてデバフ対象。"
-    },
-    {
-      "branchId": "ALT_REVIVAL_SHARED_INFRASTRUCTURE_T1250",
-      "verdandiScore": -320,
-      "reasoning": "親ブランチと同一路線で変化がなく、完全なマンネリ展開として重い減点。"
-    },
-    {
-      "branchId": "ALT_REVIVAL_ACADEMY_GUILD_UNION_T1250",
-      "verdandiScore": -180,
-      "reasoning": "ギルド連合という協調路線は派閥抗争の火種にもなり得るが、現状は穏健で波乱が薄い。"
-    },
-    {
-      "branchId": "ALT_REVIVAL_BEAST_COEXISTENCE_PACT_T1250",
-      "verdandiScore": -240,
-      "reasoning": "共生条約という和解路線は争いを回避し、ドラマ性に欠ける平和的結末に近い。"
-    }
-  ],
-  "topRecommendedBranchId": "ALT_REVIVAL_ROAD_AND_BEAST_TERRITORY_T1250"
-}
-```
+      "branchId": "ALT_REVIVAL_ROAD_A
